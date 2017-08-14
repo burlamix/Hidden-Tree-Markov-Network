@@ -109,6 +109,7 @@ class List_tree(object):
         self.struct.append([])
         self.t = Tree(label,self.struct)
         self.struct[0].append(self.t)
+        self.size=None
 
     def __str__(self):
         return self.t.label+"_"+str(self.name)
@@ -121,6 +122,7 @@ class List_tree(object):
             for node in level:
                 node.name=i
                 i = i+ 1
+        l_t.size=i
 
     def divide_leaves(self):
         self.struct.append([])
