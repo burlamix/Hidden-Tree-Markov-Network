@@ -16,23 +16,32 @@ x = []
 #tf.slice(ph_1,[0,3], [3, 1]
 
 
-rr=tf.zeros([3, 1], tf.int32)
-for i in range(0,5):
-    a = tf.slice(ph_1, [0, i], [3, 1])
-    rr = tf.concat([rr,a],1)
+
+#for i in range(0,1):
+#rr = tf.concat([rr[1,:,:],ph_1],2)
 
 
 
-input_1 = np.array([[1,2,3],
+input_1 =          [[1,2,3],
                    [4,5,6],
-                   [7,8,9]])
+                   [7,8,9]]
 
+input_2 =          [[11,22,33],
+                   [44,55,66],
+                   [77,88,99]]
 #r = tf.slice(ph_1,[0,5], [3, 1])
+print(ph_1.shape)
 
-print(ph_1)
+a= tf.expand_dims(ph_1,0)
+a= tf.tile(a,[3,1,1])
+print(a.shape)
 
-rr= tf.tile(ph_1,[3,3,1])
+b= tf.expand_dims(ph_2,0)
+b= tf.tile(b,[3,1,1])
+
+#rr= tf.expand_dims(a,0)
+rr = tf.stack([a,b],0)
 
 with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
-        print( sess.run(rr, feed_dict={ph_1: input_1}))
+        print( sess.run([a,rr], feed_dict={ph_1: input_1,ph_2: input_2}),a.shape,rr.shape)
