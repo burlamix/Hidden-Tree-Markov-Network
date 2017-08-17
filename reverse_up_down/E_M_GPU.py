@@ -71,10 +71,13 @@ for i in range(0,N_HIDDEN_STATES):
 
 for i in range(0,MAX_CHILD):
     sp_p[i]=i
+
+w=0
 for i in range(0,N_HIDDEN_STATES ):
     for j in range(0, N_HIDDEN_STATES):
         for k in range(0, MAX_CHILD):
-            pos_st_tr_p[i,j,k]=10
+            pos_st_tr_p[i,j,k]=w
+            w=w+3
 
 #____________17_______________
 aux1=tf.ones([N_HIDDEN_STATES, 0], tf.int32)
@@ -133,13 +136,13 @@ for i in range(len(t.struct)-2,0,-1):
     #qui moltiplicazione
     aux4 = tf.multiply(aux3,liv_molt)       # questa è una serie di matrici, tante quanti sono i nodi del livello esaminati
 
+    print("|||||||||aux4", aux4.shape)
 
-
-
+    s = tf.reduce_sum(aux4,[2,3])
 #------------------------
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer(),)
-    print(sess.run([ph_in_prior,liv_molt,aux3,aux4], {ph_m_emission: m_emission, ph_pos_prior_p: pos_prior_p,ph_sp_p: sp_p, ph_in_prior: in_prior, ph_pos_st_tr_p: pos_st_tr_p}))
+    print(sess.run([ph_in_prior,liv_molt,aux3,aux4,s], {ph_m_emission: m_emission, ph_pos_prior_p: pos_prior_p,ph_sp_p: sp_p, ph_in_prior: in_prior, ph_pos_st_tr_p: pos_st_tr_p}))
 
 
 

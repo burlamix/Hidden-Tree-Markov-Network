@@ -39,9 +39,10 @@ print(a.shape)
 b= tf.expand_dims(ph_2,0)
 b= tf.tile(b,[3,1,1])
 
+s=tf.reduce_sum(b,[1,2])
 #rr= tf.expand_dims(a,0)
 rr = tf.stack([a,b],0)
 
 with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
-        print( sess.run([a,rr], feed_dict={ph_1: input_1,ph_2: input_2}),a.shape,rr.shape)
+        print( sess.run([a,s], feed_dict={ph_1: input_1,ph_2: input_2}),a.shape,rr.shape)
