@@ -39,18 +39,6 @@ s_post = np.ones((MAX_CHILD,N_HIDDEN_STATES,N_HIDDEN_STATES,N_NODE))
 
 #internal node prior
 in_prior = np.zeros((N_HIDDEN_STATES,t.size))
-
-
-ph_pos_prior_p = tf.placeholder(shape=[N_HIDDEN_STATES,MAX_CHILD], dtype=tf.int32)
-ph_sp_p = tf.placeholder(shape=[MAX_CHILD], dtype=tf.int32)
-ph_pos_st_tr_p = tf.placeholder(shape=[N_HIDDEN_STATES,N_HIDDEN_STATES,MAX_CHILD], dtype=tf.int32)
-ph_m_emission = tf.placeholder(shape=[N_HIDDEN_STATES,N_SYMBOLS], dtype=tf.int32)
-ph_up_ward = tf.placeholder(shape=[N_NODE,N_HIDDEN_STATES], dtype=tf.int32)
-ph_a_up_ward = tf.placeholder(shape=[MAX_CHILD,N_HIDDEN_STATES,N_NODE], dtype=tf.int32)
-ph_post = tf.placeholder(shape=[N_NODE,N_HIDDEN_STATES], dtype=tf.int32)
-ph_s_post = tf.placeholder(shape=[MAX_CHILD,N_HIDDEN_STATES,N_HIDDEN_STATES,N_NODE], dtype=tf.int32)
-ph_in_prior = tf.placeholder(shape=[N_HIDDEN_STATES,t.size], dtype=tf.int32)
-
 #___row test______________
 z=100
 h=0
@@ -70,7 +58,7 @@ for i in range(0,N_HIDDEN_STATES):
         w=w+1
 
 for i in range(0,MAX_CHILD):
-    sp_p[i]=i
+    sp_p[i]=i+1
 
 w=0
 for i in range(0,N_HIDDEN_STATES ):
@@ -78,6 +66,22 @@ for i in range(0,N_HIDDEN_STATES ):
         for k in range(0, MAX_CHILD):
             pos_st_tr_p[i,j,k]=w
             w=w+3
+
+
+ph_pos_prior_p = tf.placeholder(shape=[N_HIDDEN_STATES,MAX_CHILD], dtype=tf.int32)
+ph_sp_p = tf.placeholder(shape=[MAX_CHILD], dtype=tf.int32)
+ph_pos_st_tr_p = tf.placeholder(shape=[N_HIDDEN_STATES,N_HIDDEN_STATES,MAX_CHILD], dtype=tf.int32)
+ph_m_emission = tf.placeholder(shape=[N_HIDDEN_STATES,N_SYMBOLS], dtype=tf.int32)
+ph_up_ward = tf.placeholder(shape=[N_NODE,N_HIDDEN_STATES], dtype=tf.int32)
+ph_a_up_ward = tf.placeholder(shape=[MAX_CHILD,N_HIDDEN_STATES,N_NODE], dtype=tf.int32)
+ph_post = tf.placeholder(shape=[N_NODE,N_HIDDEN_STATES], dtype=tf.int32)
+ph_s_post = tf.placeholder(shape=[MAX_CHILD,N_HIDDEN_STATES,N_HIDDEN_STATES,N_NODE], dtype=tf.int32)
+
+
+init = tf.constant(in_prior, dtype=tf.int32)
+var_in_prior = tf.get_variable('var', initializer=init)
+
+print(var_in_prior)
 
 #____________17_______________
 aux1=tf.ones([N_HIDDEN_STATES, 0], tf.int32)
@@ -97,52 +101,55 @@ ris_17_t = tf.divide(nume,den)             #17
 
 #____________19 / 20___________
 
-print("****",ph_sp_p.shape)
-print("****",ph_pos_st_tr_p.shape)
+
 aux3 =tf.multiply(ph_sp_p,ph_pos_st_tr_p) # broadcast implicito
 
 
-#for ma lo facciamo per un nodo solo per ora
-aa =t.struct[-2][0]#riga dei nodi  più bassi sopra le foglie, qui ci vuole un for per ogni riga!
-
 #per ogni livello dell'albero
 for i in range(len(t.struct)-2,0,-1):
-    print("livello struct_____________________________________________",i)
     liv_molt = tf.ones([0, N_HIDDEN_STATES], tf.int32)
     b = []
+    print("____________________")
 
     #per ogni nodo del livello
     for node in t.struct[i]:
+        print(node.name)
 
-        print("nodo_:_:_:_:_:_:_",node.name)
         children = tf.ones([N_HIDDEN_STATES,0 ], tf.int32)
 
         #per ogni figlio del nodo del livello
         for child_node in node.children:
-            print("nodo-------------------",child_node.name)
-            child = tf.slice(ph_in_prior, [0,child_node.name], [N_HIDDEN_STATES,1 ])    #estraggo il node prior
+            print(var_in_prior)
+
+            child = tf.slice(var_in_prior, [0,child_node.name], [N_HIDDEN_STATES,1 ])    #estraggo il node prior
+            #child = in_prior[:,child_node.name]    #estraggo il node prior
+            #child = np.expand_dims(child,axis=1)
+            print(var_in_prior)
+
             children = tf.concat([children, child],1)                                   #creo una matrice dei node_prior per figli di un nodo
 
-        print(children.shape)
         children = tf.expand_dims(children, 0)                                          #faccio un broadcast esplicito duplicando la matrice su una nuova dimenzione  per il numero di stati nascosti
         children = tf.tile(children, [N_HIDDEN_STATES, 1, 1])
         b.append(children)                                                              #metto tutte le matrici in una cosa
-        print(children.shape)
 
     liv_molt = tf.stack(b, 0) #concateno tutte le matrici N_HIDDEN_STATES*L dei node_prior per ogni gruppo di figli di un nodo  in un unica matrice N_HIDDEN_STATES*L*(numero di nodi del livello)
 
-    print("|||||||||aux3",aux3.shape)
-    print("|||||livmolt",liv_molt.shape)
     #qui moltiplicazione
     aux4 = tf.multiply(aux3,liv_molt)       # questa è una serie di matrici, tante quanti sono i nodi del livello esaminati
 
-    print("|||||||||aux4", aux4.shape)
-
-    s = tf.reduce_sum(aux4,[2,3])
+    s = tf.reduce_sum(aux4,[2,3])           #sommo le matrici di dim 2
+    s = tf.transpose(s)
+    print(t.struct[i][0].name,"-------",t.struct[i][-1].name+1)
+   # print(in_prior[:, t.struct[i][0].name : t.struct[i][-1].name+1])
+    #print(s)
+    #in_prior[:, t.struct[i][0].name : t.struct[i][-1].name+1] = s.eval()
+    #in_prior[1,5] = s[3,1]
+    tt = var_in_prior[1,1] * var_in_prior[2,2]
+    #var_in_prior[:, t.struct[i][0].name : t.struct[i][-1].name].assign(s)
 #------------------------
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer(),)
-    print(sess.run([ph_in_prior,liv_molt,aux3,aux4,s], {ph_m_emission: m_emission, ph_pos_prior_p: pos_prior_p,ph_sp_p: sp_p, ph_in_prior: in_prior, ph_pos_st_tr_p: pos_st_tr_p}))
+    print(sess.run([var_in_prior,s,tt], {ph_m_emission: m_emission, ph_pos_prior_p: pos_prior_p,ph_sp_p: sp_p, ph_pos_st_tr_p: pos_st_tr_p}))
 
 
 

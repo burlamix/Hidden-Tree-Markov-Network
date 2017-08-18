@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ec4d2838-1153-44b3-a3d2-8bd0be1e31be" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/E_M_GPU.py" afterPath="$PROJECT_DIR$/E_M_GPU.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GPU_matrix_test.py" afterPath="$PROJECT_DIR$/GPU_matrix_test.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,7 +16,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/untitled1$test_gpu.coverage" NAME="test_gpu Coverage Results" MODIFIED="1501145344144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$HTMN_Rrow.coverage" NAME="HTMN_Rrow Coverage Results" MODIFIED="1501321451099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/fow_dow$GPU_matrix_test.coverage" NAME="GPU_matrix_test Coverage Results" MODIFIED="1502975167479" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/fow_dow$GPU_matrix_test.coverage" NAME="GPU_matrix_test Coverage Results" MODIFIED="1503062809240" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$tre_simple.coverage" NAME="tre_simple Coverage Results" MODIFIED="1502438728202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$momentaneo.coverage" NAME="momentaneo Coverage Results" MODIFIED="1502707625534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$tre_imp_graph.coverage" NAME="tre_imp_graph Coverage Results" MODIFIED="1502108183778" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -22,7 +24,7 @@
     <SUITE FILE_PATH="coverage/fow_dow$test_gpu.coverage" NAME="test_gpu Coverage Results" MODIFIED="1501515540996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$test_broadcat.coverage" NAME="test_broadcat Coverage Results" MODIFIED="1502531117615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$E_M_row.coverage" NAME="E_M row Coverage Results" MODIFIED="1502108205784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/fow_dow$E_M_GPU.coverage" NAME="E_M_GPU Coverage Results" MODIFIED="1502976389685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/fow_dow$E_M_GPU.coverage" NAME="E_M_GPU Coverage Results" MODIFIED="1503062644041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$HTMN.coverage" NAME="HTMN Coverage Results" MODIFIED="1501177132470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled1$E_M_row.coverage" NAME="E_M row Coverage Results" MODIFIED="1501145176151" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -45,8 +47,8 @@
       <file leaf-file-name="E_M_GPU.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/E_M_GPU.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="136" column="75" lean-forward="false" selection-start-line="136" selection-start-column="75" selection-end-line="136" selection-end-column="75" />
+            <state relative-caret-position="295">
+              <caret line="132" column="94" lean-forward="true" selection-start-line="132" selection-start-column="94" selection-end-line="132" selection-end-column="94" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -67,8 +69,8 @@
       <file leaf-file-name="GPU_matrix_test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GPU_matrix_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="41" column="15" lean-forward="false" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="15" />
+            <state relative-caret-position="475">
+              <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -139,8 +141,8 @@
         <option value="$PROJECT_DIR$/test_broadcat.py" />
         <option value="$PROJECT_DIR$/momentaneo.py" />
         <option value="$PROJECT_DIR$/tre_simple.py" />
-        <option value="$PROJECT_DIR$/GPU_matrix_test.py" />
         <option value="$PROJECT_DIR$/E_M_GPU.py" />
+        <option value="$PROJECT_DIR$/GPU_matrix_test.py" />
       </list>
     </option>
   </component>
@@ -152,7 +154,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="50" />
-    <option name="y" value="274" />
+    <option name="y" value="330" />
     <option name="width" value="1316" />
     <option name="height" value="750" />
   </component>
@@ -493,8 +495,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.E_M_GPU" />
-        <item index="1" class="java.lang.String" itemvalue="Python.GPU_matrix_test" />
+        <item index="0" class="java.lang.String" itemvalue="Python.GPU_matrix_test" />
+        <item index="1" class="java.lang.String" itemvalue="Python.E_M_GPU" />
         <item index="2" class="java.lang.String" itemvalue="Python.momentaneo" />
         <item index="3" class="java.lang.String" itemvalue="Python.test_broadcat" />
         <item index="4" class="java.lang.String" itemvalue="Python.tre_simple" />
@@ -537,8 +539,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="50" y="274" width="1316" height="750" extended-state="6" />
-    <editor active="false" />
+    <frame x="50" y="330" width="1316" height="750" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17705168" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -546,7 +548,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.37151247" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1416" y="18" width="1230" height="1006" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.37151247" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1416" y="18" width="1230" height="1006" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -920,16 +922,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GPU_matrix_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="41" column="15" lean-forward="false" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="15" />
+        <state relative-caret-position="475">
+          <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/E_M_GPU.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="136" column="75" lean-forward="false" selection-start-line="136" selection-start-column="75" selection-end-line="136" selection-end-column="75" />
+        <state relative-caret-position="295">
+          <caret line="132" column="94" lean-forward="true" selection-start-line="132" selection-start-column="94" selection-end-line="132" selection-end-column="94" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
