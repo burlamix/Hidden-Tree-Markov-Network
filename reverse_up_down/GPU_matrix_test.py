@@ -3,6 +3,13 @@ os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
 import tensorflow as tf
 import numpy as np
+N_HIDDEN_STATES  = 4   #C
+MAX_CHILD = 3          #L
+N_TREE = 10             #NT
+N_SYMBOLS = 9           #M
+N_NODE = 100            #N
+I_NODE = 70
+MAX_LEVEL = 3
 
 ph_1 = tf.placeholder(shape=[3,3], dtype=tf.int32)
 ph_2 = tf.placeholder(shape=[3,4], dtype=tf.int32)
@@ -45,12 +52,26 @@ s3 = tf.stack([s1,s2],0)  # concateno tutte le matrici N_HIDDEN_STATES*L dei nod
 
 s3= tf.transpose(s3)
 
-print(var.shape)
 #tf.scatter_update(var)
-var =var[:,1:3].assign(s3)
 
-print(var[:,1:3].shape)
+rr = tf.slice(ph_2, [0, 1], [3, 2])  # estraggo il node prior
+
+ph_A = tf.placeholder(shape=[MAX_CHILD,N_HIDDEN_STATES,N_HIDDEN_STATES,N_SYMBOLS], dtype=tf.int32)
+
+A = np.ones((MAX_CHILD, N_HIDDEN_STATES,N_HIDDEN_STATES,N_SYMBOLS))
+
+w=0
+for i in range(0,MAX_CHILD ):
+    for j in range(0, N_HIDDEN_STATES):
+        for k in range(0, N_HIDDEN_STATES):
+            for z in range(0, N_SYMBOLS):
+                A[i,j,k,z]=w
+                w=w+1
+print(A)
+
+rr = tf.reduce_sum(ph_A, [3])  # sommo le matrici di dim 2
+
 
 with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
-        print( sess.run([var,s3], feed_dict={ph_1: input_1,ph_2: input_2}))
+        print( sess.run([rr], feed_dict={ph_A: A,ph_2: input_2}))

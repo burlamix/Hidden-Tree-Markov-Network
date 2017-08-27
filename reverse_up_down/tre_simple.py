@@ -21,10 +21,16 @@ class Tree(object):
         self.name = ""
         self.level_n = level_n
 
+   # def __str__(self):
+  #      return str(self.label)+"_"+str(self.name)
+ #   def __repr__(self):
+#        return str(self.label)+"_"+str(self.name)
+
     def __str__(self):
-        return str(self.label)+"_"+str(self.name)
+        return str(self.name)
     def __repr__(self):
-        return str(self.label)+"_"+str(self.name)
+        return str(self.name)
+
 
     def add_node(self,label):
         node=Tree(label,self.root,self.level_n+1)
@@ -111,10 +117,16 @@ class List_tree(object):
         self.struct[0].append(self.t)
         self.size=None
 
+   # def __str__(self):
+  #      return self.t.label+"_"+str(self.name)
+ #   def __repr__(self):
+#        return self.t.label+"_"+str(self.name)
+
     def __str__(self):
-        return self.t.label+"_"+str(self.name)
+        return str(self.name)
     def __repr__(self):
-        return self.t.label+"_"+str(self.name)
+        return str(self.name)
+
 
     def set_name(l_t):
         i=0
