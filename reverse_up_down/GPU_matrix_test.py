@@ -56,20 +56,19 @@ s3= tf.transpose(s3)
 
 rr = tf.slice(ph_2, [0, 1], [3, 2])  # estraggo il node prior
 
-ph_A = tf.placeholder(shape=[MAX_CHILD,N_HIDDEN_STATES,N_HIDDEN_STATES,N_SYMBOLS], dtype=tf.int32)
+ph_A = tf.placeholder(shape=[MAX_CHILD,N_HIDDEN_STATES,N_HIDDEN_STATES], dtype=tf.int32)
 
-A = np.ones((MAX_CHILD, N_HIDDEN_STATES,N_HIDDEN_STATES,N_SYMBOLS))
+A = np.ones((MAX_CHILD, N_HIDDEN_STATES,N_HIDDEN_STATES))
 
 w=0
 for i in range(0,MAX_CHILD ):
     for j in range(0, N_HIDDEN_STATES):
         for k in range(0, N_HIDDEN_STATES):
-            for z in range(0, N_SYMBOLS):
-                A[i,j,k,z]=w
+                A[i,j,k]=w
                 w=w+1
 print(A)
 
-rr = tf.reduce_sum(ph_A, [3])  # sommo le matrici di dim 2
+rr = tf.reduce_sum(ph_A, [2])  # sommo le matrici di dim 2
 
 
 with tf.Session() as sess:
