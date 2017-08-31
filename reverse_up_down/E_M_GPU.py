@@ -1,6 +1,6 @@
 import numpy as np
 import tensorflow as tf
-import tre_simple as ts
+from tre_simple import *
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
@@ -13,7 +13,7 @@ N_SYMBOLS = 5           #M
 I_NODE = 70
 MAX_LEVEL = 3
 
-t = ts.List_tree(1)
+t = List_tree(1)
 t.t.make_linear_tree(MAX_CHILD, MAX_LEVEL, N_SYMBOLS)
 t.divide_leaves()
 t.set_name()
@@ -116,17 +116,13 @@ init_up_ward = tf.constant(up_ward, dtype=tf.float64)
 var_up_ward = tf.get_variable('var_up_ward', initializer=init_up_ward)
 
 
-
 init_E = tf.constant(E, dtype=tf.float64)
 var_E = tf.get_variable('E', initializer=init_E)
 
 init_EE = tf.constant(EE, dtype=tf.float64)
 var_EE = tf.get_variable('EE', initializer=init_EE)
 
-print("xx")
-print(var_up_ward)
-print("xx")
-print(var_E)
+
 #____________17_______________
 aux1=tf.ones([N_HIDDEN_STATES, 0], tf.float64)
 aux2=tf.ones([N_HIDDEN_STATES, 0], tf.float64)
@@ -309,7 +305,7 @@ head = tf.slice(var_E,[0,1],[N_HIDDEN_STATES,t.size-1])
 head = tf.transpose(head, perm=[1, 0])
 var_E = tf.concat([base,head],0)
 
-for i in range(1, len(t.struct) -1):
+for i in range(1, len(t.struct) ):
     print("----------------------------------- "+str(i)+" ----------------------------------------------------------------")
     print(t.struct[i])
 
