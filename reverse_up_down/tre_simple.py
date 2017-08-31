@@ -21,10 +21,10 @@ class Tree(object):
         self.name = ""
         self.level_n = level_n
 
-   # def __str__(self):
-  #      return str(self.label)+"_"+str(self.name)
- #   def __repr__(self):
-#        return str(self.label)+"_"+str(self.name)
+#    def __str__(self):
+ #       return str(self.label)+"_"+str(self.name)
+  #  def __repr__(self):
+   #     return str(self.label)+"_"+str(self.name)
 
     def __str__(self):
         return str(self.name)
@@ -106,7 +106,10 @@ class Tree(object):
 
         if(max_level>0):
             for i in range(0,max_child):
-                self.add_node(randint(0,max_label-1))
+                #self.add_node(randint(0,max_label-1))
+
+                self.add_node(((i*7)+3)%max_label)
+
                 self.children[i].make_linear_tree(max_child,max_level-1,max_label)
 
 class List_tree(object):
