@@ -285,6 +285,7 @@ def inglobe_ris_liv(ris_24, var_EE, t, i,  N_HIDDEN_STATES):
     return var_EE
 
 def compute_25(ris_24, var_E, i, t, N_HIDDEN_STATES):
+
     ris_25 = tf.reduce_sum(ris_24, [1])  # !!!!!!!!!!!!!!!!!!!!!!!!!!!!! qui non sono sicuro se sto sommando le j o le i
 
     head = tf.slice(var_E, [0, 0], [t.struct[i][0].name, N_HIDDEN_STATES])

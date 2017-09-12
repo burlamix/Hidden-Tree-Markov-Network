@@ -130,7 +130,7 @@ with tf.Session() as sess:
     writer.add_graph(sess.graph)"""
 
     sess.run(tf.global_variables_initializer(),)
-    print(sess.run([var_E,var_EE], {ph_bi: bi, ph_pi: pi,ph_sp_p: sp_p, ph_A: A,ph_in_prior: in_prior, ph_A: A}))
+    print(sess.run([var_EE,var_E], {ph_bi: bi, ph_pi: pi,ph_sp_p: sp_p, ph_A: A,ph_in_prior: in_prior, ph_A: A}))
 
 
 
