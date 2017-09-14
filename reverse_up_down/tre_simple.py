@@ -130,7 +130,7 @@ class List_tree(object):
 
 
     def __str__(self):
-        return  self.classe+"-" +self.t.__str__()
+        return  str(self.classe)+"-" +self.t.__str__()
     def __repr__(self):
         return self.t.__repr__()
 

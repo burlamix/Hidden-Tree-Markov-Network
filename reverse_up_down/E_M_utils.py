@@ -52,7 +52,7 @@ def Reversed_Upward_Downward(var_E, var_EE, ph_sp_p, ph_A, ph_bi, ph_pi, var_in_
 
     var_up_ward = compute_17(ph_bi,ph_pi,var_up_ward,N_HIDDEN_STATES,t)
 
-    var_in_prior = compute_internal_node_prior(var_in_prior, ph_sp_p, ph_A, t, N_HIDDEN_STATES)
+    var_in_prior = compute_internal_node_prior(var_in_prior, ph_sp_p, ph_A, t, N_HIDDEN_STATES,MAX_CHILD)
 
     #up step
     for i in range(len(t.struct) - 2, -1, -1):
@@ -96,7 +96,7 @@ def compute_17(ph_bi,ph_pi,var_up_ward,N_HIDDEN_STATES,t):
 
     return var_up_ward
 
-def compute_internal_node_prior(var_in_prior,ph_sp_p,ph_A,t,N_HIDDEN_STATES):
+def compute_internal_node_prior(var_in_prior,ph_sp_p,ph_A,t,N_HIDDEN_STATES,MAX_CHILD):
 
     aux1 = tf.multiply(ph_sp_p, ph_A)  # broadcast implicito
 
@@ -116,13 +116,16 @@ def compute_internal_node_prior(var_in_prior,ph_sp_p,ph_A,t,N_HIDDEN_STATES):
                 child = tf.slice(var_in_prior, [0, child_node.name], [N_HIDDEN_STATES, 1])  # estraggo il node prior
                 children = tf.concat([children, child], 1)  # creo una matrice dei node_prior per figli di un nodo
 
+            while (children.shape[1] < MAX_CHILD):
+                pad = tf.zeros([N_HIDDEN_STATES,1], tf.float64)
+                children = tf.concat([children, pad], 1)
+
             children = tf.expand_dims(children, 0)  # faccio un broadcast esplicito duplicando la matrice su una nuova dimenzione  per il numero di stati nascosti
             children = tf.tile(children, [N_HIDDEN_STATES, 1, 1])
             aux_list.append(children)
 
-            aux2 = tf.stack(aux_list, 0)  # concateno tutte le matrici N_HIDDEN_STATES*L dei node_prior per ogni gruppo
+        aux2 = tf.stack(aux_list, 0)  # concateno tutte le matrici N_HIDDEN_STATES*L dei node_prior per ogni gruppo -----------------------------------------------------CONTROLLARE L'INDENTAZIONE PERCHÈ PRIMA era con uno in più e ci sta sia sbagliata
                             #  di figli di un nodo  in un unica matrice N_HIDDEN_STATES*L*(numero di nodi del livello)
-
         # qui moltiplicazione
         aux3 = tf.multiply(aux1, aux2)  # questa è una serie di matrici, tante quanti sono i nodi del livello esaminati
 
@@ -153,16 +156,21 @@ def compute_21(ph_A,var_in_prior,var_a_up_ward,var_up_ward,i,t,N_HIDDEN_STATES,M
             child = tf.slice(var_up_ward, [child_node.name,0 ], [1, N_HIDDEN_STATES])
             children = tf.concat([children, child], 0)
 
+        while (children.shape[0] < MAX_CHILD):
+            pad = tf.zeros([1, N_HIDDEN_STATES], tf.float64)
+            children = tf.concat([children, pad], 0)
+
         # faccio un broadcast esplicito duplicando la matrice su una nuova dimenzione  per il numero di stati nascosti
         children = tf.expand_dims(children, 0)
         children = tf.tile(children, [N_HIDDEN_STATES, 1, 1])
         children = tf.transpose(children, perm=[2,0,1])
 
         aux_list.append(children)
-        aux_up_ward = tf.stack(aux_list, 0)
 
         node_in_prior = tf.slice(var_in_prior, [0, node.name], [N_HIDDEN_STATES, 1])
         node_in_priors = tf.concat([node_in_priors, node_in_prior], 1)
+
+    aux_up_ward = tf.stack(aux_list, 0)
 
     # faccio un broadcast esplicito duplicando la matrice su una nuova dimenzione  per il numero di stati nascosti
     node_in_priors = tf.expand_dims(node_in_priors, 0)

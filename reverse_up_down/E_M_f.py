@@ -1,18 +1,30 @@
 from E_M_utils import *
+from parser import *
+
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
 N_HIDDEN_STATES  = 4   #C
-MAX_CHILD = 3          #L
-N_TREE = 10             #NT
-N_SYMBOLS = 5           #M
-I_NODE = 70
-MAX_LEVEL = 3
 
-t = List_tree(1)
+N_SYMBOLS = 366           #M
+
+
+"""
+#serve solo per la costruzione dell'albero lineare
+MAX_LEVEL = 3
+MAX_CHILD = 3          #L
+t = List_tree(1,1)
 t.t.make_linear_tree(MAX_CHILD, MAX_LEVEL, N_SYMBOLS)
 t.divide_leaves()
 t.set_name()
+"""
+MAX_CHILD = 30          #L
+
+t = dataset_parser()
+t=t[13]
+
+print(t)
+print("----")
 
 #model parameters
 #positional prior probability matrix --- pi
