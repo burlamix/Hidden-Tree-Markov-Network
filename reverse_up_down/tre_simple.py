@@ -18,18 +18,24 @@ class Tree(object):
         self.father = None
         self.root = root
         self.label = label
-        self.name = ""
+        self.name = "-"
         self.level_n = level_n
 
 #    def __str__(self):
  #       return str(self.label)+"_"+str(self.name)
-  #  def __repr__(self):
-   #     return str(self.label)+"_"+str(self.name)
+    def __str__(self, level=0):
+        image = "\t" * level + repr(self.label) + "\n"
+        for child in self.children:
+            image += child.__str__(level + 1)
+        return image
 
-    def __str__(self):
-        return str(self.name)
     def __repr__(self):
-        return str(self.name)
+        return str(self.label)+"_"+str(self.name)
+
+   # def __str__(self):
+  #      return str(self.name)
+ #   def __repr__(self):
+#        return str(self.name)
 
 
     def add_node(self,label):
@@ -42,6 +48,7 @@ class Tree(object):
         node.root=self.root
         self.children.append(node)
         node.father=self
+        return node                                         #à---------------------------------------------test
 
     def put_name(self):
         stack = [self]
@@ -113,22 +120,24 @@ class Tree(object):
                 self.children[i].make_linear_tree(max_child,max_level-1,max_label)
 
 class List_tree(object):
-    def __init__(self,label,level_n=0):
+    def __init__(self,label,classe,level_n=0):
         self.struct = []
         self.struct.append([])
         self.t = Tree(label,self.struct)
         self.struct[0].append(self.t)
         self.size=None
+        self.classe=classe
 
-   # def __str__(self):
-  #      return self.t.label+"_"+str(self.name)
- #   def __repr__(self):
-#        return self.t.label+"_"+str(self.name)
 
     def __str__(self):
-        return str(self.name)
+        return  self.classe+"-" +self.t.__str__()
     def __repr__(self):
-        return str(self.name)
+        return self.t.__repr__()
+
+#    def __str__(self):
+ #       return str(self.name)
+  #  def __repr__(self):
+   #     return str(self.name)
 
 
     def set_name(l_t):
@@ -153,8 +162,8 @@ class List_tree(object):
                     stack.insert(0, child)
         del self.struct[-2]
 
-
-"""t = List_tree("radice")
+"""
+t = List_tree("radice")
 t.t.add_node("1")
 t.t.add_node("2")
 t.t.add_node("3")
@@ -170,8 +179,7 @@ t2 = List_tree(0)
 t2.t.make_linear_tree(3,4,9)
 t2.divide_leaves()
 t2.set_name()
-print(t2.struct)
 
-print(t2.t.get_label(1))  """
+print(t.t)
 
-
+"""

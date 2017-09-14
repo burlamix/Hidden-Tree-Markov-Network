@@ -118,9 +118,14 @@ var_E = tf.get_variable('E', initializer=init_E)
 init_EE = tf.constant(EE, dtype=tf.float64)
 var_EE = tf.get_variable('EE', initializer=init_EE)
 
+#----------qualcosa da definire---------------------------------------------------------------------------------
+
+
+
 #-------------------------------------------------------------------------------------------
 
-(var_E,var_EE) = Reversed_Upward_Downward(var_E, var_EE, ph_sp_p, ph_A, ph_bi, ph_pi, var_in_prior, var_a_up_ward, var_up_ward, N_HIDDEN_STATES, MAX_CHILD, t)
+
+(var_EE) = Reversed_Upward_Downward(var_E, var_EE, ph_sp_p, ph_A, ph_bi, ph_pi, var_in_prior, var_a_up_ward, var_up_ward, N_HIDDEN_STATES, MAX_CHILD, t)
 
 #-------------------------------------------------------------------------------------------
 
@@ -130,7 +135,7 @@ with tf.Session() as sess:
     writer.add_graph(sess.graph)"""
 
     sess.run(tf.global_variables_initializer(),)
-    print(sess.run([var_EE,var_E], {ph_bi: bi, ph_pi: pi,ph_sp_p: sp_p, ph_A: A,ph_in_prior: in_prior, ph_A: A}))
+    print(sess.run([var_EE], {ph_bi: bi, ph_pi: pi,ph_sp_p: sp_p, ph_A: A,ph_in_prior: in_prior, ph_A: A}))
 
 
 

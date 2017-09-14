@@ -2,6 +2,52 @@ import numpy as np
 import tensorflow as tf
 from tre_simple import *
 
+
+
+class modello(object):
+    def __init__(self,pi=None,sp_p=None,A=None,bi=None):
+
+        #da riempire in modo senzato.... probabilità ecc
+        if self.pi is None:
+            None
+        if self.sp_p is None:
+            None
+        if self.A is None:
+            None
+        if self.bi is None:
+            None
+
+    def training(self,epche,lista_alberi):
+        None
+
+    def test(self,lista_alberi):
+        None
+
+
+
+def modello(epoche,dataset):
+    #dataset :lista di alberi
+    # pi, e, a , fi ecc relative al modello
+    # lista di var_EE da aggiornare
+    i=0;
+    n=0;
+    for i in range(i,epoche):
+
+        for j in range(i,n):
+            None
+            # con i parametri da aggiustare
+            # E-STEP
+           # (var_EE) = Reversed_Upward_Downward(var_E, var_EE, ph_sp_p, ph_A, ph_bi, ph_pi, var_in_prior, var_a_up_ward,
+           #                                     var_up_ward, N_HIDDEN_STATES, MAX_CHILD, t)
+
+
+        #M-STEP
+        # aggiusto i parametri con lista di var_EE
+
+
+
+#||||||||||||||||||||||||||||||||||||||||||||||||||||||||E-STEP||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
 def Reversed_Upward_Downward(var_E, var_EE, ph_sp_p, ph_A, ph_bi, ph_pi, var_in_prior, var_a_up_ward, var_up_ward, N_HIDDEN_STATES, MAX_CHILD, t):
 
     var_up_ward = compute_17(ph_bi,ph_pi,var_up_ward,N_HIDDEN_STATES,t)
@@ -21,7 +67,7 @@ def Reversed_Upward_Downward(var_E, var_EE, ph_sp_p, ph_A, ph_bi, ph_pi, var_in_
         var_EE = inglobe_ris_liv(ris_24, var_EE, t, i,  N_HIDDEN_STATES)
         var_E =  compute_25(ris_24, var_E, i, t, N_HIDDEN_STATES)
 
-    return (var_E,var_EE)
+    return (var_EE)
 
 def compute_17(ph_bi,ph_pi,var_up_ward,N_HIDDEN_STATES,t):
 
@@ -155,21 +201,22 @@ def compute_19(ph_bi, ph_sp_p, var_a_up_ward, var_in_prior, var_up_ward, t,i, N_
         a_sli_var_a_up_ward = tf.slice(var_a_up_ward, [node.name, 0, 0], [1, N_HIDDEN_STATES, MAX_CHILD])
         second_term = tf.concat([second_term, a_sli_var_a_up_ward], 0)
 
-        a_sli_var_in_prior = tf.slice(var_in_prior, [0, node.name], [N_HIDDEN_STATES, 1])
-        sli_var_in_prior = tf.concat([sli_var_in_prior, a_sli_var_in_prior], 1)
+       # a_sli_var_in_prior = tf.slice(var_in_prior, [0, node.name], [N_HIDDEN_STATES, 1])
+       # sli_var_in_prior = tf.concat([sli_var_in_prior, a_sli_var_in_prior], 1)
 
     first_term = tf.expand_dims(ph_sp_p,
                                 0)  # faccio un broadcast esplicito duplicando la matrice su una nuova dimenzione  per il numero di stati nascosti
     first_term = tf.expand_dims(first_term, 0)
     first_term = tf.tile(first_term, [len(t.struct[i]), N_HIDDEN_STATES, 1])
 
-    third_term = tf.expand_dims(sli_var_in_prior, 0)
-    third_term = tf.tile(third_term, [MAX_CHILD, 1, 1])
-    third_term = tf.transpose(third_term, perm=[2, 1, 0])
+    #third_term = tf.expand_dims(sli_var_in_prior, 0)
+    #third_term = tf.tile(third_term, [MAX_CHILD, 1, 1])
+    #third_term = tf.transpose(third_term, perm=[2, 1, 0])
 
     # per in num
 
-    somm = tf.reduce_sum( tf.multiply( tf.multiply( first_term, second_term), third_term), [2])  # sommo sulla dim 2 (sommo le righe)
+    #somm = tf.reduce_sum( tf.multiply( tf.multiply( first_term, second_term), third_term), [2])  # sommo sulla dim 2 (sommo le righe)
+    somm = tf.reduce_sum( tf.multiply( first_term, second_term), [2])  # sommo sulla dim 2 (sommo le righe)
 
     sli_ph_bi = tf.transpose(sli_ph_bi, perm=[1, 0])
 
@@ -179,9 +226,10 @@ def compute_19(ph_bi, ph_sp_p, var_a_up_ward, var_in_prior, var_up_ward, t,i, N_
     bb = tf.expand_dims(sli_ph_bi, 2)
     bb = tf.tile(bb, [1, 1, MAX_CHILD])
 
-    denominator_int = tf.reduce_sum(
-                            tf.multiply(tf.multiply(tf.multiply(bb, first_term), second_term), third_term),
-                                    [2, 1])  # sommo sulla dim 2 (sommo le righe)
+    #denominator_int = tf.reduce_sum(
+                            #tf.multiply(tf.multiply(tf.multiply(bb, first_term), second_term), third_term), [2, 1])  # sommo sulla dim 2 (sommo le righe)
+
+    denominator_int = tf.reduce_sum(tf.multiply(tf.multiply(bb, first_term), second_term), [2, 1])  # sommo sulla dim 2 (sommo le righe)
 
     denominator = tf.expand_dims(denominator_int, 1)
     denominator = tf.tile(denominator, [1, N_HIDDEN_STATES])  # questo è il Nu uno per ogni nodo, va duplicato per ogni stato nascosto di un nodo
@@ -298,3 +346,8 @@ def compute_25(ris_24, var_E, i, t, N_HIDDEN_STATES):
         var_E = tf.concat([head, ris_25], 0)
 
     return var_E
+
+#||||||||||||||||||||||||||||||||||||||||||||||||||||||||M-STEP||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+
