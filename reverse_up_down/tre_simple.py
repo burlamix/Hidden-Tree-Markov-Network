@@ -12,7 +12,7 @@ def ch_l(u,l):
 
 
 
-class Tree(object):
+class Node(object):
     def __init__(self,label,root,level_n=0):
         self.children = []
         self.father = None
@@ -21,10 +21,12 @@ class Tree(object):
         self.name = "-"
         self.level_n = level_n
 
+
+
 #    def __str__(self):
  #       return str(self.label)+"_"+str(self.name)
     def __str__(self, level=0):
-        image = "\t" * level + repr(self.label) + "\n"
+        image = "\t" * level + repr(self.name) +"-" +repr(self.label) + "\n"
         for child in self.children:
             image += child.__str__(level + 1)
         return image
@@ -39,7 +41,7 @@ class Tree(object):
 
 
     def add_node(self,label):
-        node=Tree(label,self.root,self.level_n+1)
+        node=Node(label,self.root,self.level_n+1)
 
         if len(self.root)<=node.level_n:
             self.root.append([])
@@ -119,14 +121,17 @@ class Tree(object):
 
                 self.children[i].make_linear_tree(max_child,max_level-1,max_label)
 
-class List_tree(object):
+class Tree(object):
     def __init__(self,label,classe,level_n=0):
         self.struct = []
         self.struct.append([])
-        self.t = Tree(label,self.struct)
+        self.t = Node(label,self.struct)
         self.struct[0].append(self.t)
         self.size=None
         self.classe=classe
+        self.max_child=-2
+        self.leaves_n=None
+        self.no_leaves_n=None
 
 
     def __str__(self):
@@ -144,6 +149,9 @@ class List_tree(object):
         i=0
         for level in l_t.struct:
             for node in level:
+                #inoltre mi salvo il numero massimo di figli che ha l'albero così da agevolare i futuri calcoli
+                if len(node.children)> l_t.max_child:
+                    l_t.max_child=len(node.children)
                 node.name=i
                 i = i+ 1
         l_t.size=i
@@ -161,6 +169,10 @@ class List_tree(object):
                 for child in cur_node.get_reverse_children():
                     stack.insert(0, child)
         del self.struct[-2]
+
+    def get_info(self):
+
+        None
 
 """
 t = List_tree("radice")
