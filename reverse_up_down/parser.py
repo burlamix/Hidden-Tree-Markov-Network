@@ -51,9 +51,8 @@ def dataset_parser():
             elif s == ')':
                 nodo_in_esame = nodo_in_esame.father
 
-
-        lt.set_name()
         lt.divide_leaves()
+        lt.set_name()
 
         tre_list.append(lt)
 

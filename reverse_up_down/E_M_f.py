@@ -21,7 +21,7 @@ t.set_name()
 MAX_CHILD = 30          #L
 
 t = dataset_parser()
-
+t = t[13]
 
 #model parameters
 #positional prior probability matrix --- pi
@@ -82,7 +82,7 @@ ph_bi = tf.placeholder(shape=[N_HIDDEN_STATES,N_SYMBOLS], dtype=tf.float64)
 
 #for k in range(i,2000):
 #with tf.variable_scope("conv1"):
-(var_EE) = Reversed_Upward_Downward(ph_sp_p, ph_A, ph_bi, ph_pi, N_HIDDEN_STATES, MAX_CHILD, t[k])
+(var_EE,var_E) = Reversed_Upward_Downward(ph_sp_p, ph_A, ph_bi, ph_pi, N_HIDDEN_STATES, MAX_CHILD, t)
 
 #-------------------------------------------------------------------------------------------
 
@@ -92,7 +92,7 @@ with tf.Session() as sess:
     writer.add_graph(sess.graph)"""
 
     sess.run(tf.global_variables_initializer(),)
-    print(sess.run([var_EE], {ph_bi: bi, ph_pi: pi,ph_sp_p: sp_p, ph_A: A}))
+   # print(sess.run([var_EE,var_E], {ph_bi: bi, ph_pi: pi,ph_sp_p: sp_p, ph_A: A}))
 
 
 
