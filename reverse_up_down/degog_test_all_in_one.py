@@ -1,10 +1,10 @@
 import numpy as np
 import tensorflow as tf
 from datetime import datetime
-
+from E_M_utils import *
 from parser import *
 
-N_HIDDEN_STATES  = 4   #C
+N_HIDDEN_STATES  = 3   #C
 
 N_SYMBOLS = 366           #M
 
@@ -18,52 +18,18 @@ t.t.make_linear_tree(MAX_CHILD, MAX_LEVEL, N_SYMBOLS)
 t.divide_leaves()
 t.set_name()
 """
-MAX_CHILD = 30          #L
+MAX_CHILD = 33          #L
 
 t = dataset_parser()
 t = t[13]
 print(t)
+
 #model parameters
-#positional prior probability matrix --- pi
-pi = np.ones((N_HIDDEN_STATES,MAX_CHILD))
-#SP probability matrix --- fi
-sp_p = np.ones((MAX_CHILD))
-#positional state transiction probability matrix --- A
-A = np.ones((N_HIDDEN_STATES,N_HIDDEN_STATES,MAX_CHILD)) # assumo che gli inidici sono j, i, l
-#multinomial emision --- bi
-bi = np.ones((N_HIDDEN_STATES,N_SYMBOLS))
-
-
-
-#___row test______________
-z=100
-h=0
-for i in range(0,N_HIDDEN_STATES):
-    for j in range(0, N_SYMBOLS):
-        bi[i,j]=z
-        h=h+1
-        z=z+1
-for i in range(0,N_HIDDEN_STATES ):
-    for j in range(0, MAX_CHILD):
-        pi[i,j]=h
-        h=h+1
-
-
-for i in range(0,MAX_CHILD):
-    sp_p[i]=i+1
-
-w=0
-for i in range(0,N_HIDDEN_STATES ):
-    for j in range(0, N_HIDDEN_STATES):
-        for k in range(0, MAX_CHILD):
-            A[i,j,k]=w
-            w=w+3
-
-
-ph_pi = tf.placeholder(shape=[N_HIDDEN_STATES,MAX_CHILD], dtype=tf.float64)
-ph_sp_p = tf.placeholder(shape=[MAX_CHILD], dtype=tf.float64)
-ph_A = tf.placeholder(shape=[N_HIDDEN_STATES,N_HIDDEN_STATES,MAX_CHILD], dtype=tf.float64)
-ph_bi = tf.placeholder(shape=[N_HIDDEN_STATES,N_SYMBOLS], dtype=tf.float64)
+#nel caso non vengano passati dei valori iniziali ai parametri essi venono inizializati random
+ph_pi = random_sum_one2(1, N_HIDDEN_STATES, MAX_CHILD)
+ph_sp_p = random_sum_one1(MAX_CHILD)
+ph_A = random_sum_one3(1, N_HIDDEN_STATES, N_HIDDEN_STATES, MAX_CHILD)
+ph_bi = random_sum_one2(0, N_HIDDEN_STATES, N_SYMBOLS)
 
 
 
@@ -71,7 +37,7 @@ ph_bi = tf.placeholder(shape=[N_HIDDEN_STATES,N_SYMBOLS], dtype=tf.float64)
 
 
 # upward parameters beta
-up_ward = np.ones((t.size, N_HIDDEN_STATES))
+up_ward = np.zeros((t.size, N_HIDDEN_STATES))
 a_up_ward = np.ones((t.size, N_HIDDEN_STATES, MAX_CHILD))
 
 # stater posterior €
@@ -96,25 +62,7 @@ for i in range(0, N_HIDDEN_STATES):
         in_prior[i, j] = w
         w = w + 1
 
-z = 1
-for i in range(0, t.size):
-    for j in range(0, N_HIDDEN_STATES):
-        up_ward[i, j] = z
-        z = z + 1
-
-w = 0
-for i in range(0, t.size):
-    for j in range(0, N_HIDDEN_STATES):
-        for k in range(0, MAX_CHILD):
-            a_up_ward[i, j, k] = w
-            w = w + 1
-
-z = 0
-for j in range(0, t.size):
-    for i in range(0, N_HIDDEN_STATES):
-        E[i, j] = 0
-        z = z + 1
-
+print(in_prior)
 init_prior = tf.constant(in_prior, dtype=tf.float64)
 var_in_prior = tf.get_variable('var_in_prior', initializer=init_prior )
 
@@ -168,8 +116,7 @@ var_up_ward = tf.concat([head, ris_17_t], 0)
 
 ##############################compute_internal_node_prior#############################################################################################
 
-
-
+starta = datetime.now()
 
 aux1 = tf.multiply(ph_sp_p, ph_A)  # broadcast implicito
 
@@ -177,37 +124,29 @@ aux1 = tf.multiply(ph_sp_p, ph_A)  # broadcast implicito
 
 for i in range(len(t.struct) - 2, -1, -1):
 
-
-    aux2 = tf.ones([0, N_HIDDEN_STATES], tf.float64)
-    aux_list = []
-
+    nomi_figli = []
     for node in t.struct[i]:
 
-        nomi_figli = []
+        nomi_figli.append([])
+        k=0
         for child_node in node.children:
-            nomi_figli.append(child_node.name)
+            k=k+1
+            nomi_figli[-1].append(child_node.name)
+        for j in range (k,MAX_CHILD):
+            nomi_figli[-1].append(0)
 
-            children = tf.gather(var_in_prior, nomi_figli,axis=1)
-
-
-        pad = tf.zeros([N_HIDDEN_STATES, MAX_CHILD - int(children.shape[1])], tf.float64)
-        children = tf.concat([children, pad], 1)
-            # faccio un broadcast esplicito duplicando la matrice su una nuova dimenzione  per il numero di stati nascosti
-        children = tf.expand_dims(children,
-                                      0)  # faccio un broadcast esplicito duplicando la matrice su una nuova dimenzione  per il numero di stati nascosti
-        children = tf.tile(children, [N_HIDDEN_STATES, 1, 1])
-        aux_list.append(children)
-
-    aux2 = tf.stack(aux_list, 0)  # concateno tutte le matrici N_HIDDEN_STATES*L dei node_prior per ogni gruppo -----------------------------------------------------CONTROLLARE L'INDENTAZIONE PERCHÈ PRIMA era con uno in più e ci sta sia sbagliata
-
+    #print(nomi_figli)
+    aux2 = tf.gather(var_in_prior, nomi_figli,axis=1)
+    aux2 = tf.transpose(aux2, perm=[1, 0, 2])
+    aux2 = tf.expand_dims(aux2, 1)
+    aux2 = tf.tile(aux2, [1, N_HIDDEN_STATES, 1, 1])
 
 
     #  di figli di un nodo  in un unica matrice N_HIDDEN_STATES*L*(numero di nodi del livello)
     # qui moltiplicazione
     aux3 = tf.multiply(aux1, aux2)  # questa è una serie di matrici, tante quanti sono i nodi del livello esaminati
 
-    s = tf.reduce_sum(aux3, [2,
-                             3])  # sommo nella dimenzione 2 e 3 della matrice________________________________________________________bisogna controllare che sia corretta i/j
+    s = tf.reduce_sum(aux3, [2,3])  # sommo nella dimenzione 2 e 3 della matrice________________________________________________________bisogna controllare che sia corretta i/j
     s = tf.transpose(s)
 
     # prelevo i valori iniziali e quelli finali che non devono essere aggiornati in questo ciclo
@@ -220,6 +159,8 @@ for i in range(len(t.struct) - 2, -1, -1):
                     [N_HIDDEN_STATES, t.size - t.struct[i][-1].name - 1])  # potrei farlo anche con un constant
 
     var_in_prior = tf.concat([head, s, tail], 1)  # aggiorno i nuovi valore trovati
+print("tot   :  ", (datetime.now() - starta).total_seconds() * 1000)
+
 
     ##############################up step                #############################################################################################
 
@@ -228,32 +169,25 @@ for i in range(len(t.struct) - 2, -1, -1):
     #up step
 for i in range(len(t.struct) - 2, -1, -1):
 
-    aux_up_ward = tf.ones([0, N_HIDDEN_STATES], tf.float64)
-    aux_list = []
-    # per ogni nodo del livello
-    node_in_priors = tf.ones([N_HIDDEN_STATES, 0], tf.float64)
-
+    nomi_figli = []
     nomi_nodi = []
     for node in t.struct[i]:
         nomi_nodi.append(node.name)
 
-        nomi_figli = []#--------------------------------------------------------ricontrollami
+        nomi_figli.append([])
+        k = 0
         for child_node in node.children:
-            nomi_figli.append(child_node.name)
+            k = k + 1
+            nomi_figli[-1].append(child_node.name)
+        for j in range(k, MAX_CHILD):
+            nomi_figli[-1].append(0)
 
-        children = tf.gather(var_up_ward, nomi_figli)
 
-        pad = tf.zeros([MAX_CHILD - int(children.shape[0]), N_HIDDEN_STATES], tf.float64)
-        children = tf.concat([children, pad], 0)
+    aux_up_ward = tf.gather(var_up_ward, nomi_figli)
+    aux_up_ward = tf.expand_dims(aux_up_ward, 1)
+    aux_up_ward = tf.tile(aux_up_ward, [1, N_HIDDEN_STATES, 1, 1])
+    aux_up_ward = tf.transpose(aux_up_ward, perm=[0, 3, 1, 2])
 
-        # faccio un broadcast esplicito duplicando la matrice su una nuova dimenzione  per il numero di stati nascosti
-        children = tf.expand_dims(children, 0)
-        children = tf.tile(children, [N_HIDDEN_STATES, 1, 1])
-        children = tf.transpose(children, perm=[2, 0, 1])
-
-        aux_list.append(children)
-
-    aux_up_ward = tf.stack(aux_list, 0)
 
     node_in_priors = tf.gather(var_in_prior, nomi_nodi, axis=1)  # questo easy come gli altri di prima§§§§§§§§§§§§§§§§§§§
 
@@ -274,8 +208,10 @@ for i in range(len(t.struct) - 2, -1, -1):
     tail = tf.slice(var_a_up_ward, [t.struct[i][-1].name + 1, 0, 0],
                     [t.size - t.struct[i][-1].name - 1, N_HIDDEN_STATES,
                      MAX_CHILD])  # potrei farlo anche con un constant
-
+    print(var_a_up_ward)
     var_a_up_ward = tf.concat([head, s, tail], 0)
+
+    '''
     ##############################          19                #############################################################################################
 
     sli_var_in_prior = tf.ones([N_HIDDEN_STATES, 0], tf.float64)
@@ -425,7 +361,7 @@ tail = tf.slice(var_E, [t.struct[i][-1].name + 1, 0], [t.size - t.struct[i][-1].
 
 var_E = tf.concat([head, ris_25, tail], 0)
 
-
+'''
 
 
 with tf.Session() as sess:
@@ -434,7 +370,7 @@ with tf.Session() as sess:
     writer.add_graph(sess.graph)"""
 
     sess.run(tf.global_variables_initializer(),)
-    #print(sess.run([aaux2,second_term], {ph_bi: bi, ph_pi: pi,ph_sp_p: sp_p, ph_A: A}))
+    print(sess.run([var_a_up_ward]))
 
 
 

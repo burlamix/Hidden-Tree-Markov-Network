@@ -1,57 +1,45 @@
 from E_M_utils import *
+import sys
+
 import numpy as np
 import  time
-data= dataset_parser()
 
-training(data,1)
+data = dataset_parser()
+
+var_EE_list,var_E_list = training(data,1)
+with tf.Session() as sess:
+    tf.global_variables_initializer()
+    sess.run([var_EE_list,var_E_list])
+
 '''
-SIZE = 15
-TREE=15
 
-A = np.ones((SIZE,SIZE,SIZE)) # assumo che gli inidici sono j, i, l
-B = np.ones((SIZE,SIZE,SIZE)) # assumo che gli inidici sono j, i, l
-up_ward = np.ones((SIZE, SIZE))
+data = dataset_parser()
 
-z = 1
-for i in range(0, SIZE):
-    for j in range(0, SIZE):
-        up_ward[i, j] = z
-        z = z + 1
+t=data[13]
+N_HIDDEN_STATES=3
+MAX_CHILD=33
+N_SYMBOLS=366
 
 
-w=0
-for i in range(0,SIZE ):
-    for j in range(0, SIZE):
-        for k in range(0, SIZE):
-            A[i,j,k]=w
-            B[i,j,k]=w+1
-            w=w+1
 
-init_up_ward = tf.constant(up_ward, dtype=tf.float64)
-var_up_ward = tf.get_variable('var_up_ward', initializer=init_up_ward)
-ph_A = tf.placeholder(shape=[SIZE,SIZE,SIZE], dtype=tf.float64)
-ph_B = tf.placeholder(shape=[SIZE,SIZE,SIZE], dtype=tf.float64)
-print("_______________")
+#nel caso non vengano passati dei valori iniziali ai parametri essi venono inizializati random
+pi = random_sum_one2(1, N_HIDDEN_STATES, MAX_CHILD)
+sp_p = random_sum_one1(MAX_CHILD)
+A = random_sum_one3(1, N_HIDDEN_STATES, N_HIDDEN_STATES, MAX_CHILD)
+bi = random_sum_one2(0, N_HIDDEN_STATES, N_SYMBOLS)
 
+scope_tree = "scope_n0"
+var_in_prior_list = []
 
-start33 = datetime.now()
-a_sli_E = tf.slice(up_ward, [4,0], [2,SIZE])
-print(a_sli_E)
-print("slice :               ", (datetime.now() - start33).total_seconds() * 1000)
+var_EE,var_E,var_in_prior = Reversed_Upward_Downward(sp_p, A, bi, pi, N_HIDDEN_STATES, MAX_CHILD,t)
 
-
-start33 = datetime.now()
-a = tf.gather(up_ward,  [1,2,3,4,5,6,7,8,9,10,3,6,7,7,5,2,2,3,4,5,3,5,7,8,7,5,4,3,2,1,2,4,5,6,7,6,5,4,5,4,5,6,7,8,7] )
-print(a)
-print("gather :               ", (datetime.now() - start33).total_seconds() * 1000)
 
 
 with tf.Session() as sess:
-
-    """writer = tf.summary.FileWriter("/home/simone/Documents/università/TESI/codici/reverse_up_down")
-    writer.add_graph(sess.graph)"""
-
     sess.run(tf.global_variables_initializer(),)
-    print(sess.run([var_up_ward,a_sli_E,a], {ph_A: A}))
+
+    for i in range(0,len(data)):
+        sess.run([var_in_prior])
+        var_in_prior_list.append(var_in_prior)
 
 '''

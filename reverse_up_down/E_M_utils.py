@@ -20,7 +20,8 @@ def training(dataset,epoche,pi=None,sp_p=None,A=None,bi=None):
 
     scope_tree = "scope_n0"
     t = dataset_parser()
-
+    var_EE_list=[]
+    var_E_list =[]
     #nel caso non vengano passati dei valori iniziali ai parametri essi venono inizializati random
     if pi is None:
         pi = random_sum_one2(1, N_HIDDEN_STATES, MAX_CHILD)
@@ -40,34 +41,33 @@ def training(dataset,epoche,pi=None,sp_p=None,A=None,bi=None):
         for j in range(0,len(dataset)):
 
             scope_tree=scope_tree[:-len(str(j-1))]+str(j)
-            print(scope_tree)
             with tf.variable_scope(scope_tree):
+                start_2 = datetime.now()
                 (var_EE, var_E) = Reversed_Upward_Downward(sp_p, A, bi, pi, N_HIDDEN_STATES, MAX_CHILD, dataset[j])
-            #E-step -->Reversed_Upward_Downward
-            # dal quale mi salvo var_EE in una lista
-        print("TOTALE VERO : ",(datetime.now()-start).total_seconds() )
+                print(var_EE)
+                var_EE_list.append(var_EE)
+                var_E_list.append(var_E)
+                print(scope_tree, (datetime.now() - start_2).total_seconds())
 
-                #eseguo M-STEP
+            # dal quale mi salvo var_EE in una lista
+        print("TEMPO TOTALE : ",(datetime.now()-start).total_seconds() )
+
+        #eseguo M-STEP
         #uso la lista di var_EE calcolata in precedenza
 
-    return None
+    return var_EE_list,var_E_list
 
 
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||E-STEP||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 def Reversed_Upward_Downward(ph_sp_p, ph_A, ph_bi, ph_pi, N_HIDDEN_STATES, MAX_CHILD, t):
 
-    start_all = datetime.now()
-    start = datetime.now()
+    #start_all = datetime.now()
+    #start = datetime.now()
 
     # upward parameters beta
     up_ward = np.ones((t.size, N_HIDDEN_STATES))
     a_up_ward = np.ones((t.size, N_HIDDEN_STATES, MAX_CHILD))
-
-    # stater posterior €
-    post = np.ones((t.size, N_HIDDEN_STATES))
-    # pairwwise smoothed posterior
-    s_post = np.ones((MAX_CHILD, N_HIDDEN_STATES, N_HIDDEN_STATES, t.size))
 
     # internal node prior
     in_prior = np.zeros((N_HIDDEN_STATES, t.size))
@@ -86,24 +86,26 @@ def Reversed_Upward_Downward(ph_sp_p, ph_A, ph_bi, ph_pi, N_HIDDEN_STATES, MAX_C
             in_prior[i, j] = w
             w = w + 1
 
-    z = 1
-    for i in range(0, t.size):
-        for j in range(0, N_HIDDEN_STATES):
-            up_ward[i, j] = z
-            z = z + 1
+    '''
+        z = 1
+        for i in range(0, t.size):
+            for j in range(0, N_HIDDEN_STATES):
+                up_ward[i, j] = z
+                z = z + 1
 
-    w = 0
-    for i in range(0, t.size):
-        for j in range(0, N_HIDDEN_STATES):
-            for k in range(0, MAX_CHILD):
-                a_up_ward[i, j, k] = w
-                w = w + 1
+        w = 0
+        for i in range(0, t.size):
+            for j in range(0, N_HIDDEN_STATES):
+                for k in range(0, MAX_CHILD):
+                    a_up_ward[i, j, k] = w
+                    w = w + 1
 
-    z = 0
-    for j in range(0, t.size):
-        for i in range(0, N_HIDDEN_STATES):
-            E[i, j] = 0
-            z = z + 1
+        z = 0
+        for j in range(0, t.size):
+            for i in range(0, N_HIDDEN_STATES):
+                E[i, j] = 0
+                z = z + 1
+    '''
 
     init_prior = tf.constant(in_prior, dtype=tf.float64)
     var_in_prior = tf.get_variable('var_in_prior', initializer=init_prior )
@@ -122,29 +124,42 @@ def Reversed_Upward_Downward(ph_sp_p, ph_A, ph_bi, ph_pi, N_HIDDEN_STATES, MAX_C
 
 ###########################################################################################################################
 
-    start = datetime.now()
+    # start = datetime.now()
     var_up_ward = compute_17(ph_bi,ph_pi,var_up_ward,N_HIDDEN_STATES,t)
-    #print("17    :  ",(datetime.now()-start).total_seconds() * 1000)
+    # print("17    :  ",(datetime.now()-start).total_seconds() * 1000)
 
-    start = datetime.now()
+    # start = datetime.now()
     var_in_prior = compute_internal_node_prior(var_in_prior, ph_sp_p, ph_A, t, N_HIDDEN_STATES,MAX_CHILD)
-    #print("prior :  ",(datetime.now()-start).total_seconds() * 1000)
+    # print("prior :  ",(datetime.now()-start).total_seconds() * 1000)
 
     #up step
-    start = datetime.now()
+   # start = datetime.now()
     for i in range(len(t.struct) - 2, -1, -1):
+
         var_a_up_ward = compute_21(ph_A,var_in_prior,var_a_up_ward,var_up_ward,i,t,N_HIDDEN_STATES,MAX_CHILD)
         var_up_ward = compute_19(ph_bi, ph_sp_p, var_a_up_ward, var_in_prior, var_up_ward, t,i, N_HIDDEN_STATES, MAX_CHILD)
 
     var_E = set_base_case(var_up_ward,var_E,t,N_HIDDEN_STATES)
     #print("up_ste : ",(datetime.now()-start).total_seconds() * 1000)
 
-    start = datetime.now()
+    # start = datetime.now()
     # down step
     for i in range(1, len(t.struct)  ): # il -1 l'ho iserito per far compilare e non sono sicuro sia corretto___________________________________________cambialo devi fare anche le foglie______________
+
+        #start1 = datetime.now()
         ris_24 = compute_24(ph_sp_p, ph_A,var_E, var_EE, var_up_ward, var_in_prior, var_a_up_ward, t, i, N_HIDDEN_STATES, MAX_CHILD)
+        #print("                     compute_24 : ", (datetime.now() - start1).total_seconds() * 1000)
+
+        #start1 = datetime.now()
         var_EE = inglobe_ris_liv(ris_24, var_EE, t, i,  N_HIDDEN_STATES)
+        #print("                     inglobe_ris_liv : ", (datetime.now() - start1).total_seconds() * 1000)
+
+        #start1 = datetime.now()
         var_E =  compute_25(ris_24, var_E, i, t, N_HIDDEN_STATES)
+        #print("                     compute_25 : ", (datetime.now() - start1).total_seconds() * 1000)
+        #print("\n")
+
+
     #print("do_ste : ",(datetime.now()-start).total_seconds() * 1000)
 
     #print("TOTALE:  ",(datetime.now()-start_all).total_seconds() * 1000)
@@ -192,85 +207,70 @@ def compute_internal_node_prior(var_in_prior,ph_sp_p,ph_A,t,N_HIDDEN_STATES,MAX_
 
     for i in range(len(t.struct) - 2, -1, -1):
 
-        aux2 = tf.ones([0, N_HIDDEN_STATES], tf.float64)
-        aux_list = []
-
+        nomi_figli = []
         for node in t.struct[i]:
 
-            nomi_figli = []
+            nomi_figli.append([])
+            k = 0
             for child_node in node.children:
-                nomi_figli.append(child_node.name)
+                k = k + 1
+                nomi_figli[-1].append(child_node.name)
+            for j in range(k, MAX_CHILD):
+                nomi_figli[-1].append(0)
 
-            children = tf.gather(var_in_prior, nomi_figli, axis=1)
+        # print(nomi_figli)
+        aux2 = tf.gather(var_in_prior, nomi_figli, axis=1)
+        aux2 = tf.transpose(aux2, perm=[1, 0, 2])
+        aux2 = tf.expand_dims(aux2, 1)
+        aux2 = tf.tile(aux2, [1, N_HIDDEN_STATES, 1, 1])
 
-            pad = tf.zeros([N_HIDDEN_STATES, MAX_CHILD - int(children.shape[1])], tf.float64)
-            children = tf.concat([children, pad], 1)
-            # faccio un broadcast esplicito duplicando la matrice su una nuova dimenzione  per il numero di stati nascosti
-            children = tf.expand_dims(children,
-                                      0)  # faccio un broadcast esplicito duplicando la matrice su una nuova dimenzione  per il numero di stati nascosti
-            children = tf.tile(children, [N_HIDDEN_STATES, 1, 1])
-            aux_list.append(children)
-
-        aux2 = tf.stack(aux_list,
-                        0)  # concateno tutte le matrici N_HIDDEN_STATES*L dei node_prior per ogni gruppo -----------------------------------------------------CONTROLLARE L'INDENTAZIONE PERCHÈ PRIMA era con uno in più e ci sta sia sbagliata
-
-
-         #  di figli di un nodo  in un unica matrice N_HIDDEN_STATES*L*(numero di nodi del livello)
+        #  di figli di un nodo  in un unica matrice N_HIDDEN_STATES*L*(numero di nodi del livello)
         # qui moltiplicazione
         aux3 = tf.multiply(aux1, aux2)  # questa è una serie di matrici, tante quanti sono i nodi del livello esaminati
 
-        s = tf.reduce_sum(aux3, [2, 3])  # sommo nella dimenzione 2 e 3 della matrice________________________________________________________bisogna controllare che sia corretta i/j
+        s = tf.reduce_sum(aux3, [2,
+                                 3])  # sommo nella dimenzione 2 e 3 della matrice________________________________________________________bisogna controllare che sia corretta i/j
         s = tf.transpose(s)
 
-        #prelevo i valori iniziali e quelli finali che non devono essere aggiornati in questo ciclo
+        # prelevo i valori iniziali e quelli finali che non devono essere aggiornati in questo ciclo
         head = tf.slice(var_in_prior, [0, 0],
-                        #[N_HIDDEN_STATES, (t.size  -(t.size - t.struct[i][-1].name - 1) - int((s.shape[1])) )])
-                        [N_HIDDEN_STATES, t.struct[i][-1].name + 1 - int((s.shape[1])) ])  # ricorda che questa deriva da quella sopra
+                        # [N_HIDDEN_STATES, (t.size  -(t.size - t.struct[i][-1].name - 1) - int((s.shape[1])) )])
+                        [N_HIDDEN_STATES,
+                         t.struct[i][-1].name + 1 - int((s.shape[1]))])  # ricorda che questa deriva da quella sopra
 
         tail = tf.slice(var_in_prior, [0, t.struct[i][-1].name + 1],
                         [N_HIDDEN_STATES, t.size - t.struct[i][-1].name - 1])  # potrei farlo anche con un constant
 
         var_in_prior = tf.concat([head, s, tail], 1)  # aggiorno i nuovi valore trovati
-
     return var_in_prior
 
 def compute_21(ph_A,var_in_prior,var_a_up_ward,var_up_ward,i,t,N_HIDDEN_STATES,MAX_CHILD):
-    aux_up_ward = tf.ones([0, N_HIDDEN_STATES], tf.float64)
-    aux_list = []
-    # per ogni nodo del livello
-    node_in_priors = tf.ones([N_HIDDEN_STATES, 0], tf.float64)
 
-    nomi_nodi = []
     nomi_figli = []
+    nomi_nodi = []
     for node in t.struct[i]:
         nomi_nodi.append(node.name)
 
+        nomi_figli.append([])
+        k = 0
         for child_node in node.children:
-            nomi_figli.append(child_node.name)
+            k = k + 1
+            nomi_figli[-1].append(child_node.name)
+        for j in range(k, MAX_CHILD):
+            nomi_figli[-1].append(0)
 
-        children = tf.gather(var_up_ward, nomi_figli)
+    aux_up_ward = tf.gather(var_up_ward, nomi_figli)
+    aux_up_ward = tf.expand_dims(aux_up_ward, 1)
+    aux_up_ward = tf.tile(aux_up_ward, [1, N_HIDDEN_STATES, 1, 1])
+    aux_up_ward = tf.transpose(aux_up_ward, perm=[0, 3, 1, 2])
 
-        pad = tf.zeros([MAX_CHILD - int(children.shape[0]), N_HIDDEN_STATES], tf.float64)
-        children = tf.concat([children, pad], 0)
-
-        # faccio un broadcast esplicito duplicando la matrice su una nuova dimenzione  per il numero di stati nascosti
-        children = tf.expand_dims(children, 0)
-        children = tf.tile(children, [N_HIDDEN_STATES, 1, 1])
-        children = tf.transpose(children, perm=[2, 0, 1])
-
-        aux_list.append(children)
-
-    aaux_up_ward = tf.stack(aux_list, 0)
-
-    node_in_priors = tf.gather(var_in_prior, nomi_nodi,
-                               axis=1)  # questo easy come gli altri di prima§§§§§§§§§§§§§§§§§§§
-
-    aux_up_ward = tf.stack(aux_list, 0)
+    node_in_priors = tf.gather(var_in_prior, nomi_nodi, axis=1)
 
     # faccio un broadcast esplicito duplicando la matrice su una nuova dimenzione  per il numero di stati nascosti
     node_in_priors = tf.expand_dims(node_in_priors, 0)
     node_in_priors = tf.tile(node_in_priors, [MAX_CHILD, 1, 1])
     node_in_priors = tf.transpose(node_in_priors, perm=[2, 1, 0])
+
 
     numerator_n = tf.multiply(ph_A, aux_up_ward)
     numerator = tf.reduce_sum(numerator_n, [
@@ -287,8 +287,6 @@ def compute_21(ph_A,var_in_prior,var_a_up_ward,var_up_ward,i,t,N_HIDDEN_STATES,M
     var_a_up_ward = tf.concat([head, s, tail], 0)
 
     return var_a_up_ward
-
-
 
 
 
@@ -423,27 +421,6 @@ def inglobe_ris_liv(ris_24, var_EE, t, i,  N_HIDDEN_STATES):
     head = tf.slice(var_EE, [0, 0, 0], [t.struct[i][-1].name + 1 - int((ris_24.shape[0])), N_HIDDEN_STATES,N_HIDDEN_STATES])
     tail = tf.slice(var_EE, [t.struct[i][-1].name+1,0,0 ],  [t.size - t.struct[i][-1].name-1,N_HIDDEN_STATES,N_HIDDEN_STATES])
 
-    '''''
-        head = tf.slice(var_EE, [0, 0, 0], [t.struct[i][0].name, N_HIDDEN_STATES, N_HIDDEN_STATES])
-
-        if (t.struct[i][-1].name + 1) != t.size:
-            tail = tf.slice(var_EE, [t.struct[i + 1][0].name, 0, 0],
-                            [t.size - t.struct[i + 1][0].name, N_HIDDEN_STATES, N_HIDDEN_STATES])
-            var_EE = tf.concat([head, ris_24, tail], 0)
-
-            print("h", head)
-            print("s", ris_24)
-            print("t", tail)
-            print("dopo", var_EE)
-            print("\n\n")
-        else:
-            var_EE = tf.concat([head, ris_24], 0)
-
-            print("h", head)
-            print("s", ris_24)
-            print("dopo", var_EE)
-            print("\n\n")
-    '''''
 
     var_EE = tf.concat([head, ris_24, tail], 0)
 
@@ -460,7 +437,7 @@ def compute_25(ris_24, var_E, i, t, N_HIDDEN_STATES):
 
     return var_E
 
-#||||||||||||||||||||||||||||||||||||||||||||||||||||||||M-STEP||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
 
 
 
@@ -500,5 +477,51 @@ def random_sum_one3(axe,shape1,shape2,shape3=None):
     rand_sum_one = tf.divide(rand, sum)
 
     return rand_sum_one
+
+#||||||||||||||||||||||||||||||||||||||||||||||||||||||||M-STEP||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+MAX_CHILD=32
+
+
+lista = []
+for i in range(0,MAX_CHILD):
+    lista.append( [])
+
+lista[0].append(11)
+
+print(lista)
+
+def M_step(EE_list,data_set):
+    #prior
+    for i in range(0,len(EE_list)):
+        print("albero", i)
+
+        for nodo in (data_set[i].struct[-1]):
+            print("                 nodo",nodo.name)
+
+
+            if(nodo.father.children.index(nodo)==l):    # qui mi devo SALVARE L'INDICE così da fare una ghater al momento giusto
+                                                            # tutti questi vanno in una lista
+                 print("                     si")
+
+
+
+
+        EE_list[i]
+
+
+
+
+    return None
+############################################################################################################àà
+
+HS =3
+data = dataset_parser()
+EE_list = []
+
+for i in range(0,len(data)):
+    EE = tf.ones([data[i].size,HS,HS])
+    EE_list.append(EE)
+
+M_step(EE_list,data)
 
 

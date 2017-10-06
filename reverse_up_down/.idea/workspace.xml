@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec4d2838-1153-44b3-a3d2-8bd0be1e31be" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/debug.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/degog_test_all_in_one.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_training.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_tf.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/E_M_f.py" afterPath="$PROJECT_DIR$/E_M_f.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/E_M_utils.py" afterPath="$PROJECT_DIR$/E_M_utils.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/degog_test_all_in_one.py" afterPath="$PROJECT_DIR$/degog_test_all_in_one.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/momentaneo.py" afterPath="$PROJECT_DIR$/momentaneo.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser.py" afterPath="$PROJECT_DIR$/parser.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_training.py" afterPath="$PROJECT_DIR$/test_training.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tre_simple.py" afterPath="$PROJECT_DIR$/tre_simple.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,17 +23,19 @@
     <SUITE FILE_PATH="coverage/untitled1$test_gpu.coverage" NAME="test_gpu Coverage Results" MODIFIED="1501145344144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$HTMN_Rrow.coverage" NAME="HTMN_Rrow Coverage Results" MODIFIED="1501321451099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$GPU_matrix_test.coverage" NAME="GPU_matrix_test Coverage Results" MODIFIED="1503930522279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/fow_dow$E_M_utils.coverage" NAME="E_M_utils Coverage Results" MODIFIED="1507222894201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$parser.coverage" NAME="parser Coverage Results" MODIFIED="1506776658001" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$tre_simple.coverage" NAME="tre_simple Coverage Results" MODIFIED="1505319918242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$E_M_f.coverage" NAME="E_M_f Coverage Results" MODIFIED="1506966124559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/fow_dow$degog_test_all_in_one.coverage" NAME="degog_test_all_in_one Coverage Results" MODIFIED="1506966079483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/fow_dow$degog_test_all_in_one.coverage" NAME="degog_test_all_in_one Coverage Results" MODIFIED="1507133697696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$momentaneo.coverage" NAME="momentaneo Coverage Results" MODIFIED="1502707625534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$debug.coverage" NAME="debug Coverage Results" MODIFIED="1506866790721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$tre_imp_graph.coverage" NAME="tre_imp_graph Coverage Results" MODIFIED="1502108183778" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$test_i_j_su_A.coverage" NAME="test_i_j_su_A Coverage Results" MODIFIED="1506780376443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/fow_dow$test_tf.coverage" NAME="test_tf Coverage Results" MODIFIED="1507194292436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$tre_impl.coverage" NAME="tre_impl Coverage Results" MODIFIED="1502091286059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$test_gpu.coverage" NAME="test_gpu Coverage Results" MODIFIED="1501515540996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/fow_dow$test_training.coverage" NAME="test_training Coverage Results" MODIFIED="1506968372035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/fow_dow$test_training.coverage" NAME="test_training Coverage Results" MODIFIED="1507217888244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$test_broadcat.coverage" NAME="test_broadcat Coverage Results" MODIFIED="1503146542496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$E_M_row.coverage" NAME="E_M row Coverage Results" MODIFIED="1502108205784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$E_M_GPU.coverage" NAME="E_M_GPU Coverage Results" MODIFIED="1504088007159" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -45,24 +48,22 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="E_M row.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/E_M row.py">
+      <file leaf-file-name="tre_simple.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tre_simple.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="23" column="6" lean-forward="false" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+            <state relative-caret-position="495">
+              <caret line="102" column="53" lean-forward="false" selection-start-line="102" selection-start-column="23" selection-end-line="102" selection-end-column="53" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="E_M_GPU.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/E_M_GPU.py">
+      <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2730">
-              <caret line="185" column="32" lean-forward="false" selection-start-line="185" selection-start-column="20" selection-end-line="185" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="75">
+              <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -70,8 +71,8 @@
       <file leaf-file-name="E_M_f.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/E_M_f.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="94" column="4" lean-forward="false" selection-start-line="94" selection-start-column="4" selection-end-line="94" selection-end-column="4" />
+            <state relative-caret-position="433">
+              <caret line="93" column="31" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -82,10 +83,13 @@
       <file leaf-file-name="E_M_utils.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/E_M_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="16" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+            <state relative-caret-position="143">
+              <caret line="484" column="11" lean-forward="false" selection-start-line="484" selection-start-column="11" selection-end-line="484" selection-end-column="11" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#2872#3409#1" expanded="false" />
+                <element signature="e#16680#16839#0" expanded="false" />
+                <element signature="e#16980#17348#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -94,31 +98,12 @@
       <file leaf-file-name="degog_test_all_in_one.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/degog_test_all_in_one.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="283" column="13" lean-forward="true" selection-start-line="283" selection-start-column="13" selection-end-line="283" selection-end-column="13" />
+            <state relative-caret-position="-151">
+              <caret line="40" column="9" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="9" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#7745#14361#1" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tre_simple.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tre_simple.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="19" column="18" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/parser.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="53" column="26" lean-forward="false" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -126,10 +111,23 @@
       <file leaf-file-name="test_training.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_training.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="43" column="13" lean-forward="false" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="13" />
+            <state relative-caret-position="90">
+              <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_tf.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_tf.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="570">
+              <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+                <element signature="e#400#560#1" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -146,36 +144,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>aux_up_ward</find>
-      <find>4289127</find>
-      <find>40992855</find>
-      <find>node_in_priors</find>
-      <find>node_in_prior</find>
-      <find>sp</find>
-      <find>1943411</find>
-      <find>aaux_up_ward</find>
-      <find>2.40000000e+01</find>
-      <find>0.00000000e+00</find>
-      <find>118</find>
-      <find>1.13000000e+02</find>
-      <find>2.2519</find>
-      <find>159</find>
-      <find>aux2</find>
-      <find>204</find>
-      <find>104.,  105.,  106.,  107.,  108.,  109.,  110.,  111.,  112.,</find>
-      <find>children</find>
+      <find>ph_bi</find>
+      <find>43</find>
+      <find>2-0-155 	10-27 	11-262 	12-265 	1-126 		5-21 			13-259 			14-120 		15-154 		16-77 		6-35 			17-259 			18-120 		19-113 		20-218 		21-257 		22-20 		7-78 			23-259 			24-234 			25-120 		8-33 			26-259 			27-120 			28-234 		9-202 			29-259 			30-120 	31-230 	32-147 	33-220 	34-219 	35-260 	2-98 		36-71 		37-143 		38-5 		39-251 		40-222 		41-133 	3-51 		42-208 		43-207 		44-212 		45-209 		46-211 		47-210 	48-175 	49-116 	50-97 	51-132 	52-115 	53-46 	4-242 		54-142 		55-213 	56-253 	57-50 	58-228 	59-178 	60-174 	61-125 	62-263 	63-235 	64-152 	65-241 	66-87</find>
+      <find>pad = tf.zeros([N_HIDDEN_STATES, MAX_CHILD - int(children.shape[1])], tf.float64)</find>
+      <find>for i in range(len(t.struct) - 2, -1, -1):          aux2 = tf.ones([0, N_HIDDEN_STATES], tf.float64)         aux_list = []          for node in t.struct[i]:              nomi_figli = []             for child_node in node.children:                 nomi_figli.append(child_node.name)              children = tf.gather(var_in_prior, nomi_figli, axis=1)              pad = tf.zeros([N_HIDDEN_STATES, MAX_CHILD - int(children.shape[1])], tf.float64)             children = tf.concat([children, pad], 1)             # faccio un broadcast esplicito duplicando la matrice su una nuova dimenzione  per il numero di stati nascosti             children = tf.expand_dims(children,                                       0)  # faccio un broadcast esplicito duplicando la matrice su una nuova dimenzione  per il numero di stati nascosti             children = tf.tile(children, [N_HIDDEN_STATES, 1, 1])             aux_list.append(children)          aux2 = tf.stack(aux_list, 0)</find>
+      <find>head = tf.slice(var_in_prior, [0, 0],[N_HIDDEN_STATES, t.struct[i][-1].name + 1 - int((s.shape[1]))])</find>
+      <find>head = tf.slice(var_in_prior, [0, 0],[N_HIDDEN_STATES,t.struct[i][-1].name + 1 - int((s.shape[1]))])  # r</find>
+      <find>1.        ,    2.        ,    3.        ,   10.42333037,</find>
+      <find>7.70525392,    6.        ,    7.        , ...,    0.</find>
+      <find>var_in_prior</find>
       <find>children2</find>
-      <find>slice</find>
-      <find>father</find>
-      <find>index</find>
-      <find>gather</find>
-      <find>compute_24</find>
+      <find>0.10227012,  0.24560832,  0.11911764,  1.        ,  0.36967127,</find>
+      <find>2.37561415e-01,   2.30508673e-01,   8.88924807e-01,</find>
+      <find>0.55625631,  0.48085773,  0.61065776,  0.49469871,  1.        ,</find>
+      <find>var_up_ward</find>
+      <find>1.        ,  1.        ,  1.</find>
+      <find>up_ward</find>
+      <find>aux_up_ward</find>
+      <find>node_in_priors</find>
+      <find>compute_internal_node_prior</find>
+      <find>aux_list</find>
       <find>compute_21</find>
-      <find>sli_var_in_prior</find>
-      <find>node</find>
-      <find>1486.,  1487.,  1488.,  1489.,  1490.,  1491.,          1492.],        [ 1494.,  1495.,  1496.,  1494.,  1495.,  1495.,  1496.,  1494.,          1495.,  1498.,  1499.,  1500.,  1501.,  1494.,  1495.,  1496.,          1494.,  1495.,  1496.,  1494.,  1495.,  1498.,  1499.,  1500.,          1501.,  1502.,  1494.,  1495.,  1496.,  1497.,  1498.,  1499.,          1494.,  1495.,  1496.,  1497.,  1498.,  1499.,  1505.,  1506.,          1507.,  1508.,  1509.,  1510.,  1494.,  1495.,  1512.,  1513.,          1514.,  1515.,  1516.,  1517.,  1518.,  1519.,  1520.,  1521.,          1522.],        [ 1524.,  1525.,  1526.,  1524.,  1525.,  1525.,  1526.,  1524.,          1525.,  1528.,  1529.,  1530.,  1531.,  1524.,  1525.,  1526.,          1524.,  1525.,  1526.,  1524.,  1525.,  1528.,  1529.,  1530.,          1531.,  1532.,  1524.,  1525.,  1526.,  1527.,  1528.,  1529.,          1524.,  1525.,  1526.,  1527.,  1528.,  1529.,  1535.,  1536.,          1537.,  1538.,  1539.,  1540.,  1524.,  1525.,  1542.,  1543.,          1544.,  1545.,  1546.,  1547.,  1548.,  1549.,  1550.,  1551.,          1552.],        [ 1554.,  1555.,  1556.,  1554.,  1555.,  1555.,  1556.,  1554.,          1555.,  1558.,  1559.,  1560.,  1561.,  1554.,  1555.,  1556.,          1554.,  1555.,  1556.,  1554.,  1555.,  1558.,  1559.,  1560.,          1561.,  1562.,  1554.,  1555.,  1556.,  1557.,  1558.,  1559.,          1554.,  1555.,  1556.,  1557.,  1558.,  1559.,  1565.,  1566.,          1567.,  1568.,  1569.,  1570.,  1554.,  1555.,  1572.,  1573.,          1574.,  1575.,  1576.,  1577.,  1578.,  1579.,  1580.,  1581.,          1582.]]), array([[[[  1.00000000e+00,   2.00000000e+00,   3.00000000e+00,             4.21920887e+10,   2.20000000e+01,   2.30000000e+01,             2.40000000e+01,   2.50000000e+01,   2.60000000e+01,             1.95006000e+06,   2.02314000e+06,   3.90000000e+01,             4.00000000e+01,   4.10000000e+01,   4.20000000e+01,             4.30000000e+01,   4.40000000e+01,   2.92596000e+05,             4.70000000e+01,   4.80000000e+01,   4.90000000e+01,             5.00000000e+01,   5.10000000e+01,   5.20000000e+01,             5.30000000e+01,   5.40000000e+01,   5.50000000e+01,             5.60000000e+01,   5.70000000e+01,   0.00000000e+00],          [  5.80000000e+01,   5.90000000e+01,   6.00000000e+01,             1.12965939e+11,   7.90000000e+01,   8.00000000e+01,             8.10000000e+01,   8.20000000e+01,   8.30000000e+01,             5.45286000e+06,   5.70738000e+06,   9.60000000e+01,             9.70000000e+01,   9.80000000e+01,   9.90000000e+01,             1.00000000e+02,   1.01000000e+02,   8.59236000e+05,             1.04000000e+02,   1.05000000e+02,   1.06000000e+02,             1.07000000e+02,   1.08000000e+02,   1.09000000e+02,             1.10000000e+02,   1.11000000e+02,   1.12000000e+02,             1.13000000e+02,   1.14000000e+02,   0.00000000e+00],          [  1.15000000e+02,   1.16000000e+02,   1.17000000e+02,             1.83739790e+11,   1.36000000e+02,   1.37000000e+02,             1.38000000e+02,   1.39000000e+02,   1.40000000e+02,             8.95566000e+06,   9.39162000e+06,   1.53000000e+02,             1.54000000e+02,   1.55000000e+02,   1.56000000e+02,             1.57000000e+02,   1.58000000e+02,   1.42587600e+06,             1.61000000e+02,   1.62000000e+02,   1.63000000e+02,             1.64000000e+02,   1.65000000e+02,   1.66000000e+02,             1.67000000e+02,   1.68000000e+02,   1.69000000e+02,             1.70000000e+02,   1.71000000e+02,   0.00000000e+00],          [  1.72000000e+02,   1.73000000e+02,   1.74000000e+02,             2.54513641e+11,   1.93000000e+02,   1.94000000e+02,             1.95000000e+02,   1.96000000e+02,   1.97000000e+02,             1.24584600e+07,   1.30758600e+07,   2.10000000e+02,             2.11000000e+02,   2.12000000e+02,   2.13000000e+02,             2.14000000e+02,   2.15000000e+02,   1.99251600e+06,             2.18000000e+02,   2.19000000e+02,   2.20000000e+02,             2.21000000e+02,   2.22000000e+02,   2.23000000e+02,             2.24000000e+02,   2.25000000e+02,   2.26000000e+02,             2.27000000e+02,   2.28000000e+02,   0.00000000e+00]],          [[  1.00000000e+00,   2.00000000e+00,   3.00000000e+00,             4.21920887e+10,   2.20000000e+01,   2.30000000e+01,             2.40000000e+01,   2.50000000e+01,   2.60000000e+01,             1.95006000e+06,   2.02314000e+06,   3.90000000e+01,             4.00000000e+01,   4.10000000e+01,   4.20000000e+01,             4.30000000e+01,   4.40000000e+01,   2.92596000e+05,             4.70000000e+01,   4.80000000e+01,   4.90000000e+01,             5.00000000e+01,   5.10000000e+01,   5.20000000e+01,             5.30000000e+01,   5.40000000e+01,   5.50000000e+01,             5.60000000e+01,   5.70000000e+01,   0.00000000e+00],          [  5.80000000e+01,   5.90000000e+01,   6.00000000e+01,             1.12965939e+11,   7.90000000e+01,   8.00000000e+01,             8.10000000e+01,   8.20000000e+01,   8.30000000e+01,             5.45286000e+06,   5.70738000e+06,   9.60000000e+01,             9.70000000e+01,   9.80000000e+01,   9.90000000e+01,             1.00000000e+02,   1.01000000e+02,   8.59236000e+05,             1.04000000e+02,   1.05000000e+02,   1.06000000e+02,             1.07000000e+02,   1.08000000e+02,   1.09000000e+02,             1.10000000e+02,   1.11000000e+02,   1.12000000e+02,             1.13000000e+02,   1.14000000e+02,   0.00000000e+00],          [  1.15000000e+02,   1.16000000e+02,   1.17000000e+02,             1.83739790e+11,   1.36000000e+02,   1.37000000e+02,             1.38000000e+02,   1.39000000e+02,   1.40000000e+02,             8.95566000e+06,   9.39162000e+06,   1.53000000e+02,             1.54000000e+02,   1.55000000e+02,   1.56000000e+02,             1.57000000e+02,   1.58000000e+02,   1.42587600e+06,             1.61000000e+02,   1.62000000e+02,   1.63000000e+02,             1.64000000e+02,   1.65000000e+02,   1.66000000e+02,             1.67000000e+02,   1.68000000e+02,   1.69000000e+02,             1.70000000e+02,   1.71000000e+02,   0.00000000e+00],          [  1.72000000e+02,   1.73000000e+02,   1.74000000e+02,             2.54513641e+11,   1.93000000e+02,   1.94000000e+02,             1.95000000e+02,   1.96000000e+02,   1.97000000e+02,             1.24584600e+07,   1.30758600e+07,   2.10000000e+02,             2.11000000e+02,   2.12000000e+02,   2.13000000e+02,             2.14000000e+02,   2.15000000e+02,   1.99251600e+06,             2.18000000e+02,   2.19000000e+02,   2.20000000e+02,             2.21000000e+02,   2.22000000e+02,   2.23000000e+02,             2.24000000e+02,   2.25000000e+02,   2.26000000e+02,             2.27000000e+02,   2.28000000e+02,   0.00000000e+00]],          [[  1.00000000e+00,   2.00000000e+00,   3.00000000e+00,             4.21920887e+10,   2.20000000e+01,   2.30000000e+01,             2.40000000e+01,   2.50000000e+01,   2.60000000e+01,             1.95006000e+06,   2.02314000e+06,   3.90000000e+01,             4.00000000e+01,   4.10000000e+01,   4.20000000e+01,             4.30000000e+01,   4.40000000e+01,   2.92596000e+05,             4.70000000e+01,   4.80000000e+01,   4.90000000e+01,             5.00000000e+01,   5.10000000e+01,   5.20000000e+01,             5.30000000e+01,   5.40000000e+01,   5.50000000e+01,             5.60000000e+01,   5.70000000e+01,   0.00000000e+00],          [  5.80000000e+01,   5.90000000e+01,   6.00000000e+01,             1.12965939e+11,   7.90000000e+01,   8.00000000e+01,             8.10000000e+01,   8.20000000e+01,   8.30000000e+01,             5.45286000e+06,   5.70738000e+06,   9.60000000e+01,             9.70000000e+01,   9.80000000e+01,   9.90000000e+01,             1.00000000e+02,   1.01000000e+02,   8.59236000e+05,             1.04000000e+02,   1.05000000e+02,   1.06000000e+02,             1.07000000e+02,   1.08000000e+02,   1.09000000e+02,             1.10000000e+02,   1.11000000e+02,   1.12000000e+02,             1.13000000e+02,   1.14000000e+02,   0.00000000e+00],          [  1.15000000e+02,   1.16000000e+02,   1.17000000e+02,             1.83739790e+11,   1.36000000e+02,   1.37000000e+02,             1.38000000e+02,   1.39000000e+02,   1.40000000e+02,             8.95566000e+06,   9.39162000e+06,   1.53000000e+02,             1.54000000e+02,   1.55000000e+02,   1.56000000e+02,             1.57000000e+02,   1.58000000e+02,   1.42587600e+06,             1.61000000e+02,   1.62000000e+02,   1.63000000e+02,             1.64000000e+02,   1.65000000e+02,   1.66000000e+02,             1.67000000e+02,   1.68000000e+02,   1.69000000e+02,             1.70000000e+02,   1.71000000e+02,   0.00000000e+00],          [  1.72000000e+02,   1.73000000e+02,   1.74000000e+02,             2.54513641e+11,   1.93000000e+02,   1.94000000e+02,             1.95000000e+02,   1.96000000e+02,   1.97000000e+02,             1.24584600e+07,   1.30758600e+07,   2.10000000e+02,             2.11000000e+02,   2.12000000e+02,   2.13000000e+02,             2.14000000e+02,   2.15000000e+02,   1.99251600e+06,             2.18000000e+02,   2.19000000e+02,   2.20000000e+02,             2.21000000e+02,   2.22000000e+02,   2.23000000e+02,             2.24000000e+02,   2.25000000e+02,   2.26000000e+02,             2.27000000e+02,   2.28000000e+02,   0.00000000e+00]],          [[  1.00000000e+00,   2.00000000e+00,   3.00000000e+00,             4.21920887e+10,   2.20000000e+01,   2.30000000e+01,             2.40000000e+01,   2.50000000e+01,   2.60000000e+01,             1.95006000e+06,   2.02314000e+06,   3.90000000e+01,             4.00000000e+01,   4.10000000e+01,   4.20000000e+01,             4.30000000e+01,   4.40000000e+01,   2.92596000e+05,             4.70000000e+01,   4.80000000e+01,   4.90000000e+01,             5.00000000e+01,   5.10000000e+01,   5.20000000e+01,             5.30000000e+01,   5.40000000e+01,   5.50000000e+01,             5.60000000e+01,   5.70000000e+01,   0.00000000e+00],          [  5.80000000e+01,   5.90000000e+01,   6.00000000e+01,             1.12965939e+11,   7.90000000e+01,   8.00000000e+01,             8.10000000e+01,   8.20000000e+01,   8.30000000e+01,             5.45286000e+06,   5.70738000e+06,   9.60000000e+01,             9.70000000e+01,   9.80000000e+01,   9.90000000e+01,             1.00000000e+02,   1.01000000e+02,   8.59236000e+05,             1.04000000e+02,   1.05000000e+02,   1.06000000e+02,             1.07000000e+02,   1.08000000e+02,   1.09000000e+02,             1.10000000e+02,   1.11000000e+02,   1.12000000e+02,             1.13000000e+02,   1.14000000e+02,   0.00000000e+00],          [  1.15000000e+02,   1.16000000e+02,   1.17000000e+02,             1.83739790e+11,   1.36000000e+02,   1.37000000e+02,             1.38000000e+02,   1.39000000e+02,   1.40000000e+02,             8.95566000e+06,   9.39162000e+06,   1.53000000e+02,             1.54000000e+02,   1.55000000e+02,   1.56000000e+02,             1.57000000e+02,   1.58000000e+02,   1.42587600e+06,             1.61000000e+02,   1.62000000e+02,   1.63000000e+02,             1.64000000e+02,   1.65000000e+02,   1.66000000e+02,             1.67000000e+02,   1.68000000e+02,   1.69000000e+02,             1.70000000e+02,   1.71000000e+02,   0.00000000e+00],          [  1.72000000e+02,   1.73000000e+02,   1.74000000e+02,             2.54513641e+11,   1.93000000e+02,   1.94000000e+02,             1.95000000e+02,   1.96000000e+02,   1.97000000e+02,             1.24584600e+07,   1.30758600e+07,   2.10000000e+02,             2.11000000e+02,   2.12000000e+02,   2.13000000e+02,             2.14000000e+02,   2.15000000e+02,   1.99251600e+06,             2.18000000e+02,   2.19000000e+02,   2.20000000e+02,             2.21000000e+02,   2.22000000e+02,   2.23000000e+</find>
-      <find>second_term</find>
-      <find>compute_19</find>
+      <find>compute_24</find>
+      <find>for i in range</find>
+      <find>Reversed_Upward_Downward</find>
+      <find>print</find>
+      <find>a_up_ward</find>
+      <find>s_post</find>
+      <find>bi</find>
+      <find>random_sum_one1</find>
     </findStrings>
     <replaceStrings>
       <replace>bi</replace>
@@ -198,17 +196,18 @@
         <option value="$PROJECT_DIR$/tre_imp_graph.py" />
         <option value="$PROJECT_DIR$/E_M row.py" />
         <option value="$PROJECT_DIR$/test_broadcat.py" />
-        <option value="$PROJECT_DIR$/momentaneo.py" />
         <option value="$PROJECT_DIR$/GPU_matrix_test.py" />
         <option value="$PROJECT_DIR$/E_M_GPU.py" />
         <option value="$PROJECT_DIR$/parametri_creatori.py" />
-        <option value="$PROJECT_DIR$/tre_simple.py" />
         <option value="$PROJECT_DIR$/test_i_j_su_A.py" />
-        <option value="$PROJECT_DIR$/parser.py" />
         <option value="$PROJECT_DIR$/debug.py" />
-        <option value="$PROJECT_DIR$/test_training.py" />
         <option value="$PROJECT_DIR$/E_M_f.py" />
+        <option value="$PROJECT_DIR$/tre_simple.py" />
+        <option value="$PROJECT_DIR$/momentaneo.py" />
         <option value="$PROJECT_DIR$/degog_test_all_in_one.py" />
+        <option value="$PROJECT_DIR$/test_training.py" />
+        <option value="$PROJECT_DIR$/test_tf.py" />
+        <option value="$PROJECT_DIR$/parser.py" />
         <option value="$PROJECT_DIR$/E_M_utils.py" />
       </list>
     </option>
@@ -221,7 +220,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="50" />
-    <option name="y" value="330" />
+    <option name="y" value="823" />
     <option name="width" value="1316" />
     <option name="height" value="750" />
   </component>
@@ -246,9 +245,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tre_simple.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/momentaneo.py" />
   </component>
-  <component name="RunManager" selected="Python.test_training">
+  <component name="RunManager" selected="Python.E_M_utils">
     <configuration default="false" name="E_M_f" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -263,24 +262,6 @@
       <module name="fow_dow" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/E_M_f.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="test_i_j_su_A" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="fow_dow" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_i_j_su_A.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -317,6 +298,42 @@
       <module name="fow_dow" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_training.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="test_tf" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="fow_dow" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_tf.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="E_M_utils" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="fow_dow" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/E_M_utils.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -571,20 +588,22 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <list size="6">
+    <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Python.degog_test_all_in_one" />
       <item index="1" class="java.lang.String" itemvalue="Python.E_M_GPU" />
       <item index="2" class="java.lang.String" itemvalue="Python.E_M_f" />
-      <item index="3" class="java.lang.String" itemvalue="Python.test_i_j_su_A" />
-      <item index="4" class="java.lang.String" itemvalue="Python.debug" />
-      <item index="5" class="java.lang.String" itemvalue="Python.test_training" />
+      <item index="3" class="java.lang.String" itemvalue="Python.debug" />
+      <item index="4" class="java.lang.String" itemvalue="Python.test_training" />
+      <item index="5" class="java.lang.String" itemvalue="Python.test_tf" />
+      <item index="6" class="java.lang.String" itemvalue="Python.E_M_utils" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.test_training" />
-        <item index="1" class="java.lang.String" itemvalue="Python.E_M_f" />
-        <item index="2" class="java.lang.String" itemvalue="Python.debug" />
-        <item index="3" class="java.lang.String" itemvalue="Python.test_i_j_su_A" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.E_M_utils" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test_training" />
+        <item index="2" class="java.lang.String" itemvalue="Python.test_tf" />
+        <item index="3" class="java.lang.String" itemvalue="Python.E_M_f" />
+        <item index="4" class="java.lang.String" itemvalue="Python.debug" />
       </list>
     </recent_temporary>
   </component>
@@ -652,7 +671,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="50" y="330" width="1316" height="750" extended-state="6" />
+    <frame x="50" y="823" width="1316" height="750" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17705168" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -661,7 +680,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35535976" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.36123347" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1416" y="18" width="1230" height="1006" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.36123347" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1416" y="18" width="1870" height="1062" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -700,20 +719,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tre_impl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tre_imp_graph.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="39" lean-forward="false" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tre_simple.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -726,7 +731,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
           <caret line="38" column="41" lean-forward="false" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -734,9 +738,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="705">
           <caret line="48" column="38" lean-forward="false" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -752,7 +753,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -760,9 +760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1455">
           <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -777,7 +774,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -785,9 +781,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1455">
           <caret line="98" column="0" lean-forward="true" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -810,7 +803,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -818,7 +810,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="25" column="14" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -841,7 +832,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
           <caret line="38" column="23" lean-forward="true" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -850,7 +840,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -922,13 +911,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/momentaneo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="53" column="26" lean-forward="false" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_broadcat.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="765">
@@ -943,21 +925,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/E_M row.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="23" column="6" lean-forward="false" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/E_M_GPU.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2730">
           <caret line="185" column="32" lean-forward="false" selection-start-line="185" selection-start-column="20" selection-end-line="185" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -982,58 +953,94 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parser.py">
+    <entry file="file://$PROJECT_DIR$/E_M row.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="53" column="26" lean-forward="false" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
-          <folding />
+        <state relative-caret-position="330">
+          <caret line="23" column="6" lean-forward="false" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/common_shapes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="658" column="0" lean-forward="false" selection-start-line="658" selection-start-column="0" selection-end-line="658" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/momentaneo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/E_M_f.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="94" column="4" lean-forward="false" selection-start-line="94" selection-start-column="4" selection-end-line="94" selection-end-column="4" />
+        <state relative-caret-position="433">
+          <caret line="93" column="31" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tre_simple.py">
+    <entry file="file://$PROJECT_DIR$/test_tf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="19" column="18" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_training.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" column="13" lean-forward="false" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="13" />
+        <state relative-caret-position="570">
+          <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#400#560#1" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/degog_test_all_in_one.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="283" column="13" lean-forward="true" selection-start-line="283" selection-start-column="13" selection-end-line="283" selection-end-column="13" />
+        <state relative-caret-position="-151">
+          <caret line="40" column="9" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="9" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#7745#14361#1" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_training.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tre_simple.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="102" column="53" lean-forward="false" selection-start-line="102" selection-start-column="23" selection-end-line="102" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/E_M_utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="16" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+        <state relative-caret-position="143">
+          <caret line="484" column="11" lean-forward="false" selection-start-line="484" selection-start-column="11" selection-end-line="484" selection-end-column="11" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#2872#3409#1" expanded="false" />
+            <element signature="e#16680#16839#0" expanded="false" />
+            <element signature="e#16980#17348#0" expanded="false" />
           </folding>
         </state>
       </provider>

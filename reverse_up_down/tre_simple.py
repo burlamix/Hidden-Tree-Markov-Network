@@ -132,6 +132,8 @@ class Tree(object):
         self.max_child=-2
         self.leaves_n=None
         self.no_leaves_n=None
+        self.N_L=None
+        self.N_I=None
 
 
     def __str__(self):
@@ -155,6 +157,8 @@ class Tree(object):
                 node.name=i
                 i = i+ 1
         l_t.size=i
+        l_t.N_L=len(l_t.struct[-1])
+        l_t.N_I=l_t.size -len(l_t.struct[-1])
 
     def divide_leaves(self):
         self.struct.append([])
