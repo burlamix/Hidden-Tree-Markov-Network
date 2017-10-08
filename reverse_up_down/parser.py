@@ -54,7 +54,7 @@ def dataset_parser():
 
         lt.divide_leaves()
         lt.set_name()
-
+        lt.set_N_L()
         tre_list.append(lt)
 
     return tre_list

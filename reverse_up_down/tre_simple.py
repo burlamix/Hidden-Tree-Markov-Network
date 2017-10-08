@@ -1,5 +1,4 @@
-from random import randint
-
+import numpy as np
 #dato il nodo u, restituisce la sua posizione di figlio rispetto al padre
 def pos(u):
     return [0]
@@ -32,7 +31,7 @@ class Node(object):
         return image
 
     def __repr__(self):
-        return str(self.label)+"_"+str(self.name)
+        return str(self.name)+"-"+str(self.label)
 
    # def __str__(self):
   #      return str(self.name)
@@ -129,10 +128,10 @@ class Tree(object):
         self.struct[0].append(self.t)
         self.size=None
         self.classe=classe
-        self.max_child=-2
+        self.max_child=32
         self.leaves_n=None
         self.no_leaves_n=None
-        self.N_L=None
+        self.N_L=np.zeros(self.max_child)
         self.N_I=None
 
 
@@ -152,12 +151,11 @@ class Tree(object):
         for level in l_t.struct:
             for node in level:
                 #inoltre mi salvo il numero massimo di figli che ha l'albero così da agevolare i futuri calcoli
-                if len(node.children)> l_t.max_child:
-                    l_t.max_child=len(node.children)
+                #if len(node.children)> l_t.max_child:
+                #   l_t.max_child=len(node.children)
                 node.name=i
                 i = i+ 1
         l_t.size=i
-        l_t.N_L=len(l_t.struct[-1])
         l_t.N_I=l_t.size -len(l_t.struct[-1])
 
     def divide_leaves(self):
@@ -174,28 +172,8 @@ class Tree(object):
                     stack.insert(0, child)
         del self.struct[-2]
 
-    def get_info(self):
+    def set_N_L(self):
+        for node in self.struct[-1]:
+            self.N_L[node.father.children.index(node)]=self.N_L[node.father.children.index(node)]+1
 
-        None
 
-"""
-t = List_tree("radice")
-t.t.add_node("1")
-t.t.add_node("2")
-t.t.add_node("3")
-t.t.children[0].add_node("11")
-t.t.children[2].add_node("31")
-t.t.children[2].add_node("32")
-t.t.children[2].add_node("33")
-t.t.children[2].children[0].add_node("311")
-t.t.add_node("4")
-t.t.put_name()
-
-t2 = List_tree(0)
-t2.t.make_linear_tree(3,4,9)
-t2.divide_leaves()
-t2.set_name()
-
-print(t.t)
-
-"""
