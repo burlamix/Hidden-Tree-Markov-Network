@@ -4,10 +4,10 @@
     <list default="true" id="ec4d2838-1153-44b3-a3d2-8bd0be1e31be" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/E_M_utils.py" afterPath="$PROJECT_DIR$/E_M_utils.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/momentaneo.py" afterPath="$PROJECT_DIR$/momentaneo.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser.py" afterPath="$PROJECT_DIR$/parser.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/printer.py" afterPath="$PROJECT_DIR$/printer.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.tree" afterPath="$PROJECT_DIR$/test.tree" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tre_simple.py" afterPath="$PROJECT_DIR$/tre_simple.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_training.py" afterPath="$PROJECT_DIR$/test_training.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,12 +21,12 @@
     <SUITE FILE_PATH="coverage/untitled1$test_gpu.coverage" NAME="test_gpu Coverage Results" MODIFIED="1501145344144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$HTMN_Rrow.coverage" NAME="HTMN_Rrow Coverage Results" MODIFIED="1501321451099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$GPU_matrix_test.coverage" NAME="GPU_matrix_test Coverage Results" MODIFIED="1503930522279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/fow_dow$E_M_utils.coverage" NAME="E_M_utils Coverage Results" MODIFIED="1507477256685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/fow_dow$E_M_utils.coverage" NAME="E_M_utils Coverage Results" MODIFIED="1507559099153" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$parser.coverage" NAME="parser Coverage Results" MODIFIED="1507309524191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$tre_simple.coverage" NAME="tre_simple Coverage Results" MODIFIED="1505319918242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$E_M_f.coverage" NAME="E_M_f Coverage Results" MODIFIED="1507370432307" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$degog_test_all_in_one.coverage" NAME="degog_test_all_in_one Coverage Results" MODIFIED="1507133697696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/fow_dow$printer.coverage" NAME="printer Coverage Results" MODIFIED="1507299444549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/fow_dow$printer.coverage" NAME="printer Coverage Results" MODIFIED="1507541978318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$momentaneo.coverage" NAME="momentaneo Coverage Results" MODIFIED="1507370108328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$debug.coverage" NAME="debug Coverage Results" MODIFIED="1506866790721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$tre_imp_graph.coverage" NAME="tre_imp_graph Coverage Results" MODIFIED="1502108183778" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -34,7 +34,7 @@
     <SUITE FILE_PATH="coverage/fow_dow$test_tf.coverage" NAME="test_tf Coverage Results" MODIFIED="1507194292436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$tre_impl.coverage" NAME="tre_impl Coverage Results" MODIFIED="1502091286059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$test_gpu.coverage" NAME="test_gpu Coverage Results" MODIFIED="1501515540996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/fow_dow$test_training.coverage" NAME="test_training Coverage Results" MODIFIED="1507217888244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/fow_dow$test_training.coverage" NAME="test_training Coverage Results" MODIFIED="1507565483579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$test_broadcat.coverage" NAME="test_broadcat Coverage Results" MODIFIED="1503146542496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$E_M_row.coverage" NAME="E_M row Coverage Results" MODIFIED="1502108205784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$E_M_GPU.coverage" NAME="E_M_GPU Coverage Results" MODIFIED="1504088007159" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -50,8 +50,8 @@
       <file leaf-file-name="tre_simple.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tre_simple.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+            <state relative-caret-position="164">
+              <caret line="130" column="25" lean-forward="false" selection-start-line="130" selection-start-column="25" selection-end-line="130" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -60,8 +60,8 @@
       <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+            <state relative-caret-position="75">
+              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -70,7 +70,7 @@
       <file leaf-file-name="E_M_f.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/E_M_f.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="960">
+            <state relative-caret-position="310">
               <caret line="67" column="40" lean-forward="false" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="40" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
@@ -79,17 +79,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="E_M_utils.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="E_M_utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/E_M_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="509">
-              <caret line="569" column="0" lean-forward="true" selection-start-line="569" selection-start-column="0" selection-end-line="569" selection-end-column="0" />
+            <state relative-caret-position="195">
+              <caret line="28" column="3" lean-forward="true" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <element signature="e#2872#3409#1" expanded="false" />
-                <element signature="e#16680#16839#0" expanded="false" />
-                <element signature="e#16980#17348#0" expanded="false" />
-                <element signature="e#21717#39002#0" expanded="false" />
+                <element signature="e#2931#3468#1" expanded="false" />
+                <element signature="e#15764#15923#0" expanded="false" />
+                <element signature="e#16064#16432#0" expanded="false" />
+                <marker date="1507565082830" expanded="false" signature="22454:56017" ph="..." />
               </folding>
             </state>
           </provider>
@@ -109,7 +109,7 @@
         <entry file="file://$PROJECT_DIR$/momentaneo.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -120,8 +120,8 @@
       <file leaf-file-name="degog_test_all_in_one.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/degog_test_all_in_one.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="40" column="9" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="9" />
+            <state relative-caret-position="491">
+              <caret line="372" column="21" lean-forward="false" selection-start-line="372" selection-start-column="0" selection-end-line="373" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#7745#14361#1" expanded="false" />
@@ -130,13 +130,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_training.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_training.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test_training.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="285">
+              <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
+                <element signature="e#528#1264#1" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -166,24 +167,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>compute_21</find>
-      <find>compute_24</find>
-      <find>for i in range</find>
-      <find>Reversed_Upward_Downward</find>
-      <find>print</find>
-      <find>a_up_ward</find>
-      <find>s_post</find>
-      <find>bi</find>
-      <find>random_sum_one1</find>
-      <find>77</find>
-      <find>placeholder</find>
-      <find>gat</find>
-      <find>gather</find>
-      <find>k</find>
-      <find>data_set</find>
-      <find>date</find>
       <find>None</find>
-      <find>N_L</find>
       <find>max_child</find>
       <find>divi</find>
       <find>N_I</find>
@@ -193,9 +177,26 @@
       <find>struct</find>
       <find>326</find>
       <find>lista_prior</find>
-      <find>n_l_list</find>
       <find>level</find>
       <find>13</find>
+      <find>EE_list</find>
+      <find>varia</find>
+      <find>zeros</find>
+      <find>ei</find>
+      <find>np.zeros</find>
+      <find>ty</find>
+      <find>1.</find>
+      <find>N_SYMBOLS</find>
+      <find>z</find>
+      <find>transpose</find>
+      <find>multiply</find>
+      <find>hs</find>
+      <find>datetime</find>
+      <find>n_l_list</find>
+      <find>N_L</find>
+      <find>33</find>
+      <find>M_step</find>
+      <find>print</find>
     </findStrings>
     <replaceStrings>
       <replace>bi</replace>
@@ -225,13 +226,13 @@
         <option value="$PROJECT_DIR$/debug.py" />
         <option value="$PROJECT_DIR$/E_M_f.py" />
         <option value="$PROJECT_DIR$/degog_test_all_in_one.py" />
-        <option value="$PROJECT_DIR$/test_training.py" />
         <option value="$PROJECT_DIR$/test_tf.py" />
+        <option value="$PROJECT_DIR$/momentaneo.py" />
         <option value="$PROJECT_DIR$/printer.py" />
         <option value="$PROJECT_DIR$/parser.py" />
         <option value="$PROJECT_DIR$/tre_simple.py" />
-        <option value="$PROJECT_DIR$/momentaneo.py" />
         <option value="$PROJECT_DIR$/E_M_utils.py" />
+        <option value="$PROJECT_DIR$/test_training.py" />
       </list>
     </option>
   </component>
@@ -269,8 +270,9 @@
     <property name="js.eslint.eslintPackage" value="" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/momentaneo.py" />
+    <property name="ToolWindowEvent Log.ShowToolbar" value="false" />
   </component>
-  <component name="RunManager" selected="Python.E_M_utils">
+  <component name="RunManager" selected="Python.test_training">
     <configuration default="false" name="E_M_f" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -325,24 +327,6 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="parser" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="fow_dow" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/parser.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="momentaneo" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -357,6 +341,24 @@
       <module name="fow_dow" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/momentaneo.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="test_training" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="fow_dow" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_training.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -617,16 +619,16 @@
       <item index="2" class="java.lang.String" itemvalue="Python.E_M_f" />
       <item index="3" class="java.lang.String" itemvalue="Python.E_M_utils" />
       <item index="4" class="java.lang.String" itemvalue="Python.printer" />
-      <item index="5" class="java.lang.String" itemvalue="Python.parser" />
-      <item index="6" class="java.lang.String" itemvalue="Python.momentaneo" />
+      <item index="5" class="java.lang.String" itemvalue="Python.momentaneo" />
+      <item index="6" class="java.lang.String" itemvalue="Python.test_training" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.E_M_utils" />
-        <item index="1" class="java.lang.String" itemvalue="Python.E_M_f" />
-        <item index="2" class="java.lang.String" itemvalue="Python.momentaneo" />
-        <item index="3" class="java.lang.String" itemvalue="Python.parser" />
-        <item index="4" class="java.lang.String" itemvalue="Python.printer" />
+        <item index="0" class="java.lang.String" itemvalue="Python.test_training" />
+        <item index="1" class="java.lang.String" itemvalue="Python.E_M_utils" />
+        <item index="2" class="java.lang.String" itemvalue="Python.printer" />
+        <item index="3" class="java.lang.String" itemvalue="Python.E_M_f" />
+        <item index="4" class="java.lang.String" itemvalue="Python.momentaneo" />
       </list>
     </recent_temporary>
   </component>
@@ -703,7 +705,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35535976" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.36123347" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1416" y="18" width="1230" height="1006" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.36123347" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1416" y="18" width="1230" height="1006" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -737,7 +739,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -993,23 +995,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/degog_test_all_in_one.py">
+    <entry file="file://$PROJECT_DIR$/momentaneo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="40" column="9" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="9" />
+        <state relative-caret-position="225">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#7745#14361#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_training.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1022,27 +1013,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/momentaneo.py">
+    <entry file="file://$PROJECT_DIR$/parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="75">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tre_simple.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state relative-caret-position="164">
+          <caret line="130" column="25" lean-forward="false" selection-start-line="130" selection-start-column="25" selection-end-line="130" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/E_M_f.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
+        <state relative-caret-position="310">
           <caret line="67" column="40" lean-forward="false" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="40" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
@@ -1050,24 +1039,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parser.py">
+    <entry file="file://$PROJECT_DIR$/degog_test_all_in_one.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="491">
+          <caret line="372" column="21" lean-forward="false" selection-start-line="372" selection-start-column="0" selection-end-line="373" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#7745#14361#1" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/E_M_utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="569" column="0" lean-forward="true" selection-start-line="569" selection-start-column="0" selection-end-line="569" selection-end-column="0" />
+        <state relative-caret-position="195">
+          <caret line="28" column="3" lean-forward="true" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#2872#3409#1" expanded="false" />
-            <element signature="e#16680#16839#0" expanded="false" />
-            <element signature="e#16980#17348#0" expanded="false" />
-            <element signature="e#21717#39002#0" expanded="false" />
+            <element signature="e#2931#3468#1" expanded="false" />
+            <element signature="e#15764#15923#0" expanded="false" />
+            <element signature="e#16064#16432#0" expanded="false" />
+            <marker date="1507565082830" expanded="false" signature="22454:56017" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_training.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#528#1264#1" expanded="false" />
           </folding>
         </state>
       </provider>
