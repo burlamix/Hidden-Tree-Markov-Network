@@ -9,7 +9,9 @@ data = dataset_parser()
 
 print("parto")
 start = datetime.now()
-pi,sp_p,A,bi,t_pi,t_sp_p,t_A,t_bi = training(data,1)
+
+pi,sp_p,A,bi,t_pi,t_sp_p,t_A,t_bi, tot = training(data,1)
+
 print("TOTALE grafo : ",(datetime.now()-start).total_seconds() )
 
 start = datetime.now()
@@ -17,7 +19,8 @@ start = datetime.now()
 with tf.Session() as sess:
     init = tf.global_variables_initializer()
     sess.run(init)
-    print(sess.run([pi,t_pi,  sp_p,t_sp_p,  A,t_A,  bi,t_bi]))
+    #print(sess.run([aux,  pi,t_pi,  sp_p,t_sp_p,  A,t_A,  bi,t_bi]))
+    print(sess.run([pi,sp_p,A,bi,t_pi,t_sp_p,t_A,t_bi, tot]))
 
 
 print("TOTALE esecuzione : ",(datetime.now()-start).total_seconds() )

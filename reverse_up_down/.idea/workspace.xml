@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec4d2838-1153-44b3-a3d2-8bd0be1e31be" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test2.tree" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/E_M_utils.py" afterPath="$PROJECT_DIR$/E_M_utils.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/degog_test_all_in_one.py" afterPath="$PROJECT_DIR$/degog_test_all_in_one.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser.py" afterPath="$PROJECT_DIR$/parser.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/printer.py" afterPath="$PROJECT_DIR$/printer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.tree" afterPath="$PROJECT_DIR$/test.tree" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_training.py" afterPath="$PROJECT_DIR$/test_training.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tre_simple.py" afterPath="$PROJECT_DIR$/tre_simple.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,8 +26,8 @@
     <SUITE FILE_PATH="coverage/fow_dow$parser.coverage" NAME="parser Coverage Results" MODIFIED="1507309524191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$tre_simple.coverage" NAME="tre_simple Coverage Results" MODIFIED="1505319918242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$E_M_f.coverage" NAME="E_M_f Coverage Results" MODIFIED="1507370432307" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/fow_dow$degog_test_all_in_one.coverage" NAME="degog_test_all_in_one Coverage Results" MODIFIED="1507133697696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$printer.coverage" NAME="printer Coverage Results" MODIFIED="1507541978318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/fow_dow$degog_test_all_in_one.coverage" NAME="degog_test_all_in_one Coverage Results" MODIFIED="1507799864085" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$momentaneo.coverage" NAME="momentaneo Coverage Results" MODIFIED="1507370108328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$debug.coverage" NAME="debug Coverage Results" MODIFIED="1506866790721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$tre_imp_graph.coverage" NAME="tre_imp_graph Coverage Results" MODIFIED="1502108183778" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -34,7 +35,7 @@
     <SUITE FILE_PATH="coverage/fow_dow$test_tf.coverage" NAME="test_tf Coverage Results" MODIFIED="1507194292436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$tre_impl.coverage" NAME="tre_impl Coverage Results" MODIFIED="1502091286059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$test_gpu.coverage" NAME="test_gpu Coverage Results" MODIFIED="1501515540996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/fow_dow$test_training.coverage" NAME="test_training Coverage Results" MODIFIED="1507565483579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/fow_dow$test_training.coverage" NAME="test_training Coverage Results" MODIFIED="1507741552683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$test_broadcat.coverage" NAME="test_broadcat Coverage Results" MODIFIED="1503146542496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$E_M_row.coverage" NAME="E_M row Coverage Results" MODIFIED="1502108205784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$E_M_GPU.coverage" NAME="E_M_GPU Coverage Results" MODIFIED="1504088007159" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -50,8 +51,8 @@
       <file leaf-file-name="tre_simple.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tre_simple.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="130" column="25" lean-forward="false" selection-start-line="130" selection-start-column="25" selection-end-line="130" selection-end-column="25" />
+            <state relative-caret-position="390">
+              <caret line="26" column="49" lean-forward="false" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -60,21 +61,9 @@
       <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            <state relative-caret-position="435">
+              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="E_M_f.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/E_M_f.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="67" column="40" lean-forward="false" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -82,62 +71,45 @@
       <file leaf-file-name="E_M_utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/E_M_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="28" column="3" lean-forward="true" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
+            <state relative-caret-position="4815">
+              <caret line="325" column="33" lean-forward="false" selection-start-line="325" selection-start-column="20" selection-end-line="325" selection-end-column="33" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <element signature="e#2931#3468#1" expanded="false" />
-                <element signature="e#15764#15923#0" expanded="false" />
-                <element signature="e#16064#16432#0" expanded="false" />
-                <marker date="1507565082830" expanded="false" signature="22454:56017" ph="..." />
+                <element signature="e#17899#18058#0" expanded="false" />
+                <element signature="e#18199#18567#0" expanded="false" />
+                <element signature="e#18705#18951#0" expanded="false" />
+                <element signature="e#23468#58138#1" expanded="false" />
+                <marker date="1507741524337" expanded="false" signature="24567:58130" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="printer.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/printer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="21" lean-forward="false" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="momentaneo.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/momentaneo.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="degog_test_all_in_one.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/degog_test_all_in_one.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="372" column="21" lean-forward="false" selection-start-line="372" selection-start-column="0" selection-end-line="373" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-                <element signature="e#7745#14361#1" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_training.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_training.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_training.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+            <state relative-caret-position="270">
+              <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="54" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
-                <element signature="e#528#1264#1" expanded="false" />
+                <element signature="e#604#1340#1" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="degog_test_all_in_one.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/degog_test_all_in_one.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="454">
+              <caret line="295" column="0" lean-forward="true" selection-start-line="295" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
+              <folding>
+                <element signature="e#3#21#0" expanded="true" />
+                <element signature="e#421#580#0" expanded="false" />
+                <element signature="e#721#1089#0" expanded="false" />
+                <element signature="e#6249#8355#0" expanded="false" />
+                <element signature="e#13326#28640#1" expanded="false" />
+                <marker date="1507799863945" expanded="false" signature="25009:28636" ph="..." />
               </folding>
             </state>
           </provider>
@@ -167,35 +139,35 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>None</find>
-      <find>max_child</find>
-      <find>divi</find>
-      <find>N_I</find>
-      <find>expand_dims</find>
-      <find>20-193</find>
-      <find>326_3</find>
-      <find>struct</find>
-      <find>326</find>
-      <find>lista_prior</find>
-      <find>level</find>
-      <find>13</find>
-      <find>EE_list</find>
-      <find>varia</find>
-      <find>zeros</find>
-      <find>ei</find>
-      <find>np.zeros</find>
-      <find>ty</find>
-      <find>1.</find>
-      <find>N_SYMBOLS</find>
-      <find>z</find>
-      <find>transpose</find>
-      <find>multiply</find>
-      <find>hs</find>
-      <find>datetime</find>
-      <find>n_l_list</find>
-      <find>N_L</find>
-      <find>33</find>
-      <find>M_step</find>
+      <find>04938246</find>
+      <find>05336881</find>
+      <find>aux1</find>
+      <find>01829988</find>
+      <find>name</find>
+      <find>93601208e</find>
+      <find>33856424e</find>
+      <find>22064926</find>
+      <find>01657251</find>
+      <find>20900075</find>
+      <find>19198016</find>
+      <find>18297869</find>
+      <find>22934953</find>
+      <find>17438311</find>
+      <find>56924649</find>
+      <find>52221543</find>
+      <find>a_up_ward</find>
+      <find>compute_21</find>
+      <find>var_up_ward</find>
+      <find>06613729</find>
+      <find>s</find>
+      <find>test</find>
+      <find>aux_up_ward</find>
+      <find>30617713</find>
+      <find>02724755</find>
+      <find>var_a_up_ward</find>
+      <find>86148904</find>
+      <find>sli_ph_bi</find>
+      <find>286</find>
       <find>print</find>
     </findStrings>
     <replaceStrings>
@@ -225,14 +197,14 @@
         <option value="$PROJECT_DIR$/test_i_j_su_A.py" />
         <option value="$PROJECT_DIR$/debug.py" />
         <option value="$PROJECT_DIR$/E_M_f.py" />
-        <option value="$PROJECT_DIR$/degog_test_all_in_one.py" />
         <option value="$PROJECT_DIR$/test_tf.py" />
         <option value="$PROJECT_DIR$/momentaneo.py" />
         <option value="$PROJECT_DIR$/printer.py" />
         <option value="$PROJECT_DIR$/parser.py" />
-        <option value="$PROJECT_DIR$/tre_simple.py" />
-        <option value="$PROJECT_DIR$/E_M_utils.py" />
         <option value="$PROJECT_DIR$/test_training.py" />
+        <option value="$PROJECT_DIR$/E_M_utils.py" />
+        <option value="$PROJECT_DIR$/tre_simple.py" />
+        <option value="$PROJECT_DIR$/degog_test_all_in_one.py" />
       </list>
     </option>
   </component>
@@ -244,7 +216,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="50" />
-    <option name="y" value="330" />
+    <option name="y" value="18" />
     <option name="width" value="1316" />
     <option name="height" value="750" />
   </component>
@@ -272,7 +244,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/momentaneo.py" />
     <property name="ToolWindowEvent Log.ShowToolbar" value="false" />
   </component>
-  <component name="RunManager" selected="Python.test_training">
+  <component name="RunManager" selected="Python.degog_test_all_in_one">
     <configuration default="false" name="E_M_f" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -696,8 +668,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="50" y="330" width="1316" height="750" extended-state="6" />
-    <editor active="false" />
+    <frame x="50" y="18" width="1316" height="750" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17705168" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -705,18 +677,18 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35535976" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.36123347" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1416" y="18" width="1230" height="1006" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39941263" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.36123347" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1416" y="18" width="1870" height="1062" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39941263" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -739,7 +711,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="6" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -995,82 +967,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/momentaneo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/printer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="21" lean-forward="false" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/momentaneo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tre_simple.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="130" column="25" lean-forward="false" selection-start-line="130" selection-start-column="25" selection-end-line="130" selection-end-column="25" />
+        <state relative-caret-position="435">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/E_M_f.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
+        <state relative-caret-position="625">
           <caret line="67" column="40" lean-forward="false" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_training.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="54" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#604#1340#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tre_simple.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="49" lean-forward="false" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/E_M_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4815">
+          <caret line="325" column="33" lean-forward="false" selection-start-line="325" selection-start-column="20" selection-end-line="325" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#17899#18058#0" expanded="false" />
+            <element signature="e#18199#18567#0" expanded="false" />
+            <element signature="e#18705#18951#0" expanded="false" />
+            <element signature="e#23468#58138#1" expanded="false" />
+            <marker date="1507741524337" expanded="false" signature="24567:58130" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/degog_test_all_in_one.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="372" column="21" lean-forward="false" selection-start-line="372" selection-start-column="0" selection-end-line="373" selection-end-column="0" />
+        <state relative-caret-position="454">
+          <caret line="295" column="0" lean-forward="true" selection-start-line="295" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#7745#14361#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/E_M_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="28" column="3" lean-forward="true" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#2931#3468#1" expanded="false" />
-            <element signature="e#15764#15923#0" expanded="false" />
-            <element signature="e#16064#16432#0" expanded="false" />
-            <marker date="1507565082830" expanded="false" signature="22454:56017" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_training.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#528#1264#1" expanded="false" />
+            <element signature="e#3#21#0" expanded="true" />
+            <element signature="e#421#580#0" expanded="false" />
+            <element signature="e#721#1089#0" expanded="false" />
+            <element signature="e#6249#8355#0" expanded="false" />
+            <element signature="e#13326#28640#1" expanded="false" />
+            <marker date="1507799863945" expanded="false" signature="25009:28636" ph="..." />
           </folding>
         </state>
       </provider>

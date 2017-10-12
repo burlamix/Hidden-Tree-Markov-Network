@@ -19,6 +19,7 @@ class Node(object):
         self.label = label
         self.name = "-"
         self.level_n = level_n
+        self.pos = -1
 
 
 
@@ -95,13 +96,12 @@ class Node(object):
         else:
             return None
 
-    def pos(self,name):
-        aux = self.get_node(name)
-        if  aux != None:
-            if aux.father != None:
-                return aux.father.children.index(aux) #inefficente va migliorata e partono da zero!
+    def posizione(self):
+        if  self != None:
+            if self.father != None:
+                return self.father.children.index(self) #inefficente va migliorata e partono da zero!
             else:
-                return -1
+                return 0
         else:
             return None
 
@@ -154,7 +154,11 @@ class Tree(object):
                 #if len(node.children)> l_t.max_child:
                 #   l_t.max_child=len(node.children)
                 node.name=i
-                i = i+ 1
+                if node.father != None:
+                    node.pos = node.father.children.index(node)+1
+                else:
+                    node.pos = 0
+                i=i+1
         l_t.size=i
         l_t.N_I=l_t.size -len(l_t.struct[-1])
 
