@@ -178,6 +178,7 @@ class Tree(object):
 
     def set_N_L(self):
         for node in self.struct[-1]:
-            self.N_L[node.father.children.index(node)]=self.N_L[node.father.children.index(node)]+1
+            #self.N_L[node.father.children.index(node)]=self.N_L[node.father.children.index(node)] + 1
+            self.N_L[node.pos-1]=self.N_L[node.pos-1] + 1
 
 
