@@ -133,6 +133,7 @@ class Tree(object):
         self.no_leaves_n=None
         self.N_L=np.zeros(self.max_child)
         self.N_I=None
+        self.N_II=np.zeros(self.max_child)
 
 
     def __str__(self):
@@ -180,5 +181,10 @@ class Tree(object):
         for node in self.struct[-1]:
             #self.N_L[node.father.children.index(node)]=self.N_L[node.father.children.index(node)] + 1
             self.N_L[node.pos-1]=self.N_L[node.pos-1] + 1
+        for level in self.struct:
+            for node in level:
+                self.N_II[node.pos - 1] = self.N_II[node.pos - 1] + 1
+
+
 
 

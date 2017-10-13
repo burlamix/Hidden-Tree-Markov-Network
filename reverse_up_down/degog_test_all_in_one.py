@@ -366,7 +366,7 @@ for i in range(0, epoche):
                     uniform = tf.expand_dims(uniform, 1)
                     uniform = tf.tile(uniform, [1, N_HIDDEN_STATES,1])
                     uniform_ris_24 = tf.divide(ris_24, uniform)
-
+                    #DDD
 
                     # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||inglobe_ris_liv||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -414,6 +414,7 @@ for i in range(0, epoche):
         aux_list_prior = []
         aux_list_sp = []
         n_l_list = np.zeros(MAX_CHILD)
+        n_ii_list = np.zeros(MAX_CHILD)
         sum_N_I = 0
         max_l = -1
         num_tm_yu_list = []
@@ -460,6 +461,7 @@ for i in range(0, epoche):
             lista_prior.append([])
             lista_n_in.append([])
             n_l_list = n_l_list + data_set[i].N_L
+            n_ii_list = n_ii_list + data_set[i].N_II
             sum_N_I = sum_N_I + data_set[i].N_I
             for l_number in data_set[i].N_L:
                 if max_l < l_number:
@@ -484,7 +486,7 @@ for i in range(0, epoche):
                     in_list.append(0)
 
             slice = tf.gather(var_EE_list[i], lista_n_in[i])
-
+            print("lista_n_in[i]-->",lista_n_in[i])
             aux_list_sp.append(slice)
 
             # prior
@@ -502,11 +504,10 @@ for i in range(0, epoche):
 
         # SP
         aux = tf.stack(aux_list_sp, 0)
-
         summed_sp = tf.reduce_sum(aux, [4, 3, 2, 0])
 
-        den = sum_N_I*MAX_CHILD
         result_sp = tf.divide(summed_sp, sum_N_I*MAX_CHILD)
+        #result_sp = tf.divide(summed_sp, den) #DDD se non è così elimina n_ii_list e tutto quello collegato precedentemente
 
         result_sp = tf.where(tf.is_inf(result_sp), tf.zeros_like(result_sp), result_sp)
         result_sp = tf.where(tf.is_nan(result_sp), tf.zeros_like(result_sp), result_sp)
@@ -523,9 +524,7 @@ for i in range(0, epoche):
 
         # PRIOR
         aux = tf.stack(aux_list_prior, 0)
-        print("aux__________________________>----",aux)
         summed_prior = tf.reduce_sum(aux, [4, 2, 0])#DDD
-        print("n_l_list===",n_l_list)
         n_l_list = tf.expand_dims(n_l_list, 1)
         n_l_list = tf.tile(n_l_list, [1, N_HIDDEN_STATES])
         result_prior = tf.divide(summed_prior, n_l_list)
@@ -639,7 +638,7 @@ print("pi------------->",pi)
 print("sp_p------------->",sp_p)
 print("A------------->",A)
 print("bi------------->",bi)
-
+print("\n\n")
 t_p=tf.reduce_sum(pi,[0])
 t_sp=tf.reduce_sum(sp_p,[0])
 t_a=tf.reduce_sum(A,[0])
@@ -648,7 +647,7 @@ with tf.Session() as sess:
     init = tf.global_variables_initializer()
     sess.run(init)
     # print(sess.run([aux,  pi,t_pi,  sp_p,t_sp_p,  A,t_A,  bi,t_bi]))
-    print(sess.run([t_sp,t_p]))
+    print(sess.run([sp_p,t_sp,t_p]))
 
 #||||||||||||||||||||||||||||||||||||||||||||||LOGLIKEHOLD||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
