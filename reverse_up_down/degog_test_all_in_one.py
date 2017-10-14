@@ -91,9 +91,6 @@ for i in range(0, epoche):
             print(data_set[j])
             print(data_set[j].size)
             print(len(data_set[j].struct[-1]))
-            print(data_set[j].struct[0])
-            print(data_set[j].struct[1])
-            print(data_set[j].struct[2])
             scope_tree=scope_tree[:-len(str(j-1))]+str(j)
             with tf.variable_scope(scope_tree):
                 # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||Reversed_Upward_Downward||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -103,7 +100,7 @@ for i in range(0, epoche):
                 a_up_ward = np.zeros((t.size, N_HIDDEN_STATES, MAX_CHILD))
 
                 # internal node prior
-                in_prior = np.zeros((N_HIDDEN_STATES, t.size))
+                in_prior = np.ones((N_HIDDEN_STATES, t.size))
 
                 # pairwise smoothed posterior
                 E = np.zeros((t.size-1,N_HIDDEN_STATES))
@@ -115,9 +112,10 @@ for i in range(0, epoche):
                 ph_in_prior = tf.placeholder(shape=[N_HIDDEN_STATES, t.size], dtype=tf.float64)
 
                 for ii in range(0, N_HIDDEN_STATES):
-                    for jj in range(t.size - len(t.struct[-1]), t.size):
-                        in_prior[ii, jj] = 0.33
-
+                    #for jj in range(t.size - len(t.struct[-1]), t.size):
+                    for jj in range(t.size):
+                        in_prior[ii, jj] = 1/N_HIDDEN_STATES
+                print(in_prior)
                 init_prior = tf.constant(in_prior, dtype=tf.float64)
                 var_in_prior = tf.get_variable('var_in_prior', initializer=init_prior)
 
@@ -154,8 +152,12 @@ for i in range(0, epoche):
                 var_up_ward = tf.concat([head, ris_17_t], 0)
 
                 # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||compute_internal_node_prior||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+                print("sp_p-----------------------------------------------",sp_p)
+                print("A---------------------------------------------------",A)
 
                 aux1 = tf.multiply(sp_p, A)  # broadcast implicito
+                print("aux1------------------------------------------------",aux1)
+
 
                 # per ogni livello dell'albero
 
@@ -172,19 +174,23 @@ for i in range(0, epoche):
                         for j in range(k, MAX_CHILD):
                             nomi_figli[-1].append(0)
 
-                    # print(nomi_figli)
+                    print(nomi_figli)
                     aux2 = tf.gather(var_in_prior, nomi_figli, axis=1)
+                   #aux2 = tf.where(tf.is_zero(aux2), tf.zeros_like(aux2), aux2)
+
                     aux2 = tf.transpose(aux2, perm=[1, 0, 2])
+
                     aux2 = tf.expand_dims(aux2, 1)
+
                     aux2 = tf.tile(aux2, [1, N_HIDDEN_STATES, 1, 1])
 
                     #  di figli di un nodo  in un unica matrice N_HIDDEN_STATES*L*(numero di nodi del livello)
                     # qui moltiplicazione
                     # questa è una serie di matrici, tante quanti sono i nodi del livello esaminati
 
-                    aux3 = tf.multiply(aux1, aux2)  #_____________________________________________________________________I/J giusto verso?
+                    aux3 = tf.multiply(aux1, aux2)
 
-                    s = tf.reduce_sum(aux3, [2, 3])  # sommo nella dimenzione 2 e 3 della matrice________________________________________________________ i/j
+                    s = tf.reduce_sum(aux3, [2, 3])
                     s = tf.transpose(s)
 
                     # prelevo i valori iniziali e quelli finali che non devono essere aggiornati in questo ciclo
@@ -196,13 +202,17 @@ for i in range(0, epoche):
                                      t.size - t.struct[i][-1].name - 1])  # potrei farlo anche con un constant
 
                     var_in_prior = tf.concat([head, s, tail], 1)  # aggiorno i nuovi valore trovati
-                    #DDD non dovrebbe fare uno la somma dei 21? sulle i?
+
+
+                print("var_in_prior.-------",var_in_prior)
+                test_var_in_prior = tf.reduce_sum(var_in_prior,[0])
 
 
                 # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||up step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+                # DDD non dovrebbe fare uno la somma dei 21? sulle i?
 
                 # up step
-                for i in range(len(t.struct) - 2, -1    , -1):
+                for i in range(len(t.struct) - 2, -1  , -1):
                     # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||compute_21||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
                     nomi_figli = []
                     nomi_nodi  = []
@@ -224,7 +234,7 @@ for i in range(0, epoche):
 
                     numerator_n = tf.multiply(A, aux_up_ward)
 
-                    numerator = tf.reduce_sum(numerator_n, [2])  # sommo sulla dim 1________________________________________________________bisogna controllare che sia corretta i/j
+                    numerator = tf.reduce_sum(numerator_n, [2])
 
 
                     node_in_priors = tf.gather(var_in_prior, nomi_nodi, axis=1)
@@ -247,6 +257,8 @@ for i in range(0, epoche):
 
 
                     var_a_up_ward = tf.concat([head, s, tail], 0)
+
+                    test_a_var_up_ward = tf.reduce_sum(var_a_up_ward,[1])
                     # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||compute_19||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
                     sli_var_in_prior = tf.ones([N_HIDDEN_STATES, 0], tf.float64)
@@ -259,7 +271,9 @@ for i in range(0, epoche):
 
                     sli_ph_bi = tf.gather(bi, labels, axis=1)
 
-                    second_term = tf.gather(var_a_up_ward, nomi)    ## è sempre la s di sopra???
+                    #second_term = tf.gather(var_a_up_ward, nomi)    ## è sempre la s di sopra???
+                    #considerando la semplificazione non devo prendere l'intero var_a_up_ward ma solo la sua parte superiore che preleviamo da sopra
+                    second_term=numerator
 
                     first_term = tf.expand_dims(sp_p, 0)  # faccio un broadcast esplicito duplicando la matrice su una nuova dimenzione  per il numero di stati nascosti
                     first_term = tf.expand_dims(first_term, 0)
@@ -295,7 +309,10 @@ for i in range(0, epoche):
 
 
                     var_up_ward = tf.concat([head, ris_19, tail], 0)
-                test_var_up_ward = tf.reduce_sum(var_up_ward, [1])
+
+
+                test_var_up_ward1 = tf.reduce_sum(var_up_ward, [1])
+                test_var_up_ward2 = tf.reduce_sum(var_up_ward, [0])
 
                 # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||    set_base_case      ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -362,27 +379,27 @@ for i in range(0, epoche):
                     denominator = tf.tile(denominator, [1, N_HIDDEN_STATES, 1])
 
                     ris_24 = tf.divide(numerator, denominator)
-                    uniform = tf.reduce_sum(ris_24, [1])
-                    uniform = tf.expand_dims(uniform, 1)
-                    uniform = tf.tile(uniform, [1, N_HIDDEN_STATES,1])
-                    uniform_ris_24 = tf.divide(ris_24, uniform)
+                    #uniform = tf.reduce_sum(ris_24, [1])
+                    #uniform = tf.expand_dims(uniform, 1)
+                    #uniform = tf.tile(uniform, [1, N_HIDDEN_STATES,1])
+                    #ris_24 = tf.divide(ris_24, uniform)
                     #DDD
 
                     # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||inglobe_ris_liv||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
                     head = tf.slice(var_EE, [0, 0, 0],
-                                    [t.struct[i][-1].name + 1 - int((uniform_ris_24.shape[0])), N_HIDDEN_STATES,
+                                    [t.struct[i][-1].name + 1 - int((ris_24.shape[0])), N_HIDDEN_STATES,
                                      N_HIDDEN_STATES])
                     tail = tf.slice(var_EE, [t.struct[i][-1].name + 1, 0, 0],
                                     [t.size - t.struct[i][-1].name - 1, N_HIDDEN_STATES, N_HIDDEN_STATES])
 
-                    var_EE = tf.concat([head, uniform_ris_24, tail], 0)
+                    var_EE = tf.concat([head, ris_24, tail], 0)
 
 
 
                     # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||computer25||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-                    ris_25 = tf.reduce_sum(ris_24, [1])
+                    ris_25 = tf.reduce_sum(ris_24, [2])
 
 
                     #qui faccio in modo che la somma di var_E  sugli stati nascosti sia uguale ad 1------------------------------------------------------- è corretto?
@@ -400,6 +417,17 @@ for i in range(0, epoche):
 
                     test_var_E = tf.reduce_sum(var_E, [1])
                     # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||Reversed_Upward_Downward||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+                #uniform = tf.reduce_sum(var_EE, [1])
+                #uniform = tf.expand_dims(uniform, 1)
+                #uniform = tf.tile(uniform, [1, N_HIDDEN_STATES, 1])
+                #var_EE = tf.divide(var_EE, uniform)
+                #var_EE = tf.where(tf.is_nan(var_EE), tf.zeros_like(var_EE),var_EE)
+
+
+                uniform = tf.reduce_sum(var_E, [1])
+                uniform = tf.expand_dims(uniform, 1)
+                uniform = tf.tile(uniform, [1, N_HIDDEN_STATES])
+                var_E = tf.divide(var_E, uniform)
 
 
                 var_EE_list.append(var_EE)
@@ -486,7 +514,6 @@ for i in range(0, epoche):
                     in_list.append(0)
 
             slice = tf.gather(var_EE_list[i], lista_n_in[i])
-            print("lista_n_in[i]-->",lista_n_in[i])
             aux_list_sp.append(slice)
 
             # prior
@@ -505,6 +532,7 @@ for i in range(0, epoche):
         # SP
         aux = tf.stack(aux_list_sp, 0)
         summed_sp = tf.reduce_sum(aux, [4, 3, 2, 0])
+        summed_sp2 = tf.reduce_sum(aux, [4, 3])
 
         result_sp = tf.divide(summed_sp, sum_N_I*MAX_CHILD)
         #result_sp = tf.divide(summed_sp, den) #DDD se non è così elimina n_ii_list e tutto quello collegato precedentemente
@@ -514,8 +542,9 @@ for i in range(0, epoche):
 
         # STATE TRANSICTION (A)
         numerator_stat_tran = tf.reduce_sum(aux, [2,0])
-        denominator_stat_tran = tf.reduce_sum(aux, [3, 2, 0])  # -------------------------------------------------------------CONTROLLARE L'INDICE I,J
+        denominator_stat_tran = tf.reduce_sum(aux, [3, 2, 0])
         denominator_stat_tran = tf.expand_dims(denominator_stat_tran, 2)
+
         denominator_stat_tran = tf.tile(denominator_stat_tran, [1, 1, N_HIDDEN_STATES])
         result_state_trans = tf.divide(numerator_stat_tran, denominator_stat_tran)
         result_state_trans = tf.transpose(result_state_trans, [2, 1, 0])
@@ -546,13 +575,13 @@ for i in range(0, epoche):
         A = new_A
         bi = new_bi
 
-        '''
-        t_pi = random_sum_one2(1, N_HIDDEN_STATES, MAX_CHILD)
-        t_sp_p = random_sum_one1(MAX_CHILD)
-        t_A = random_sum_one3(1, N_HIDDEN_STATES, N_HIDDEN_STATES, MAX_CHILD)
-        t_bi = random_sum_one2(0, N_HIDDEN_STATES, N_SYMBOLS)
-        # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_stlog_likelihoodep||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+        #t_pi = random_sum_one2(1, N_HIDDEN_STATES, MAX_CHILD)
+        #t_sp_p = random_sum_one1(MAX_CHILD)
+        #t_A = random_sum_one3(0, N_HIDDEN_STATES, N_HIDDEN_STATES, MAX_CHILD)
+        #t_bi = random_sum_one2(0, N_HIDDEN_STATES, N_SYMBOLS)
+        # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_stlog_likelihoodep||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        '''
         tot = 0
         for i in range(0, len(data_set)):
 
@@ -647,7 +676,7 @@ with tf.Session() as sess:
     init = tf.global_variables_initializer()
     sess.run(init)
     # print(sess.run([aux,  pi,t_pi,  sp_p,t_sp_p,  A,t_A,  bi,t_bi]))
-    print(sess.run([sp_p,t_sp,t_p]))
+    print(sess.run([t_p,t_sp,t_a,t_bi]))
 
 #||||||||||||||||||||||||||||||||||||||||||||||LOGLIKEHOLD||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 

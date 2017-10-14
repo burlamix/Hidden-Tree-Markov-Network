@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec4d2838-1153-44b3-a3d2-8bd0be1e31be" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/degog_test_all_in_one.py" afterPath="$PROJECT_DIR$/degog_test_all_in_one.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser.py" afterPath="$PROJECT_DIR$/parser.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tre_simple.py" afterPath="$PROJECT_DIR$/tre_simple.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_3.tree" afterPath="$PROJECT_DIR$/test_3.tree" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,7 +23,7 @@
     <SUITE FILE_PATH="coverage/fow_dow$tre_simple.coverage" NAME="tre_simple Coverage Results" MODIFIED="1505319918242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$E_M_f.coverage" NAME="E_M_f Coverage Results" MODIFIED="1507370432307" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$printer.coverage" NAME="printer Coverage Results" MODIFIED="1507541978318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/fow_dow$degog_test_all_in_one.coverage" NAME="degog_test_all_in_one Coverage Results" MODIFIED="1507914252553" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/fow_dow$degog_test_all_in_one.coverage" NAME="degog_test_all_in_one Coverage Results" MODIFIED="1507988888507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$momentaneo.coverage" NAME="momentaneo Coverage Results" MODIFIED="1507370108328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$debug.coverage" NAME="debug Coverage Results" MODIFIED="1506866790721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/fow_dow$tre_imp_graph.coverage" NAME="tre_imp_graph Coverage Results" MODIFIED="1502108183778" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -47,7 +47,7 @@
       <file leaf-file-name="tre_simple.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tre_simple.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
+            <state relative-caret-position="2025">
               <caret line="135" column="42" lean-forward="false" selection-start-line="135" selection-start-column="42" selection-end-line="135" selection-end-column="42" />
               <folding />
             </state>
@@ -57,7 +57,7 @@
       <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
+            <state relative-caret-position="15">
               <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
               <folding />
             </state>
@@ -67,12 +67,13 @@
       <file leaf-file-name="E_M_utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/E_M_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
+            <state relative-caret-position="3090">
               <caret line="517" column="22" lean-forward="false" selection-start-line="517" selection-start-column="22" selection-end-line="517" selection-end-column="22" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#17899#18058#0" expanded="false" />
                 <element signature="e#18199#18567#0" expanded="false" />
+                <element signature="e#18705#18951#0" expanded="false" />
                 <element signature="e#23468#58138#1" expanded="false" />
                 <marker date="1507820755575" expanded="false" signature="24567:58130" ph="..." />
               </folding>
@@ -83,7 +84,7 @@
       <file leaf-file-name="test_training.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_training.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
+            <state relative-caret-position="270">
               <caret line="22" column="47" lean-forward="false" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
@@ -96,16 +97,13 @@
       <file leaf-file-name="degog_test_all_in_one.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/degog_test_all_in_one.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="388" column="20" lean-forward="false" selection-start-line="388" selection-start-column="20" selection-end-line="388" selection-end-column="20" />
+            <state relative-caret-position="254">
+              <caret line="664" column="3" lean-forward="true" selection-start-line="664" selection-start-column="3" selection-end-line="664" selection-end-column="3" />
               <folding>
                 <element signature="e#2#21#0" expanded="true" />
                 <element signature="e#441#600#0" expanded="false" />
                 <element signature="e#741#1109#0" expanded="false" />
-                <element signature="e#1247#1495#0" expanded="false" />
-                <element signature="e#6273#8379#0" expanded="false" />
-                <element signature="e#25095#29192#1" expanded="false" />
-                <marker date="1507914252463" expanded="true" signature="25561:29188" ph="..." />
+                <element signature="e#26372#30064#1" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -135,21 +133,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>print</find>
-      <find>E</find>
-      <find>var_E</find>
-      <find>0.27936078,  0.2</find>
-      <find>sli_E</find>
-      <find>27626266</find>
-      <find>33938675</find>
-      <find>.16480467,   6.166</find>
-      <find>sli_var_a_up_ward</find>
-      <find>pos</find>
-      <find>p</find>
-      <find>N_I</find>
-      <find>test</find>
-      <find>test2</find>
-      <find>result_state_trans</find>
       <find>var_E_list</find>
       <find>aux_list_prior</find>
       <find>ris_24</find>
@@ -159,12 +142,27 @@
       <find>lista_prior</find>
       <find>prin</find>
       <find>t_p</find>
-      <find>summed_sp</find>
-      <find>aux_list_sp</find>
       <find>sum_N_I</find>
       <find>n_l_list</find>
       <find>N_L</find>
       <find>den</find>
+      <find>result_sp</find>
+      <find>summed_sp</find>
+      <find>summed_sp2</find>
+      <find>testxx</find>
+      <find>ris_25</find>
+      <find>aux_list_sp</find>
+      <find>test_a_var_up_ward</find>
+      <find>nomi_figli</find>
+      <find>print</find>
+      <find>var_up_ward</find>
+      <find>test_var_up_ward</find>
+      <find>test_var_up_ward1</find>
+      <find>test_var_in_prior</find>
+      <find>test</find>
+      <find>aux2</find>
+      <find>34666891</find>
+      <find>random_sum_one3</find>
     </findStrings>
     <replaceStrings>
       <replace>bi</replace>
@@ -198,8 +196,8 @@
         <option value="$PROJECT_DIR$/printer.py" />
         <option value="$PROJECT_DIR$/test_training.py" />
         <option value="$PROJECT_DIR$/E_M_utils.py" />
-        <option value="$PROJECT_DIR$/parser.py" />
         <option value="$PROJECT_DIR$/tre_simple.py" />
+        <option value="$PROJECT_DIR$/parser.py" />
         <option value="$PROJECT_DIR$/degog_test_all_in_one.py" />
       </list>
     </option>
@@ -212,7 +210,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="50" />
-    <option name="y" value="668" />
+    <option name="y" value="330" />
     <option name="width" value="1316" />
     <option name="height" value="750" />
   </component>
@@ -664,7 +662,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="50" y="668" width="1316" height="750" extended-state="6" />
+    <frame x="50" y="330" width="1316" height="750" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17705168" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -673,7 +671,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35535976" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.2907489" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1416" y="18" width="1870" height="1062" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.2907489" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1416" y="18" width="1230" height="1006" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -985,23 +983,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/E_M_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="517" column="22" lean-forward="false" selection-start-line="517" selection-start-column="22" selection-end-line="517" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#17899#18058#0" expanded="false" />
-            <element signature="e#18199#18567#0" expanded="false" />
-            <element signature="e#23468#58138#1" expanded="false" />
-            <marker date="1507820755575" expanded="false" signature="24567:58130" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_training.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
+        <state relative-caret-position="270">
           <caret line="22" column="47" lean-forward="false" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
@@ -1010,34 +994,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parser.py">
+    <entry file="file://$PROJECT_DIR$/tre_simple.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+        <state relative-caret-position="2025">
+          <caret line="135" column="42" lean-forward="false" selection-start-line="135" selection-start-column="42" selection-end-line="135" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tre_simple.py">
+    <entry file="file://$PROJECT_DIR$/E_M_utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="135" column="42" lean-forward="false" selection-start-line="135" selection-start-column="42" selection-end-line="135" selection-end-column="42" />
+        <state relative-caret-position="3090">
+          <caret line="517" column="22" lean-forward="false" selection-start-line="517" selection-start-column="22" selection-end-line="517" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#17899#18058#0" expanded="false" />
+            <element signature="e#18199#18567#0" expanded="false" />
+            <element signature="e#18705#18951#0" expanded="false" />
+            <element signature="e#23468#58138#1" expanded="false" />
+            <marker date="1507820755575" expanded="false" signature="24567:58130" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/degog_test_all_in_one.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="388" column="20" lean-forward="false" selection-start-line="388" selection-start-column="20" selection-end-line="388" selection-end-column="20" />
+        <state relative-caret-position="254">
+          <caret line="664" column="3" lean-forward="true" selection-start-line="664" selection-start-column="3" selection-end-line="664" selection-end-column="3" />
           <folding>
             <element signature="e#2#21#0" expanded="true" />
             <element signature="e#441#600#0" expanded="false" />
             <element signature="e#741#1109#0" expanded="false" />
-            <element signature="e#1247#1495#0" expanded="false" />
-            <element signature="e#6273#8379#0" expanded="false" />
-            <element signature="e#25095#29192#1" expanded="false" />
-            <marker date="1507914252463" expanded="true" signature="25561:29188" ph="..." />
+            <element signature="e#26372#30064#1" expanded="false" />
           </folding>
         </state>
       </provider>
