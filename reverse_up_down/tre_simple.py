@@ -181,9 +181,10 @@ class Tree(object):
         for node in self.struct[-1]:
             #self.N_L[node.father.children.index(node)]=self.N_L[node.father.children.index(node)] + 1
             self.N_L[node.pos-1]=self.N_L[node.pos-1] + 1
-        for level in self.struct:
+        for level in self.struct[:-1]:
             for node in level:
-                self.N_II[node.pos - 1] = self.N_II[node.pos - 1] + 1
+                for child in node.children:
+                    self.N_II[child.pos - 1] = self.N_II[child.pos - 1] + 1
 
 
 
