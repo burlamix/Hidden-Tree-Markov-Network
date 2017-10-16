@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ec4d2838-1153-44b3-a3d2-8bd0be1e31be" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/degog_test_all_in_one.py" afterPath="$PROJECT_DIR$/degog_test_all_in_one.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/momentaneo.py" afterPath="$PROJECT_DIR$/momentaneo.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser.py" afterPath="$PROJECT_DIR$/parser.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_10.tree" afterPath="$PROJECT_DIR$/test_10.tree" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,8 +55,8 @@
       <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="15" lean-forward="false" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+            <state relative-caret-position="-275">
+              <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -69,7 +65,7 @@
       <file leaf-file-name="E_M_utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/E_M_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7335">
+            <state relative-caret-position="15">
               <caret line="520" column="19" lean-forward="false" selection-start-line="520" selection-start-column="19" selection-end-line="520" selection-end-column="19" />
               <folding>
                 <element signature="e#17899#18058#0" expanded="false" />
@@ -98,8 +94,8 @@
       <file leaf-file-name="degog_test_all_in_one.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/degog_test_all_in_one.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="677" column="76" lean-forward="false" selection-start-line="677" selection-start-column="76" selection-end-line="677" selection-end-column="76" />
+            <state relative-caret-position="135">
+              <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding>
                 <element signature="e#2#21#0" expanded="true" />
                 <element signature="e#431#590#0" expanded="false" />
@@ -145,7 +141,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>var_E_list</find>
       <find>ph_post</find>
       <find>ph_s_post</find>
       <find>ph_in_prior</find>
@@ -175,6 +170,7 @@
       <find>seconda_somm</find>
       <find>internal_node_ee</find>
       <find>print</find>
+      <find>datetime</find>
     </findStrings>
     <replaceStrings>
       <replace>bi</replace>
@@ -670,7 +666,14 @@
       <option name="project" value="LOCAL" />
       <updated>1505459866331</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary=" cambio deii parametri per test su server">
+      <created>1508142322816</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1508142322816</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -706,7 +709,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
     <MESSAGE value="mattinata da pycharm" />
-    <option name="LAST_COMMIT_MESSAGE" value="mattinata da pycharm" />
+    <MESSAGE value=" cambio deii parametri per test su server" />
+    <option name="LAST_COMMIT_MESSAGE" value=" cambio deii parametri per test su server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -977,32 +981,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/E_M_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7335">
-          <caret line="520" column="19" lean-forward="false" selection-start-line="520" selection-start-column="19" selection-end-line="520" selection-end-column="19" />
-          <folding>
-            <element signature="e#17899#18058#0" expanded="false" />
-            <element signature="e#18199#18567#0" expanded="false" />
-            <element signature="e#18705#18951#0" expanded="false" />
-            <element signature="e#23468#58138#1" expanded="false" />
-            <marker date="1507820755575" expanded="false" signature="24567:58130" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/variable_scope.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
           <caret line="366" column="0" lean-forward="false" selection-start-line="366" selection-start-column="0" selection-end-line="366" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="15" lean-forward="false" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1013,18 +995,6 @@
           <folding>
             <element signature="e#0#23#0" expanded="true" />
             <element signature="e#604#1340#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/degog_test_all_in_one.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="677" column="76" lean-forward="false" selection-start-line="677" selection-start-column="76" selection-end-line="677" selection-end-column="76" />
-          <folding>
-            <element signature="e#2#21#0" expanded="true" />
-            <element signature="e#431#590#0" expanded="false" />
-            <element signature="e#731#1099#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1046,6 +1016,40 @@
           <folding>
             <element signature="e#0#23#0" expanded="true" />
             <element signature="e#400#560#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/E_M_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="520" column="19" lean-forward="false" selection-start-line="520" selection-start-column="19" selection-end-line="520" selection-end-column="19" />
+          <folding>
+            <element signature="e#17899#18058#0" expanded="false" />
+            <element signature="e#18199#18567#0" expanded="false" />
+            <element signature="e#18705#18951#0" expanded="false" />
+            <element signature="e#23468#58138#1" expanded="false" />
+            <marker date="1507820755575" expanded="false" signature="24567:58130" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-275">
+          <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/degog_test_all_in_one.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding>
+            <element signature="e#2#21#0" expanded="true" />
+            <element signature="e#431#590#0" expanded="false" />
+            <element signature="e#731#1099#0" expanded="false" />
           </folding>
         </state>
       </provider>
