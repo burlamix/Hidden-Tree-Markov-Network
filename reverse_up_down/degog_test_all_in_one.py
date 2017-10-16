@@ -1,11 +1,9 @@
 
 
-import pandas as pd
 import numpy as np
 import tensorflow as tf
 from tre_simple import *
 from parser import *
-from datetime import datetime
 
 N_HIDDEN_STATES = 3
 N_SYMBOLS = 367
