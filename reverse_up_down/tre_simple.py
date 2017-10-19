@@ -1,4 +1,4 @@
-import numpy as np
+import /home/spagnoli/numpy/numpy as np
 #dato il nodo u, restituisce la sua posizione di figlio rispetto al padre
 def pos(u):
     return [0]
