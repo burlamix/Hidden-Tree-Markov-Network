@@ -1,3 +1,4 @@
+import numpy as np
 import tensorflow as tf
 from tre_simple import *
 from parser import *
@@ -69,7 +70,7 @@ bi = random_sum_one2(1, N_HIDDEN_STATES, N_SYMBOLS)
 
 like_list =[]
 
-epoche = 1
+epoche = 30
 
 inizializzazione =True
 #per il numero delle epoco eseguo l'E-M
