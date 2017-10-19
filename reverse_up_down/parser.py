@@ -26,7 +26,7 @@ def dataset_parser():
         #divido la classe dell'albero dalla rappresentazione dell'albero sui :
         line_div = line.split(':')
 
-        #prelevo il label del primo nodo così da inizializzare l'albero
+        #prelevo il label del primo nodo cosi da inizializzare l'albero
         my_iter = iter(line_div[1])
         s = next(my_iter)
         while s != '(':

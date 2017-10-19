@@ -50,7 +50,7 @@ class Node(object):
         node.root=self.root
         self.children.append(node)
         node.father=self
-        return node                                         #à---------------------------------------------test
+        return node                                         #a---------------------------------------------test
 
     def put_name(self):
         stack = [self]
@@ -151,7 +151,7 @@ class Tree(object):
         i=0
         for level in l_t.struct:
             for node in level:
-                #inoltre mi salvo il numero massimo di figli che ha l'albero così da agevolare i futuri calcoli
+                #inoltre mi salvo il numero massimo di figli che ha l'albero cosi da agevolare i futuri calcoli
                 #if len(node.children)> l_t.max_child:
                 #   l_t.max_child=len(node.children)
                 node.name=i
