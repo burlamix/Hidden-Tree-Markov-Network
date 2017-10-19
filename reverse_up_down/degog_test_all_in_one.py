@@ -70,7 +70,7 @@ bi = random_sum_one2(1, N_HIDDEN_STATES, N_SYMBOLS)
 
 like_list =[]
 
-epoche = 30
+epoche = 25
 
 inizializzazione =True
 #per il numero delle epoco eseguo l'E-M
