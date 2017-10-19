@@ -29,7 +29,7 @@ def random_sum_one2(axe,shape1,shape2):
     rand = tf.random_uniform([shape1, shape2], 0, 1, dtype=tf.float64)
     sum = tf.reduce_sum(rand, [axe])
 
-    #nel caso l'asse non è lo zero lo espando duplico così da poter dividere la matrice random per esso
+    #nel caso l'asse non e lo zero lo espando duplico cosi da poter dividere la matrice random per esso
     if axe == 1:
         sum = tf.expand_dims(sum, 1)
         sum = tf.tile(sum, [1, shape2])
@@ -59,7 +59,7 @@ data_set = dataset_parser()
 
 n=0
 
-#N_HIDDEN_STATES da 2 a 20 non di più, va calcolato l'algoritmo per i vari valori, che fanno cambiare il tutto di molto IMPORTANTE
+#N_HIDDEN_STATES da 2 a 20 non di piu, va calcolato l'algoritmo per i vari valori, che fanno cambiare il tutto di molto IMPORTANTE
 
 
 scope_tree = "scope_n0"
@@ -176,7 +176,7 @@ for z in range(0, epoche):
 
             #  di figli di un nodo  in un unica matrice N_HIDDEN_STATES*L*(numero di nodi del livello)
             # qui moltiplicazione
-            # questa è una serie di matrici, tante quanti sono i nodi del livello esaminati
+            # questa e una serie di matrici, tante quanti sono i nodi del livello esaminati
 
             aux3 = tf.multiply(aux1, aux2)
             s = tf.reduce_sum(aux3, [2, 3])
@@ -260,7 +260,7 @@ for z in range(0, epoche):
 
             sli_ph_bi = tf.gather(bi, labels, axis=1)
 
-            #second_term = tf.gather(var_a_up_ward, nomi)    ## è sempre la s di sopra???
+            #second_term = tf.gather(var_a_up_ward, nomi)    ## e sempre la s di sopra???
             #considerando la semplificazione non devo prendere l'intero var_a_up_ward ma solo la sua parte superiore che preleviamo da sopra
             second_term=numerator
 
@@ -332,7 +332,7 @@ for z in range(0, epoche):
 
             #per il den
             sli_in_prior = tf.gather(var_in_prior, padri, axis=1)
-            sli_var_a_up_ward = tf.gather(var_a_up_ward, padri)             # qui non è padri ma è FRATELLI del nodo in questione
+            sli_var_a_up_ward = tf.gather(var_a_up_ward, padri)             # qui non e padri ma e FRATELLI del nodo in questione
 
             # per il numeratore
             sli_E = tf.expand_dims(sli_E, 1)
@@ -394,7 +394,7 @@ for z in range(0, epoche):
             ris_25 = tf.reduce_sum(ris_24, [2])
 
 
-            #qui faccio in modo che la somma di var_E  sugli stati nascosti sia uguale ad 1------------------------------------------------------- è corretto?
+            #qui faccio in modo che la somma di var_E  sugli stati nascosti sia uguale ad 1------------------------------------------------------- e corretto?
             uniform = tf.reduce_sum(ris_25, [1])
             uniform = tf.expand_dims(uniform, 1)
             uniform = tf.tile(uniform, [1, N_HIDDEN_STATES])
@@ -476,7 +476,7 @@ for z in range(0, epoche):
     result_multinomial = tf.where(tf.is_nan(result_multinomial), tf.zeros_like(result_multinomial), result_multinomial)
 
     # calcolo il numero totale di nodi nell L-esima posizione
-    # e anche il numero massimo di nodi nella l-esima posizione, così da poter dimenzionare in maniera opportuna le dim
+    # e anche il numero massimo di nodi nella l-esima posizione, cosi da poter dimenzionare in maniera opportuna le dim
     for i in range(0, len(data_set)):
         #aggiungo una lista per ogni albero
         lista_prior.append([])
@@ -500,7 +500,7 @@ for z in range(0, epoche):
             for nodo in data_set[i].struct[jj]:
                 for kk in range(0, len(nodo.children)):
                     lista_n_in[i][kk].append(nodo.children[kk].name)
-        # uniformo la lunghezza così da non rendere il tensore sparso per la futura gather
+        # uniformo la lunghezza cosi da non rendere il tensore sparso per la futura gather
         for in_list in lista_n_in[i]:
             start = len(in_list)
             for k in range(start, int(max_l + 1)):
@@ -528,9 +528,9 @@ for z in range(0, epoche):
     summed_sp2 = tf.reduce_sum(aux, [4, 3])
     n_ii_list =N_HIDDEN_STATES * np.array(n_ii_list)
     summed_n_ii_list = tf.reduce_sum(n_ii_list,[0])
-    #va bene niilist *3 ma non si fa così!
+    #va bene niilist *3 ma non si fa cosi!
     result_sp = tf.divide(summed_sp, summed_n_ii_list)
-    #result_sp = tf.divide(summed_sp, den) #DDD se non è così elimina n_ii_list e tutto quello collegato precedentemente
+    #result_sp = tf.divide(summed_sp, den) #DDD se non e cosi elimina n_ii_list e tutto quello collegato precedentemente
 
     result_sp = tf.where(tf.is_inf(result_sp), tf.zeros_like(result_sp), result_sp)
     result_sp = tf.where(tf.is_nan(result_sp), tf.zeros_like(result_sp), result_sp)
