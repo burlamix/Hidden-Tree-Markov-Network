@@ -1,4 +1,3 @@
-import numpy as np
 import tensorflow as tf
 from tre_simple import *
 from parser import *
@@ -6,7 +5,6 @@ from parser import *
 N_HIDDEN_STATES = 3
 N_SYMBOLS = 367
 MAX_CHILD = 32
-
 
 
 
