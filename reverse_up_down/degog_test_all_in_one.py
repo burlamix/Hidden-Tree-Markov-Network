@@ -1,4 +1,5 @@
-import /home/spagnoli/tensorflow/tensorflow/python as tf
+import tensorflow as tf
+from tre_simple import *
 from parser import *
 
 N_HIDDEN_STATES = 3
