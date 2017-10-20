@@ -68,7 +68,7 @@ bi = random_sum_one2(1, N_HIDDEN_STATES, N_SYMBOLS)
 
 like_list =[]
 
-epoche = 15
+epoche = 5
 
 inizializzazione =True
 #per il numero delle epoco eseguo l'E-M
@@ -410,7 +410,7 @@ for z in range(0, epoche):
         var_EE_list.append(var_EE)
         var_E_list.append(var_E)
 
-    print(" E-step")
+    print(" E-step finito ")
 
 
     # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -544,24 +544,16 @@ for z in range(0, epoche):
 
     #DDD devo far si che la somma suglii ia uno?
 
-    new_pi=result_prior
-    new_sp_p=result_sp
-    new_A=result_state_trans
-    new_bi=result_multinomial
+    #pi = result_prior
+    #sp_p = result_sp
+    #A = result_state_trans
+    #bi = result_multinomial
+
     # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||       fine        M_step      ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-    print(" M-step")
+    print(" M-step finito ")
 
-    pi = new_pi
-    sp_p = new_sp_p
-    A = new_A
-    bi = new_bi
-
-
-    #t_pi = random_sum_one2(1, N_HIDDEN_STATES, MAX_CHILD)
-    #t_sp_p = random_sum_one1(MAX_CHILD)
-    #t_A = random_sum_one3(0, N_HIDDEN_STATES, N_HIDDEN_STATES, MAX_CHILD)
-    #t_bi = random_sum_one2(0, N_HIDDEN_STATES, N_SYMBOLS)
     # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_stlog_likelihoodep||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    print(" calcolo loj_likehood")
 
     tot = 0
     for i in range(0, len(data_set)):
@@ -640,7 +632,13 @@ for z in range(0, epoche):
         quarta_somm = tf.reduce_sum(quarta_somm, [1, 2, 3, 0])
 
         tot = tot + prima_somm + seconda_somm + terza_somm + quarta_somm
-    like_list.append(tot)
+
+
+    with tf.Session() as sess:
+        init = tf.global_variables_initializer()
+        sess.run(init)
+        pi,sp_p,bi,A,tot = sess.run([result_prior,result_sp,result_multinomial,result_state_trans,tot])
+        like_list.append(tot)
 
         # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||           tlog_likelihood         fine            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
     # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||   fine            M_stlog_likelihoodep||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -652,15 +650,16 @@ t_sp=tf.reduce_sum(sp_p,[0])
 t_a=tf.reduce_sum(A,[0])
 t_bi=tf.reduce_sum(bi,[1])
 
-with tf.Session() as sess:
-    init = tf.global_variables_initializer()
-    sess.run(init)
-    # print(sess.run([aux,  pi,t_pi,  sp_p,t_sp_p,  A,t_A,  bi,t_bi]))
-    print(sess.run([like_list]))
-    #print(sess.run([var_EE_list,test,summed_prior,pi,t_pi]))
+#with tf.Session() as sess:
+ #   init = tf.global_variables_initializer()
+  #  sess.run(init)
+    #print(like_list)
+    #print(sess.run([aux,  pi,t_pi,  sp_p,t_sp_p,  A,t_A,  bi,t_bi]))
+   # a = sess.run([like_list])
 
+    #print(a)
 #||||||||||||||||||||||||||||||||||||||||||||||LOGLIKEHOLD||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
+print(like_list)
 
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||E-STEP||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 

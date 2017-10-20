@@ -1,0 +1,30 @@
+leggo il dataset
+                                                                                                   EPOCA:  0
+     albero: 0
+     albero: 1
+     albero: 2
+     albero: 3
+     albero: 4
+     albero: 5
+     albero: 6
+     albero: 7
+     albero: 8
+     albero: 9
+ E-step
+ M-step finito 
+ calcolo loj_likehood
+                                                                                                   EPOCA:  1
+     albero: 0
+     albero: 1
+     albero: 2
+     albero: 3
+     albero: 4
+     albero: 5
+     albero: 6
+     albero: 7
+     albero: 8
+     albero: 9
+ E-step
+ M-step finito 
+ calcolo loj_likehood
+[[-2919.6150230690318, nan]]
