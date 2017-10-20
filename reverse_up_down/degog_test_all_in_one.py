@@ -12,36 +12,36 @@ MAX_CHILD = 32
 #funzione ausiliaria per inizializzare in modo casuale tensori di 1 dimenzione
 def random_sum_one1(shape1):
 
-    rand = tf.random_uniform([shape1], 0, 1, dtype=tf.float64)
-    sum = tf.reduce_sum(rand, [0])
+    rand = np.random.uniform( 0, 1, [shape1])
+    sum = np.sum(rand, 0)
 
-    rand_sum_one = tf.divide(rand, sum)
+    rand_sum_one = np.divide(rand, sum)
 
     return rand_sum_one
 
 #funzione ausiliaria per inizializzare in modo casuale tensori di 2 dimenzioni dati l'asse di
 def random_sum_one2(axe,shape1,shape2):
 
-    rand = tf.random_uniform([shape1, shape2], 0, 1, dtype=tf.float64)
-    sum = tf.reduce_sum(rand, [axe])
+    rand = np.random.uniform( 0, 1, [shape1, shape2])
+    sum = np.sum(rand, axe)
 
     #nel caso l'asse non e lo zero lo espando duplico cosi da poter dividere la matrice random per esso
     if axe == 1:
-        sum = tf.expand_dims(sum, 1)
-        sum = tf.tile(sum, [1, shape2])
+        sum = np.expand_dims(sum, 1)
+        sum = np.tile(sum, [1, shape2])
 
-    rand_sum_one = tf.divide(rand, sum)
+    rand_sum_one = np.divide(rand, sum)
 
     return rand_sum_one
 
 #funzione ausiliaria per inizializzare in modo casuale tensori di 3 dimenzioni
 def random_sum_one3(axe,shape1,shape2,shape3=None):
 
-    rand = tf.random_uniform([shape1, shape2, shape3], 0, 1, dtype=tf.float64)
-    sum = tf.reduce_sum(rand, [axe])
-    sum = tf.expand_dims(sum, axe)
-    sum = tf.tile(sum, [shape2,1,1])
-    rand_sum_one = tf.divide(rand, sum)
+    rand = np.random.uniform(0, 1, [shape1, shape2, shape3])
+    sum = np.sum(rand, axe)
+    sum = np.expand_dims(sum, axe)
+    sum = np.tile(sum, [shape2,1,1])
+    rand_sum_one = np.divide(rand, sum)
 
     return rand_sum_one
 
@@ -68,7 +68,7 @@ bi = random_sum_one2(1, N_HIDDEN_STATES, N_SYMBOLS)
 
 like_list =[]
 
-epoche = 15
+epoche = 30
 
 inizializzazione =True
 #per il numero delle epoco eseguo l'E-M
@@ -86,12 +86,15 @@ for z in range(0, epoche):
     print(" E-step  ")
 
 #    with tf.Graph().as_default(), tf.Session() as sess:
-    with tf.Session() as sess:
-        for j in range(0,len(data_set)):
+
+
+    for j in range(0,len(data_set)):
+
+        with tf.Session() as sess:
             #scope_tree=scope_tree[:-len(str(j-1))]+str(j)
             #print("scope_tree------------------------__>>>>>>>>>>>>>>",scope_tree)
             # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||Reversed_Upward_Downward||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-            print("         albero:",j)
+            #print("         albero:",j,end=" ")
             t= data_set[j]
             # upward parameters beta
             up_ward = np.zeros((t.size, N_HIDDEN_STATES))
@@ -410,14 +413,32 @@ for z in range(0, epoche):
             #uniform = tf.tile(uniform, [1, N_HIDDEN_STATES])
             #var_E = tf.divide(var_E, uniform)
 
+            #print(" RUN ")
+            var_EE_res,var_E_res = sess.run([var_EE,var_E])
 
-            var_EE_list.append(var_EE)
-            var_E_list.append(var_E)
+        var_EE_list.append(var_EE_res)
+        var_E_list.append(var_E_res)
+        
+        sess.close
 
+        tf.reset_default_graph()
 
 
 
         # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    with tf.Session() as sess:
+
         print(" M-step ")
 
         lista_prior = []
@@ -549,10 +570,10 @@ for z in range(0, epoche):
 
         #DDD devo far si che la somma suglii ia uno?
 
-        #pi = result_prior
-        #sp_p = result_sp
-        #A = result_state_trans
-        #bi = result_multinomial
+        pi = result_prior
+        sp_p = result_sp
+        A = result_state_trans
+        bi = result_multinomial
 
         # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||       fine        M_step      ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -637,11 +658,10 @@ for z in range(0, epoche):
 
             tot = tot + prima_somm + seconda_somm + terza_somm + quarta_somm
 
-        print(" RUN")
-
+        print(" RUN m step + log_likelihood")
         pi,sp_p,bi,A,tot = sess.run([result_prior,result_sp,result_multinomial,result_state_trans,tot])
         like_list.append(tot)
-        print("log_likelihood---------->",tot)
+        print("log_likelihood---------->",like_list)
 
         sess.close
     tf.reset_default_graph()
