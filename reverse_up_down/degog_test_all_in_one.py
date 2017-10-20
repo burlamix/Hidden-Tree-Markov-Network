@@ -68,7 +68,7 @@ bi = random_sum_one2(1, N_HIDDEN_STATES, N_SYMBOLS)
 
 like_list =[]
 
-epoche = 25
+epoche = 15
 
 inizializzazione =True
 #per il numero delle epoco eseguo l'E-M
@@ -134,15 +134,12 @@ for z in range(0, epoche):
         den = tf.reduce_sum(nume,[0])
         # righe e colonne con lo stesso indice
         ris_17_t = tf.divide(nume, den)
-        test1 =nume
-        test2 =den
         ris_17_t = tf.transpose(ris_17_t, perm=[1, 0])
 
         ris_17_t = tf.where(tf.is_nan(ris_17_t), tf.zeros_like(ris_17_t),ris_17_t)
 
         head = tf.slice(var_up_ward, [0, 0], [t.struct[-1][0].name, N_HIDDEN_STATES])
         var_up_ward = tf.concat([head, ris_17_t], 0)
-        test = var_up_ward
         # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||compute_internal_node_prior||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
         aux1 = tf.multiply(sp_p, A)  # broadcast implicito
 
@@ -161,7 +158,6 @@ for z in range(0, epoche):
                     nomi_figli[-1].append(0)
 
             aux2 = tf.gather(var_in_prior, nomi_figli, axis=1)
-            test_0=aux2
             #aux2 = tf.where(tf.is_zero(aux2), tf.zeros_like(aux2), aux2)
 
             aux2 = tf.transpose(aux2, perm=[1, 0, 2])
@@ -187,11 +183,7 @@ for z in range(0, epoche):
                              t.size - t.struct[i][-1].name - 1])  # potrei farlo anche con un constant
 
             var_in_prior = tf.concat([head, s, tail], 1)  # aggiorno i nuovi valore trovati
-        test_1=aux1
-        test_2=aux2
-        test_3=aux3
 
-        test_var_in_prior = tf.reduce_sum(var_in_prior,[0])
 
 
         # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||up step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -243,7 +235,6 @@ for z in range(0, epoche):
 
             var_a_up_ward = tf.concat([head, s, tail], 0)
 
-            test_a_var_up_ward = tf.reduce_sum(var_a_up_ward,[1])
             # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||compute_19||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
             sli_var_in_prior = tf.ones([N_HIDDEN_STATES, 0], tf.float64)
@@ -296,8 +287,6 @@ for z in range(0, epoche):
             var_up_ward = tf.concat([head, ris_19, tail], 0)
 
 
-        test_var_up_ward1 = tf.reduce_sum(var_up_ward, [1])
-        test_var_up_ward2 = tf.reduce_sum(var_up_ward, [0])
 
         # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||    set_base_case      ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -404,7 +393,6 @@ for z in range(0, epoche):
 
             var_E = tf.concat([head, ris_25, tail], 0)
 
-            test_var_E = tf.reduce_sum(var_E, [1])
             # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||Reversed_Upward_Downward||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
         #uniform = tf.reduce_sum(var_EE, [1])
         #uniform = tf.expand_dims(uniform, 1)
@@ -545,7 +533,6 @@ for z in range(0, epoche):
     # PRIOR
     aux = tf.stack(aux_list_prior, 0)
     summed_prior = tf.reduce_sum(aux, [3, 2, 0])#DDD
-    test = tf.reduce_sum(aux, [3, 2])#DDD
 
     n_l_list = tf.expand_dims(n_l_list, 1)
     n_l_list = tf.tile(n_l_list, [1, N_HIDDEN_STATES])
@@ -669,7 +656,7 @@ with tf.Session() as sess:
     init = tf.global_variables_initializer()
     sess.run(init)
     # print(sess.run([aux,  pi,t_pi,  sp_p,t_sp_p,  A,t_A,  bi,t_bi]))
-    print(sess.run([like_list,prima_somm,seconda_somm,terza_somm,quarta_somm]))
+    print(sess.run([like_list]))
     #print(sess.run([var_EE_list,test,summed_prior,pi,t_pi]))
 
 #||||||||||||||||||||||||||||||||||||||||||||||LOGLIKEHOLD||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
