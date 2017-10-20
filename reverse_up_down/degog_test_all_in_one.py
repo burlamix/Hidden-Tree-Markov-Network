@@ -52,7 +52,7 @@ def random_sum_one3(axe,shape1,shape2,shape3=None):
 print("leggo il dataset")
 data_set = dataset_parser()
 
-
+print("dataset lung  ",len(data_set))
 n=0
 
 #N_HIDDEN_STATES da 2 a 20 non di piu, va calcolato l'algoritmo per i vari valori, che fanno cambiare il tutto di molto IMPORTANTE
