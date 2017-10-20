@@ -68,7 +68,7 @@ bi = random_sum_one2(1, N_HIDDEN_STATES, N_SYMBOLS)
 
 like_list =[]
 
-epoche = 5
+epoche = 15
 
 inizializzazione =True
 #per il numero delle epoco eseguo l'E-M
@@ -83,11 +83,12 @@ for z in range(0, epoche):
     var_E_list = []
 
     scope_tree = "scopen0"
+    print(" E-step  ")
     for j in range(0,len(data_set)):
         #scope_tree=scope_tree[:-len(str(j-1))]+str(j)
         #print("scope_tree------------------------__>>>>>>>>>>>>>>",scope_tree)
         # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||Reversed_Upward_Downward||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-        print("     albero:",j)
+        print("         albero:",j)
         t= data_set[j]
         # upward parameters beta
         up_ward = np.zeros((t.size, N_HIDDEN_STATES))
@@ -410,10 +411,11 @@ for z in range(0, epoche):
         var_EE_list.append(var_EE)
         var_E_list.append(var_E)
 
-    print(" E-step finito ")
+
 
 
     # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    print(" M-step ")
 
     lista_prior = []
     lista_n_in = []
@@ -550,10 +552,9 @@ for z in range(0, epoche):
     #bi = result_multinomial
 
     # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||       fine        M_step      ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-    print(" M-step finito ")
 
     # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_stlog_likelihoodep||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-    print(" calcolo loj_likehood")
+    print(" LIKELIHOOD")
 
     tot = 0
     for i in range(0, len(data_set)):
@@ -633,12 +634,13 @@ for z in range(0, epoche):
 
         tot = tot + prima_somm + seconda_somm + terza_somm + quarta_somm
 
-
+    print(" RUN")
     with tf.Session() as sess:
         init = tf.global_variables_initializer()
         sess.run(init)
         pi,sp_p,bi,A,tot = sess.run([result_prior,result_sp,result_multinomial,result_state_trans,tot])
         like_list.append(tot)
+        print("og_likelihood---------->",tot)
 
         # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||           tlog_likelihood         fine            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
     # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||   fine            M_stlog_likelihoodep||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
