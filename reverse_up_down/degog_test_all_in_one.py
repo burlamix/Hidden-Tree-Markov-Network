@@ -2,6 +2,7 @@ import tensorflow as tf
 from tre_simple import *
 from parser import *
 
+np.set_printoptions(threshold=np.nan)
 N_HIDDEN_STATES = 3
 N_SYMBOLS = 367
 MAX_CHILD = 32
@@ -65,7 +66,6 @@ pi = random_sum_one2(0, N_HIDDEN_STATES, MAX_CHILD)
 sp_p = random_sum_one1(MAX_CHILD)
 A = random_sum_one3(0, N_HIDDEN_STATES, N_HIDDEN_STATES, MAX_CHILD)
 bi = random_sum_one2(1, N_HIDDEN_STATES, N_SYMBOLS)
-
 like_list =[]
 
 epoche = 30
@@ -84,8 +84,6 @@ for z in range(0, epoche):
 
     scope_tree = "scopen0"
     print(" E-step  ")
-
-#    with tf.Graph().as_default(), tf.Session() as sess:
 
 
     for j in range(0,len(data_set)):
@@ -360,12 +358,23 @@ for z in range(0, epoche):
                 denominator = tf.tile(denominator, [1, N_HIDDEN_STATES, 1])
 
                 ris_24 = tf.divide(numerator, denominator)
+                #uniformarel la somma in moso che faccio uno su j+i (tutto)
 
-                uniform = tf.reduce_sum(ris_24, [1])
+                uniform = tf.reduce_sum(ris_24, [1,2])
                 uniform = tf.expand_dims(uniform, 1)
-                uniform = tf.tile(uniform, [1, N_HIDDEN_STATES,1])
+                uniform = tf.expand_dims(uniform, 1)
+                uniform = tf.tile(uniform, [1, N_HIDDEN_STATES,N_HIDDEN_STATES])
                 ris_24 = tf.divide(ris_24, uniform)
                 ris_24 = tf.where(tf.is_nan(ris_24), tf.zeros_like(ris_24), ris_24)
+
+                # univofrmare la somma su i e su j che faccia uno
+                #uniform = tf.reduce_sum(ris_24, [1])
+                #uniform = tf.expand_dims(uniform, 1)
+                #uniform = tf.tile(uniform, [1, N_HIDDEN_STATES,1])
+                #ris_24 = tf.divide(ris_24, uniform)
+                #ris_24 = tf.where(tf.is_nan(ris_24), tf.zeros_like(ris_24), ris_24)
+
+
 
                 #DDD
 
@@ -414,7 +423,7 @@ for z in range(0, epoche):
             #var_E = tf.divide(var_E, uniform)
 
             #print(" RUN ")
-            var_EE_res,var_E_res = sess.run([var_EE,var_E])
+            var_EE_res,var_E_res ,var_a_up_ward = sess.run([var_EE,var_E,var_a_up_ward])
 
         var_EE_list.append(var_EE_res)
         var_E_list.append(var_E_res)
@@ -422,9 +431,8 @@ for z in range(0, epoche):
         sess.close
 
         tf.reset_default_graph()
+    print(var_a_up_ward, file=open("outputttttt.txt", "a"))
 
-
-
         # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
         # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
         # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -437,9 +445,10 @@ for z in range(0, epoche):
         # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
         # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
         # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_step||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    
+    print(" M-step ")
     with tf.Session() as sess:
 
-        print(" M-step ")
 
         lista_prior = []
         lista_n_in = []
@@ -536,11 +545,11 @@ for z in range(0, epoche):
         aux = tf.stack(aux_list_sp, 0)
         summed_sp = tf.reduce_sum(aux, [4, 3, 2, 0])
         summed_sp2 = tf.reduce_sum(aux, [4, 3])
-        n_ii_list =N_HIDDEN_STATES * np.array(n_ii_list)
+        #n_ii_list =N_HIDDEN_STATES * np.array(n_ii_list)
         summed_n_ii_list = tf.reduce_sum(n_ii_list,[0])
         #va bene niilist *3 ma non si fa cosi!
         result_sp = tf.divide(summed_sp, summed_n_ii_list)
-        #result_sp = tf.divide(summed_sp, den) #DDD se non e cosi elimina n_ii_list e tutto quello collegato precedentemente
+        #result_sp = tf.divide(summed_sp, sum_N_I) #DDD se non e cosi elimina n_ii_list e tutto quello collegato precedentemente
 
         result_sp = tf.where(tf.is_inf(result_sp), tf.zeros_like(result_sp), result_sp)
         result_sp = tf.where(tf.is_nan(result_sp), tf.zeros_like(result_sp), result_sp)
@@ -562,8 +571,8 @@ for z in range(0, epoche):
 
         n_l_list = tf.expand_dims(n_l_list, 1)
         n_l_list = tf.tile(n_l_list, [1, N_HIDDEN_STATES])
-        denominator = N_HIDDEN_STATES * np.array(n_l_list)
-        result_prior = tf.divide(summed_prior, denominator)
+        denominator =  np.array(n_l_list)
+        result_prior = tf.divide(summed_prior, n_l_list)
         result_prior = tf.where(tf.is_inf(result_prior), tf.zeros_like(result_prior), result_prior)
         result_prior = tf.where(tf.is_nan(result_prior), tf.zeros_like(result_prior), result_prior)
         result_prior = tf.transpose(result_prior, [1, 0])
@@ -575,6 +584,10 @@ for z in range(0, epoche):
         A = result_state_trans
         bi = result_multinomial
 
+        # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||       fine        M_step      ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||       fine        M_step      ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||       fine        M_step      ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||       fine        M_step      ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
         # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||       fine        M_step      ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
         # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||M_stlog_likelihoodep||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -609,6 +622,7 @@ for z in range(0, epoche):
             log_bi = tf.gather(bi, label_nodi, axis=1)
             log_bi = tf.log(log_bi)
             log_bi = tf.transpose(log_bi, [1, 0])
+            log_bi = tf.where(tf.is_inf(log_bi), tf.zeros_like(log_bi), log_bi)
             log_bi = tf.cast(log_bi, tf.float64)
             seconda_somm = tf.multiply(log_bi, var_E_list[i])
             seconda_somm = tf.reduce_sum(seconda_somm, [0, 1])
@@ -659,9 +673,23 @@ for z in range(0, epoche):
             tot = tot + prima_somm + seconda_somm + terza_somm + quarta_somm
 
         print(" RUN m step + log_likelihood")
-        pi,sp_p,bi,A,tot = sess.run([result_prior,result_sp,result_multinomial,result_state_trans,tot])
+        pi,sp_p,bi,A,tot    = sess.run([result_prior,result_sp,result_multinomial,result_state_trans,tot       ])
         like_list.append(tot)
-        print("log_likelihood---------->",like_list)
+        print(" log_likelihood  ",like_list)
+
+        #print("prima seconda ternza 4",seconda_somm, log_bi, var_EE_list)
+        #print("\n\n\n\n\n\n")
+        t_pi=np.sum(pi,0)
+        t_sp=np.sum(sp_p,0)
+        t_a=np.sum(A,0)
+        t_bi=np.sum(bi,1)
+        print("\n")
+        print("\n")
+        print("VINCOLI DA RISPETTARE\n")
+        print(" t_pi  ",t_pi)
+        print(" t_sp  ",t_sp)
+        print(" t_a  ",t_a)
+        print(" t_bi  ",t_bi)
 
         sess.close
     tf.reset_default_graph()
@@ -671,10 +699,7 @@ for z in range(0, epoche):
 
 
 
-t_pi=tf.reduce_sum(pi,[0])
-t_sp=tf.reduce_sum(sp_p,[0])
-t_a=tf.reduce_sum(A,[0])
-t_bi=tf.reduce_sum(bi,[1])
+
 
 #with tf.Session() as sess:
  #   init = tf.global_variables_initializer()
