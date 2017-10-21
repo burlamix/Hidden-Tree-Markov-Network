@@ -1,0 +1,185 @@
+leggo il dataset
+dataset lung   500
+                                                                                                   EPOCA:  0
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367]
+                                                                                                   EPOCA:  1
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858]
+                                                                                                   EPOCA:  2
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118]
+                                                                                                   EPOCA:  3
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849]
+                                                                                                   EPOCA:  4
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238]
+                                                                                                   EPOCA:  5
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan]
+                                                                                                   EPOCA:  6
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan]
+                                                                                                   EPOCA:  7
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan]
+                                                                                                   EPOCA:  8
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan]
+                                                                                                   EPOCA:  9
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  10
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  11
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  12
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  13
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  14
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  15
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  16
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  17
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  18
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  19
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  20
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  21
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  22
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  23
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  24
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  25
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  26
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  27
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  28
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+                                                                                                   EPOCA:  29
+ E-step  
+ M-step 
+ LIKELIHOOD
+ RUN m step + log_likelihood
+log_likelihood----------> [-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+[-211224.33448759367, -210529.84012118858, -208360.2299274118, -206092.9129549849, -205979.59930441238, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]
+6968.93user 188.56system 1:55:12elapsed 103%CPU (0avgtext+0avgdata 966304maxresident)k
+0inputs+40outputs (0major+17420583minor)pagefaults 0swaps
