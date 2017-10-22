@@ -13,6 +13,10 @@ s_1=[]
 s_2=[]
 s_3=[]
 s_4=[]
+
+
+epoche = 100
+
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||general||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 #funzione ausiliaria per inizializzare in modo casuale tensori di 1 dimenzione
 def random_sum_one1(shape1):
@@ -72,7 +76,6 @@ A = random_sum_one3(0, N_HIDDEN_STATES, N_HIDDEN_STATES, MAX_CHILD)
 bi = random_sum_one2(1, N_HIDDEN_STATES, N_SYMBOLS)
 like_list =[]
 
-epoche = 50
 
 inizializzazione =True
 #per il numero delle epoco eseguo l'E-M
@@ -839,12 +842,14 @@ for z in range(0, epoche):
 print(like_list)
 
 #pl.plot(like_list)
-pl.plot(s_4,color='red')
-pl.plot(s_3,color='blue')
-pl.plot(s_2,color='orange')
-pl.plot(s_1,color='green')
+#pl.plot(s_4,color='red')
+#pl.plot(s_3,color='blue')
+#pl.plot(s_2,color='orange')
+#pl.plot(s_1,color='green')
 pl.plot(like_list)
-pl.show()
+#pl.show()
+pl.savefig('inex5_3C_100ep.png')
+
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||E-STEP||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
