@@ -7,9 +7,12 @@ np.set_printoptions(threshold=np.nan)
 N_HIDDEN_STATES = 3
 N_SYMBOLS = 367
 MAX_CHILD = 32
+TO_ZERO =1000000000000000000
 
-
-
+s_1=[]
+s_2=[]
+s_3=[]
+s_4=[]
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||general||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 #funzione ausiliaria per inizializzare in modo casuale tensori di 1 dimenzione
 def random_sum_one1(shape1):
@@ -69,13 +72,13 @@ A = random_sum_one3(0, N_HIDDEN_STATES, N_HIDDEN_STATES, MAX_CHILD)
 bi = random_sum_one2(1, N_HIDDEN_STATES, N_SYMBOLS)
 like_list =[]
 
-epoche = 17
+epoche = 50
 
 inizializzazione =True
 #per il numero delle epoco eseguo l'E-M
 for z in range(0, epoche):
 
-    print("                                                                                                   EPOCA: ",z)
+    print("-------------------------------------------------------------------------------------------------------------EPOCA: ",z)
     #scope_epoca = scope_epoca[:-len(str(i - 1))] + str(i)
     #with tf.variable_scope(scope_epoca):
 
@@ -438,7 +441,7 @@ for z in range(0, epoche):
                 uniform = tf.expand_dims(uniform, 1)
                 uniform = tf.tile(uniform, [1, N_HIDDEN_STATES,N_HIDDEN_STATES])
                 ris_24 = tf.divide(ris_24, uniform)
-                ris_24 = tf.where(tf.is_nan(ris_24), tf.zeros_like(ris_24), ris_24)
+                #ris_24 = tf.where(tf.is_nan(ris_24), tf.zeros_like(ris_24), ris_24)
 
                 # univofrmare la somma su i e su j che faccia uno
                 #uniform = tf.reduce_sum(ris_24, [1])
@@ -495,6 +498,7 @@ for z in range(0, epoche):
             #var_E = tf.divide(var_E, uniform)
 
             #print(" RUN ")
+
             var_EE_res,var_E_res ,ris_17_t,test_aux1,test_aux2,var_a_up_ward,test_numerator= sess.run([var_EE,var_E,ris_17_t,test_aux1,test_aux2,var_a_up_ward,test_numerator])
 
         var_EE_list.append(var_EE_res)
@@ -581,6 +585,7 @@ for z in range(0, epoche):
         result_multinomial = tf.divide(numerator_tm_yu, denominator_tm_yu)
         result_multinomial = tf.where(tf.is_inf(result_multinomial), tf.constant(1/N_HIDDEN_STATES, dtype=tf.float64,shape=result_multinomial.shape), result_multinomial)
         result_multinomial = tf.where(tf.is_nan(result_multinomial),tf.constant(1/N_HIDDEN_STATES, dtype=tf.float64,shape=result_multinomial.shape), result_multinomial)
+        #result_multinomial = tf.where(tf.less(result_multinomial,tf.constant(1/TO_ZERO, dtype=tf.float64,shape=result_multinomial.shape)), tf.zeros(dtype=tf.float64,shape=result_multinomial.shape), result_multinomial)
 
         # calcolo il numero totale di nodi nell L-esima posizione
         # e anche il numero massimo di nodi nella l-esima posizione, cosi da poter dimenzionare in maniera opportuna le dim
@@ -641,6 +646,7 @@ for z in range(0, epoche):
 
         result_sp = tf.where(tf.is_inf(result_sp), tf.constant(1/N_HIDDEN_STATES, dtype=tf.float64,shape=result_sp.shape), result_sp)
         result_sp = tf.where(tf.is_nan(result_sp), tf.constant(1/N_HIDDEN_STATES, dtype=tf.float64,shape=result_sp.shape), result_sp)
+        #result_sp = tf.where(tf.less(result_sp,tf.constant(1/TO_ZERO, dtype=tf.float64,shape=result_sp.shape)), tf.zeros(dtype=tf.float64,shape=result_sp.shape), result_sp)
 
         # STATE TRANSICTION (A)
         numerator_stat_tran = tf.reduce_sum(aux, [2,0])
@@ -652,21 +658,21 @@ for z in range(0, epoche):
         result_state_trans = tf.transpose(result_state_trans, [2, 1, 0])
         result_state_trans = tf.where(tf.is_inf(result_state_trans),tf.constant(1/N_HIDDEN_STATES, dtype=tf.float64,shape=result_state_trans.shape), result_state_trans)
         result_state_trans = tf.where(tf.is_nan(result_state_trans), tf.constant(1/N_HIDDEN_STATES, dtype=tf.float64,shape=result_state_trans.shape), result_state_trans)
+        #result_state_trans = tf.where(tf.less(result_state_trans,tf.constant(1/TO_ZERO, dtype=tf.float64,shape=result_state_trans.shape)), tf.zeros(dtype=tf.float64,shape=result_state_trans.shape), result_state_trans)
 
         # PRIOR
         aux = tf.stack(aux_list_prior, 0)
-        summed_prior = tf.reduce_sum(aux, [3, 2, 0])#DDD
 
+        summed_prior = tf.reduce_sum(aux, [4, 2, 0])#DDD
+        test_auxx =aux
         n_l_list = tf.expand_dims(n_l_list, 1)
         n_l_list = tf.tile(n_l_list, [1, N_HIDDEN_STATES])
         denominator =  np.array(n_l_list)
         result_prior = tf.divide(summed_prior, n_l_list)
-        #result_prior = tf.where(tf.is_inf(result_prior), tf.zeros_like(result_prior), result_prior)
-        #result_prior = tf.where(tf.is_nan(result_prior), tf.zeros_like(result_prior), result_prior)
 
         result_prior = tf.where(tf.is_inf(result_prior), tf.constant(1/N_HIDDEN_STATES, dtype=tf.float64,shape=result_prior.shape), result_prior)
         result_prior = tf.where(tf.is_nan(result_prior), tf.constant(1/N_HIDDEN_STATES, dtype=tf.float64,shape=result_prior.shape), result_prior)
-        result_prior = tf.where(tf.equal(result_prior,tf.zeros(dtype=tf.float64,shape=result_prior.shape)), tf.constant(1/N_HIDDEN_STATES, dtype=tf.float64,shape=result_prior.shape), result_prior)
+        #result_prior = tf.where(tf.less(result_prior,tf.constant(1/TO_ZERO, dtype=tf.float64,shape=result_prior.shape)), tf.zeros(dtype=tf.float64,shape=result_prior.shape), result_prior)
 
 
         result_prior = tf.transpose(result_prior, [1, 0])
@@ -703,6 +709,8 @@ for z in range(0, epoche):
             log_pi = tf.log(log_pi)
             log_pi = tf.transpose(log_pi, [1, 0])
             log_pi = tf.where(tf.is_inf(log_pi), tf.zeros_like(log_pi), log_pi)
+            #log_pi = tf.where(tf.less(log_pi,tf.constant(1/TO_ZERO, dtype=tf.float64,shape=log_pi.shape)), tf.zeros(dtype=tf.float64,shape=log_pi.shape), log_pi)
+
             log_pi = tf.cast(log_pi, tf.float64)
 
             prima_somm = tf.multiply(log_pi, leaf_node)
@@ -717,6 +725,8 @@ for z in range(0, epoche):
             log_bi = tf.log(log_bi)
             log_bi = tf.transpose(log_bi, [1, 0])
             log_bi = tf.where(tf.is_inf(log_bi), tf.zeros_like(log_bi), log_bi)
+            #log_bi = tf.where(tf.less(log_bi,tf.constant(1/TO_ZERO, dtype=tf.float64,shape=log_bi.shape)), tf.zeros(dtype=tf.float64,shape=log_bi.shape), log_bi)
+
             log_bi = tf.cast(log_bi, tf.float64)
             seconda_somm = tf.multiply(log_bi, var_E_list[i])
             seconda_somm = tf.reduce_sum(seconda_somm, [0, 1])
@@ -748,6 +758,7 @@ for z in range(0, epoche):
             log_sp_p = tf.log(sp_p)
 
             log_sp_p = tf.where(tf.is_inf(log_sp_p), tf.zeros_like(log_sp_p), log_sp_p)
+            #log_sp_p = tf.where(tf.less(log_sp_p,tf.constant(1/TO_ZERO, dtype=tf.float64,shape=log_sp_p.shape)), tf.zeros(dtype=tf.float64,shape=log_sp_p.shape), log_sp_p)
 
             log_sp_p = tf.cast(log_sp_p, tf.float64)
             terza_somm = tf.multiply(psul, log_sp_p)
@@ -763,13 +774,26 @@ for z in range(0, epoche):
             quarta_somm = tf.multiply(pqqsy,
                                       log_A)  # ________________________________________________________indicie ij da controllare
             quarta_somm = tf.reduce_sum(quarta_somm, [1, 2, 3, 0])
+            #quarta_somm = tf.where(tf.less(quarta_somm,tf.constant(1/TO_ZERO, dtype=tf.float64,shape=quarta_somm.shape)), tf.zeros(dtype=tf.float64,shape=quarta_somm.shape), quarta_somm)
 
             tot = tot + prima_somm + seconda_somm + terza_somm + quarta_somm
 
         print(" RUN m step + log_likelihood")
-        pi,sp_p,bi,A,tot            ,e_resized   ,e_resized,test_numerator_tm_yu= sess.run([result_prior,result_sp,result_multinomial,result_state_trans,tot            ,e_resized    ,e_resized ,test_numerator_tm_yu ])
+        pi,sp_p,bi,A,tot ,summed_prior, n_l_list ,test_auxx ,summed_sp, summed_n_ii_list ,prima_somm,seconda_somm,terza_somm , quarta_somm = sess.run([result_prior,result_sp,result_multinomial,result_state_trans,tot ,summed_prior, n_l_list,test_auxx ,summed_sp, summed_n_ii_list,prima_somm , seconda_somm , terza_somm , quarta_somm])
+        
+        s_1.append(prima_somm)
+        s_2.append(seconda_somm)
+        s_3.append(terza_somm)
+        s_4.append(quarta_somm)
+
+
+        #if (np.isnan(tot)):
+         #   break;
+          #  break;
+           # print(" IL LIKELIHOOD  è Nan")
+        
         like_list.append(tot)
-        print(" log_likelihood  ",like_list)
+       
 
         #print("prima seconda ternza 4",seconda_somm, log_bi, var_EE_list)
         #print("\n\n\n\n\n\n")
@@ -778,23 +802,13 @@ for z in range(0, epoche):
         t_a=np.sum(A,0)
         t_bi=np.sum(bi,1)
 
-        #print("e_resized",e_resized)
-        #print("e_resized",e_resized)
-       #print("test_numerator_tm_yu",test_numerator_tm_yu)
+        #print("var_EE_list",var_EE_list[0].shape)
+        #print("var_EE_list",var_EE_list)
+        #print("test_auxx",test_auxx.shape)
+       # print("test_auxx",test_auxx)
+      #  print(" summed_prior  \n",summed_prior)
+     #   print(" n_l_list  \n",n_l_list)
 
-        '''
-        print("\n")
-        print("\n")
-        
-        print("PARAMETRI\n")
-        print(" pi  \n",pi)
-        print(" sp  \n",sp_p)
-        print(" a  \n",A)
-        print(" bi  \n",bi)
-
-        print("\n")
-        print("\n")
-'''
         print("VINCOLI DA RISPETTARE\n")
         print(" t_pi  ",t_pi)
         print(" t_sp  ",t_sp)
@@ -803,6 +817,8 @@ for z in range(0, epoche):
 
         sess.close
     tf.reset_default_graph()
+
+
 
         # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||           tlog_likelihood         fine            ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
     # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||   fine            M_stlog_likelihoodep||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -821,6 +837,12 @@ for z in range(0, epoche):
     #print(a)
 #||||||||||||||||||||||||||||||||||||||||||||||LOGLIKEHOLD||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 print(like_list)
+
+#pl.plot(like_list)
+pl.plot(s_4,color='red')
+pl.plot(s_3,color='blue')
+pl.plot(s_2,color='orange')
+pl.plot(s_1,color='green')
 pl.plot(like_list)
 pl.show()
 #||||||||||||||||||||||||||||||||||||||||||||||||||||||||E-STEP||||||||||||||||||||||||||||||||||||||||||||||||||||||||

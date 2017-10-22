@@ -3,7 +3,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
 
 #FILE = "inex05.train.elastic.tree"
-FILE = "test.tree"
+FILE = "test_10.tree"
 
 from tre_simple import *
 
