@@ -889,11 +889,11 @@ for z in range(0, epoche):
 #pl.plot(like_list)
 
 
-np.savetxt('5like_list.out', like_list) 
-np.savetxt('5s1.out', s_1) 
-np.savetxt('5s2.out', s_2) 
-np.savetxt('5s3.out', s_3) 
-np.savetxt('5s4.out', s_4) 
+np.savetxt('ilike_list.out', like_list) 
+np.savetxt('is1.out', s_1) 
+np.savetxt('is2.out', s_2) 
+np.savetxt('is3.out', s_3) 
+np.savetxt('is4.out', s_4) 
 #pl.show()
 #pl.savefig('10.png')
 
