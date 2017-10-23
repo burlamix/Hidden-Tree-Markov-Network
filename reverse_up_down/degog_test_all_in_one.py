@@ -69,8 +69,7 @@ n=0
 #N_HIDDEN_STATES da 2 a 20 non di piu, va calcolato l'algoritmo per i vari valori, che fanno cambiare il tutto di molto IMPORTANTE
 
 
-scope_tree = "scope_n0"
-scope_epoca = "epoca_n0"
+
 #nel caso non vengano passati dei valori iniziali ai parametri essi venono inizializati random
 pi = random_sum_one2(0, N_HIDDEN_STATES, MAX_CHILD)
 sp_p = random_sum_one1(MAX_CHILD)

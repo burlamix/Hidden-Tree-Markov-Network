@@ -2,11 +2,11 @@ import pylab as pl
 import numpy as np
 from io import StringIO
 
-like_list = np.loadtxt('5like_list.out')
-s1 = np.loadtxt('5s1.out')
-s2 = np.loadtxt('5s2.out')
-s3 = np.loadtxt('5s3.out')
-s4 = np.loadtxt('5s4.out')
+like_list = np.loadtxt('alike_list.out')
+s1 = np.loadtxt('as1.out')
+s2 = np.loadtxt('as2.out')
+s3 = np.loadtxt('as3.out')
+s4 = np.loadtxt('as4.out')
 
 
 pl.plot(like_list)

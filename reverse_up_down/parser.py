@@ -2,8 +2,8 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
 
-#FILE = "inex05.train.elastic.tree"
-FILE = "test_3.tree"
+FILE = "inex05.train.elastic.tree"
+#FILE = "test_1.tree"
 
 from tre_simple import *
 
