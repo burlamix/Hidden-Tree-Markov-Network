@@ -3,12 +3,14 @@ os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
 
 
+
 from tre_simple import *
 
-def dataset_parser(FILE):
+def dataset_parser_class(FILE):
 
     str_label=''
-    tre_list =[]
+    #tre_list =[[],[]]
+    tre_list =[[],[],[],[],[],[],[],[],[],[],[],[]]
     with open(FILE, "r") as ins:
         line_tree = []
         for line in ins:
@@ -26,6 +28,7 @@ def dataset_parser(FILE):
 
         #prelevo il label del primo nodo cosi da inizializzare l'albero
         my_iter = iter(line_div[1])
+
         s = next(my_iter)
         while s != '(':
             str_label = str_label + s
@@ -53,7 +56,7 @@ def dataset_parser(FILE):
         lt.divide_leaves()
         lt.set_name()
         lt.set_N_L()
-        tre_list.append(lt)
+        tre_list[int(line_div[0])-1].append(lt)
 
     return tre_list
 
