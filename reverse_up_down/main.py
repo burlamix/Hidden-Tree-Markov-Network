@@ -5,7 +5,7 @@ from parser import *
 from E_M_utils import *
 
 
-epoche = 100
+epoche = 5
 
 data_set = dataset_parser()
 
