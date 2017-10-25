@@ -2,7 +2,7 @@ import numpy as np
 import tensorflow as tf
 from tre_simple import *
 from parser import *
-import pylab as pl
+ #import pylab as pl
 
 np.set_printoptions(threshold=np.nan)
 
