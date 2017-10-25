@@ -9,7 +9,7 @@ np.set_printoptions(threshold=np.nan)
 N_HIDDEN_STATES = 10
 N_SYMBOLS = 367
 MAX_CHILD = 32
-CLASSI =11
+CLASSI = 11
 
 def modello(data_set,epoche):
 
@@ -18,7 +18,7 @@ def modello(data_set,epoche):
     bi_l=  [[],[],[],[],[],[],[],[],[],[],[],[],[]]
     A_l=   [[],[],[],[],[],[],[],[],[],[],[],[],[]]
     for i in range(0,CLASSI):
-        print("-------------------------------------------i =",i)
+        #print("-------------------------------------------i =",i)
         pi_l[i],sp_p_l[i],A_l[i],bi_l[i] = training(data_set[i],epoche)
 
     return pi_l,sp_p_l,A_l,bi_l
@@ -29,7 +29,9 @@ def testing(data_test,pi_l,sp_p_l,A_l,bi_l):
 
 
     class_result = np.zeros(len(data_test))
-
+    confusion_matrix = np.zeros((CLASSI,CLASSI))
+    giusti=0
+    errati=0
     for j in range(0,len(data_test)):
 
         like_max = -9999999999999999999
@@ -57,7 +59,24 @@ def testing(data_test,pi_l,sp_p_l,A_l,bi_l):
                 class_result[j]=i+1
                 like_max=like
 
-        print("reale ",data_test[j].classe,"    predetto",class_result[j])
+        #print("reale ",data_test[j].classe,"    predetto",class_result[j])
+
+        confusion_matrix[int(data_test[j].classe)-1][int(class_result[j])-1]= confusion_matrix[int(data_test[j].classe)-1][int(class_result[j])-1] +1
+        
+        if(  int(data_test[j].classe)    ==   int(class_result[j])   ):
+
+            giusti=giusti+1
+
+        else: 
+
+            errati = errati +1
+
+    print("giusti ",giusti)
+    print("errati ",errati)
+    print("rate   ",    ( (giusti) / (giusti+errati) ) * 100 )
+    print("confusion_matrix\n",confusion_matrix)
+    np.savetxt('classi_risultato.out', class_result) 
+    np.savetxt('confusion_matrix.out', confusion_matrix) 
 
     return class_result
 
@@ -90,7 +109,7 @@ def training(data_set,epoche,pi=None,sp_p=None,A=None,bi=None):
     #per il numero delle epoco eseguo l'E-M
 
     for i in range(0, epoche):
-        print("EPOCA: ",i)
+        #print("EPOCA: ",i)
 
         var_EE_list = []
         var_E_list = []

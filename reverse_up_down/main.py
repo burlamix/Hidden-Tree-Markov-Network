@@ -5,13 +5,15 @@ from parser import *
 from parser_class import *
 from E_M_utils import *
 
-#FILE = "inex05.train.elastic.tree"
-FILE = "test_40.tree"
+FILE1 = "inex05.train.elastic.tree"
+FILE2 = "inex05.train.elastic.tree"
+#FILE1 = "test_2.tree"
+#FILE2 = "test_2.tree"
 
-epoche = 3
+epoche = 30
 
-data_set = dataset_parser_class(FILE)
-data_test = dataset_parser(FILE)
+data_set = dataset_parser_class(FILE1)
+data_test = dataset_parser(FILE2)
 
 
 pi_l,sp_p_l,A_l,bi_l=modello(data_set,epoche)
