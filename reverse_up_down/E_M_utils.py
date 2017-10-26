@@ -2,11 +2,11 @@ import numpy as np
 import tensorflow as tf
 from tre_simple import *
 from parser import *
-#import pylab as pl
+import pylab as pl
 
 np.set_printoptions(threshold=np.nan)
 
-N_HIDDEN_STATES = 6
+N_HIDDEN_STATES = 8
 N_SYMBOLS = 367
 MAX_CHILD = 32
 CLASSI = 2
@@ -340,8 +340,13 @@ def compute_17(bi,pi,var_up_ward,t):
         label.append(node.label)
         posizione.append(node.pos -1)
     #prelevo da bi e pi i dati relativi alle foglie
-    aux1 = tf.gather(bi, label, axis=1)
-    aux2 = tf.gather(pi, posizione, axis=1)
+    
+
+    aux1 = tf.transpose(tf.gather(tf.transpose(bi, perm=[1, 0]), label), perm=[1, 0])
+    #aux1 = tf.gather(bi, label, axis=1) 
+
+    aux2 = tf.transpose(tf.gather(tf.transpose(pi, perm=[1, 0]), posizione), perm=[1, 0])
+    #aux2 = tf.gather(pi, posizione, axis=1) 
 
     nume = tf.multiply(aux1, aux2)  # Element-wise multiplication
     den = tf.reduce_sum(nume,[0])
@@ -373,7 +378,8 @@ def compute_internal_node_prior(var_in_prior,sp_p,A,t):
             for j in range(k, MAX_CHILD):
                 nomi_figli[-1].append(0)
 
-        aux2 = tf.gather(var_in_prior, nomi_figli, axis=1)
+        aux2 = tf.transpose(tf.gather(tf.transpose(var_in_prior, perm=[1, 0]), nomi_figli), perm=[2, 0, 1])
+        #aux2 = tf.gather(var_in_prior, nomi_figli, axis=1) 
 
         aux2 = tf.transpose(aux2, perm=[1, 0, 2])
 
@@ -408,8 +414,11 @@ def a_up_ward_foglie(var_a_up_ward,ris_17_t,A,var_in_prior,t):
         padri.append(node.father.name)
         posizione.append(node.pos-1) 
 
-    slice_A = tf.gather(A, posizione, axis=2)
-    slice_in_prior = tf.gather(var_in_prior, padri, axis=1)
+    slice_A = tf.transpose(tf.gather(tf.transpose(A, perm=[2, 1, 0]), posizione), perm=[2, 1, 0])
+    #slice_A = tf.gather(A, posizione, axis=2) 
+
+    slice_in_prior = tf.transpose(tf.gather(tf.transpose(var_in_prior, perm=[1,0]), padri), perm=[1,0])
+    #slice_in_prior = tf.gather(var_in_prior, padri, axis=1)     
 
     up_war_foglie = tf.expand_dims(ris_17_t,2)
     up_war_foglie = tf.tile(up_war_foglie, [1, 1, N_HIDDEN_STATES])
@@ -442,12 +451,10 @@ def compute_19(A, bi, sp_p, a_up_ward, var_in_prior, var_up_ward, t, i):
             posizione[-1].append(0)
             nomi[-1].append(0) 
 
-    slice_A = tf.gather(A, posizione, axis=2)
+    slice_A = tf.transpose(tf.gather(tf.transpose(A, perm=[2, 1, 0]), posizione), perm=[0, 3, 2, 1])
+    #slice_A = tf.gather(A, posizione, axis=2)
 
-    slice_A = tf.transpose(slice_A,[2,0,1,3])         #DDDD------------------------------------------------------ ji
-    #slice_A = tf.transpose(slice_A,[2,1,0,3])         #DDDD------------------------------------------------------ ji
-
-    slice_var_up_war_provvisoria = tf.gather(var_up_ward, nomi, axis=0)
+    slice_var_up_war_provvisoria = tf.gather(var_up_ward, nomi)
     slice_var_up_war_provvisoria = tf.expand_dims(slice_var_up_war_provvisoria,2)
     slice_var_up_war_provvisoria = tf.tile(slice_var_up_war_provvisoria, [1, 1, N_HIDDEN_STATES, 1])
     slice_var_up_war_provvisoria = tf.transpose(slice_var_up_war_provvisoria,[0,3,2,1])         #DDDD------------------------------------------------------ ji
@@ -472,7 +479,9 @@ def compute_19(A, bi, sp_p, a_up_ward, var_in_prior, var_up_ward, t, i):
            figli[-1].append(child.name)
         for j in range(len(figli[-1]), MAX_CHILD):#MMM qui puoi farlo fino a max lunghezza invehe che
             figli[-1].append(0)
-    sli_ph_bi = tf.gather(bi, labels, axis=1)
+
+    sli_ph_bi = tf.transpose(tf.gather(tf.transpose(bi, perm=[1,0]), labels), perm=[1,0])
+    #sli_ph_bi = tf.gather(bi, labels, axis=1)
 
     aux_sp = tf.expand_dims(sp_p,0)
     aux_sp = tf.expand_dims(aux_sp,0)
@@ -511,9 +520,11 @@ def compute_21(A,var_in_prior,var_a_up_ward,ris_19,i,t):
             padri.append(node.father.name)
             posizione.append(node.pos-1) 
 
-        slice_A = tf.gather(A, posizione, axis=2)
-        slice_in_prior = tf.gather(var_in_prior, padri, axis=1)
+        slice_A = tf.transpose(tf.gather(tf.transpose(A, perm=[2, 1, 0]), posizione), perm=[2, 1, 0])
+        #slice_A = tf.gather(A, posizione, axis=2)
 
+        slice_in_prior = tf.transpose(tf.gather(tf.transpose(var_in_prior, perm=[1,0]), padri), perm=[1, 0])
+        #slice_in_prior = tf.gather(var_in_prior, padri, axis=1)
         up_war_foglie = tf.expand_dims(ris_19,2)
         up_war_foglie = tf.tile(up_war_foglie, [1, 1, N_HIDDEN_STATES])
         up_war_foglie = tf.transpose(up_war_foglie,[2,1,0])         #DDDD------------------------------------------------------ ji
@@ -571,10 +582,15 @@ def compute_24(sp_p, A, var_E, var_EE, var_up_ward, var_in_prior, var_a_up_ward,
     sli_E = tf.gather(var_E, padri)
     sli_up_ward = tf.gather(var_up_ward, nomi_nodi)
     sli_sp_p_aux = tf.gather(sp_p, posizione)
-    sli_A = tf.gather(A, posizione, axis=2)
+
+
+    sli_A = tf.transpose(tf.gather(tf.transpose(A, perm=[2,1,0]), posizione), perm=[2, 1, 0])
+    #sli_A = tf.gather(A, posizione, axis=2)
     sli_A = tf.transpose(sli_A, perm=[2, 0, 1])   #DDD   --------------------ij
     #per il den
-    sli_in_prior = tf.gather(var_in_prior, padri, axis=1)
+    sli_in_prior = tf.transpose(tf.gather(tf.transpose(var_in_prior, perm=[1,0]), padri), perm=[1, 0])
+    #sli_in_prior = tf.gather(var_in_prior, padri, axis=1)
+
     sli_var_a_up_ward = tf.gather(var_a_up_ward, fratelli)             # qui non e padri ma e FRATELLI del nodo in questione
     sli_sp_pos = tf.gather(sp_p,fratelli_pos)
     # per il numeratore
@@ -859,6 +875,8 @@ def log_likelihood(pi,sp_p,A,bi,var_EE_list,var_E_list,data_set):
         posizione_foglie = []
         for node in data_set[i].struct[-1]:
             posizione_foglie.append(node.pos-1)
+
+        log_pi = tf.transpose(tf.gather(tf.transpose(pi, perm=[1,0]), posizione_foglie), perm=[1, 0])
         log_pi = tf.gather(pi, posizione_foglie, axis=1)
         log_pi = tf.log(log_pi)
         log_pi = tf.transpose(log_pi, [1, 0])
@@ -875,7 +893,8 @@ def log_likelihood(pi,sp_p,A,bi,var_EE_list,var_E_list,data_set):
         for level in data_set[i].struct:
             for node in level:
                 label_nodi.append(node.label)
-        log_bi = tf.gather(bi, label_nodi, axis=1)
+        log_bi = tf.transpose(tf.gather(tf.transpose(bi, perm=[1,0]), label_nodi), perm=[1, 0])
+        #log_bi = tf.gather(bi, label_nodi, axis=1)
         log_bi = tf.log(log_bi)
         log_bi = tf.transpose(log_bi, [1, 0])
         log_bi = tf.where(tf.is_inf(log_bi), tf.zeros_like(log_bi), log_bi)
@@ -951,7 +970,8 @@ def log_likelihood_test(pi,sp_p,A,bi,var_EE_list,var_E_list,t):
     posizione_foglie = []
     for node in t.struct[-1]:
         posizione_foglie.append(node.pos-1)
-    log_pi = tf.gather(pi, posizione_foglie, axis=1)
+    log_pi = tf.transpose(tf.gather(tf.transpose(pi, perm=[1,0]), posizione_foglie), perm=[1, 0])
+    #log_pi = tf.gather(pi, posizione_foglie, axis=1)
     log_pi = tf.log(log_pi)
     log_pi = tf.transpose(log_pi, [1, 0])
     log_pi = tf.where(tf.is_inf(log_pi), tf.zeros_like(log_pi), log_pi)
@@ -967,7 +987,8 @@ def log_likelihood_test(pi,sp_p,A,bi,var_EE_list,var_E_list,t):
     for level in t.struct:
         for node in level:
             label_nodi.append(node.label)
-    log_bi = tf.gather(bi, label_nodi, axis=1)
+    log_bi = tf.transpose(tf.gather(tf.transpose(bi, perm=[1,0]), label_nodi), perm=[1, 0])
+    #log_bi = tf.gather(bi, label_nodi, axis=1)
     log_bi = tf.log(log_bi)
     log_bi = tf.transpose(log_bi, [1, 0])
     log_bi = tf.where(tf.is_inf(log_bi), tf.zeros_like(log_bi), log_bi)

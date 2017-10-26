@@ -7,23 +7,23 @@ from E_M_utils import *
 
 #FILE1 = "inex05.train.elastic.tree"
 #FILE2 = "inex05.train.elastic.tree"
-FILE1 = "test_2.tree"
-FILE2 = "test_2.tree"
+#FILE1 = "test_2.tree"
+#FILE2 = "test_2.tree"
 #FILE1 = "train_100.tree"
-#FILE2 = "test_100.tree"
+FILE2 = "test_10.tree"
 
-epoche = 3
+epoche = 35
 
-data_set = dataset_parser_class(FILE1)
+#data_set = dataset_parser_class(FILE1)
 data_test = dataset_parser(FILE2)
 
 
-pi_l,sp_p_l,A_l,bi_l=modello(data_set,epoche)
+#pi_l,sp_p_l,A_l,bi_l=modello(data_set,epoche)#
 
-testing(data_test,pi_l,sp_p_l,A_l,bi_l)
+#testing(data_test,pi_l,sp_p_l,A_l,bi_l)
 
 
 
-#likelihood_test(data_test,epoche)
+likelihood_test(data_test,epoche)
 
 #pi,sp_p,A,bi = likelihood(data_set,epoche)
