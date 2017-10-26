@@ -12,7 +12,7 @@ from E_M_utils import *
 #FILE1 = "train_100.tree"
 FILE2 = "test_10.tree"
 
-epoche = 35
+epoche = 25
 
 #data_set = dataset_parser_class(FILE1)
 data_test = dataset_parser(FILE2)

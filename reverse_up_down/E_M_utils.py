@@ -10,6 +10,7 @@ N_HIDDEN_STATES = 8
 N_SYMBOLS = 367
 MAX_CHILD = 32
 CLASSI = 2
+GPU = True
 
 def modello(data_set,epoche):
 
@@ -38,7 +39,7 @@ def testing(data_test,pi_l,sp_p_l,A_l,bi_l):
 
         for i in range(0,CLASSI):
 
-            with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+            with tf.Session(config=tf.ConfigProto(log_device_placement=GPU)) as sess:
             #with tf.Session() as sess:
 
                 var_EE, var_E = Reversed_Upward_Downward(sp_p_l[i], A_l[i], bi_l[i], pi_l[i], data_test[j])
@@ -46,7 +47,7 @@ def testing(data_test,pi_l,sp_p_l,A_l,bi_l):
 
                 sess.close
             tf.reset_default_graph() 
-            with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+            with tf.Session(config=tf.ConfigProto(log_device_placement=GPU)) as sess:
             #with tf.Session() as sess:
                     
                 like = log_likelihood_test(pi_l[i],sp_p_l[i],A_l[i],bi_l[i],var_EE,var_E,data_test[j])
@@ -120,7 +121,7 @@ def training(data_set,epoche,pi=None,sp_p=None,A=None,bi=None):
 
         for j in range(0,len(data_set)):
 
-            with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+            with tf.Session(config=tf.ConfigProto(log_device_placement=GPU)) as sess:
             #with tf.Session() as sess:
 
                 var_EE, var_E = Reversed_Upward_Downward(sp_p, A, bi, pi, data_set[j])
@@ -134,7 +135,7 @@ def training(data_set,epoche,pi=None,sp_p=None,A=None,bi=None):
 
             tf.reset_default_graph()
 
-        with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+        with tf.Session(config=tf.ConfigProto(log_device_placement=GPU)) as sess:
         #with tf.Session() as sess:
 
             new_pi, new_sp_p, new_A, new_bi = M_step(var_EE_list,var_E_list,data_set)
@@ -190,7 +191,7 @@ def likelihood_test(data_set,epoche,pi=None,sp_p=None,A=None,bi=None):
 
 
         for j in range(0,len(data_set)):
-            with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+            with tf.Session(config=tf.ConfigProto(log_device_placement=GPU)) as sess:
             #with tf.Session() as sess:
 
                 var_EE, var_E = Reversed_Upward_Downward(sp_p, A, bi, pi, data_set[j])
@@ -204,7 +205,7 @@ def likelihood_test(data_set,epoche,pi=None,sp_p=None,A=None,bi=None):
 
             tf.reset_default_graph()
 
-        with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+        with tf.Session(config=tf.ConfigProto(log_device_placement=GPU)) as sess:
         #with tf.Session() as sess:
 
             new_pi, new_sp_p, new_A, new_bi = M_step(var_EE_list,var_E_list,data_set)
@@ -219,7 +220,7 @@ def likelihood_test(data_set,epoche,pi=None,sp_p=None,A=None,bi=None):
         A = new_A
         bi = new_bi
 
-        with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+        with tf.Session(config=tf.ConfigProto(log_device_placement=GPU)) as sess:
         #with tf.Session() as sess:
 
             s1, s2, s3, s4, tot = log_likelihood(pi,sp_p,A,bi,var_EE_list,var_E_list,data_set)
@@ -716,7 +717,7 @@ def random_sum_one3(axe,shape1,shape2,shape3=None):
 
 def M_step(var_EE_list,var_E_list,data_set):
 
-    with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+    with tf.Session(config=tf.ConfigProto(log_device_placement=GPU)) as sess:
     #with tf.Session() as sess:
 
         lista_prior = []
@@ -878,7 +879,7 @@ def log_likelihood(pi,sp_p,A,bi,var_EE_list,var_E_list,data_set):
             posizione_foglie.append(node.pos-1)
 
         log_pi = tf.transpose(tf.gather(tf.transpose(pi, perm=[1,0]), posizione_foglie), perm=[1, 0])
-        log_pi = tf.gather(pi, posizione_foglie, axis=1)
+        #log_pi = tf.gather(pi, posizione_foglie, axis=1)
         log_pi = tf.log(log_pi)
         log_pi = tf.transpose(log_pi, [1, 0])
         log_pi = tf.where(tf.is_inf(log_pi), tf.zeros_like(log_pi), log_pi)
