@@ -13,8 +13,9 @@ CLASSI = 2
 GPU = False
 
 
-config = None
+
 config = tf.ConfigProto(log_device_placement=GPU)
+config = None
 #config.gpu_options.per_process_gpu_memory_fraction = 0.5
 #config.gpu_options.allow_growth = True
 
