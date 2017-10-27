@@ -10,7 +10,7 @@ N_HIDDEN_STATES = 8
 N_SYMBOLS = 367
 MAX_CHILD = 32
 CLASSI = 2
-GPU = True
+GPU = False
 
 
 
