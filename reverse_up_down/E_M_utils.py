@@ -5,7 +5,7 @@ from parser import *
 #import pylab as pl
 
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL']='3'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 
 #np.set_printoptions(threshold=np.nan)
