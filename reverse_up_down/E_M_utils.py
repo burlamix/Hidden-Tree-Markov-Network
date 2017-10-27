@@ -14,6 +14,7 @@ GPU = True
 
 config = tf.ConfigProto(log_device_placement=GPU)
 config.gpu_options.per_process_gpu_memory_fraction = 0.4
+config.gpu_options.allow_growth = True
 
 def modello(data_set,epoche):
 
