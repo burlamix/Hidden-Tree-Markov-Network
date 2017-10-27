@@ -1,9 +1,12 @@
 import numpy as np
-import tensorflow as tf
+
 from tre_simple import *
 from parser import *
 from parser_class import *
 from E_M_utils import *
+
+
+
 
 #FILE1 = "inex05.train.elastic.tree"
 #FILE2 = "inex05.train.elastic.tree"

@@ -1,8 +1,3 @@
-import os
-os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
-
-
-
 from tre_simple import *
 
 def dataset_parser(FILE):
