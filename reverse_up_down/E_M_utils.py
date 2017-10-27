@@ -15,7 +15,7 @@ N_SYMBOLS = 367
 MAX_CHILD = 32
 CLASSI = 2
 
-#tf.logging.set_verbosity(tf.logging.FATAL)
+tf.logging.set_verbosity(tf.logging.FATAL)
 
 config = tf.ConfigProto(log_device_placement=False)
 
