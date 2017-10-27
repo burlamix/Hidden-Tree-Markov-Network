@@ -5,6 +5,7 @@ from parser import *
 #import pylab as pl
 
 np.set_printoptions(threshold=np.nan)
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 
 N_HIDDEN_STATES = 8
 N_SYMBOLS = 367
@@ -14,9 +15,8 @@ GPU = False
 
 
 
-#config = tf.ConfigProto(log_device_placement=GPU)
-config = None
-#config.gpu_options.per_process_gpu_memory_fraction = 0.5
+config = tf.ConfigProto(log_device_placement=GPU)
+config.gpu_options.per_process_gpu_memory_fraction = 0.5
 #config.gpu_options.allow_growth = True
 
 def modello(data_set,epoche):
