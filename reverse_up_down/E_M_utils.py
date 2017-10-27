@@ -10,16 +10,16 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 #np.set_printoptions(threshold=np.nan)
 
-N_HIDDEN_STATES = 8
+N_HIDDEN_STATES = 2
 N_SYMBOLS = 367
 MAX_CHILD = 32
-CLASSI = 2
+CLASSI = 11
 
 tf.logging.set_verbosity(tf.logging.FATAL)
 
 config = tf.ConfigProto(log_device_placement=False)
 
-config.gpu_options.per_process_gpu_memory_fraction = 0.5
+#config.gpu_options.per_process_gpu_memory_fraction = 0.5
 #config.gpu_options.allow_growth = True
 
 def modello(data_set,epoche):
@@ -87,7 +87,7 @@ def testing(data_test,pi_l,sp_p_l,A_l,bi_l):
     print("errati ",errati)
     print("rate   ",    ( (giusti) / (giusti+errati) ) * 100 )
     print("confusion_matrix\n",confusion_matrix)
-    np.savetxt('classi_risultato.out', class_result) 
+    #np.savetxt('classi_risultato.out', class_result) 
     np.savetxt('confusion_matrix.out', confusion_matrix) 
 
     return class_result
