@@ -2,7 +2,7 @@ import numpy as np
 import tensorflow as tf
 from tre_simple import *
 from parser import *
-#import pylab as pl
+import pylab as pl
 
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -10,14 +10,14 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 #np.set_printoptions(threshold=np.nan)
 
-N_HIDDEN_STATES = 2
+N_HIDDEN_STATES = 10
 N_SYMBOLS = 367
 MAX_CHILD = 32
 CLASSI = 11
 
 tf.logging.set_verbosity(tf.logging.FATAL)
 
-config = tf.ConfigProto(log_device_placement=False)
+config = tf.ConfigProto(log_device_placement=True)
 
 #config.gpu_options.per_process_gpu_memory_fraction = 0.5
 #config.gpu_options.allow_growth = True
@@ -262,19 +262,19 @@ def likelihood_test(data_set,epoche,pi=None,sp_p=None,A=None,bi=None):
 
     #tf.reset_default_graph()
 
-    #pl.plot(s_4,color='red')
-    #pl.plot(s_3,color='blue')
-    #pl.plot(s_2,color='orange')
-    #pl.plot(s_1,color='green')
-    #pl.plot(like_list)
+    pl.plot(s_4,color='red')
+    pl.plot(s_3,color='blue')
+    pl.plot(s_2,color='orange')
+    pl.plot(s_1,color='green')
+    pl.plot(like_list)
 
 
-    #np.savetxt('55like_list.out', like_list) 
-    #np.savetxt('55s1.out', s_1) 
-    #np.savetxt('55s2.out', s_2) 
-    #np.savetxt('55s3.out', s_3) 
-    #np.savetxt('55s4.out', s_4) 
-    #pl.show()
+    np.savetxt('12hsl.out', like_list) 
+    np.savetxt('12hs1.out', s_1) 
+    np.savetxt('12hs2.out', s_2) 
+    np.savetxt('12hs3.out', s_3) 
+    np.savetxt('12hs4.out', s_4) 
+    pl.show()
     #pl.savefig('10.png')
 
 
