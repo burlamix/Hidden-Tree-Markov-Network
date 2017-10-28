@@ -2,7 +2,7 @@ import pylab as pl
 import numpy as np
 from io import StringIO
 
-like_list = np.loadtxt('ilike_list.out')
+like_list = np.loadtxt('iilike_list.out')
 #s1 = np.loadtxt('as1.out')
 #s2 = np.loadtxt('as2.out')
 #s3 = np.loadtxt('as3.out')
