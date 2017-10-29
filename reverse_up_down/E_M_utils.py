@@ -2,7 +2,7 @@ import numpy as np
 import tensorflow as tf
 from tre_simple import *
 from parser import *
-import pylab as pl
+#import pylab as pl
 
 np.set_printoptions(threshold=np.nan)
 
@@ -253,7 +253,7 @@ def likelihood_test(data_set,epoche,pi=None,sp_p=None,A=None,bi=None):
     #pl.plot(s_3,color='blue')
     #pl.plot(s_2,color='orange')
     #pl.plot(s_1,color='green')
-    pl.plot(like_list)
+    #pl.plot(like_list)
 
 
     #np.savetxt('55like_list.out', like_list) 
@@ -261,7 +261,7 @@ def likelihood_test(data_set,epoche,pi=None,sp_p=None,A=None,bi=None):
     #np.savetxt('55s2.out', s_2) 
     #np.savetxt('55s3.out', s_3) 
     #np.savetxt('55s4.out', s_4) 
-    pl.show()
+    #pl.show()
     #pl.savefig('10.png')
 
 
