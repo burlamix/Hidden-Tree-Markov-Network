@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 
 from edward.models import Normal
 
+CLASSI=11
 
 def build_toy_dataset(N=40, noise_std=0.1):
   D = 1
@@ -33,15 +34,15 @@ D = 1   # number of features
 X_train, y_train = build_toy_dataset(N)
 
 # MODEL
-W_0 = np.ones([D, 10],dtype=np.float32)
-W_1 = Normal(loc=tf.zeros([10, 1]), scale=tf.ones([10, 1]))
+W_0 = np.ones([D, CLASSI],dtype=np.float32)
+W_1 = Normal(loc=tf.zeros([CLASSI, 1]), scale=tf.ones([CLASSI, 1]))
 
 X = tf.placeholder(tf.float32, [N, D])
 y = Normal(loc=neural_network(X), scale=0.1 * tf.ones(N))
 
 # INFERENCE
-qW_1 = Normal(loc=tf.Variable(tf.random_normal([10, 1])),
-              scale=tf.nn.softplus(tf.Variable(tf.random_normal([10, 1]))))
+qW_1 = Normal(loc=tf.Variable(tf.random_normal([CLASSI, 1])),
+              scale=tf.nn.softplus(tf.Variable(tf.random_normal([CLASSI, 1]))))
 
 inference = ed.KLqp({W_1: qW_1}, data={X: X_train, y: y_train})
-inference.run()
+inference.run(n_iter=10)
