@@ -10,7 +10,7 @@ def dataset_parser_class(FILE):
 
     str_label=''
     #tre_list =[[],[]]
-    tre_list =[[],[],[],[],[],[],[],[],[],[],[],[]]
+    tre_list =[[],[],[],[],[],[],[],[],[],[],[]]
     with open(FILE, "r") as ins:
         line_tree = []
         for line in ins:

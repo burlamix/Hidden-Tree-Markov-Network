@@ -5,38 +5,80 @@ from parser import *
 from parser_class import *
 from E_M_utils import *
 
-hidden_state = 2
+#hidden_state = 2
 
 
-FILE1 = "p12"
-#FILE1 = "p13"
-#FILE1 = "p23"
-#FILE2 = "p1"
-#FILE3 = "p2"
-FILE4 = "p3"
+
 
 #FILE1 = "inex05.train.elastic.tree"
 #FILE2 = "inex05.test.elastic.tree"
-#FILE1 = "test_40.tree"
+FILE1 = "test_40.tree"
 #FILE2 = "test_40.tree"
 
 epoche = 25
 
 data_set = dataset_parser_class(FILE1)
-data_test = dataset_parser(FILE2)
+
+val_test = divide_tre_validation(data_set)
+
+#data_test = dataset_parser(FILE2)
 
 
-pi_l,sp_p_l,A_l,bi_l=modello(data_set,epoche,hidden_state)
-
-np.save('a/'+str(hidden_state)+'_pi_l', pi_l) 
-np.save('a/'+str(hidden_state)+'_sp_p_l', sp_p_l) 
-np.save('a/'+str(hidden_state)+'_A_l', A_l) 
-np.save('a/'+str(hidden_state)+'_bi_l', bi_l) 
 
 
-rate = testing(data_test,pi_l,sp_p_l,A_l,bi_l,hidden_state)
+pi_l,sp_p_l,A_l,bi_l=modello(val_test[0][0],epoche,6)
+rate = testing(val_test[0][1],pi_l,sp_p_l,A_l,bi_l,6)
+np.save('a/6_rate', rate) 
+'''
+pi_l,sp_p_l,A_l,bi_l=modello(val_test[1][0],epoche,6)
+rate = testing(val_test[1][1],pi_l,sp_p_l,A_l,bi_l,6)
+np.save('b/6_rate', rate) 
 
-np.save('a/'+str(hidden_state)+'_rate.out', rate) 
+pi_l,sp_p_l,A_l,bi_l=modello(val_test[2][0],epoche,6)
+rate = testing(val_test[2][1],pi_l,sp_p_l,A_l,bi_l,6)
+np.save('c/6_rate', rate) 
+
+
+
+# hidden_state = 8
+pi_l,sp_p_l,A_l,bi_l=modello(val_test[0][0],epoche,8)
+rate = testing(val_test[0][1],pi_l,sp_p_l,A_l,bi_l,8)
+np.save('a/8_rate', rate) 
+
+
+pi_l,sp_p_l,A_l,bi_l=modello(val_test[1][0],epoche,8)
+rate = testing(val_test[1][1],pi_l,sp_p_l,A_l,bi_l,8)
+np.save('b/8_rate', rate) 
+
+pi_l,sp_p_l,A_l,bi_l=modello(val_test[2][0],epoche,8)
+rate = testing(val_test[2][1],pi_l,sp_p_l,A_l,bi_l,8)
+np.save('c/8_rate', rate) 
+
+
+
+
+
+# hidden_state = 10
+pi_l,sp_p_l,A_l,bi_l=modello(val_test[0][0],epoche,10)
+rate = testing(val_test[0][1],pi_l,sp_p_l,A_l,bi_l,10)
+np.save('a/10_rate', rate) 
+
+pi_l,sp_p_l,A_l,bi_l=modello(val_test[1][0],epoche,10)
+rate = testing(val_test[1][1],pi_l,sp_p_l,A_l,bi_l,10)
+np.save('b/10_rate', rate) 
+
+pi_l,sp_p_l,A_l,bi_l=modello(val_test[2][0],epoche,10)
+rate = testing(val_test[2][1],pi_l,sp_p_l,A_l,bi_l,10)
+np.save('c/10_rate', rate) 
+
+
+
+pi_l,sp_p_l,A_l,bi_l=modello(data_set,epoche,8)
+rate = testing(data_test,pi_l,sp_p_l,A_l,bi_l,8)
+np.save('test_rate', rate) 
+''' 
+
+#np.save('a/'+str(hidden_state)+'_rate', rate) 
 
 
 #likelihood_test(data_set[8],epoche)

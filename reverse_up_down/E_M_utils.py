@@ -13,12 +13,12 @@ CLASSI = 11
 
 def modello(data_set,epoche,hidden_state):
 
-    pi_l=  [[],[],[],[],[],[],[],[],[],[],[],[],[]]
-    sp_p_l=[[],[],[],[],[],[],[],[],[],[],[],[],[]]
-    bi_l=  [[],[],[],[],[],[],[],[],[],[],[],[],[]]
-    A_l=   [[],[],[],[],[],[],[],[],[],[],[],[],[]]
+    pi_l=  [[],[],[],[],[],[],[],[],[],[],[]]
+    sp_p_l=[[],[],[],[],[],[],[],[],[],[],[]]
+    bi_l=  [[],[],[],[],[],[],[],[],[],[],[]]
+    A_l=   [[],[],[],[],[],[],[],[],[],[],[]]
     for i in range(0,CLASSI):
-        #print("-------------------------------------------i =",i)
+        print("-------------------------------------------i =",i)
         pi_l[i],sp_p_l[i],A_l[i],bi_l[i] = training(data_set[i],epoche,hidden_state)
 
     return pi_l,sp_p_l,A_l,bi_l
@@ -1021,9 +1021,33 @@ def log_likelihood_test(pi,sp_p,A,bi,var_EE_list,var_E_list,t,hidden_state):
 
 
     return tot
+def divide_tre_validation (dataset):
 
+    d_dataset = [[[],[]],[[],[]],[[],[]]]
 
+    for i in range(0,11):
+        split_size = len(dataset[i])//3
 
+    #A
+        #traning set
+        d_dataset[0][0].append([])
+        d_dataset[0][0][i]=dataset[i][:split_size*2]
+        #validation set
+        d_dataset[0][1] += dataset[i][split_size*2:]
+
+        #B
+        d_dataset[1][0].append([])
+        d_dataset[1][0][i]=dataset[i][:split_size] + dataset[i][split_size*2:]
+        #validation set
+        d_dataset[1][1] += dataset[i][split_size:split_size*2]
+
+        #C
+        d_dataset[2][0].append([])
+        d_dataset[2][0][i]=dataset[i][split_size:]
+        #validation set
+        d_dataset[2][1] += dataset[i][:split_size]
+
+    return d_dataset
 
 
 
