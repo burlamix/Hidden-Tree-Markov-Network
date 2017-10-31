@@ -18,7 +18,7 @@ def modello(data_set,epoche,hidden_state):
     bi_l=  [[],[],[],[],[],[],[],[],[],[],[]]
     A_l=   [[],[],[],[],[],[],[],[],[],[],[]]
     for i in range(0,CLASSI):
-        print("-------------------------------------------i =",i)
+        #print("-------------------------------------------i =",i)
         pi_l[i],sp_p_l[i],A_l[i],bi_l[i] = training(data_set[i],epoche,hidden_state)
 
     return pi_l,sp_p_l,A_l,bi_l
