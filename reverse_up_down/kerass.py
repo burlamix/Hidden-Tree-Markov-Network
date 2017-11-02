@@ -2,7 +2,9 @@
 import keras
 from keras.models import Sequential
 from keras.layers import Dense
-import numpy
+import numpy as np
+
+np.set_printoptions(threshold=np.nan)
 
 
 model = Sequential()
@@ -12,8 +14,6 @@ model.compile(optimizer='rmsprop',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
-x = Dense(64, activation='relu')(inputs)
-print(x)
 
 # Generate dummy data
 import numpy as np
@@ -26,4 +26,5 @@ one_hot_labels = keras.utils.to_categorical(labels, num_classes=10)
 print("---",model.get_weights())
 # Train the model, iterating on the data in batches of 32 samples
 model.fit(data, one_hot_labels, epochs=100, batch_size=32)
+
 print("---",model.get_weights())

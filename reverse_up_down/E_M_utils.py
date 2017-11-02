@@ -2,7 +2,7 @@ import numpy as np
 import tensorflow as tf
 from tre_simple import *
 from parser import *
-#import pylab as pl
+import pylab as pl
 
 np.set_printoptions(threshold=np.nan)
 
@@ -232,18 +232,6 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
             s_4.append(s4)
             like_list.append(tot)
 
-
-            #print("PARAMETRI\n")
-            #print("pi",pi)
-            #print("A",A)
-            #print("bi",bi)
-            #print("sp_p",sp_p)
-            #print("VINCOLI DA RISPETTARE\n")
-            #print(" t_pi  ",t_pi)
-            #print(" t_sp  ",t_sp)
-            #print(" t_a  ",t_a)
-            #print(" t_bi  ",t_bi)
-
             sess.close
         tf.reset_default_graph()
     tf.reset_default_graph()
@@ -255,7 +243,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
     #pl.plot(s_3,color='blue')
     #pl.plot(s_2,color='orange')
     #pl.plot(s_1,color='green')
-    #pl.plot(like_list)
+    pl.plot(like_list)
 
 
     #np.savetxt('55like_list.out', like_list) 
@@ -263,7 +251,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
     #np.savetxt('55s2.out', s_2) 
     #np.savetxt('55s3.out', s_3) 
     #np.savetxt('55s4.out', s_4) 
-    #pl.show()
+    pl.show()
     #pl.savefig('10.png')
 
 
@@ -821,14 +809,15 @@ def M_step(var_EE_list,var_E_list,data_set,hidden_state):
         aux = tf.stack(aux_list_prior, 0)
 
         summed_prior = tf.reduce_sum(aux, [3, 2, 0])#DDD
-        summed_prior = tf.add(summed_prior, tf.constant(1/10000000, dtype=tf.float64,shape=summed_prior.shape))
 
         denominatore_summed_prior = tf.reduce_sum(summed_prior,[1])
         denominatore_summed_prior = tf.expand_dims(denominatore_summed_prior, 1)
         denominatore_summed_prior = tf.tile(denominatore_summed_prior, [1, hidden_state])
-
+        summed_prior = tf.add(summed_prior, tf.constant(1/10000000, dtype=tf.float64,shape=summed_prior.shape))
+        
         result_prior = tf.divide(summed_prior, denominatore_summed_prior)
-
+        result_prior = tf.where(tf.is_inf(result_prior), tf.constant(1/hidden_state, dtype=tf.float64,shape=result_prior.shape), result_prior)      
+        result_prior = tf.where(tf.is_nan(result_prior), tf.constant(1/hidden_state, dtype=tf.float64,shape=result_prior.shape), result_prior)
         result_prior = tf.transpose(result_prior, [1, 0])
 
         #DDD devo far si che la somma suglii ia uno?

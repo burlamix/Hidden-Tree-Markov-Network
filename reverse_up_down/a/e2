@@ -1,0 +1,8 @@
+import numpy as np
+
+print("---")
+
+
+fil = np.load('6_rate.npy')
+
+print(fil)
