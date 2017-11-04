@@ -9,6 +9,8 @@ from keras import backend as bk
 from E_M_utils import *
 from keras.activations import softmax
 
+import multiprocessing
+from functools import partial
 
 MAX_CHILD=32
 N_SYMBOLS = 367
@@ -64,41 +66,6 @@ def softmax_for_all(th_l,hidden_state):
 
 
 
-def E_step_like(th_l,t,m,hidden_state):
-
-	var_EE_list =[]
-	var_E_list =[]
-	like_list = np.zeros((1,m), dtype=np.float64)
-
-	g_1 = tf.Graph()
-
-	with g_1.as_default():
-
-		# è qui che può essere fatto multithreading!!!!!!
-		for j in range(0,m):
-			#print("	  e_m: ",j)
-
-			with tf.Session() as sess:
-
-				var_EE, var_E = Reversed_Upward_Downward(th_l[j].sp_p, th_l[j].a, th_l[j].bi, th_l[j].pi, t, hidden_state)
-
-				var_EE,var_E = sess.run([var_EE,var_E])
-				var_EE_list.append(var_EE)
-				var_E_list.append(var_E)
-
-				sess.close
-			
-
-			with tf.Session() as sess:
-
-				like = log_likelihood_test(th_l[j].pi,th_l[j].sp_p,th_l[j].a,th_l[j].bi,var_EE,var_E,t,hidden_state)
-				like = sess.run(like)
-				like_list[0][j]=like
-
-				sess.close
-
-	return [var_EE_list,var_E_list,like_list]
-
 def param_update(free_th_l,th_l,lerning_rate,var_EE_list,var_E_list,hidden_state,t,m):
 
 	g_2 = tf.Graph()
@@ -106,7 +73,7 @@ def param_update(free_th_l,th_l,lerning_rate,var_EE_list,var_E_list,hidden_state
 	with g_2.as_default():
 
 		for j in range(0,m):
-			#print("	  up_m: ",j)
+			print("	  up_m: ",j)
 
 			with tf.Session() as sess:
 
@@ -242,10 +209,7 @@ def param_update(free_th_l,th_l,lerning_rate,var_EE_list,var_E_list,hidden_state
 	return free_th_l
 
 
-
-
-'''
-def E_step_like_multi(th_l,t,m,hidden_state):
+def E_step_like(th_l,t,m,hidden_state):
 
 	var_EE_list =[]
 	var_E_list =[]
@@ -255,21 +219,78 @@ def E_step_like_multi(th_l,t,m,hidden_state):
 
 	with g_1.as_default():
 
-		pool = ThreadPool(m)
-		results = pool.map(E_step_like_esec(th_l,t,j,hidden_state), range(m))
+		# è qui che può essere fatto multithreading!!!!!!
+		for j in range(0,m):
+			print("	  e_m: ",j)
 
-		pool.close()
-		pool.join()
+			with tf.Session() as sess:
+
+				var_EE, var_E = Reversed_Upward_Downward(th_l[j].sp_p, th_l[j].a, th_l[j].bi, th_l[j].pi, t, hidden_state)
+
+				var_EE,var_E = sess.run([var_EE,var_E])
+				var_EE_list.append(var_EE)
+				var_E_list.append(var_E)
+
+				sess.close
+			
+
+			with tf.Session() as sess:
+
+				like = log_likelihood_test(th_l[j].pi,th_l[j].sp_p,th_l[j].a,th_l[j].bi,var_EE,var_E,t,hidden_state)
+				like = sess.run(like)
+				like_list[0][j]=like
+
+				sess.close
+
+	return [var_EE_list,var_E_list,like_list]
+
+
+
+
+def E_step_like_multi(th_l,t,m,hidden_state):
+
+	var_EE_list =[]
+	var_E_list =[]
+	like_list = np.zeros((1,m), dtype=np.float64)
+
+
+
+
+	iterable = range(m)
+
+	pool = multiprocessing.Pool(m+12)
+	func = partial(E_step_like_esec, th_l, t, hidden_state)
+
+	print("dopo partial")
+
+	result = pool.map(func, iterable)
+
+	print("dopo pool")
+
+	pool.join()
+
+	pool.close()
+
+	print("risultati-",result)
 
 	return  results
-def E_step_like_esec(th_l,t,j,hidden_state):
 
+def E_step_like_esec(th_l,t,hidden_state,j):
 
-	with tf.Session() as sess:
+	print("buongiorno",j)
+
+	#g_1 = tf.Graph()
+
+	with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+
 
 		var_EE, var_E = Reversed_Upward_Downward(th_l[j].sp_p, th_l[j].a, th_l[j].bi, th_l[j].pi, t, hidden_state)
 
-		var_EE,var_E = sess.run([var_EE,var_E])
+		print("prima run ",j)
+
+		print(sess.run([var_EE,var_E]))
+
+		print("dopo run",j)
 
 		sess.close
 	
@@ -280,17 +301,19 @@ def E_step_like_esec(th_l,t,j,hidden_state):
 		like = sess.run(like)
 
 		sess.close
+	
+	print("ciao!",j)
 
 	return [var_EE,var_E,like]
+
+
+
+
+
 '''
 
 
 
-
-
-
-
-'''
 tm_yu = np.zeros([int(t.size), N_SYMBOLS])
 
 for level in t.struct:
