@@ -1,5 +1,5 @@
 import numpy as np
-import scipy.misc as sc
+#import scipy.misc as sc
 import tensorflow as tf
 import keras
 from keras.models import Sequential
@@ -10,6 +10,7 @@ from E_M_utils import *
 from utils_keras_g import *
 
 
+import math
 
 import time
 from datetime import timedelta
@@ -27,7 +28,8 @@ lerning_rate=0.5
 epoche=25
 hidden_state = 10
 
-cl_size = sc.comb(M, 2).astype(np.int64)
+#cl_size = sc.comb(M, 2).astype(np.int64)
+cl_size = nCr(M,2)
 
 
 FILE2 = "test_100.tree"

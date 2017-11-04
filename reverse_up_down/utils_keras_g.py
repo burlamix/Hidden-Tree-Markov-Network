@@ -261,3 +261,6 @@ def E_step_like(th_l,t,m,hidden_state):
 	return [var_EE_list,var_E_list,like_list]
 
 
+def nCr(n,r):
+    f = math.factorial
+    return int(f(n) / f(r) / f(n-r))
