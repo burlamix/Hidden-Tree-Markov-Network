@@ -11,6 +11,7 @@ from keras.activations import softmax
 
 import multiprocessing
 from functools import partial
+import math
 
 MAX_CHILD=32
 N_SYMBOLS = 367
