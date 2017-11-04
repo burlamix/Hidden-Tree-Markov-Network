@@ -1,31 +1,32 @@
+import numpy as np
+import scipy.misc as sc
+import tensorflow as tf
 import keras
 from keras.models import Sequential
 from keras.layers import Input, Dense
 from keras.models import Model
-import numpy as np
-import scipy.misc as sc
 from keras import backend as bk
+from E_M_utils import *
+from utils_keras import *
+np.random.seed(42)
 
-M=4
+
+M=20
 K=11
+N_SYMBOLS = 367
+MAX_CHILD = 32
+
+
+lerning_rate=0.5
+epoche=25
+hidden_state = 10
 
 cl_size = sc.comb(M, 2).astype(np.int64)
 
-def my_init2(shape, dtype=None):
-	m_init = np.zeros(shape, dtype=dtype)
-	p=0
-	s=1
-	for i in range(0,shape[1]):
-		m_init[p,i]=1
-		m_init[s,i]=-1
-		if(s==shape[0]-1):
-			p=p+1
-			s=p
-		s=s+1
-	return m_init
 
+FILE2 = "test_4.tree"
 
-
+data_set = dataset_parser(FILE2)
 
 
 
@@ -38,20 +39,44 @@ model.compile(optimizer='rmsprop',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
-# Generate dummy data
-data = np.random.random((10, M))
-labels = np.random.randint(K, size=(10, 1))
-one_hot_labels = keras.utils.to_categorical(labels, num_classes=K)
-print(data)
-print(labels)
-print(one_hot_labels)
+
+#data = np.random.random((1,M))
+#labels = np.random.randint(K, size=(1,1))
+#one_hot_labels = keras.utils.to_categorical(labels, num_classes=K)
+
+
+#inizializzo random i parametri del modello
+free_th_l = [theta(hidden_state) for i in range(M)] 
 
 
 
-for i in range (0,1000):
-	res = model.predict( data)
-	model.fit(data, one_hot_labels, epochs=1, batch_size=32)
-	
+for i in range (0,epoche):
+	#print("EPOCA: ",i)
+
+	# per ogni epoca analizzo tutto il dataset
+	for j in range(0,len(data_set)):
+		#print("  albero: ",j)
+
+		#normalizzo i parametri del modello
+		th_l = softmax_for_all(free_th_l,hidden_state)
+
+
+		#calcolo E_step e il loglikelihood 
+		var_EE_list,var_E_list,like_list = E_step_like(th_l,data_set[j],M,hidden_state)
+
+		#codifico la classe risultato
+		one_hot_lab = np.zeros((1,K), dtype=np.float64)
+		one_hot_lab[0][int(data_set[j].classe)-1]=1
+
+		#model.train_on_batch(data,one_hot_labels)
+
+		#model.fit(data, one_hot_labels, epochs=1)
+		model.fit(like_list, one_hot_lab, epochs=1)
+		free_th_l = param_update(free_th_l,th_l,lerning_rate,var_EE_list,var_E_list,hidden_state,data_set[j],M)
+
+
+		#res = model.predict(like_list)
+
 
 
 #model.fit(data, one_hot_labels, epochs=1000, batch_size=32)

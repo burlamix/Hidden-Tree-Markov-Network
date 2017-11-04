@@ -1010,6 +1010,8 @@ def log_likelihood_test(pi,sp_p,A,bi,var_EE_list,var_E_list,t,hidden_state):
 
 
     return tot
+
+    
 def divide_tre_validation (dataset):
 
     d_dataset = [[[],[]],[[],[]],[[],[]]]
