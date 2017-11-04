@@ -1,5 +1,4 @@
 import numpy as np
-import scipy.misc as sc
 import tensorflow as tf
 import keras
 from keras.models import Sequential
@@ -21,7 +20,7 @@ lerning_rate=0.5
 epoche=10
 hidden_state = 10
 
-cl_size = sc.comb(M, 2).astype(np.int64)
+cl_size = nCr(M,2)
 
 
 FILE2 = "test_4.tree"
@@ -59,7 +58,7 @@ for i in range (0,epoche):
 
 
 		#calcolo E_step e il loglikelihood 
-		var_EE_list,var_E_list,like_list = E_step_like_multi(th_l,data_set[j],M,hidden_state)
+		var_EE_list,var_E_list,like_list = E_step_like(th_l,data_set[j],M,hidden_state)
 
 		#codifico la classe risultato
 		one_hot_lab = np.zeros((1,K), dtype=np.float64)

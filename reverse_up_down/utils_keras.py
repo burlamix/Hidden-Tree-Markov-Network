@@ -12,6 +12,11 @@ from keras.activations import softmax
 import multiprocessing
 from functools import partial
 
+import math
+import threading
+from multiprocessing.pool import ThreadPool
+
+import time
 MAX_CHILD=32
 N_SYMBOLS = 367
 
@@ -255,60 +260,97 @@ def E_step_like_multi(th_l,t,m,hidden_state):
 
 
 
+	
+		iterable = range(m)
 
-	iterable = range(m)
+		coord = tf.train.Coordinator()
 
-	pool = multiprocessing.Pool(m+12)
-	func = partial(E_step_like_esec, th_l, t, hidden_state)
+		pool = multiprocessing.Pool(m)
 
-	print("dopo partial")
+		func = partial(E_step_like_esec, th_l, t, hidden_state)
 
-	result = pool.map(func, iterable)
+		print("dopo partial")
 
-	print("dopo pool")
+		#coord.join(pool)
 
-	pool.join()
+		result = pool.map(func, iterable)
 
-	pool.close()
+		print("dopo pool")
 
-	print("risultati-",result)
+		pool.join()
 
-	return  results
+		pool.close()
+	
+	''' 
+	coord = tf.train.Coordinator()
+	threads = [
+	threading.Thread(target=E_step_like_esec, args=(th_l, t, hidden_state,1,)),
+	threading.Thread(target=E_step_like_esec, args=(th_l, t, hidden_state,2,)),
+	threading.Thread(target=E_step_like_esec, args=(th_l, t, hidden_state,3,))]
+	for t in threads:
+		t.start()
+
+	coord.join(threads)
+
+	pool = multiprocessing.Pool(10)
+
+	async_result1 = pool.apply_async(E_step_like_esec, (th_l, t, hidden_state,1))
+	async_result2 = pool.apply_async(E_step_like_esec, (th_l, t, hidden_state,2))
+	async_result3 = pool.apply_async(E_step_like_esec, (th_l, t, hidden_state,3))
+	async_result4 = pool.apply_async(E_step_like_esec, (th_l, t, hidden_state,4))
+	
+
+	return_val1 = async_result1.get()
+	return_val2 = async_result2.get()
+	return_val3 = async_result3.get()
+	return_val4 = async_result4.get()
+
+	print("return_val1-",return_val1)
+	'''
+	return  0
 
 def E_step_like_esec(th_l,t,hidden_state,j):
 
-	print("buongiorno",j)
+	print("buongiorno",threading.get_ident())
+	time.sleep(10)
 
-	#g_1 = tf.Graph()
+	tf.reset_default_graph()
 
-	with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+	g_1 = tf.Graph()
+	with g_1.as_default():
+
+		with tf.Session() as sess:
 
 
-		var_EE, var_E = Reversed_Upward_Downward(th_l[j].sp_p, th_l[j].a, th_l[j].bi, th_l[j].pi, t, hidden_state)
+			var_EE, var_E = Reversed_Upward_Downward(th_l[j].sp_p, th_l[j].a, th_l[j].bi, th_l[j].pi, t, hidden_state)
 
-		print("prima run ",j)
+			print("prima run ",j)
 
-		print(sess.run([var_EE,var_E]))
+			var_EE, var_E = sess.run([var_EE,var_E])
 
-		print("dopo run",j)
+			print("dopo run",j)
 
-		sess.close
-	
+			sess.close
+		
 
-	with tf.Session() as sess:
+		with tf.Session() as sess:
 
-		like = log_likelihood_test(th_l[j].pi,th_l[j].sp_p,th_l[j].a,th_l[j].bi,var_EE,var_E,t,hidden_state)
-		like = sess.run(like)
+			like = log_likelihood_test(th_l[j].pi,th_l[j].sp_p,th_l[j].a,th_l[j].bi,var_EE,var_E,t,hidden_state)
+			like = sess.run(like)
 
-		sess.close
-	
-	print("ciao!",j)
+			sess.close
+		
+		print("finito!",j)
 
 	return [var_EE,var_E,like]
+	#return j*10
 
 
 
 
+def nCr(n,r):
+    f = math.factorial
+    return int(f(n) / f(r) / f(n-r))
 
 '''
 
