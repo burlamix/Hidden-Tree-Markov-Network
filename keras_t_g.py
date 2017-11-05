@@ -21,10 +21,10 @@ def HTM (m):
 
 	model = Sequential()
 	model.add(Dense(cl_size, activation= 'tanh' ,trainable=False,kernel_initializer=init_contrastive_matrix, input_dim=m))
-	model.add(Dense(K, activation= softmax ))
-	model.compile(optimizer= rmsprop ,
-	              loss= categorical_crossentropy ,
-	              metrics=[ accuracy ])
+	model.add(Dense(K, activation= 'softmax' ))
+	model.compile(optimizer= 'rmsprop' ,
+	              loss= 'categorical_crossentropy' ,
+	              metrics=[ 'accuracy' ])
 	return model
 
 def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
