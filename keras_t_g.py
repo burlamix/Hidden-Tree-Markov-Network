@@ -5,8 +5,9 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.models import Model
 from utils_keras_g import *
-#from GPU_E_M_utils import *
-from E_M_utils import *
+
+from GPU_E_M_utils import *
+#from E_M_utils import *
 
 
 K=11

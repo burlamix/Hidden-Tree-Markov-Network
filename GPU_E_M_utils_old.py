@@ -4,7 +4,7 @@ from tre_simple import *
 from parser import *
 #import pylab as pl
 
-#np.set_printoptions(threshold=np.nan)
+np.set_printoptions(threshold=np.nan)
 
 #hidden_state = 10
 N_SYMBOLS = 367
@@ -28,12 +28,8 @@ def modello(data_set,epoche,hidden_state):
 def testing(data_test,pi_l,sp_p_l,A_l,bi_l,hidden_state):
 
 
-    #class_result = np.zeros(len(data_test))
-    class_result = tf.zeros([len(data_test)],dtype=tf.float64)
-
-    #confusion_matrix = np.zeros((CLASSI,CLASSI))
-    confusion_matrix = tf.zeros([CLASSI,CLASSI],dtype=tf.float64)
-
+    class_result = np.zeros(len(data_test))
+    confusion_matrix = np.zeros((CLASSI,CLASSI))
     giusti=0
     errati=0
     for j in range(0,len(data_test)):
@@ -81,8 +77,8 @@ def testing(data_test,pi_l,sp_p_l,A_l,bi_l,hidden_state):
     print("errati ",errati)
     print("rate   ",    rate )
     print("confusion_matrix\n",confusion_matrix)
-    #np.savetxt('classi_risultato.out', class_result) 
-    #np.savetxt('rate.out', rate) 
+    #np.savetxt( classi_risultato.out , class_result) 
+    #np.savetxt( rate.out , rate) 
 
     return rate 
 
@@ -98,7 +94,7 @@ def training(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
     s_4=[]
     like_list =[]
 
-    #hidden_state da 2 a 20 non di piu, va calcolato l'algoritmo per i vari valori, che fanno cambiare il tutto di molto IMPORTANTE
+    #hidden_state da 2 a 20 non di piu, va calcolato l algoritmo per i vari valori, che fanno cambiare il tutto di molto IMPORTANTE
 
 
 
@@ -112,7 +108,7 @@ def training(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
     if bi is None:
         bi = random_sum_one2(1, hidden_state, N_SYMBOLS)
 
-    #per il numero delle epoco eseguo l'E-M
+    #per il numero delle epoco eseguo l E-M
 
     for i in range(0, epoche):
         #print("EPOCA: ",i)
@@ -168,7 +164,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
     s_4=[]
     like_list =[]
 
-    #hidden_state da 2 a 20 non di piu, va calcolato l'algoritmo per i vari valori, che fanno cambiare il tutto di molto IMPORTANTE
+    #hidden_state da 2 a 20 non di piu, va calcolato l algoritmo per i vari valori, che fanno cambiare il tutto di molto IMPORTANTE
 
 
 
@@ -182,7 +178,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
     if bi is None:
         bi = random_sum_one2(1, hidden_state, N_SYMBOLS)
 
-    #per il numero delle epoco eseguo l'E-M
+    #per il numero delle epoco eseguo l E-M
 
     for i in range(0, epoche):
         print("EPOCA: ",i)
@@ -243,20 +239,20 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
 
     #tf.reset_default_graph()
 
-    #pl.plot(s_4,color='red')
-    #pl.plot(s_3,color='blue')
-    #pl.plot(s_2,color='orange')
-    #pl.plot(s_1,color='green')
+    #pl.plot(s_4,color= red )
+    #pl.plot(s_3,color= blue )
+    #pl.plot(s_2,color= orange )
+    #pl.plot(s_1,color= green )
     #pl.plot(like_list)
 
 
-    #np.savetxt('55like_list.out', like_list) 
-    #np.savetxt('55s1.out', s_1) 
-    #np.savetxt('55s2.out', s_2) 
-    #np.savetxt('55s3.out', s_3) 
-    #np.savetxt('55s4.out', s_4) 
+    #np.savetxt( 55like_list.out , like_list) 
+    #np.savetxt( 55s1.out , s_1) 
+    #np.savetxt( 55s2.out , s_2) 
+    #np.savetxt( 55s3.out , s_3) 
+    #np.savetxt( 55s4.out , s_4) 
     #pl.show()
-    #pl.savefig('10.png')
+    #pl.savefig( 10.png )
 
 
     return pi,sp_p,A,bi
@@ -267,16 +263,31 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
 
 def Reversed_Upward_Downward(sp_p, A, bi, pi, t,hidden_state):
 
+
     # upward parameters beta
-    var_a_up_ward = tf.zeros([t.size, hidden_state],dtype=tf.float64)
-    var_up_ward = tf.zeros([t.size, hidden_state],dtype=tf.float64)
+    up_ward = np.zeros((t.size, hidden_state))
+    a_up_ward = np.zeros((t.size, hidden_state))
+
+    # internal node prior
+    in_prior = np.ones((hidden_state, t.size))
 
     # pairwise smoothed posterior
-    var_E = tf.zeros([t.size-1,hidden_state],dtype=tf.float64)
-    var_EE = tf.zeros([t.size, hidden_state, hidden_state],dtype=tf.float64)
+    E = np.zeros((t.size-1,hidden_state))
+    EE = np.zeros((t.size, hidden_state, hidden_state))
 
 
-    var_in_prior = tf.fill([hidden_state, t.size], tf.cast(1/hidden_state, dtype=tf.float64) )
+    for ii in range(0, hidden_state):
+        #for jj in range(t.size - len(t.struct[-1]), t.size):
+        for jj in range(0,t.size):
+            in_prior[ii, jj] = 1/hidden_state
+
+    var_in_prior = tf.constant(in_prior, dtype=tf.float64)
+
+    var_a_up_ward = tf.constant(a_up_ward, dtype=tf.float64)
+    var_up_ward = tf.constant(up_ward, dtype=tf.float64)
+
+    var_E = tf.constant(E, dtype=tf.float64)
+    var_EE = tf.constant(EE, dtype=tf.float64)
 
 
 
@@ -338,7 +349,7 @@ def compute_internal_node_prior(var_in_prior,sp_p,A,t,hidden_state):
     aux1 = tf.multiply(sp_p, A)  # broadcast implicito
 
 
-    # per ogni livello dell'albero
+    # per ogni livello dell albero
     for i in range(len(t.struct) - 2, -1, -1):
         nomi_figli = []
         for node in t.struct[i]:
@@ -422,7 +433,7 @@ def compute_19(A, bi, sp_p, a_up_ward, var_in_prior, var_up_ward, t, i,hidden_st
 
     slice_A = tf.transpose(tf.gather(tf.transpose(A, perm=[2, 1, 0]), posizione), perm=[0, 3, 2, 1])
 
-    slice_A = tf.transpose(slice_A,[2,0,1,3])         #DDDD------------------------------------------------------ ji
+    #slice_A = tf.transpose(slice_A,[2,0,1,3])         #DDDD------------------------------------------------------ ji
     #slice_A = tf.transpose(slice_A,[2,1,0,3])         #DDDD------------------------------------------------------ ji
 
     slice_var_up_war_provvisoria = tf.gather(var_up_ward, nomi)
@@ -649,13 +660,13 @@ def random_sum_one1(shape1):
     rand_sum_one = np.divide(rand, sum)
 
     return rand_sum_one
-#funzione ausiliaria per inizializzare in modo casuale tensori di 2 dimenzioni dati l'asse di
+#funzione ausiliaria per inizializzare in modo casuale tensori di 2 dimenzioni dati l asse di
 def random_sum_one2(axe,shape1,shape2):
 
     rand = np.random.uniform( 0, 1, [shape1, shape2])
     sum = np.sum(rand, axe)
 
-    #nel caso l'asse non e lo zero lo espando duplico cosi da poter dividere la matrice random per esso
+    #nel caso l asse non e lo zero lo espando duplico cosi da poter dividere la matrice random per esso
     if axe == 1:
         sum = np.expand_dims(sum, 1)
         sum = np.tile(sum, [1, shape2])
@@ -831,7 +842,7 @@ def log_likelihood(pi,sp_p,A,bi,var_EE_list,var_E_list,data_set,hidden_state):
                              [data_set[i].size - data_set[i].struct[-1][0].name, hidden_state])
 
         # prima sommatoria
-        # salvo e prelevo la lista dell'indicatore posizionale di ogni nodo foglia
+        # salvo e prelevo la lista dell indicatore posizionale di ogni nodo foglia
         posizione_foglie = []
         for node in data_set[i].struct[-1]:
             posizione_foglie.append(node.pos-1)
@@ -923,7 +934,7 @@ def log_likelihood_test(pi,sp_p,A,bi,var_EE_list,var_E_list,t,hidden_state):
                          [t.size - t.struct[-1][0].name, hidden_state])
 
     # prima sommatoria
-    # salvo e prelevo la lista dell'indicatore posizionale di ogni nodo foglia
+    # salvo e prelevo la lista dell indicatore posizionale di ogni nodo foglia
     posizione_foglie = []
     for node in t.struct[-1]:
         posizione_foglie.append(node.pos-1)
