@@ -4,7 +4,7 @@ from tre_simple import *
 from parser import *
 #import pylab as pl
 
-np.set_printoptions(threshold=np.nan)
+#np.set_printoptions(threshold=np.nan)
 
 #hidden_state = 10
 N_SYMBOLS = 367
@@ -28,8 +28,12 @@ def modello(data_set,epoche,hidden_state):
 def testing(data_test,pi_l,sp_p_l,A_l,bi_l,hidden_state):
 
 
-    class_result = np.zeros(len(data_test))
-    confusion_matrix = np.zeros((CLASSI,CLASSI))
+    #class_result = np.zeros(len(data_test))
+    class_result = tf.zeros([len(data_test)],dtype=tf.float64)
+
+    #confusion_matrix = np.zeros((CLASSI,CLASSI))
+    confusion_matrix = tf.zeros([CLASSI,CLASSI],dtype=tf.float64)
+
     giusti=0
     errati=0
     for j in range(0,len(data_test)):
@@ -263,31 +267,16 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
 
 def Reversed_Upward_Downward(sp_p, A, bi, pi, t,hidden_state):
 
-
     # upward parameters beta
-    up_ward = np.zeros((t.size, hidden_state))
-    a_up_ward = np.zeros((t.size, hidden_state))
-
-    # internal node prior
-    in_prior = np.ones((hidden_state, t.size))
+    var_a_up_ward = tf.zeros([t.size, hidden_state],dtype=tf.float64)
+    var_up_ward = tf.zeros([t.size, hidden_state],dtype=tf.float64)
 
     # pairwise smoothed posterior
-    E = np.zeros((t.size-1,hidden_state))
-    EE = np.zeros((t.size, hidden_state, hidden_state))
+    var_E = tf.zeros([t.size-1,hidden_state],dtype=tf.float64)
+    var_EE = tf.zeros([t.size, hidden_state, hidden_state],dtype=tf.float64)
 
 
-    for ii in range(0, hidden_state):
-        #for jj in range(t.size - len(t.struct[-1]), t.size):
-        for jj in range(0,t.size):
-            in_prior[ii, jj] = 1/hidden_state
-
-    var_in_prior = tf.constant(in_prior, dtype=tf.float64)
-
-    var_a_up_ward = tf.constant(a_up_ward, dtype=tf.float64)
-    var_up_ward = tf.constant(up_ward, dtype=tf.float64)
-
-    var_E = tf.constant(E, dtype=tf.float64)
-    var_EE = tf.constant(EE, dtype=tf.float64)
+    var_in_prior = tf.fill([hidden_state, t.size], tf.cast(1/hidden_state, dtype=tf.float64) )
 
 
 

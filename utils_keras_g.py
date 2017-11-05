@@ -72,10 +72,9 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 	lista_symbol = [[] for i in range (N_SYMBOLS)]
 	lista_tv = [[] for i in range (N_SYMBOLS)]
 	max_l = -1
-	for_pad = np.zeros([1,hidden_state])
+	for_pad = tf.zeros([1,hidden_state],dtype=tf.float64)
 
 	#aggiungo una riga di zeri in fondo per prelevare con la gather un termine inerte
-	#var_E_prov= np.concatenate((var_E_list,for_pad))
 	var_E_prov= tf.concat([var_E_list,for_pad],0)
 
 	#in modo da rendere piu veloce l  esecuzione mi salvo in una lista ordinatamente i nodi e le lero posizioni
@@ -143,11 +142,23 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 
 	#-----------------------bi------------------
 
-	tm_yu = np.zeros([int(t.size), N_SYMBOLS])
+	#tm_yu = np.zeros([int(t.size), N_SYMBOLS])
 
+	#for level in t.struct:
+	#	for node in level:
+	#		tm_yu[node.name, node.label] = 1
+	indici = []
+	valori = []
+	# complessa operazione per eseguire il docice commentato sopra in tf
+	tm_yu = tf.zeros([int(t.size), N_SYMBOLS],dtype=tf.float32)
 	for level in t.struct:
 		for node in level:
-			tm_yu[node.name, node.label] = 1
+			indici.append([node.name,node.label])
+			valori.append(1.0)
+	delta = tf.SparseTensor(indici, valori, [int(t.size), N_SYMBOLS])
+
+	tm_yu = tm_yu + tf.sparse_tensor_to_dense(delta)
+	tm_yu=tf.cast(tm_yu, tf.float64)
 
 	#var_E_list lo espando per 367
 	e_aux = tf.expand_dims(var_E_list, 2)
@@ -220,7 +231,7 @@ def init_theta_old(hidden_state,empty=False):
 		th[3] =   random_sum_one2(1, hidden_state, N_SYMBOLS)					# bi
 
 	return th
-
+'''
 class theta:
 	def __init__(self,hidden_state,empty=False):
 		if(empty == False):
@@ -233,3 +244,4 @@ class theta:
 			self[1] = None
 			self[2] =    None
 			self[3] =   None
+'''

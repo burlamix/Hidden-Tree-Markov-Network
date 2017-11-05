@@ -8,6 +8,7 @@ from utils_keras_g import *
 #from GPU_E_M_utils import *
 from E_M_utils import *
 
+
 K=11
 MAX_CHILD = 32
 N_SYMBOLS = 367
@@ -46,13 +47,13 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 
 		for j in range(0,len(data_set)):
 			
-			print("albero: ",j)
+			print("     tree: ",j)
 
 			like_list=[]
 
 			with tf.Graph().as_default():
 
-				with tf.Session() as sess:
+				with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
 
 					ph_a = tf.placeholder(shape=[hidden_state, hidden_state, MAX_CHILD], dtype=tf.float64)
 					ph_sp_p = tf.placeholder(shape=[MAX_CHILD], dtype=tf.float64)
@@ -75,6 +76,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 
 					#AGGIORNO I PARAMETRI 
 					new_sp_p, new_a, new_bi, new_pi  = param_update(delta_sp_p, delta_a, delta_bi, delta_pi, ph_sp_p, ph_a, ph_bi, ph_pi, sf_sp_p, sf_a, sf_bi, sf_pi, lerning_rate,var_EE,var_E,hidden_state,data_set[j],batch_size,j)
+					
 
 					#CALCOLO IL TUTTO
 					for k in range(m):
@@ -94,21 +96,31 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 				#aggiorno il gradente dei parametri dei HTMM
 				free_th_l = delta_th
 
-				htm.train_on_batch(like_list_aux,one_hot_lab)
+				p = htm.train_on_batch(like_list_aux,one_hot_lab)
+				#DDDD con questo puoi farci il grafico
+
+				#htm.fit(like_list_aux,one_hot_lab,epochs=1)
 
 				like_list_aux = np.zeros((batch_size,m), dtype=np.float64)
 				one_hot_lab = np.zeros((batch_size,K), dtype=np.float64)
+
 				delta_th = [init_theta_zero(hidden_state) for i in range(m)] 
+
+
+
+
+
 
 
 	return htm , free_th_l
 
 
-def test(htm,free_th_l,data_set):
+def test(htm,free_th_l,data_set,m,hidden_state):
 
 
-	like_list_aux = np.zeros((batch_size,m), dtype=np.float64)
-	one_hot_lab = np.zeros((batch_size,K), dtype=np.float64)
+	like_list_aux = np.zeros((len(data_set),m), dtype=np.float64)
+	one_hot_lab = np.zeros((len(data_set),K), dtype=np.float64)
+
 
 	for j in range(0,len(data_set)):
 		
@@ -137,17 +149,16 @@ def test(htm,free_th_l,data_set):
 
 				#CALCOLO IL TUTTO
 				for k in range(m):
-					xlike = sess.run([like],{ ph_a: free_th_l[k][0] , ph_sp_p: free_th_l[k][1] ,ph_bi: free_th_l[k][3], ph_pi: free_th_l[k][2]}) 
+					xlike = sess.run(like,{ ph_a: free_th_l[k][0] , ph_sp_p: free_th_l[k][1] ,ph_bi: free_th_l[k][3], ph_pi: free_th_l[k][2]}) 
 					like_list.append(xlike)
 
 				sess.close()
 
-
 		#metto la lista dei vaori di likelihood nella lista che verrà appasata come batch
-		like_list_aux[j%batch_size]=like_list
+		like_list_aux[j]=like_list
 		#crea la lista come vuole keras per l'obbiettivo
-		one_hot_lab[j%batch_size][int(data_set[j].classe)-1]=1
+		one_hot_lab[j][int(data_set[j].classe)-1]=1
 
-	result = htm.evaluate(like_list_aux,one_hot_lab)
+	result = htm.test_on_batch(like_list_aux,one_hot_lab)
 
 	return result
