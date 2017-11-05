@@ -6,8 +6,8 @@ from keras.models import Sequential
 from keras.layers import Input, Dense
 from keras.models import Model
 from keras import backend as bk
-#from GPU_E_M_utils import *
-from E_M_utils import *
+from GPU_E_M_utils import *
+#from E_M_utils import *
 
 from keras.activations import softmax
 
@@ -234,7 +234,7 @@ def param_update(ph_sp_p, ph_a, ph_bi, ph_pi,sf_sp_p, sf_a, sf_bi, sf_pi,lerning
 
 def E_step_like(th_l,t,hidden_state):
 
-	# è qui che può essere fatto multithreading!!!!!!
+	# e qui che può essere fatto multithreading!!!!!!
 		#print("	  e_m: ",j)
 
 	var_EE, var_E = Reversed_Upward_Downward(th_l[1], th_l[0], th_l[3], th_l[2], t, hidden_state)
@@ -393,7 +393,7 @@ def E_step_like_m(th_l,t,m,hidden_state):
 	like_list =[]
 
 
-	# è qui che può essere fatto multithreading!!!!!!
+	# e qui che può essere fatto multithreading!!!!!!
 	for j in range(0,m):
 
 		#print("	  e_m: ",j)

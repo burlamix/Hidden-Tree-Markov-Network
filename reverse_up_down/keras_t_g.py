@@ -6,8 +6,8 @@ from keras.models import Sequential
 from keras.layers import Input, Dense
 from keras.models import Model
 from keras import backend as bk
-#from GPU_E_M_utils import *
-from E_M_utils import *
+from GPU_E_M_utils import *
+#from E_M_utils import *
 from utils_keras_g import *
 
 
@@ -83,42 +83,12 @@ for i in range (0,epoche):
 
 			
 			for i in range(M):
-				free_th_l[i][1], free_th_l[i][3], free_th_l[i][2], free_th_l[i][0], xlike= sess.run([new_sp_p, new_bi, new_pi, new_a,like],{ ph_a: free_th_l[i][0] , ph_sp_p: free_th_l[i][1] ,ph_bi: free_th_l[i][3], ph_pi: free_th_l[i][2] })
+				free_th_l[i][1], free_th_l[i][3], free_th_l[i][2], free_th_l[i][0], xlike = sess.run([new_sp_p, new_bi, new_pi, new_a,like],{ ph_a: free_th_l[i][0] , ph_sp_p: free_th_l[i][1] ,ph_bi: free_th_l[i][3], ph_pi: free_th_l[i][2] })
 				#print(xlike)
 				like_list.append(xlike)
 			sess.close()
 
-			'''
 
-			g_1 = tf.Graph()
-			with g_1.as_default():
-
-				with tf.Session() as sess:
-			
-					print("  albero: ",j)
-
-					#normalizzo i parametri del modello
-
-
-					#calcolo E_step e il loglikelihood 
-					var_EE_list,var_E_list,like_list = E_step_like(th_l,data_set[j],M,hidden_state)
-
-
-					#calcolo i nuovi parametri
-					free_th_l = param_update(free_th_l,th_l,lerning_rate,var_EE_list,var_E_list,hidden_state,data_set[j],M)
-
-
-					#print("run")				
-					#like_list , free_th_l = sess.run([like_list,free_th_l])
-					start_time = time.monotonic()
-
-					like_list ,free_th_l = sess.run([like_list,free_th_l])
-
-					end_time = time.monotonic()
-					#print(timedelta(seconds=end_time - start_time))
-
-					sess.close()
-			'''
 
 
 		one_hot_lab = np.zeros((1,K), dtype=np.float64)
