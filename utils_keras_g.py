@@ -1,8 +1,8 @@
 import numpy as np
 import tensorflow as tf
 import math
-#from E_M_utils import *
-from GPU_E_M_utils import *
+from E_M_utils import *
+#from GPU_E_M_utils import *
 
 
 MAX_CHILD=32

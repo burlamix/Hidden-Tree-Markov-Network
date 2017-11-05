@@ -6,8 +6,8 @@ from keras.layers import Dense
 from keras.models import Model
 from utils_keras_g import *
 
-from GPU_E_M_utils import *
-#from E_M_utils import *
+#from GPU_E_M_utils import *
+from E_M_utils import *
 
 
 K=11
@@ -54,7 +54,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 
 			with tf.Graph().as_default():
 
-				with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+				with tf.Session() as sess:
 
 					ph_a = tf.placeholder(shape=[hidden_state, hidden_state, MAX_CHILD], dtype=tf.float64)
 					ph_sp_p = tf.placeholder(shape=[MAX_CHILD], dtype=tf.float64)
@@ -125,7 +125,7 @@ def test(htm,free_th_l,data_set,m,hidden_state):
 
 	for j in range(0,len(data_set)):
 		
-		print("albero: ",j)
+		#print("albero: ",j)
 
 		like_list=[]
 
