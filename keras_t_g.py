@@ -40,20 +40,20 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 
 	for i in range (0,epoche):
 
-		print("EPOCA: ",i)
+		#print("EPOCA: ",i)
 
 		like_list_aux = np.zeros((batch_size,m), dtype=np.float64)
 		one_hot_lab = np.zeros((batch_size,K), dtype=np.float64)
 
 		for j in range(0,len(data_set)):
 			
-			print("     tree: ",j)
+			#print("     tree: ",j)
 
 			like_list=[]
 
 			with tf.Graph().as_default():
 
-				with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+				with tf.Session() as sess:
 
 					ph_a = tf.placeholder(shape=[hidden_state, hidden_state, MAX_CHILD], dtype=tf.float64)
 					ph_sp_p = tf.placeholder(shape=[MAX_CHILD], dtype=tf.float64)
