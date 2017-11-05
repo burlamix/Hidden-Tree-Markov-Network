@@ -205,7 +205,7 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 	return_delta_a    = tot_delta_a +   ((1/batch_size)*delta_a)
 	return_delta_sp_p = tot_delta_sp_p+ ((1/batch_size)*delta_sp_p)
 
-	# se è il momento di calcolare di aggiornare il gradiente lo aggiorno
+	# se e il momento di calcolare di aggiornare il gradiente lo aggiorno
 	if( j%batch_size == batch_size-1):
 
 		return_delta_bi   = ph_bi +  ((lerning_rate)*return_delta_bi)
