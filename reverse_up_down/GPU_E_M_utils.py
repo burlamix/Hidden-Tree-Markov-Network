@@ -436,7 +436,7 @@ def compute_19(A, bi, sp_p, a_up_ward, var_in_prior, var_up_ward, t, i,hidden_st
     #slice_A = tf.transpose(slice_A,[2,0,1,3])         #DDDD------------------------------------------------------ ji
     #slice_A = tf.transpose(slice_A,[2,1,0,3])         #DDDD------------------------------------------------------ ji
 
-    slice_var_up_war_provvisoria = tf.gather(var_up_ward, nomi, axis=0)
+    slice_var_up_war_provvisoria = tf.gather(var_up_ward, nomi)
     slice_var_up_war_provvisoria = tf.expand_dims(slice_var_up_war_provvisoria,2)
     slice_var_up_war_provvisoria = tf.tile(slice_var_up_war_provvisoria, [1, 1, hidden_state, 1])
     slice_var_up_war_provvisoria = tf.transpose(slice_var_up_war_provvisoria,[0,3,2,1])         #DDDD------------------------------------------------------ ji
