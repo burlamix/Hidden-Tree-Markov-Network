@@ -26,7 +26,7 @@ MAX_CHILD = 32
 
 
 lerning_rate=0.2
-epoche=1
+epoche=4
 hidden_state = 2
 
 #cl_size = sc.comb(M, 2).astype(np.int64)
@@ -98,8 +98,8 @@ for i in range (0,epoche):
 		like_list_aux = np.zeros((1,M), dtype=np.float64)
 		like_list_aux[0]=like_list
 
-		#model.train_on_batch(like_list_aux,one_hot_lab)
-		model.fit(like_list_aux, one_hot_lab, epochs=1)
+		model.train_on_batch(like_list_aux,one_hot_lab)
+		#model.fit(like_list_aux, one_hot_lab, epochs=1)
 		tf.reset_default_graph()
 
 		

@@ -72,13 +72,15 @@ def my_init2(shape, dtype=None):
 
 
 def softmax_for_all_old(ph_sp_p, ph_a, ph_bi, ph_pi,hidden_state):
-
-	new_th_l = init_theta(hidden_state,empty=True) 
-
-	sf_a= tf.nn.softmax(ph_a,dim=0)
-	sf_sp_p = tf.nn.softmax(ph_sp_p)
-	sf_pi = tf.nn.softmax(ph_pi,dim=1)
-	sf_bi = tf.nn.softmax(ph_bi,dim=0)
+	
+	sf_a = tf.exp(ph_a) / tf.reduce_sum(tf.exp(ph_a), 0)
+	sf_sp_p = tf.exp(ph_sp_p) / tf.reduce_sum(tf.exp(ph_sp_p), 0)	
+	sf_bi = tf.exp(ph_bi) / tf.reduce_sum(tf.exp(ph_bi), 0) 
+	num_pi = tf.exp(ph_pi)
+	den_pi = tf.reduce_sum(tf.exp(ph_pi), 1)
+	den_pi = tf.expand_dims(den_pi,1)
+	den_pi = tf.tile(den_pi,[1,MAX_CHILD])
+	sf_pi = num_pi / den_pi
 
 	return sf_sp_p, sf_a, sf_bi, sf_pi
 
