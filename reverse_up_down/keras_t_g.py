@@ -34,9 +34,9 @@ cl_size = nCr(M,2)
 
 
 #FILE2 = "inex05.train.elastic.tree"
-#FILE2 = "test_1000.tree"
+FILE2 = "test_1000.tree"
 #FILE2 = "test_500.tree"
-FILE2 = "test_100.tree"
+#FILE2 = "test_100.tree"
 
 data_set = dataset_parser(FILE2)
 
@@ -62,6 +62,7 @@ for i in range (0,epoche):
 
 	# per ogni epoca analizzo tutto il dataset
 	for j in range(0,len(data_set)):
+		print("albero: ",i)
 
 		like_list=[]
 		with tf.Session() as sess:
