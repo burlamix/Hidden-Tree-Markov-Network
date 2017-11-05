@@ -118,7 +118,7 @@ def param_update(ph_sp_p, ph_a, ph_bi, ph_pi,sf_sp_p, sf_a, sf_bi, sf_pi,lerning
 	#var_E_prov= np.concatenate((var_E_list,for_pad))
 	var_E_prov= tf.concat([var_E_list,for_pad],0)
 
-	#in modo da rendere più veloce l'esecuzione mi salvo in una lista ordinatamente i nodi e le lero posizioni
+	#in modo da rendere piu veloce l  esecuzione mi salvo in una lista ordinatamente i nodi e le lero posizioni
 	for l_number in t.N_L:
 		if max_l < l_number:
 			max_l = l_number
@@ -234,7 +234,7 @@ def param_update(ph_sp_p, ph_a, ph_bi, ph_pi,sf_sp_p, sf_a, sf_bi, sf_pi,lerning
 
 def E_step_like(th_l,t,hidden_state):
 
-	# e qui che può essere fatto multithreading!!!!!!
+	# e qui che puo essere fatto multithreading!!!!!!
 		#print("	  e_m: ",j)
 
 	var_EE, var_E = Reversed_Upward_Downward(th_l[1], th_l[0], th_l[3], th_l[2], t, hidden_state)
@@ -271,7 +271,7 @@ def param_update_m(free_th_l,th_l,lerning_rate,var_EE_list,var_E_list,hidden_sta
 		#var_E_prov= np.concatenate((var_E_list[j],for_pad))
 		var_E_prov= tf.concat([var_E_list[j],for_pad],0)
 
-		#in modo da rendere più veloce l'esecuzione mi salvo in una lista ordinatamente i nodi e le lero posizioni
+		#in modo da rendere piu veloce l  esecuzione mi salvo in una lista ordinatamente i nodi e le lero posizioni
 		for l_number in t.N_L:
 			if max_l < l_number:
 				max_l = l_number
@@ -393,7 +393,7 @@ def E_step_like_m(th_l,t,m,hidden_state):
 	like_list =[]
 
 
-	# e qui che può essere fatto multithreading!!!!!!
+	# e qui che puo essere fatto multithreading!!!!!!
 	for j in range(0,m):
 
 		#print("	  e_m: ",j)
