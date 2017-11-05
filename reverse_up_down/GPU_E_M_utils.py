@@ -94,7 +94,7 @@ def training(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
     s_4=[]
     like_list =[]
 
-    #hidden_state da 2 a 20 non di più, va calcolato l algoritmo per i vari valori, che fanno cambiare il tutto di molto IMPORTANTE
+    #hidden_state da 2 a 20 non di piu, va calcolato l algoritmo per i vari valori, che fanno cambiare il tutto di molto IMPORTANTE
 
 
 
@@ -164,7 +164,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
     s_4=[]
     like_list =[]
 
-    #hidden_state da 2 a 20 non di più, va calcolato l algoritmo per i vari valori, che fanno cambiare il tutto di molto IMPORTANTE
+    #hidden_state da 2 a 20 non di piu, va calcolato l algoritmo per i vari valori, che fanno cambiare il tutto di molto IMPORTANTE
 
 
 
@@ -702,7 +702,7 @@ def M_step(var_EE_list,var_E_list,data_set,hidden_state):
 
         # MULTINOMIAL
         # calcolo resized_tm_yu##
-        #                                        DDDD   uesto puo essere fatta in maniera migliore e più semplice andando a lavorare sugli indici
+        #                                        DDDD   uesto puo essere fatta in maniera migliore e piu semplice andando a lavorare sugli indici
         for i in range(0, len(var_EE_list)):
             tm_yu = np.zeros([int(data_set[i].size), N_SYMBOLS])
             for level in data_set[i].struct:
