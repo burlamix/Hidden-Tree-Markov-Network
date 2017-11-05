@@ -14,12 +14,12 @@ hidden_state = 10
 batch_size = 32
 
 #TRANIG SET
-traning_set = "inex05.train.elastic.tree"
+traning_set = "data/inex05.train.elastic.tree"
 #traning_set = "data/train_100.tree"
 #traning_set = "data/train_4.tree"
 
 #TEST SET
-#test_set = "inex05.test.elastic.tree"
+#test_set = "data/inex05.test.elastic.tree"
 #test_set = "data/test_100.tree"
 test_set = "data/test_4.tree"
 
