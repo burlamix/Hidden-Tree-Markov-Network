@@ -20,11 +20,11 @@ def HTM (m):
 	cl_size = nCr(m,2)
 
 	model = Sequential()
-	model.add(Dense(cl_size, activation='tanh',trainable=False,kernel_initializer=init_contrastive_matrix, input_dim=m))
-	model.add(Dense(K, activation='softmax'))
-	model.compile(optimizer='rmsprop',
-	              loss='categorical_crossentropy',
-	              metrics=['accuracy'])
+	model.add(Dense(cl_size, activation= tanh ,trainable=False,kernel_initializer=init_contrastive_matrix, input_dim=m))
+	model.add(Dense(K, activation= softmax ))
+	model.compile(optimizer= rmsprop ,
+	              loss= categorical_crossentropy ,
+	              metrics=[ accuracy ])
 	return model
 
 def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
@@ -34,7 +34,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 	#inizializzo random i parametri del modello
 	free_th_l = [init_theta(hidden_state) for i in range(m)] 
 
-	#contiene i valori della batch per l'aggioramento del gradiente
+	#contiene i valori della batch per l aggioramento del gradiente
 	delta_th = [init_theta_zero(hidden_state) for i in range(m)] 
 
 
@@ -86,9 +86,9 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 					sess.close()
 
 
-			#metto la lista dei vaori di likelihood nella lista che verrà appasata come batch
+			#metto la lista dei vaori di likelihood nella lista che verra appasata come batch
 			like_list_aux[j%batch_size]=like_list
-			#crea la lista come vuole keras per l'obbiettivo
+			#crea la lista come vuole keras per l obbiettivo
 			one_hot_lab[j%batch_size][int(data_set[j].classe)-1]=1
 
 			if( j%batch_size == batch_size-1):
@@ -154,9 +154,9 @@ def test(htm,free_th_l,data_set,m,hidden_state):
 
 				sess.close()
 
-		#metto la lista dei vaori di likelihood nella lista che verrà appasata come batch
+		#metto la lista dei vaori di likelihood nella lista che verra appasata come batch
 		like_list_aux[j]=like_list
-		#crea la lista come vuole keras per l'obbiettivo
+		#crea la lista come vuole keras per l obbiettivo
 		one_hot_lab[j][int(data_set[j].classe)-1]=1
 
 	result = htm.test_on_batch(like_list_aux,one_hot_lab)
