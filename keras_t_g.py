@@ -41,14 +41,14 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 
 	for i in range (0,epoche):
 
-		#print("EPOCA: ",i)
+		print("EPOCA: ",i)
 
 		like_list_aux = np.zeros((batch_size,m), dtype=np.float64)
 		one_hot_lab = np.zeros((batch_size,K), dtype=np.float64)
 
 		for j in range(0,len(data_set)):
 			
-			#print("     tree: ",j)
+			print("     tree: ",j)
 
 			like_list=[]
 

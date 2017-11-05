@@ -7,7 +7,7 @@ m=30
 
 lerning_rate=0.01
 
-epoche = 2
+epoche = 1
 
 hidden_state = 10
 
@@ -19,7 +19,7 @@ traning_set = "data/train_100.tree"
 #traning_set = "data/train_100.tree"
 
 #TEST SET
-#test_set = "inex05.train.elastic.tree"
+#test_set = "inex05.test.elastic.tree"
 test_set = "data/test_100.tree"
 #test_set = "data/test_100.tree"
 
@@ -35,7 +35,7 @@ modello = HTM(m)
 htm , lamda = training(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train)
 
 
-
+print("test...")
 
 result 		= test(htm,lamda,data_test,m,hidden_state)
 
