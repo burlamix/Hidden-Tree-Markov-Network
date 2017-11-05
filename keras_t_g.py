@@ -20,7 +20,7 @@ def HTM (m):
 	cl_size = nCr(m,2)
 
 	model = Sequential()
-	model.add(Dense(cl_size, activation= tanh ,trainable=False,kernel_initializer=init_contrastive_matrix, input_dim=m))
+	model.add(Dense(cl_size, activation= 'tanh' ,trainable=False,kernel_initializer=init_contrastive_matrix, input_dim=m))
 	model.add(Dense(K, activation= softmax ))
 	model.compile(optimizer= rmsprop ,
 	              loss= categorical_crossentropy ,
