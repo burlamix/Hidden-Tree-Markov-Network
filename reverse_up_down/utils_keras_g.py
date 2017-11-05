@@ -44,6 +44,17 @@ def init_theta_old(hidden_state,empty=False):
 
 	return th
 
+def init_theta_zero(hidden_state,empty=False):
+
+	th =[[],[],[],[]]
+	if(empty == False):
+
+		th[0] =   np.zeros((hidden_state,hidden_state, MAX_CHILD)) 		#a
+		th[1] =   np.zeros((MAX_CHILD))									# sp_p
+		th[2] =   np.zeros((hidden_state, MAX_CHILD))					# pi
+		th[3] =   np.zeros((hidden_state, N_SYMBOLS))					# bi
+
+	return th
 
 def init_theta(hidden_state,empty=False):
 
@@ -102,7 +113,7 @@ def softmax_for_all(th_l,hidden_state):
 
 
 
-def param_update(ph_sp_p, ph_a, ph_bi, ph_pi,sf_sp_p, sf_a, sf_bi, sf_pi,lerning_rate,var_EE_list,var_E_list,hidden_state,t):
+def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p, ph_a, ph_bi, ph_pi,sf_sp_p, sf_a, sf_bi, sf_pi,lerning_rate,var_EE_list,var_E_list,hidden_state,t,batch_size,j):
 
 
 
@@ -225,26 +236,27 @@ def param_update(ph_sp_p, ph_a, ph_bi, ph_pi,sf_sp_p, sf_a, sf_bi, sf_pi,lerning
 
 
 
-	ph_bi   = ph_bi + lerning_rate*delta_bi
-	ph_pi   = ph_pi + lerning_rate*delta_pi
-	ph_a    = ph_a + lerning_rate*delta_a
-	ph_sp_p = ph_sp_p+ lerning_rate*delta_sp_p
+	ph_bi   = ph_bi + ((1/batch_size)*delta_bi)
+	ph_pi   = ph_pi + ((1/batch_size)*delta_pi)
+	ph_a    = ph_a + ((1/batch_size)*delta_a)
+	ph_sp_p = ph_sp_p+ ((1/batch_size)*delta_sp_p)
+
+	#aggiorno il delta del gradiente
+	return_delta_bi   = tot_delta_bi +  ((1/batch_size)*delta_bi)
+	return_delta_pi   = tot_delta_pi +  ((1/batch_size)*delta_pi)
+	return_delta_a    = tot_delta_a +   ((1/batch_size)*delta_a)
+	return_delta_sp_p = tot_delta_sp_p+ ((1/batch_size)*delta_sp_p)
+
+	# se è il momento di calcolare di aggiornare il gradiente lo aggiorno
+	if( j%batch_size == batch_size-1):
+
+		return_delta_bi   = ph_bi +  ((lerning_rate)*return_delta_bi)
+		return_delta_pi   = ph_pi +  ((lerning_rate)*return_delta_pi)
+		return_delta_a    = ph_a +   ((lerning_rate)*return_delta_a)
+		return_delta_sp_p = ph_sp_p+ ((lerning_rate)*return_delta_sp_p)
 
 
-	return ph_sp_p, ph_a, ph_bi, ph_pi
-
-
-
-def E_step_like(th_l,t,hidden_state):
-
-	# e qui che puo essere fatto multithreading!!!!!!
-		#print("	  e_m: ",j)
-
-	var_EE, var_E = Reversed_Upward_Downward(th_l[1], th_l[0], th_l[3], th_l[2], t, hidden_state)
-
-	like = log_likelihood_test(th_l[2],th_l[1],th_l[0],th_l[3],var_EE,var_E,t,hidden_state)
-
-	return [var_EE,var_E,like]
+	return return_delta_sp_p, return_delta_a, return_delta_bi, return_delta_pi
 
 
 
@@ -385,9 +397,6 @@ def param_update_m(free_th_l,th_l,lerning_rate,var_EE_list,var_E_list,hidden_sta
 
 
 	return free_th_l
-
-
-
 
 def E_step_like_m(th_l,t,m,hidden_state):
 
