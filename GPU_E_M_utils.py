@@ -422,7 +422,7 @@ def compute_19(A, bi, sp_p, a_up_ward, var_in_prior, var_up_ward, t, i,hidden_st
 
     slice_A = tf.transpose(tf.gather(tf.transpose(A, perm=[2, 1, 0]), posizione), perm=[0, 3, 2, 1])
 
-    slice_A = tf.transpose(slice_A,[2,0,1,3])         #DDDD------------------------------------------------------ ji
+    #slice_A = tf.transpose(slice_A,[2,0,1,3])         #DDDD------------------------------------------------------ ji
     #slice_A = tf.transpose(slice_A,[2,1,0,3])         #DDDD------------------------------------------------------ ji
 
     slice_var_up_war_provvisoria = tf.gather(var_up_ward, nomi)
