@@ -6,8 +6,8 @@ from keras.models import Sequential
 from keras.layers import Input, Dense
 from keras.models import Model
 from keras import backend as bk
-from GPU_E_M_utils import *
-#from E_M_utils import *
+#from GPU_E_M_utils import *
+from E_M_utils import *
 from utils_keras_g import *
 
 
@@ -19,20 +19,23 @@ from datetime import timedelta
 np.random.seed(42)
 
 
-M=50
+M=30
 K=11
 N_SYMBOLS = 367
 MAX_CHILD = 32
 
 
 lerning_rate=0.2
-epoche=4
-hidden_state = 2
+epoche=1
+hidden_state = 10
 
 #cl_size = sc.comb(M, 2).astype(np.int64)
 cl_size = nCr(M,2)
 
 
+#FILE2 = "inex05.train.elastic.tree"
+#FILE2 = "test_1000.tree"
+#FILE2 = "test_500.tree"
 FILE2 = "test_100.tree"
 
 data_set = dataset_parser(FILE2)

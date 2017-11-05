@@ -6,8 +6,8 @@ from keras.models import Sequential
 from keras.layers import Input, Dense
 from keras.models import Model
 from keras import backend as bk
-from GPU_E_M_utils import *
-#from E_M_utils import *
+#from GPU_E_M_utils import *
+from E_M_utils import *
 
 from keras.activations import softmax
 
