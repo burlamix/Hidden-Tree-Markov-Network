@@ -121,10 +121,7 @@ def param_update(ph_sp_p, ph_a, ph_bi, ph_pi,sf_sp_p, sf_a, sf_bi, sf_pi,lerning
 	var_E_prov= tf.concat([var_E_list,for_pad],0)
 
 	#in modo da rendere piu veloce l  esecuzione mi salvo in una lista ordinatamente i nodi e le lero posizioni
-	for l_number in t.N_L:
-		if max_l < l_number:
-			max_l = l_number
-	max_l=max_l+1
+
 
 	#prelevo il nomo dei nodi che sono l esimi figli
 	for level in t.struct[:-1]:
@@ -132,6 +129,10 @@ def param_update(ph_sp_p, ph_a, ph_bi, ph_pi,sf_sp_p, sf_a, sf_bi, sf_pi,lerning
 			for child_n in range(0, len(nodo.children)):
 				lista_n_in_ee[child_n].append(nodo.children[child_n].name)
 				lista_n_in_e[child_n].append(nodo.children[child_n].name)
+
+	for internal_list in lista_n_in_ee:
+		if max_l < len(internal_list):
+			max_l=len(internal_list)
 
 	# uniformo la lunghezza cosi da non rendere il tensore sparso per la futura gather
 	for k  in range(0, len(lista_n_in_ee)):

@@ -62,7 +62,7 @@ for i in range (0,epoche):
 
 	# per ogni epoca analizzo tutto il dataset
 	for j in range(0,len(data_set)):
-		print("albero: ",i)
+		print("albero: ",j)
 
 		like_list=[]
 		with tf.Session() as sess:
@@ -86,8 +86,8 @@ for i in range (0,epoche):
 			new_sp_p, new_a, new_bi, new_pi  = param_update(ph_sp_p, ph_a, ph_bi, ph_pi, sf_sp_p, sf_a, sf_bi, sf_pi, lerning_rate,var_EE,var_E,hidden_state,data_set[j])
 
 			
-			for i in range(M):
-				free_th_l[i][1], free_th_l[i][3], free_th_l[i][2], free_th_l[i][0], xlike = sess.run([new_sp_p, new_bi, new_pi, new_a,like],{ ph_a: free_th_l[i][0] , ph_sp_p: free_th_l[i][1] ,ph_bi: free_th_l[i][3], ph_pi: free_th_l[i][2] })
+			for k in range(M):
+				free_th_l[k][1], free_th_l[k][3], free_th_l[k][2], free_th_l[k][0], xlike = sess.run([new_sp_p, new_bi, new_pi, new_a,like],{ ph_a: free_th_l[k][0] , ph_sp_p: free_th_l[k][1] ,ph_bi: free_th_l[k][3], ph_pi: free_th_l[k][2] })
 				#print(xlike)
 				like_list.append(xlike)
 			sess.close()
