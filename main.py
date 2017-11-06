@@ -27,7 +27,7 @@ test_set = "data/inex05.test.elastic.tree"
 
 #Train senza validation
 data_train = dataset_parser(traning_set)
-#random.shuffle(data_train)
+random.shuffle(data_train)
 
 data_test = dataset_parser(test_set)
 
