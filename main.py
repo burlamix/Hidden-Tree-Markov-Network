@@ -26,14 +26,14 @@ test_set = "data/inex05.test.elastic.tree"
 
 
 #Train senza validation
-#data_train = dataset_parser(traning_set)
+data_train = dataset_parser(traning_set)
 #random.shuffle(data_train)
 
 data_test = dataset_parser(test_set)
 
 #train con 3-validation
-data_train = dataset_parser_class(traning_set)
-data_train = divide_tre_validation_htm(data_train)
+#data_train = dataset_parser_class(traning_set)
+#data_train = divide_tre_validation_htm(data_train)
 
 
 modello = HTM(m,lerning_rate)
