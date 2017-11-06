@@ -133,7 +133,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 		plot_list.append(loss_function)
 
 
-	np.savetxt('plot_quato_inex', plot_list) 
+	np.savetxt('inex_val', plot_list) 
 	#pl.plot(plot_list)
 	#pl.show()
 
