@@ -9,8 +9,6 @@ from utils_keras_g import *
 #from GPU_E_M_utils import *
 from E_M_utils import *
 
-#import pylab as pl
-
 
 K=11
 MAX_CHILD = 32
@@ -32,7 +30,6 @@ def HTM (m):
 
 def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 
-	plot_list=[]
 	#calcolo la dimensione del primo livello di nodi interno
 
 	#inizializzo random i parametri del modello
@@ -44,13 +41,11 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 
 	for i in range (0,epoche):
 
-		print("EPOCA: ",i)
+		#print("EPOCA: ",i)
 
 		like_list_aux = np.zeros((batch_size,m), dtype=np.float64)
 		one_hot_lab = np.zeros((batch_size,K), dtype=np.float64)
 
-		like_list_epoca= np.zeros((batch_size,m), dtype=np.float64)
-		one_hot_lab_epoca = np.zeros((batch_size,K), dtype=np.float64)
 		for j in range(0,len(data_set)):
 			
 			#print("     tree: ",j)
@@ -97,17 +92,12 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 			#crea la lista come vuole keras per l obbiettivo
 			one_hot_lab[j%batch_size][int(data_set[j].classe)-1]=1
 
-			like_list_epoca[j%batch_size]=like_list
-			#crea la lista come vuole keras per l obbiettivo
-			one_hot_lab_epoca[j%batch_size][int(data_set[j].classe)-1]=1
-
 			if( j%batch_size == batch_size-1):
 
 				#aggiorno il gradente dei parametri dei HTMM
 				free_th_l = delta_th
 
 				p = htm.train_on_batch(like_list_aux,one_hot_lab)
-				#print("		batch		",p)
 				#DDDD con questo puoi farci il grafico
 
 				#htm.fit(like_list_aux,one_hot_lab,epochs=1)
@@ -116,15 +106,11 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 				one_hot_lab = np.zeros((batch_size,K), dtype=np.float64)
 
 				delta_th = [init_theta_zero(hidden_state) for i in range(m)] 
-	
-		loss_function,accuracy = htm.test_on_batch(like_list_epoca,one_hot_lab_epoca)
-		print("           ",loss_function)
-		plot_list.append(loss_function)
 
 
-	np.savetxt('plot_quato_inex', plot_list) 
-	#pl.plot(plot_list)
-	#pl.show()
+
+
+
 
 
 	return htm , free_th_l
@@ -175,14 +161,5 @@ def test(htm,free_th_l,data_set,m,hidden_state):
 		one_hot_lab[j][int(data_set[j].classe)-1]=1
 
 	result = htm.test_on_batch(like_list_aux,one_hot_lab)
-
-	return result
-
-
-def train_and_test(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train):
-
-	htm , lamda = training(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train[0])
-
-	result 		= test(htm,lamda,data_train[1],m,hidden_state)
 
 	return result

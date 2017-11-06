@@ -194,11 +194,6 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 
 
 
-	ph_bi   = ph_bi + ((1/batch_size)*delta_bi)
-	ph_pi   = ph_pi + ((1/batch_size)*delta_pi)
-	ph_a    = ph_a + ((1/batch_size)*delta_a)
-	ph_sp_p = ph_sp_p+ ((1/batch_size)*delta_sp_p)
-
 	#aggiorno il delta del gradiente
 	return_delta_bi   = tot_delta_bi +  ((1/batch_size)*delta_bi)
 	return_delta_pi   = tot_delta_pi +  ((1/batch_size)*delta_pi)
@@ -207,7 +202,6 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 
 	# se e il momento di calcolare di aggiornare il gradiente lo aggiorno
 	if( j%batch_size == batch_size-1):
-
 		return_delta_bi   = ph_bi +  ((lerning_rate)*return_delta_bi)
 		return_delta_pi   = ph_pi +  ((lerning_rate)*return_delta_pi)
 		return_delta_a    = ph_a +   ((lerning_rate)*return_delta_a)

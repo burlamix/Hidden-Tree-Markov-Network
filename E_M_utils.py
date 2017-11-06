@@ -2,6 +2,7 @@ import numpy as np
 import tensorflow as tf
 from tre_simple import *
 from parser import *
+import random
 #import pylab as pl
 
 #np.set_printoptions(threshold=np.nan)
@@ -410,9 +411,12 @@ def compute_19(A, bi, sp_p, a_up_ward, var_in_prior, var_up_ward, t, i,hidden_st
     # mi calcolo il numeratore della
     posizione = []
     nomi = []
+    labels = []
+
     for node in t.struct[i]:
         posizione.append([])
         nomi.append([])
+        labels.append(node.label)
         for child in node.children:
             posizione[-1].append(child.pos-1)
             nomi[-1].append(child.name)
@@ -439,17 +443,6 @@ def compute_19(A, bi, sp_p, a_up_ward, var_in_prior, var_up_ward, t, i,hidden_st
 
     sli_var_in_prior = tf.ones([hidden_state, 0], tf.float64)
 
-    labels = []
-    nomi = []
-    figli = []
-    for node in t.struct[i]:
-        labels.append(node.label)
-        nomi.append(node.name)
-        figli.append([])
-        for child in node.children:
-           figli[-1].append(child.name)
-        for j in range(len(figli[-1]), MAX_CHILD):#MMM qui puoi farlo fino a max lunghezza invehe che
-            figli[-1].append(0)
     sli_ph_bi = tf.gather(bi, labels, axis=1)
 
     aux_sp = tf.expand_dims(sp_p,0)
@@ -1028,6 +1021,43 @@ def divide_tre_validation (dataset):
         d_dataset[2][1] += dataset[i][:split_size]
 
     return d_dataset
+
+
+    
+def divide_tre_validation_htm (dataset):
+
+    d_dataset = [[[],[]],[[],[]],[[],[]]]
+
+    for i in range(0,11):
+        split_size = len(dataset[i])//3
+
+    #A
+        #traning set
+        d_dataset[0][0] += dataset[i][:split_size*2]
+        #validation set
+        d_dataset[0][1] += dataset[i][split_size*2:]
+
+    #B
+        #traning set
+        d_dataset[1][0] +=dataset[i][:split_size] + dataset[i][split_size*2:]
+        #validation set
+        d_dataset[1][1] += dataset[i][split_size:split_size*2]
+
+    #C
+        #traning set
+        d_dataset[2][0] +=dataset[i][split_size:]
+        #validation set
+        d_dataset[2][1] += dataset[i][:split_size]
+
+
+    # randomizo l'ordine
+    random.shuffle(d_dataset[0][0])
+    random.shuffle(d_dataset[1][0])
+    random.shuffle(d_dataset[2][0])
+
+
+    return d_dataset
+
 
 
 
