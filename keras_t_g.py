@@ -5,21 +5,21 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.models import Model
 from utils_keras_g import *
-from keras import optimizers
 
 #from GPU_E_M_utils import *
 from E_M_utils import *
 
 #import pylab as pl
 
+from keras import optimizers
 
 K=11
 MAX_CHILD = 32
 N_SYMBOLS = 367
 
-#rmsprop
 
-def HTM (m):
+
+def HTM (m,lerning_rate):
 
 	cl_size = nCr(m,2)
 
@@ -27,10 +27,18 @@ def HTM (m):
 	model.add(Dense(cl_size, activation= 'tanh' ,trainable=False,kernel_initializer=init_contrastive_matrix, input_dim=m))
 	model.add(Dense(K, activation= 'softmax' ))
 
-	sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.5, nesterov=True)
+	
+	sgd = optimizers.SGD(lr=lerning_rate, decay=0, momentum=0.5, nesterov=True)
 	model.compile(optimizer=sgd ,
 	              loss= 'categorical_crossentropy' ,
 	              metrics=[ 'accuracy' ])
+	
+	'''
+	model.compile(optimizer= 'rmsprop' ,
+	              loss= 'categorical_crossentropy' ,
+	              metrics=[ 'accuracy' ])
+	'''
+	
 	return model
 
 def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
@@ -125,7 +133,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 		plot_list.append(loss_function)
 
 
-	np.savetxt('inex_1000', plot_list) 
+	np.savetxt('plot_quato_inex', plot_list) 
 	#pl.plot(plot_list)
 	#pl.show()
 
