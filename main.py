@@ -29,7 +29,7 @@ test_set = "data/inex05.test.elastic.tree"
 #data_train = dataset_parser(traning_set)
 #random.shuffle(data_train)
 
-#data_test = dataset_parser(test_set)
+data_test = dataset_parser(test_set)
 
 #train con 3-validation
 data_train = dataset_parser_class(traning_set)
@@ -41,13 +41,13 @@ modello = HTM(m,lerning_rate)
 
 
 
-result = train_and_test(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train[0])
+#result = train_and_test(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train[0])
 
-#htm , lamda = training(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train[:1000])
+htm , lamda = training(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train[:1000])
 
-#print("test...")
+print("test...")
 
-#result 		= test(htm,lamda,data_test,m,hidden_state)
+result 		= test(htm,lamda,data_test,m,hidden_state)
 
 
 
