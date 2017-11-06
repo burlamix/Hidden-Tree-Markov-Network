@@ -5,6 +5,7 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.models import Model
 from utils_keras_g import *
+from keras import optimizers
 
 #from GPU_E_M_utils import *
 from E_M_utils import *
@@ -16,7 +17,7 @@ K=11
 MAX_CHILD = 32
 N_SYMBOLS = 367
 
-
+#rmsprop
 
 def HTM (m):
 
@@ -25,7 +26,9 @@ def HTM (m):
 	model = Sequential()
 	model.add(Dense(cl_size, activation= 'tanh' ,trainable=False,kernel_initializer=init_contrastive_matrix, input_dim=m))
 	model.add(Dense(K, activation= 'softmax' ))
-	model.compile(optimizer= 'rmsprop' ,
+
+	sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.5, nesterov=True)
+	model.compile(optimizer=sgd ,
 	              loss= 'categorical_crossentropy' ,
 	              metrics=[ 'accuracy' ])
 	return model
@@ -49,8 +52,8 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 		like_list_aux = np.zeros((batch_size,m), dtype=np.float64)
 		one_hot_lab = np.zeros((batch_size,K), dtype=np.float64)
 
-		like_list_epoca= np.zeros((batch_size,m), dtype=np.float64)
-		one_hot_lab_epoca = np.zeros((batch_size,K), dtype=np.float64)
+		like_list_epoca= np.zeros((len(data_set),m), dtype=np.float64)
+		one_hot_lab_epoca = np.zeros((len(data_set),K), dtype=np.float64)
 		for j in range(0,len(data_set)):
 			
 			#print("     tree: ",j)
@@ -97,9 +100,9 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 			#crea la lista come vuole keras per l obbiettivo
 			one_hot_lab[j%batch_size][int(data_set[j].classe)-1]=1
 
-			like_list_epoca[j%batch_size]=like_list
-			#crea la lista come vuole keras per l obbiettivo
-			one_hot_lab_epoca[j%batch_size][int(data_set[j].classe)-1]=1
+			#valori per il test sull'epoca
+			like_list_epoca[j]=like_list
+			one_hot_lab_epoca[j][int(data_set[j].classe)-1]=1
 
 			if( j%batch_size == batch_size-1):
 
@@ -122,7 +125,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 		plot_list.append(loss_function)
 
 
-	np.savetxt('plot_quato_inex', plot_list) 
+	np.savetxt('prima_fold', plot_list) 
 	#pl.plot(plot_list)
 	#pl.show()
 
