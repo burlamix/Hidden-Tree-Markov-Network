@@ -125,7 +125,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 		plot_list.append(loss_function)
 
 
-	np.savetxt('prima_fold', plot_list) 
+	np.savetxt('inex_1000', plot_list) 
 	#pl.plot(plot_list)
 	#pl.show()
 

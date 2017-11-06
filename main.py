@@ -7,7 +7,7 @@ m=60
 
 lerning_rate=0.01
 
-epoche = 30
+epoche = 50
 
 hidden_state = 10
 
@@ -20,20 +20,20 @@ traning_set = "data/inex05.train.elastic.tree"
 #traning_set = "data/test_4.tree"
 
 #TEST SET
-#test_set = "data/inex05.test.elastic.tree"
+test_set = "data/inex05.test.elastic.tree"
 #test_set = "data/test_1000.tree"
 #test_set = "data/test_10c.tree"
 
 
 #Train senza validation
-#data_train = dataset_parser(traning_set)
-#random.shuffle(data_train)
+data_train = dataset_parser(traning_set)
+random.shuffle(data_train)
 
-#data_test = dataset_parser(test_set)
+data_test = dataset_parser(test_set)
 
 #train con 3-validation
-data_train = dataset_parser_class(traning_set)
-data_train = divide_tre_validation_htm(data_train)
+#data_train = dataset_parser_class(traning_set)
+#data_train = divide_tre_validation_htm(data_train)
 
 
 modello = HTM(m)
@@ -41,15 +41,13 @@ modello = HTM(m)
 
 
 
+#result = train_and_test(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train[0])
 
-
-result = train_and_test(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train[0])
-
-#htm , lamda = training(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train)
+htm , lamda = training(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train[:1000])
 
 #print("test...")
 
-#result 		= test(htm,lamda,data_test,m,hidden_state)
+result 		= test(htm,lamda,data_test,m,hidden_state)
 
 
 
