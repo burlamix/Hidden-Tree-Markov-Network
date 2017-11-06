@@ -7,22 +7,22 @@ m=30
 
 lerning_rate=0.01
 
-epoche = 3
+epoche = 30
 
 hidden_state = 10
 
 
-batch_size = 1
+batch_size = 128
 
 #TRANIG SET
 #traning_set = "data/inex05.train.elastic.tree"
 #traning_set = "data/train_1000.tree"
-traning_set = "data/test_1.tree"
+traning_set = "data/train_1000.tree"
 
 #TEST SET
 #test_set = "data/inex05.test.elastic.tree"
 #test_set = "data/test_1000.tree"
-test_set = "data/test_1.tree"
+test_set = "data/test_1000.tree"
 
 
 #Train senza validation
@@ -52,7 +52,7 @@ result 		= test(htm,lamda,data_test,m,hidden_state)
 
 
 
-print("\n\n          FINAL  LOSS AND ARRACY  ON TEST           ",result)
+print("\n\n          FINAL  LOSS AND ACCURACY ON TEST           ",result)
 print("\n\n")
 
 
