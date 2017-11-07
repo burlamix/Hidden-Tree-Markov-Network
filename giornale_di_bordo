@@ -1,0 +1,14 @@
+
+tti = tutto inex
+
+tti_ lerning rate _ epoche
+
+
+
+
+
+TEST DEL 7 :
+
+fissi M = 30 e HS = 10
+
+vario LR = 0.01 , 0.001, 0.0001,  exponentia decading rate = -6 -3 

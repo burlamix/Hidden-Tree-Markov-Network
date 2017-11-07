@@ -5,13 +5,11 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.models import Model
 from utils_keras_g import *
-
 #from GPU_E_M_utils import *
 from E_M_utils import *
-
 #import pylab as pl
-
 from keras import optimizers
+
 
 K=11
 MAX_CHILD = 32
@@ -19,7 +17,7 @@ N_SYMBOLS = 367
 
 
 
-def HTM (m,lerning_rate):
+def HTM (m,lerning_rate,dec):
 
 	cl_size = nCr(m,2)
 
@@ -28,20 +26,15 @@ def HTM (m,lerning_rate):
 	model.add(Dense(K, activation= 'softmax' ))
 
 	
-	sgd = optimizers.SGD(lr=lerning_rate, decay=0, momentum=0.5, nesterov=True)
+	sgd = optimizers.SGD(lr=lerning_rate, decay=dec, momentum=0.5, nesterov=True)
 	model.compile(optimizer=sgd ,
 	              loss= 'categorical_crossentropy' ,
 	              metrics=[ 'accuracy' ])
 	
-	'''
-	model.compile(optimizer= 'rmsprop' ,
-	              loss= 'categorical_crossentropy' ,
-	              metrics=[ 'accuracy' ])
-	'''
 	
 	return model
 
-def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
+def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
 
 	plot_list=[]
 	#calcolo la dimensione del primo livello di nodi interno
@@ -55,7 +48,10 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 
 	for i in range (0,epoche):
 
-		print("EPOCA: ",i)
+		#print("EPOCA: ",i)
+
+		#ordino in modo casuale il dataset
+		random.shuffle(data_set)
 
 		like_list_aux = np.zeros((batch_size,m), dtype=np.float64)
 		one_hot_lab = np.zeros((batch_size,K), dtype=np.float64)
@@ -116,8 +112,10 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 
 				#aggiorno il gradente dei parametri dei HTMM
 				free_th_l = delta_th
-
+				lerning_rate = lerning_rate * (1. / (1. + (decay * i)))
+				
 				p = htm.train_on_batch(like_list_aux,one_hot_lab)
+
 				#print("		batch		",p)
 				#DDDD con questo puoi farci il grafico
 
@@ -133,7 +131,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set):
 		plot_list.append(loss_function)
 
 
-	np.savetxt('inex_1000_01', plot_list) 
+	np.savetxt('tti_01_e6', plot_list) 
 	#pl.plot(plot_list)
 	#pl.show()
 
