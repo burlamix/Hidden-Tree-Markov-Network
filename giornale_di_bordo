@@ -12,3 +12,7 @@ TEST DEL 7 :
 fissi M = 30 e HS = 10
 
 vario LR = 0.01 , 0.001, 0.0001,  exponentia decading rate = -6 -3 
+
+m=30 hidden_state = 10 lerning_rate=0.01 decay=1e-3 epoche = 35 batch_size = 32
+
+tti_01_e6 pid 153612
