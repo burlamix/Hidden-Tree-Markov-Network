@@ -6,7 +6,7 @@ import random
 m=30
 hidden_state = 10
 
-lerning_rate=0.001
+lerning_rate=0.0001
 decay=1e-6
 
 epoche = 35
