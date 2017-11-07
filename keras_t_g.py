@@ -131,7 +131,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
 		plot_list.append(loss_function)
 
 
-	np.savetxt('tti_01_e6', plot_list) 
+	np.savetxt('plot_tti_01_e6', plot_list) 
 	#pl.plot(plot_list)
 	#pl.show()
 
