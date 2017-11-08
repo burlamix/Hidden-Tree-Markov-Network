@@ -11,7 +11,7 @@ from keras import optimizers
 
 #import pylab as pl
 
-nome_file = "aaa_rms_01_e6"
+nome_file = "aaa_adadelt_01_e6"
 
 
 K=11
@@ -30,8 +30,8 @@ def HTM (m,lerning_rate,dec):
 
 	
 	#sgd = optimizers.SGD(lr=lerning_rate, decay=dec, momentum=0.5, nesterov=True)
-	sgd = keras.optimizers.RMSprop(lr=lerning_rate, rho=0.9, epsilon=1e-08, decay=0.0)
-
+	#sgd = keras.optimizers.RMSprop(lr=lerning_rate, rho=0.9, epsilon=1e-08, decay=0.0)
+	sgd = keras.optimizers.Adadelta(lr=lerning_rate, rho=0.95, epsilon=1e-08, decay=0.0)
 	model.compile(optimizer=sgd ,
 	              loss= 'categorical_crossentropy' ,
 	              metrics=[ 'accuracy' ])
@@ -118,7 +118,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
 
 				#aggiorno il gradente dei parametri dei HTMM
 				free_th_l = delta_th
-				lerning_rate = lerning_rate * (1. / (1. + (decay * i)))
+				#lerning_rate = lerning_rate * (1. / (1. + (decay * i)))
 				
 				p = htm.train_on_batch(like_list_aux,one_hot_lab)
 
