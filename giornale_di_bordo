@@ -23,6 +23,7 @@ fissi M = 30 e HS = 10
 
 rms_01_e0
 provo RMS con learning rata che si gira da solo , e LR fisso per theta dei mattoni
+rms_01_e6
 provo RMS con learning rata che si gira da solo , e LR esponenziale per mattoni
 provo RMS con learning rata che si gira da solo , 
 

@@ -11,7 +11,7 @@ from keras import optimizers
 
 #import pylab as pl
 
-nome_file = "aaa_rms_01_e0"
+nome_file = "aaa_rms_01_e6"
 
 
 K=11
@@ -118,7 +118,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
 
 				#aggiorno il gradente dei parametri dei HTMM
 				free_th_l = delta_th
-				#lerning_rate = lerning_rate * (1. / (1. + (decay * i)))
+				lerning_rate = lerning_rate * (1. / (1. + (decay * i)))
 				
 				p = htm.train_on_batch(like_list_aux,one_hot_lab)
 
