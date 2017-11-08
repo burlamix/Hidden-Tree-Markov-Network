@@ -9,7 +9,7 @@ from utils_keras_g import *
 from E_M_utils import *
 from keras import optimizers
 
-import pylab as pl
+#import pylab as pl
 
 nome_file = "aaa_rms_01_e0"
 
@@ -141,8 +141,8 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
 
 
 	np.savetxt(nome_file+"_plot", plot_list) 
-	pl.plot(plot_list)
-	pl.show()
+	#pl.plot(plot_list)
+	#pl.show()
 
 
 	return htm , free_th_l
