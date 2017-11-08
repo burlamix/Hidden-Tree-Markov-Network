@@ -7,7 +7,7 @@ m=30
 hidden_state = 10
 
 lerning_rate=0.01
-decay=1e-2
+decay=1e-6
 
 epoche = 35
 
@@ -17,7 +17,7 @@ batch_size = 32
 #TRANIG SET
 traning_set = "data/inex05.train.elastic.tree"
 #traning_set = "data/train_1000.tree"
-#traning_set = "data/test_1.tree"
+#traning_set = "data/test_4.tree"
 
 #TEST SET
 test_set = "data/inex05.test.elastic.tree"

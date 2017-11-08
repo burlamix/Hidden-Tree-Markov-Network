@@ -7,8 +7,11 @@ from keras.models import Model
 from utils_keras_g import *
 #from GPU_E_M_utils import *
 from E_M_utils import *
-#import pylab as pl
 from keras import optimizers
+
+import pylab as pl
+
+nome_file = "aaa_rms_01_e0"
 
 
 K=11
@@ -26,7 +29,9 @@ def HTM (m,lerning_rate,dec):
 	model.add(Dense(K, activation= 'softmax' ))
 
 	
-	sgd = optimizers.SGD(lr=lerning_rate, decay=dec, momentum=0.5, nesterov=True)
+	#sgd = optimizers.SGD(lr=lerning_rate, decay=dec, momentum=0.5, nesterov=True)
+	sgd = keras.optimizers.RMSprop(lr=lerning_rate, rho=0.9, epsilon=1e-08, decay=0.0)
+
 	model.compile(optimizer=sgd ,
 	              loss= 'categorical_crossentropy' ,
 	              metrics=[ 'accuracy' ])
@@ -45,6 +50,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
 	#contiene i valori della batch per l aggioramento del gradiente
 	delta_th = [init_theta_zero(hidden_state) for i in range(m)] 
 
+	file_write = open("testtest.txt", "a")
 
 	for i in range (0,epoche):
 
@@ -112,12 +118,11 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
 
 				#aggiorno il gradente dei parametri dei HTMM
 				free_th_l = delta_th
-				lerning_rate = lerning_rate * (1. / (1. + (decay * i)))
+				#lerning_rate = lerning_rate * (1. / (1. + (decay * i)))
 				
 				p = htm.train_on_batch(like_list_aux,one_hot_lab)
 
 				#print("		batch		",p)
-				#DDDD con questo puoi farci il grafico
 
 				#htm.fit(like_list_aux,one_hot_lab,epochs=1)
 
@@ -128,12 +133,16 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
 	
 		loss_function,accuracy = htm.test_on_batch(like_list_epoca,one_hot_lab_epoca)
 		print("           ",loss_function)
+
+		with open(nome_file, "a") as myfile:
+		    myfile.write(str(loss_function)+"\n")
+
 		plot_list.append(loss_function)
 
 
-	np.savetxt('plot_tti_01_e2', plot_list) 
-	#pl.plot(plot_list)
-	#pl.show()
+	np.savetxt(nome_file+"_plot", plot_list) 
+	pl.plot(plot_list)
+	pl.show()
 
 
 	return htm , free_th_l
