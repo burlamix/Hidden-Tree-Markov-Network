@@ -7,7 +7,7 @@ m=30
 hidden_state = 10
 
 lerning_rate=0.001
-decay=1e-6
+decay=1e-3
 
 epoche = 35
 
