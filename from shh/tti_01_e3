@@ -1,0 +1,50 @@
+2017-11-07 13:38:58.939184: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-07 13:38:58.939240: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-07 13:38:58.939254: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-07 13:38:58.939262: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-07 13:38:58.939270: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+Using TensorFlow backend.
+            1.49386
+            1.36439
+            1.36819
+            1.38453
+            1.37704
+            1.36507
+            1.34783
+            1.32932
+            1.31083
+            1.29567
+            1.28072
+            1.26847
+            1.2567
+            1.2474
+            1.23755
+            1.22839
+            1.22137
+            1.21312
+            1.20616
+            1.19948
+            1.19399
+            1.18953
+            1.18354
+            1.17903
+            1.17373
+            1.17
+            1.16562
+            1.16142
+            1.15766
+            1.15407
+            1.15117
+            1.1474
+            1.14431
+            1.1414
+            1.13852
+test...
+
+
+          FINAL  LOSS AND ACCURACY ON TEST            [1.1623067, 0.60590315]
+
+
+
+292952.42user 80207.29system 46:38:25elapsed 222%CPU (0avgtext+0avgdata 532488maxresident)k
+0inputs+40outputs (0major+3054392140minor)pagefaults 0swaps

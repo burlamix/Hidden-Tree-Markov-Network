@@ -9,7 +9,7 @@ from utils_keras_g import *
 from E_M_utils import *
 from keras import optimizers
 
-#import pylab as pl
+import pylab as pl
 
 nome_file = "aaa_adadelt_01_e6"
 
@@ -29,9 +29,9 @@ def HTM (m,lerning_rate,dec):
 	model.add(Dense(K, activation= 'softmax' ))
 
 	
-	#sgd = optimizers.SGD(lr=lerning_rate, decay=dec, momentum=0.5, nesterov=True)
+	sgd = optimizers.SGD(lr=lerning_rate, decay=dec, momentum=0.5, nesterov=True)
 	#sgd = keras.optimizers.RMSprop(lr=lerning_rate, rho=0.9, epsilon=1e-08, decay=0.0)
-	sgd = keras.optimizers.Adadelta(lr=lerning_rate, rho=0.95, epsilon=1e-08, decay=0.0)
+	#sgd = keras.optimizers.Adadelta(lr=lerning_rate, rho=0.95, epsilon=1e-08, decay=0.0)
 	model.compile(optimizer=sgd ,
 	              loss= 'categorical_crossentropy' ,
 	              metrics=[ 'accuracy' ])
@@ -54,7 +54,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
 
 	for i in range (0,epoche):
 
-		#print("EPOCA: ",i)
+		print("EPOCA: ",i)
 
 		#ordino in modo casuale il dataset
 		random.shuffle(data_set)
@@ -66,7 +66,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
 		one_hot_lab_epoca = np.zeros((len(data_set),K), dtype=np.float64)
 		for j in range(0,len(data_set)):
 			
-			#print("     tree: ",j)
+			print("     tree: ",j)
 
 			like_list=[]
 
@@ -118,6 +118,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
 
 				#aggiorno il gradente dei parametri dei HTMM
 				free_th_l = delta_th
+
 				#lerning_rate = lerning_rate * (1. / (1. + (decay * i)))
 				
 				p = htm.train_on_batch(like_list_aux,one_hot_lab)
@@ -141,8 +142,8 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
 
 
 	np.savetxt(nome_file+"_plot", plot_list) 
-	#pl.plot(plot_list)
-	#pl.show()
+	pl.plot(plot_list)
+	pl.show()
 
 
 	return htm , free_th_l

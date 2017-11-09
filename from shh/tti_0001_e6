@@ -1,0 +1,50 @@
+2017-11-07 13:37:19.751814: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-07 13:37:19.751862: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-07 13:37:19.751872: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-07 13:37:19.751879: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-07 13:37:19.751886: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+Using TensorFlow backend.
+            2.49735
+            2.34414
+            2.27567
+            2.23603
+            2.21069
+            2.19345
+            2.17944
+            2.16499
+            2.14915
+            2.13103
+            2.11073
+            2.09082
+            2.072
+            2.05362
+            2.03684
+            2.02071
+            2.00602
+            1.99153
+            1.97802
+            1.96519
+            1.95245
+            1.94059
+            1.92917
+            1.91799
+            1.90709
+            1.89659
+            1.88637
+            1.87636
+            1.86669
+            1.85725
+            1.84809
+            1.83915
+            1.83035
+            1.82182
+            1.81352
+test...
+
+
+          FINAL  LOSS AND ACCURACY ON TEST            [1.826768, 0.42049471]
+
+
+
+296256.39user 93343.60system 47:44:53elapsed 226%CPU (0avgtext+0avgdata 526844maxresident)k
+0inputs+40outputs (0major+3348230623minor)pagefaults 0swaps
