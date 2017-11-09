@@ -12,7 +12,7 @@ decay=1e-6
 epoche = 35
 
 
-batch_size = 3
+batch_size = 1
 
 #TRANIG SET
 traning_set = "data/inex05.train.elastic.tree"
@@ -20,8 +20,8 @@ traning_set = "data/inex05.train.elastic.tree"
 #traning_set = "data/test_4.tree"
 
 #TEST SET
-#test_set = "data/inex05.test.elastic.tree"
-test_set = "data/test_1000.tree"
+test_set = "data/inex05.test.elastic.tree"
+#test_set = "data/test_1000.tree"
 #test_set = "data/test_4.tree"
 
 
@@ -43,7 +43,7 @@ modello = HTM(m,lerning_rate,decay)
 
 #result = train_and_test(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train[0])
 
-htm , lamda = training(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train[:1000],decay)
+htm , lamda = training(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train,decay)
 
 print("test...")
 
