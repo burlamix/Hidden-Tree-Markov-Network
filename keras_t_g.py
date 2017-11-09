@@ -11,7 +11,7 @@ from keras import optimizers
 
 #import pylab as pl
 
-nome_file = "b1_01_e6"
+nome_file = "s_1000_b1_01_e6"
 
 
 K=11
@@ -65,7 +65,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
 		one_hot_lab_epoca = np.zeros((len(data_set),K), dtype=np.float64)
 		for j in range(0,len(data_set)):
 			
-			print("     tree: ",j)
+			#print("     tree: ",j)
 
 			like_list=[]
 

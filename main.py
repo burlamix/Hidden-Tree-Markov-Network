@@ -30,6 +30,7 @@ data_train = dataset_parser(traning_set)
 random.shuffle(data_train)
 
 data_test = dataset_parser(test_set)
+random.shuffle(data_test)
 
 #train con 3-validation
 #data_train = dataset_parser_class(traning_set)
@@ -43,11 +44,11 @@ modello = HTM(m,lerning_rate,decay)
 
 #result = train_and_test(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train[0])
 
-htm , lamda = training(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train,decay)
+htm , lamda = training(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train[:1000],decay)
 
 print("test...")
 
-result 		= test(htm,lamda,data_test,m,hidden_state)
+result 		= test(htm,lamda,data_test[:1000],m,hidden_state)
 
 
 
@@ -57,14 +58,3 @@ print("\n\n          FINAL  LOSS AND ACCURACY ON TEST           ",result)
 print("\n\n")
 
 
-
-
-''' 
-	iterable = [data_train[0],data_train[1],data_train[2]]
-	pool = multiprocessing.Pool()
-	func = partial(train_and_test, modello,hidden_state,m,lerning_rate,epoche,batch_size)
-	result = pool.map(func, iterable)
-	pool.close()
-	pool.join()
-	print(result)
-'''
