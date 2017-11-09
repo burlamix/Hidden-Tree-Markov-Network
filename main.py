@@ -9,20 +9,19 @@ hidden_state = 10
 lerning_rate=0.01
 decay=1e-6
 
-epoche = 35
+epoche = 30
 
-
-batch_size = 1
+batch_size = 32
 
 #TRANIG SET
-#traning_set = "data/inex05.train.elastic.tree"
+traning_set = "data/inex05.train.elastic.tree"
 #traning_set = "data/train_1000.tree"
-traning_set = "data/test_1.tree"
+#traning_set = "data/test_40.tree"
 
 #TEST SET
-#test_set = "data/inex05.test.elastic.tree"
+test_set = "data/inex05.test.elastic.tree"
 #test_set = "data/test_1000.tree"
-test_set = "data/test_1.tree"
+#test_set = "data/test_100.tree"
 
 
 #Train senza validation
@@ -44,7 +43,7 @@ modello = HTM(m,lerning_rate,decay)
 
 #result = train_and_test(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train[0])
 
-htm , lamda = training(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train,decay)
+htm , lamda = training(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train[:900],decay)
 
 print("test...")
 
