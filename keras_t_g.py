@@ -11,7 +11,7 @@ from keras import optimizers
 
 #import pylab as pl
 
-nome_file = "new_900_b1_01_e6"
+nome_file = "new_900_b1_01_e6_32"
 
 
 K=11
