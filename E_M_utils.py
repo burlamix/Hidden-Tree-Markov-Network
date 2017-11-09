@@ -186,7 +186,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
     #per il numero delle epoco eseguo l'E-M
 
     for i in range(0, epoche):
-        print("EPOCA: ",i)
+        #print("EPOCA: ",i)
 
         var_EE_list = []
         var_E_list = []
@@ -217,6 +217,10 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
             new_pi,new_sp_p,new_A,new_bi = sess.run([new_pi,new_sp_p,new_A,new_bi])
 
             sess.close
+        #print("-------",t1)
+        #print("-----2",t2)
+        #print("------3",t3)
+        #print(t4)
         tf.reset_default_graph()
 
         pi = new_pi
@@ -236,7 +240,8 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
             s_3.append(s3)
             s_4.append(s4)
             like_list.append(tot)
-
+            #print(tot)
+            
             sess.close
         tf.reset_default_graph()
     tf.reset_default_graph()
@@ -388,6 +393,7 @@ def a_up_ward_foglie(var_a_up_ward,ris_17_t,A,var_in_prior,t,hidden_state):
         posizione.append(node.pos-1) 
 
     slice_A = tf.gather(A, posizione, axis=2)
+
     slice_in_prior = tf.gather(var_in_prior, padri, axis=1)
 
     up_war_foglie = tf.expand_dims(ris_17_t,2)
@@ -487,6 +493,7 @@ def compute_21(A,var_in_prior,var_a_up_ward,ris_19,i,t,hidden_state):
         up_war_foglie = tf.expand_dims(ris_19,2)
         up_war_foglie = tf.tile(up_war_foglie, [1, 1, hidden_state])
         up_war_foglie = tf.transpose(up_war_foglie,[2,1,0])         #DDDD------------------------------------------------------ ji
+        #up_war_foglie = tf.transpose(up_war_foglie,[1,2,0])         #DDDD------------------------------------------------------ ji
 
         numerator = tf.multiply(slice_A, up_war_foglie)
         numerator = tf.reduce_sum(numerator,[1])
@@ -543,9 +550,11 @@ def compute_24(sp_p, A, var_E, var_EE, var_up_ward, var_in_prior, var_a_up_ward,
     sli_sp_p_aux = tf.gather(sp_p, posizione)
     sli_A = tf.gather(A, posizione, axis=2)
     sli_A = tf.transpose(sli_A, perm=[2, 0, 1])   #DDD   --------------------ij
+    #sli_A = tf.transpose(sli_A, perm=[2, 1, 0])   #XXX   --------------------ij
+
     #per il den
     sli_in_prior = tf.gather(var_in_prior, padri, axis=1)
-    sli_var_a_up_ward = tf.gather(var_a_up_ward, fratelli)             # qui non e padri ma e FRATELLI del nodo in questione
+    sli_var_a_up_ward = tf.gather(var_a_up_ward, fratelli)     
     sli_sp_pos = tf.gather(sp_p,fratelli_pos)
     # per il numeratore
     sli_E = tf.expand_dims(sli_E, 1)
@@ -588,12 +597,16 @@ def compute_24(sp_p, A, var_E, var_EE, var_up_ward, var_in_prior, var_a_up_ward,
 
     #uniformarel la somma in moso che faccio uno su j+i (tutto)
 
-    uniform = tf.reduce_sum(ris_24, [1,2])
-    uniform = tf.expand_dims(uniform, 1)
-    uniform = tf.expand_dims(uniform, 1)
-    uniform = tf.tile(uniform, [1, hidden_state,hidden_state])
-    ris_24 = tf.divide(ris_24, uniform)
+    ris_24 = tf.transpose(ris_24, perm=[0, 2, 1])   #XXX   --------------------ij
 
+    #uniformare o non uniformare ? questa è la domanda
+    #uniform = tf.reduce_sum(ris_24, [1,2])
+    #uniform = tf.expand_dims(uniform, 1)
+    #uniform = tf.expand_dims(uniform, 1)
+    #uniform = tf.tile(uniform, [1, hidden_state,hidden_state])
+    #ris_24 = tf.divide(ris_24, uniform)
+
+    
     return ris_24
 #funzione che
 def inglobe_ris_liv(ris_24, var_EE, t, i,hidden_state):
@@ -805,6 +818,7 @@ def M_step(var_EE_list,var_E_list,data_set,hidden_state):
         pi,sp_p,bi,A = sess.run([result_prior,result_sp,result_multinomial,result_state_trans])
 
         sess.close
+
 
     return result_prior,result_sp,result_state_trans,result_multinomial
 
