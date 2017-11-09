@@ -32,8 +32,13 @@ provo Adadelta  , e LR fisso per theta dei mattoni
 ____---------------------------------------------------------------------------------
 test del 9
 
+NOTA BENE 6 E 3 SONO INVERTITI
 b1_01_e6
 tutto training ed test
+nohup time python main.py > s_1000_b1_01_e3.txt &			
+nohup time python main.py > s_1000_b1_001_e3.txt &
+
+
 
 s_1000_b1_01_e6
 s_1000_b1_001_e6
