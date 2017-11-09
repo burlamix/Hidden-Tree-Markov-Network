@@ -11,7 +11,7 @@ decay=1e-6
 
 epoche = 30
 
-batch_size = 32
+batch_size = 1
 
 #TRANIG SET
 traning_set = "data/inex05.train.elastic.tree"

@@ -44,4 +44,6 @@ s_1000_b1_01_e6
 s_1000_b1_001_e6
 s_1000_b1_01_e3
 s_1000_b1_001_e3
-
+---------
+9 sera
+nohup time python main.py > new_900_b1_01_e6.txt & test su tutto inex batch 32
