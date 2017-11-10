@@ -10,7 +10,109 @@ import random
 #hidden_state = 10
 N_SYMBOLS = 367
 MAX_CHILD = 32
-CLASSI = 11
+CLASSI = 3
+
+
+def modello_3(data_set,epoche,hidden_state):
+
+    pi_l=  [[],[],[]]
+    sp_p_l=[[],[],[]]
+    bi_l=  [[],[],[]]
+    A_l=   [[],[],[]]
+
+    ii=0
+    for i in range(0,3):
+
+        pi_l[ii],sp_p_l[ii],A_l[ii],bi_l[ii] = training(data_set[i],epoche,hidden_state)
+        ii=ii+1
+    return pi_l,sp_p_l,A_l,bi_l
+
+
+
+def testing_3(data_test,pi_l,sp_p_l,A_l,bi_l,hidden_state):
+
+
+    class_result = np.zeros(len(data_test))
+    #class_result = tf.zeros([len(data_test)],dtype=tf.float64)
+
+    confusion_matrix = np.zeros((CLASSI,CLASSI))
+    #confusion_matrix = tf.zeros([CLASSI,CLASSI],dtype=tf.float64)
+
+    giusti=0
+    errati=0
+    for j in range(0,len(data_test)):
+       # print(j)
+        like_max = -9999999999999999999
+
+        for i in range(0,CLASSI):
+
+            with tf.Session() as sess:
+
+                var_EE, var_E = Reversed_Upward_Downward(sp_p_l[i], A_l[i], bi_l[i], pi_l[i], data_test[j],hidden_state)
+                var_EE,var_E = sess.run([var_EE,var_E])
+
+                sess.close
+            tf.reset_default_graph() 
+
+            with tf.Session() as sess:
+                    
+                like = log_likelihood_test(pi_l[i],sp_p_l[i],A_l[i],bi_l[i],var_EE,var_E,data_test[j],hidden_state)
+                like = sess.run(like)
+
+                sess.close
+            tf.reset_default_graph() 
+
+
+            if(like>like_max):
+                class_result[j]=i+1
+                like_max=like
+
+        #print("reale ",data_test[j].classe,"    predetto",class_result[j])
+
+        confusion_matrix[int(data_test[j].classe)-1][int(class_result[j])-1]= confusion_matrix[int(data_test[j].classe)-1][int(class_result[j])-1] +1
+        
+        #if(  (int(data_test[j].classe) == 6 and class_result[j]==1 ) or (int(data_test[j].classe) == 10 and class_result[j]==2 ) or (int(data_test[j].classe) == 11 and class_result[j]==3 )  ):
+        if(  int(data_test[j].classe)    ==   int(class_result[j])   ):
+
+            giusti=giusti+1
+
+        else: 
+
+            errati = errati +1
+
+
+    rate =( (giusti) / (giusti+errati) ) * 100 
+    print("giusti ",giusti)
+    print("errati ",errati)
+    print("rate   ",    rate )
+    #print("confusion_matrix\n",confusion_matrix)
+    #np.savetxt('classi_risultato.out', class_result) 
+    #np.savetxt('rate.out', rate) 
+
+    return rate 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def modello(data_set,epoche,hidden_state):
 
@@ -23,8 +125,6 @@ def modello(data_set,epoche,hidden_state):
         pi_l[i],sp_p_l[i],A_l[i],bi_l[i] = training(data_set[i],epoche,hidden_state)
 
     return pi_l,sp_p_l,A_l,bi_l
-
-
 
 def testing(data_test,pi_l,sp_p_l,A_l,bi_l,hidden_state):
 
@@ -87,9 +187,6 @@ def testing(data_test,pi_l,sp_p_l,A_l,bi_l,hidden_state):
 
     return rate 
 
-
-
-    
 def training(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
 
     n=0
@@ -116,7 +213,7 @@ def training(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
     #per il numero delle epoco eseguo l'E-M
 
     for i in range(0, epoche):
-        #print("EPOCA: ",i)
+        print("EPOCA: ",i)
 
         var_EE_list = []
         var_E_list = []
@@ -158,8 +255,6 @@ def training(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
 
     return pi,sp_p,A,bi
 
-
-
 def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
 
     n=0
@@ -186,7 +281,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
     #per il numero delle epoco eseguo l'E-M
 
     for i in range(0, epoche):
-        #print("EPOCA: ",i)
+        print("EPOCA: ",i)
 
         var_EE_list = []
         var_E_list = []
@@ -228,8 +323,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
         A = new_A
         bi = new_bi
 
-        print(sp_p)
-       # with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+        #with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
         with tf.Session() as sess:
 
             s1, s2, s3, s4, tot = log_likelihood(pi,sp_p,A,bi,var_EE_list,var_E_list,data_set,hidden_state)
@@ -241,7 +335,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
             s_3.append(s3)
             s_4.append(s4)
             like_list.append(tot)
-            #print(tot)
+            print(tot)
             sess.close
         tf.reset_default_graph()
     tf.reset_default_graph()

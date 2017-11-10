@@ -22,7 +22,7 @@ from keras import initializers
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "hope_15_rms"
+nome_file = "last_12_sdg_b1_001"
 
 #classi
 K=11
@@ -40,15 +40,20 @@ def HTM (m,lerning_rate,dec):
 	model.add(Dense(K, activation= 'softmax' ))
 
 	
-	#sgd = optimizers.SGD(lr=lerning_rate, decay=dec, momentum=0.5, nesterov=True)
-	RMSp = keras.optimizers.RMSprop(lr=lerning_rate, rho=0.9, epsilon=1e-08, decay=0.0)
-	#Adadel = keras.optimizers.Adadelta(lr=lerning_rate, rho=0.95, epsilon=1e-08, decay=0.0)
-	model.compile(optimizer=RMSp ,
+	sgd = optimizers.SGD(lr=lerning_rate, decay=dec, momentum=0.5)
+	#sgd = keras.optimizers.RMSprop(lr=lerning_rate, rho=0.9, epsilon=1e-08, decay=0.0)
+	#sgd = keras.optimizers.Adadelta(lr=lerning_rate, rho=0.95, epsilon=1e-08, decay=0.0)
+	model.compile(optimizer=sgd ,
 	              loss= 'categorical_crossentropy' ,
 	              metrics=[ 'accuracy' ])
 	
 	
 	return model
+
+
+
+
+
 
 def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,stop_n):
 
@@ -68,7 +73,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 
 	for i in range (0,epoche):
 
-		print("EPOCA: ",i)
+		#print("EPOCA: ",i)
 
 		#ordino in modo casuale il dataset
 		random.shuffle(data_set)
@@ -108,7 +113,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 					like = log_likelihood_test(sf_pi,sf_sp_p,sf_a,sf_bi,var_EE,var_E,data_set[j],hidden_state)
 
 					#AGGIORNO I PARAMETRI 
-					new_sp_p, new_a, new_bi, new_pi = param_update(delta_sp_p, delta_a, delta_bi, delta_pi, ph_sp_p, ph_a, ph_bi, ph_pi, sf_sp_p, sf_a, sf_bi, sf_pi, lerning_rate,var_EE,var_E,hidden_state,data_set[j],batch_size,j)
+					new_sp_p, new_a, new_bi, new_pi = param_update(delta_sp_p, delta_a, delta_bi, delta_pi, ph_sp_p, ph_a, ph_bi, ph_pi, sf_sp_p, sf_a, sf_bi, sf_pi, lerning_rate,var_EE,var_E,hidden_state,data_set[j],batch_size,j,len(data_set)-1)
 					
 
 					#CALCOLO IL TUTTO
@@ -128,7 +133,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 			like_list_epoca[j]=like_list
 			one_hot_lab_epoca[j][int(data_set[j].classe)-1]=1
 
-			if( j%batch_size == batch_size-1):
+			if( j%batch_size == batch_size-1 or j ==len(data_set)-1):
 
 				#aggiorno il gradente dei parametri dei HTMM
 				free_th_l = delta_th
@@ -182,7 +187,6 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 	htm.load_weights("weights_"+nome_file)
 
 	return htm , free_th_l
-
 
 def test(htm,free_th_l,data_set,m,hidden_state):
 

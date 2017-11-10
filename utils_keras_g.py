@@ -50,17 +50,20 @@ def init_contrastive_matrix(shape, dtype=None):
 def softmax_for_all(ph_sp_p, ph_a, ph_bi, ph_pi,hidden_state):
 	
 	sf_a = tf.exp(ph_a) / tf.reduce_sum(tf.exp(ph_a), 0)
+
 	sf_sp_p = tf.exp(ph_sp_p) / tf.reduce_sum(tf.exp(ph_sp_p), 0)	
+
 	sf_bi = tf.exp(ph_bi) / tf.reduce_sum(tf.exp(ph_bi), 0) 
+
 	num_pi = tf.exp(ph_pi)
-	den_pi = tf.reduce_sum(tf.exp(ph_pi), 1)
+	den_pi = tf.reduce_sum(num_pi, 1)
 	den_pi = tf.expand_dims(den_pi,1)
 	den_pi = tf.tile(den_pi,[1,MAX_CHILD])
 	sf_pi = num_pi / den_pi
 
 	return sf_sp_p, sf_a, sf_bi, sf_pi
 
-def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p, ph_a, ph_bi, ph_pi,sf_sp_p, sf_a, sf_bi, sf_pi,lerning_rate,var_EE_list,var_E_list,hidden_state,t,batch_size,j):
+def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p, ph_a, ph_bi, ph_pi,sf_sp_p, sf_a, sf_bi, sf_pi,lerning_rate,var_EE_list,var_E_list,hidden_state,t,batch_size,j,last):
 
 
 
@@ -278,7 +281,7 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 	return_delta_sp_p = tot_delta_sp_p+ (delta_sp_p /batch_size)
 
 	# se e il momento di calcolare di aggiornare il gradiente lo aggiorno
-	if( j%batch_size == batch_size-1):
+	if( j%batch_size == batch_size-1 or j == last):
 		return_delta_bi   = ph_bi +  ((lerning_rate)*return_delta_bi)
 		return_delta_pi   = ph_pi +  ((lerning_rate)*return_delta_pi)
 		return_delta_a    = ph_a +   ((lerning_rate)*return_delta_a)
