@@ -9,7 +9,7 @@ hidden_state = 8
 lerning_rate=0.01
 decay=1e-6
 
-epoche = 15
+epoche = 30
 
 batch_size = 32
 
