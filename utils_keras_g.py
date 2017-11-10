@@ -228,7 +228,7 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 	#print(lista_n_in_e_sp)
 
 	slice_e = tf.gather(var_E_prov, lista_n_in_e)
-	slice_e = tf.reduce_sum(slice_e,[2])	#EEEE qui si può usante un constant di tutti uno....
+	slice_e = tf.reduce_sum(slice_e,[2])	#EEEE qui si puo usante un constant di tutti uno....
 	
 	#print(slice_e)
 
