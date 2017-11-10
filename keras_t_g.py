@@ -22,7 +22,7 @@ from keras import initializers
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "hope_30"
+nome_file = "hope_15_rms"
 
 #classi
 K=11
