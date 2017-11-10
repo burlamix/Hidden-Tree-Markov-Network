@@ -228,6 +228,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
         A = new_A
         bi = new_bi
 
+        print(sp_p)
        # with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
         with tf.Session() as sess:
 
@@ -241,7 +242,6 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
             s_4.append(s4)
             like_list.append(tot)
             #print(tot)
-            
             sess.close
         tf.reset_default_graph()
     tf.reset_default_graph()
@@ -283,7 +283,8 @@ def Reversed_Upward_Downward(sp_p, A, bi, pi, t,hidden_state):
 
 
     var_in_prior = tf.fill([hidden_state, t.size], tf.cast(1/hidden_state, dtype=tf.float64) )
-
+    #print(var_in_prior)
+    #var_in_prior = tf.random_uniform([hidden_state, t.size], minval=0, maxval=1, dtype=tf.float64) 
 
 
     #############################casi base ##############################################################################################

@@ -10,8 +10,9 @@ from E_M_utils import *
 from keras import optimizers
 
 #import pylab as pl
+np.set_printoptions(threshold=np.nan)
 
-nome_file = "new_900_b1_01_e6_32"
+nome_file = "testing"
 
 
 K=11
@@ -93,7 +94,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
 					like = log_likelihood_test(sf_pi,sf_sp_p,sf_a,sf_bi,var_EE,var_E,data_set[j],hidden_state)
 
 					#AGGIORNO I PARAMETRI 
-					new_sp_p, new_a, new_bi, new_pi  = param_update(delta_sp_p, delta_a, delta_bi, delta_pi, ph_sp_p, ph_a, ph_bi, ph_pi, sf_sp_p, sf_a, sf_bi, sf_pi, lerning_rate,var_EE,var_E,hidden_state,data_set[j],batch_size,j)
+					new_sp_p, new_a, new_bi, new_pi = param_update(delta_sp_p, delta_a, delta_bi, delta_pi, ph_sp_p, ph_a, ph_bi, ph_pi, sf_sp_p, sf_a, sf_bi, sf_pi, lerning_rate,var_EE,var_E,hidden_state,data_set[j],batch_size,j)
 					
 
 					#CALCOLO IL TUTTO
@@ -118,7 +119,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
 				#aggiorno il gradente dei parametri dei HTMM
 				free_th_l = delta_th
 
-				lerning_rate = lerning_rate * (1. / (1. + (decay * i)))
+				#lerning_rate = lerning_rate * (1. / (1. + (decay * i)))
 				
 				p = htm.train_on_batch(like_list_aux,one_hot_lab)
 

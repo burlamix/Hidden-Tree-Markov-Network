@@ -68,10 +68,13 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 
 	lista_n_in_ee = [[] for i in range (MAX_CHILD)]
 	lista_n_in_e = [[] for i in range (MAX_CHILD)]
+	lista_n_in_e_sp = [[] for i in range (MAX_CHILD)]
 	lista_n_foglia = [[] for i in range (MAX_CHILD)]
 	lista_symbol = [[] for i in range (N_SYMBOLS)]
 	lista_tv = [[] for i in range (N_SYMBOLS)]
 	max_l = -1
+	max_s = -1
+	max_p = -1
 	for_pad = tf.zeros([1,hidden_state],dtype=tf.float64)
 
 	#aggiungo una riga di zeri in fondo per prelevare con la gather un termine inerte
@@ -97,6 +100,9 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 		for kk in range(start, int(max_l)):
 			lista_n_in_ee[k].append(0)
 			lista_n_in_e[k].append(t.size)
+	
+
+	#-----------------------A------------------
 
 	#prelevo i valori di interesse dalle variabili
 	slice_ee = tf.gather(var_EE_list, lista_n_in_ee)
@@ -113,12 +119,38 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 	slice_ee = tf.transpose(slice_ee, [2,3,0,1])#--------------------------------------------DDDD???? ij
 	slice_e = tf.transpose(slice_e, [2,3,0,1])
 
+	#slice_ee = tf.transpose(slice_ee, [3,2,0,1])#--------------------------------------------DDDD???? ij
+	#slice_e = tf.transpose(slice_e, [3,2,0,1])
+	#print(slice_ee)
+	#print(slice_e)
+
 	to_sub = tf.multiply(slice_e, a_aux)
 	to_sum = tf.multiply(slice_ee, -(to_sub))
 	delta_a = tf.reduce_sum(to_sum,[3])
 
 	#-----------------------pi------------------
+	for node in t.struct[-1]:
+		lista_n_foglia[nodo.pos-1].append(nodo.name)
 
+	for internal_list_sp in lista_n_foglia:
+		if max_p < len(internal_list_sp):
+			max_p=len(internal_list_sp)
+
+	# uniformo la lunghezza cosi da non rendere il tensore sparso per la futura gather
+	for k  in range(0, len(lista_n_foglia)):
+		start = len(lista_n_foglia[k])
+		for kk in range(start, int(max_p)):
+			lista_n_foglia[k].append(t.size)
+
+	slice_e = tf.gather(var_E_prov, lista_n_foglia)
+	slice_e = tf.reduce_sum(slice_e,1)
+	slice_e = tf.transpose(slice_e,[1,0])
+	to_sub = tf.multiply(sf_pi, len(t.struct[-1]))
+
+	delta_pi = tf.subtract(slice_e,to_sub)
+	#print(slice_e)
+
+	'''
 	#prelevo il nomo dei nodi che sono l esimi figli
 	for nodo in t.struct[-1]:
 		lista_n_foglia[nodo.pos-1].append(nodo.name)
@@ -138,7 +170,7 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 	to_sub = tf.multiply(pi_aux, len(t.struct[-1]))
 	to_sum = tf.multiply(slice_e, -(to_sub))
 	delta_pi = tf.reduce_sum(to_sum,[1])
-
+	'''
 
 	#-----------------------bi------------------
 
@@ -177,21 +209,63 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 	delta_bi = tf.reduce_sum(to_sum,[1])
 
 	#-----------------------sp_p------------------
-	internal_e = tf.slice(var_E_list, [0, 0], [t.struct[-1][0].name, hidden_state])
+	for level in t.struct[1:-1]:
+		for nodo in level:
+			lista_n_in_e_sp[nodo.pos-1].append(nodo.name)
 
+	for internal_list_sp in lista_n_in_e_sp:
+		if max_s < len(internal_list_sp):
+			max_s=len(internal_list_sp)
+
+	# uniformo la lunghezza cosi da non rendere il tensore sparso per la futura gather
+	for k  in range(0, len(lista_n_in_e_sp)):
+		start = len(lista_n_in_e_sp[k])
+		for kk in range(start, int(max_s)):
+			lista_n_in_e_sp[k].append(t.size)
+
+	#print(t)
+	#print(lista_n_in_e_sp)
+
+	slice_e = tf.gather(var_E_prov, lista_n_in_e)
+	slice_e = tf.reduce_sum(slice_e,[2])	#EEEE qui si può usante un constant di tutti uno....
+	
+	#print(slice_e)
+
+	sp_p_aux = tf.expand_dims(sf_sp_p, 1)
+	sp_p_aux = tf.tile(sp_p_aux, [1, max_s ])				
+
+	da_sottrarre = tf.multiply(tf.cast(t.N_I,tf.float64),sp_p_aux)
+
+	to_sum = tf.subtract(slice_e,da_sottrarre)
+
+	delta_sp_p = tf.reduce_sum(to_sum,[1])
+
+	#print("da to_sum",to_sum)
+
+
+
+	'''
+	internal_e = tf.slice(var_E_list, [0, 0], [t.struct[-1][0].name, hidden_state])
+	#print("internal_e------------",internal_e)
 	e_aux = tf.expand_dims(internal_e, 2)
 	e_aux = tf.tile(e_aux, [1, 1, MAX_CHILD])
 	#e_aux = tf.transpose(e_aux, [1,0,2])
+	#print("e_aux------------",e_aux)
 
 	sp_p_aux = tf.expand_dims(sf_sp_p, 0)
 	sp_p_aux = tf.expand_dims(sp_p_aux, 0)
 	sp_p_aux = tf.tile(sp_p_aux, [t.N_I, hidden_state,1])				
+	#print("sp_p_aux------------",sp_p_aux)
 
 
 	sp_p_aux = tf.multiply(tf.cast(t.N_I,tf.float64),sp_p_aux)
 	delta_sp_p = tf.subtract(e_aux,sp_p_aux)
+	#print("delta_sp_p------------",delta_sp_p)
+
 	delta_sp_p = tf.reduce_sum(delta_sp_p,[0,1])
 
+	#print("delta_sp_p------------",delta_sp_p)
+	'''
 
 
 	#aggiorno il delta del gradiente
@@ -225,6 +299,7 @@ def init_theta_old(hidden_state,empty=False):
 		th[3] =   random_sum_one2(1, hidden_state, N_SYMBOLS)					# bi
 
 	return th
+
 '''
 class theta:
 	def __init__(self,hidden_state,empty=False):
