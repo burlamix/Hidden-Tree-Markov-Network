@@ -209,6 +209,7 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 	delta_bi = tf.reduce_sum(to_sum,[1])
 
 	#-----------------------sp_p------------------
+	'''
 	for level in t.struct[1:-1]:
 		for nodo in level:
 			lista_n_in_e_sp[nodo.pos-1].append(nodo.name)
@@ -222,7 +223,7 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 		start = len(lista_n_in_e_sp[k])
 		for kk in range(start, int(max_s)):
 			lista_n_in_e_sp[k].append(t.size)
-
+	'''
 	#print(t)
 	#print(lista_n_in_e_sp)
 
@@ -232,9 +233,11 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 	#print(slice_e)
 
 	sp_p_aux = tf.expand_dims(sf_sp_p, 1)
-	sp_p_aux = tf.tile(sp_p_aux, [1, max_s ])				
+	sp_p_aux = tf.tile(sp_p_aux, [1, max_l ])				
 
 	da_sottrarre = tf.multiply(tf.cast(t.N_I,tf.float64),sp_p_aux)
+	#print(slice_e)
+	#print(da_sottrarre)
 
 	to_sum = tf.subtract(slice_e,da_sottrarre)
 

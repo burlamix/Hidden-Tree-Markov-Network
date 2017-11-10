@@ -8,8 +8,18 @@ from utils_keras_g import *
 #from GPU_E_M_utils import *
 from E_M_utils import *
 from keras import optimizers
+from keras.models import load_model
+import h5py
+from keras import initializers
 
-#import pylab as pl
+
+
+
+
+import pylab as pl
+
+
+
 np.set_printoptions(threshold=np.nan)
 
 nome_file = "testing"
@@ -40,9 +50,13 @@ def HTM (m,lerning_rate,dec):
 	
 	return model
 
-def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
+def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,stop_n):
 
-	plot_list=[]
+	plot_list_loss=[]
+	plot_list_acc=[]
+
+	stop_var=0
+	count_stop=0
 	#calcolo la dimensione del primo livello di nodi interno
 
 	#inizializzo random i parametri del modello
@@ -119,7 +133,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
 				#aggiorno il gradente dei parametri dei HTMM
 				free_th_l = delta_th
 
-				#lerning_rate = lerning_rate * (1. / (1. + (decay * i)))
+				lerning_rate = lerning_rate * (1. / (1. + (decay * i)))
 				
 				p = htm.train_on_batch(like_list_aux,one_hot_lab)
 
@@ -133,18 +147,38 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay):
 				delta_th = [init_theta_zero(hidden_state) for i in range(m)] 
 	
 		loss_function,accuracy = htm.test_on_batch(like_list_epoca,one_hot_lab_epoca)
-		print("           ",loss_function)
+		
+		print("        loss = ",loss_function,"   ac =",accuracy)
 
 		with open(nome_file, "a") as myfile:
-		    myfile.write(str(loss_function)+"\n")
+		    myfile.write(str(loss_function)+";"+str(accuracy)+"\n")
 
-		plot_list.append(loss_function)
+		plot_list_loss.append(loss_function)
+		plot_list_acc.append(accuracy)
+
+		#EARLY STOPPING
+		if(accuracy > stop_var):
+			stop_var=accuracy
+			count_stop=0
+			htm.save_weights("weights_"+nome_file)
+
+		else:
+			count_stop = count_stop +1
+
+		if(count_stop==stop_n):
+			print("STOP")
+			break
 
 
-	np.savetxt(nome_file+"_plot", plot_list) 
-	#pl.plot(plot_list)
-	#pl.show()
 
+
+	#np.savetxt(nome_file+"_plot", plot_list) 
+
+	pl.plot(plot_list_loss)
+	pl.plot(plot_list_acc)
+	pl.show()
+
+	htm.load_weights("weights_"+nome_file)
 
 	return htm , free_th_l
 
