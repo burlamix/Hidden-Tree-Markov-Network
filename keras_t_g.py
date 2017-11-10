@@ -16,15 +16,15 @@ from keras import initializers
 
 
 
-import pylab as pl
+#import pylab as pl
 
 
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "testing"
+nome_file = "hope_15"
 
-
+#classi
 K=11
 MAX_CHILD = 32
 N_SYMBOLS = 367
@@ -55,7 +55,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 	plot_list_loss=[]
 	plot_list_acc=[]
 
-	stop_var=0
+	stop_var=99999999999999
 	count_stop=0
 	#calcolo la dimensione del primo livello di nodi interno
 
@@ -147,7 +147,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 				delta_th = [init_theta_zero(hidden_state) for i in range(m)] 
 	
 		loss_function,accuracy = htm.test_on_batch(like_list_epoca,one_hot_lab_epoca)
-		
+
 		print("        loss = ",loss_function,"   ac =",accuracy)
 
 		with open(nome_file, "a") as myfile:
@@ -157,8 +157,8 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 		plot_list_acc.append(accuracy)
 
 		#EARLY STOPPING
-		if(accuracy > stop_var):
-			stop_var=accuracy
+		if(loss_function < stop_var):
+			stop_var=loss_function
 			count_stop=0
 			htm.save_weights("weights_"+nome_file)
 
@@ -172,11 +172,12 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 
 
 
-	#np.savetxt(nome_file+"_plot", plot_list) 
+	np.savetxt("plot_loss_"+nome_file, plot_list_loss) 
+	np.savetxt("plot_acc_"+nome_file, plot_list_acc) 
 
-	pl.plot(plot_list_loss)
-	pl.plot(plot_list_acc)
-	pl.show()
+	#pl.plot(plot_list_loss)
+	#pl.plot(plot_list_acc)
+	#pl.show()
 
 	htm.load_weights("weights_"+nome_file)
 

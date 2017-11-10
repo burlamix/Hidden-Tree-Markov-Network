@@ -4,27 +4,27 @@ import random
 #	PARAMETRI DEL MODELLO
 
 m=30
-hidden_state = 10
+hidden_state = 8
 
 lerning_rate=0.01
 decay=1e-6
 
-epoche = 30
+epoche = 15
 
-batch_size = 1
+batch_size = 32
 
 stop_n = 5
 
 #TRANIG SET
-#traning_set = "data/inex05.train.elastic.tree"
+traning_set = "data/inex05.train.elastic.tree"
 #traning_set = "data/train_1000.tree"
-traning_set = "data/test_4.tree"
+#traning_set = "data/test_4.tree"
 #traning_set = "data/test_1.tree"
 
 #TEST SET
-#test_set = "data/inex05.test.elastic.tree"
+test_set = "data/inex05.test.elastic.tree"
 #test_set = "data/test_1000.tree"
-test_set = "data/test_1.tree"
+#test_set = "data/test_1.tree"
 #test_set = "data/test_1.tree"
 
 
