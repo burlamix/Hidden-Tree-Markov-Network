@@ -600,7 +600,7 @@ def compute_24(sp_p, A, var_E, var_EE, var_up_ward, var_in_prior, var_a_up_ward,
 
     ris_24 = tf.transpose(ris_24, perm=[0, 2, 1])   #XXX   --------------------ij
 
-    #uniformare o non uniformare ? questa è la domanda
+    #uniformare o non uniformare ? questa e la domanda
     #uniform = tf.reduce_sum(ris_24, [1,2])
     #uniform = tf.expand_dims(uniform, 1)
     #uniform = tf.expand_dims(uniform, 1)
