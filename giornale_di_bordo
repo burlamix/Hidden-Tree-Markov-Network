@@ -50,3 +50,14 @@ s_1000_b1_001_e3
 9 sera
 nohup time python main.py > new_900_b1_01_e6.txt & test su tutto inex batch 32
 nohup time python main.py > new_900_b1_01_e6_32.txt & test su tutto inex batch  che è con la batch da 1 invece....
+
+
+-10--------------------------------------
+
+
+m=30
+hidden_state = 8lerning_rate=0.01decay=1e-6epoche = 15batch_size = 32stop_n = 5
+tutto
+
+hope_15
+hope_30
