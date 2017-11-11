@@ -57,7 +57,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 	plot_list_acc=[]
 
 	stop_var=-1
-	count_stop=0
+	count_stop=9999999
 	#calcolo la dimensione del primo livello di nodi interno
 
 	#inizializzo random i parametri del modello
