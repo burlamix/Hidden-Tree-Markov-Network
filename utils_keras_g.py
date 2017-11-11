@@ -110,20 +110,30 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 	#prelevo i valori di interesse dalle variabili
 	slice_ee = tf.gather(var_EE_list, lista_n_in_ee)
 	slice_e = tf.gather(var_E_prov, lista_n_in_e)
+	#print("slice_ee",slice_ee)
+	#print("slice_e",slice_e)
+	#print("sf_a",sf_a)
 
 	#uniformo la dimensione di slice_e
 	slice_e = tf.expand_dims(slice_e, 2)
 	slice_e = tf.tile(slice_e, [1, 1, hidden_state, 1])
+	#print("\n")
+	#print("slice_ee",slice_ee)
+	#print("slice_e",slice_e)
+	#print("sf_a",sf_a)
 
 	#duplico a per il numero di nodi lesimi massimo
 	a_aux = tf.expand_dims(sf_a, 3)
 	a_aux = tf.tile(a_aux, [1, 1, 1, int(max_l)])			
 		
-	slice_ee = tf.transpose(slice_ee, [2,3,0,1])#--------------------------------------------DDDD???? ij
+	#slice_ee = tf.transpose(slice_ee, [2,3,0,1])#--------------------------------------------DDDD???? ij
 	slice_e = tf.transpose(slice_e, [2,3,0,1])
 
-	#slice_ee = tf.transpose(slice_ee, [3,2,0,1])#--------------------------------------------DDDD???? ij
-	#slice_e = tf.transpose(slice_e, [3,2,0,1])
+	slice_ee = tf.transpose(slice_ee, [3,2,0,1])#--------------------------------------------DDDD???? ij
+
+	#print("slice_ee",slice_ee)
+	#print("slice_e",slice_e)
+
 	#print(slice_ee)
 	#print(slice_e)
 
@@ -212,7 +222,25 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 	delta_bi = tf.reduce_sum(to_sum,[1])
 
 	#-----------------------sp_p------------------
-	'''
+	'''	
+	for level in t.struct[1:-1]:
+		for nodo in level:
+			lista_n_in_e_sp[nodo.pos-1].append(nodo.name)
+
+	for internal_list in lista_n_in_e_sp:
+		if max_s < len(internal_list):
+			max_s=len(internal_list)
+	max_s=max_s+1
+	# uniformo la lunghezza cosi da non rendere il tensore sparso per la futura gather
+	for k  in range(0, len(lista_n_in_e_sp)):
+		start = len(lista_n_in_e_sp[k])
+		for kk in range(start, int(max_s)):
+			lista_n_in_e_sp[k].append(t.size)
+
+	slice_e = tf.gather(var_E_prov, lista_n_in_e_sp)
+
+	#print(lista_n_in_e_sp)
+
 	for level in t.struct[1:-1]:
 		for nodo in level:
 			lista_n_in_e_sp[nodo.pos-1].append(nodo.name)
@@ -226,11 +254,13 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 		start = len(lista_n_in_e_sp[k])
 		for kk in range(start, int(max_s)):
 			lista_n_in_e_sp[k].append(t.size)
-	'''
+	'''	
+
+	slice_e = tf.gather(var_E_prov, lista_n_in_e)
+
 	#print(t)
 	#print(lista_n_in_e_sp)
 
-	slice_e = tf.gather(var_E_prov, lista_n_in_e)
 	slice_e = tf.reduce_sum(slice_e,[2])	#EEEE qui si puo usante un constant di tutti uno....
 	
 	#print(slice_e)
@@ -250,28 +280,6 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 
 
 
-	'''
-	internal_e = tf.slice(var_E_list, [0, 0], [t.struct[-1][0].name, hidden_state])
-	#print("internal_e------------",internal_e)
-	e_aux = tf.expand_dims(internal_e, 2)
-	e_aux = tf.tile(e_aux, [1, 1, MAX_CHILD])
-	#e_aux = tf.transpose(e_aux, [1,0,2])
-	#print("e_aux------------",e_aux)
-
-	sp_p_aux = tf.expand_dims(sf_sp_p, 0)
-	sp_p_aux = tf.expand_dims(sp_p_aux, 0)
-	sp_p_aux = tf.tile(sp_p_aux, [t.N_I, hidden_state,1])				
-	#print("sp_p_aux------------",sp_p_aux)
-
-
-	sp_p_aux = tf.multiply(tf.cast(t.N_I,tf.float64),sp_p_aux)
-	delta_sp_p = tf.subtract(e_aux,sp_p_aux)
-	#print("delta_sp_p------------",delta_sp_p)
-
-	delta_sp_p = tf.reduce_sum(delta_sp_p,[0,1])
-
-	#print("delta_sp_p------------",delta_sp_p)
-	'''
 
 
 	#aggiorno il delta del gradiente
