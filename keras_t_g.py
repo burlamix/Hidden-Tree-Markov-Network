@@ -19,7 +19,7 @@ from keras import initializers
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "ttn_17_b32_no"
+nome_file = "ttn_17_b32_inv"
 
 #classi
 K=11
