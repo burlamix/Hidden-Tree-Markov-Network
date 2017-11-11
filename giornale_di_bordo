@@ -95,4 +95,6 @@ inv ed non inv
 con fold e test su tutto
 3_17_b32_inv
 
-nohup time python main.py > 3_17_b32_inv.txt &
+nohup time python main.py > 3_17_b32_inv.txt &-----------------__>95422
+nohup time python main.py > 3_17_b32_no.txt
+
