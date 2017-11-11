@@ -9,26 +9,26 @@ hidden_state = 10
 lerning_rate=0.01
 decay=1e-6
 
-epoche = 10
+epoche = 15
 
-batch_size = 1
+batch_size = 32
 
 stop_n = 5
 
 #TRANIG SET
-traning_set = "data/inex05.train.elastic.tree"
-#traning_set = "data/test_1.tree"
-#traning_set = "data/test_100.tree"
+#traning_set = "data/inex05.train.elastic.tree"
+#traning_set = "data/test_666.tree"
+traning_set = "data/3_train.tree"
 #traning_set = "data/test_2.tree"
 
 #TEST SET
-test_set = "data/inex05.test.elastic.tree"
-#test_set = "data/test_1000.tree"
+#test_set = "data/inex05.test.elastic.tree"
 #test_set = "data/test_666.tree"
+test_set = "data/3_test.tree"
 #test_set = "data/test_1.tree"
 
 #VALIDATION
-#vali_set = "data/validation_666.tree"
+#vali_set = "data/test_250.tree"
 
 #Train senza validation
 traning_set = dataset_parser(traning_set)
@@ -38,23 +38,22 @@ test_set = dataset_parser(test_set)
 random.shuffle(test_set)
 
 
-#vali_set = dataset_parser(vali_set)
-#random.shuffle(vali_set)
-
 #train con 3-validation
-#data_train = dataset_parser_class(traning_set)
-#data_train = divide_tre_validation_htm(data_train)
+#traning_set = dataset_parser_class_tree(traning_set)
+#traning_set = divide_tre_validation_htm(traning_set)
 
 
 modello = HTM(m,lerning_rate,decay)
 
 
 
+#print("traning_set[0][0]",len(traning_set[0][0]))
+#print("traning_set[0][1]",len(traning_set[0][1]))
 
-#result = train_and_test(modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train[0])
+#result = train_and_test(modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set[0])
 
 htm , lamda = training (modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set,decay,stop_n)
-#htm , lamda = training_val (modello,hidden_state,m,lerning_rate,epoche,batch_size,data_train,decay,stop_n,vali_set)
+#htm , lamda = training_val (modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set[0][0],decay,stop_n,traning_set[0][1])
 
 print("test...")
 

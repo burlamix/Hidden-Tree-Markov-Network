@@ -10,7 +10,7 @@ import random
 #hidden_state = 10
 N_SYMBOLS = 367
 MAX_CHILD = 32
-CLASSI = 11
+CLASSI = 3
 
 
 def modello_3(data_set,epoche,hidden_state):
@@ -22,7 +22,7 @@ def modello_3(data_set,epoche,hidden_state):
 
     ii=0
     for i in range(0,3):
-
+        print("-----------------",i)
         pi_l[ii],sp_p_l[ii],A_l[ii],bi_l[ii] = training(data_set[i],epoche,hidden_state)
         ii=ii+1
     return pi_l,sp_p_l,A_l,bi_l
@@ -41,7 +41,7 @@ def testing_3(data_test,pi_l,sp_p_l,A_l,bi_l,hidden_state):
     giusti=0
     errati=0
     for j in range(0,len(data_test)):
-       # print(j)
+        print(j)
         like_max = -9999999999999999999
 
         for i in range(0,CLASSI):
@@ -84,7 +84,7 @@ def testing_3(data_test,pi_l,sp_p_l,A_l,bi_l,hidden_state):
     rate =( (giusti) / (giusti+errati) ) * 100 
     print("giusti ",giusti)
     print("errati ",errati)
-    print("rate   ",    rate )
+    print("|||||||----------rate   ",    rate )
     #print("confusion_matrix\n",confusion_matrix)
     #np.savetxt('classi_risultato.out', class_result) 
     #np.savetxt('rate.out', rate) 
@@ -213,7 +213,7 @@ def training(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
     #per il numero delle epoco eseguo l'E-M
 
     for i in range(0, epoche):
-        print("EPOCA: ",i)
+        #print("EPOCA: ",i)
 
         var_EE_list = []
         var_E_list = []
@@ -222,6 +222,7 @@ def training(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
 
 
         for j in range(0,len(data_set)):
+            #print("tree",j)
             #with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
             with tf.Session() as sess:
 
@@ -1106,7 +1107,7 @@ def divide_tre_validation (dataset):
 
     d_dataset = [[[],[]],[[],[]],[[],[]]]
 
-    for i in range(0,11):
+    for i in range(0,CLASSI):
         split_size = len(dataset[i])//3
 
     #A
@@ -1136,7 +1137,7 @@ def divide_tre_validation_htm (dataset):
 
     d_dataset = [[[],[]],[[],[]],[[],[]]]
 
-    for i in range(0,11):
+    for i in range(0,3):
         split_size = len(dataset[i])//3
 
     #A

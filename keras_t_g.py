@@ -22,10 +22,10 @@ from keras import initializers
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "invertiti_10_b1"
+nome_file = "3_15_b32_01_inv"
 
 #classi
-K=11
+K=3
 MAX_CHILD = 32
 N_SYMBOLS = 367
 
@@ -73,7 +73,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 	for i in range (0,epoche):
 
-		#print("EPOCA: ",i)
+		print("EPOCA: ",i)
 
 		#ordino in modo casuale il dataset
 		random.shuffle(data_set)
@@ -85,7 +85,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 		#traning 
 		for j in range(0,len(data_set)):
 			
-			#print("     tree: ",j)
+			print("     tree: ",j)
 
 			like_list=[]
 
@@ -151,7 +151,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 		like_list_epoca= np.zeros((len(vali_set),m), dtype=np.float64)
 		one_hot_lab_epoca = np.zeros((len(vali_set),K), dtype=np.float64)
 		
-
+		print("validation")
 		#CALCOLO LOSS SUL VALIDATION
 		for j in range(0,len(vali_set)):
 			
