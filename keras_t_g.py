@@ -22,7 +22,7 @@ from keras import initializers
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "3_15_b32_01"
+nome_file = "3_15_b32_01_inv"
 
 #classi
 K=3
