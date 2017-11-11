@@ -11,20 +11,20 @@ decay=1e-6
 
 epoche = 15
 
-batch_size = 32
-
+batch_size = 1
 stop_n = 5
 
+
 #TRANIG SET
-#traning_set = "data/inex05.train.elastic.tree"
+traning_set = "data/inex05.train.elastic.tree"
 #traning_set = "data/test_666.tree"
-traning_set = "data/3_train.tree"
+#traning_set = "data/3_train.tree"
 #traning_set = "data/test_2.tree"
 
 #TEST SET
-#test_set = "data/inex05.test.elastic.tree"
+test_set = "data/inex05.test.elastic.tree"
 #test_set = "data/test_666.tree"
-test_set = "data/3_test.tree"
+#test_set = "data/3_test.tree"
 #test_set = "data/test_1.tree"
 
 #VALIDATION
@@ -45,10 +45,6 @@ random.shuffle(test_set)
 
 modello = HTM(m,lerning_rate,decay)
 
-
-
-#print("traning_set[0][0]",len(traning_set[0][0]))
-#print("traning_set[0][1]",len(traning_set[0][1]))
 
 #result = train_and_test(modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set[0])
 

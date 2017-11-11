@@ -22,13 +22,12 @@ from keras import initializers
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "3_15_b32_01_inv"
+nome_file = "tt_cv_b1_01"
 
 #classi
-K=3
+K=11
 MAX_CHILD = 32
 N_SYMBOLS = 367
-
 
 
 def HTM (m,lerning_rate,dec):
@@ -85,7 +84,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 		#traning 
 		for j in range(0,len(data_set)):
 			
-			print("     tree: ",j)
+			#print("     tree: ",j)
 
 			like_list=[]
 

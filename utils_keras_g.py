@@ -126,10 +126,10 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 	a_aux = tf.expand_dims(sf_a, 3)
 	a_aux = tf.tile(a_aux, [1, 1, 1, int(max_l)])			
 		
-	#slice_ee = tf.transpose(slice_ee, [2,3,0,1])#--------------------------------------------DDDD???? ij
+	slice_ee = tf.transpose(slice_ee, [2,3,0,1])#--------------------------------------------DDDD???? ij
 	slice_e = tf.transpose(slice_e, [2,3,0,1])
 
-	slice_ee = tf.transpose(slice_ee, [3,2,0,1])#--------------------------------------------DDDD???? ij
+	#slice_ee = tf.transpose(slice_ee, [3,2,0,1])#--------------------------------------------DDDD???? ij
 
 	#print("slice_ee",slice_ee)
 	#print("slice_e",slice_e)
@@ -162,28 +162,6 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 
 	delta_pi = tf.subtract(slice_e,to_sub)
 	#print(slice_e)
-
-	'''
-	#prelevo il nomo dei nodi che sono l esimi figli
-	for nodo in t.struct[-1]:
-		lista_n_foglia[nodo.pos-1].append(nodo.name)
-
-	# uniformo la lunghezza cosi da non rendere il tensore sparso per la futura gather
-	for k  in range(0, len(lista_n_foglia)):
-		start = len(lista_n_foglia[k])
-		for kk in range(start, int(max_l)):
-			lista_n_foglia[k].append(t.size)
-
-	slice_e = tf.gather(var_E_prov, lista_n_foglia)
-	slice_e = tf.transpose(slice_e, [2,1,0])
-
-	pi_aux = tf.expand_dims(sf_pi, 1)
-	pi_aux = tf.tile(pi_aux, [1, int( max_l), 1])
-
-	to_sub = tf.multiply(pi_aux, len(t.struct[-1]))
-	to_sum = tf.multiply(slice_e, -(to_sub))
-	delta_pi = tf.reduce_sum(to_sum,[1])
-	'''
 
 	#-----------------------bi------------------
 
@@ -256,12 +234,13 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 			lista_n_in_e_sp[k].append(t.size)
 	'''	
 
-	slice_e = tf.gather(var_E_prov, lista_n_in_e)
+	#slice_e = tf.gather(var_E_prov, lista_n_in_e)
+	slice_ee = tf.gather(var_EE_list, lista_n_in_ee)
 
 	#print(t)
 	#print(lista_n_in_e_sp)
 
-	slice_e = tf.reduce_sum(slice_e,[2])	#EEEE qui si puo usante un constant di tutti uno....
+	slice_e = tf.reduce_sum(slice_ee,[2,3])	#EEEE qui si puo usante un constant di tutti uno....
 	
 	#print(slice_e)
 
