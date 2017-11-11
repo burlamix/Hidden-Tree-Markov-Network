@@ -80,4 +80,4 @@ nohup time python main.py > last_10_rms_b1_01.txt &
 
 test classi invertite e non su 3 classi serie
 
-nohup time python main.py > 3_15_b32_01_inv.txt &
+nohup time python main.py > 3_15_b32_01.txt &
