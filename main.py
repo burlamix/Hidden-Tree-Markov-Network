@@ -16,15 +16,15 @@ stop_n = 5
 
 
 #TRANIG SET
-#traning_set = "data/inex05.train.elastic.tree"
+traning_set = "data/inex05.train.elastic.tree"
 #traning_set = "data/test_666.tree"
-traning_set = "data/3_train.tree"
-#traning_set = "data/test_2.tree"
+#traning_set = "data/3_train.tree"
+#traning_set = "data/test_40.tree"
 
 #TEST SET
-#test_set = "data/inex05.test.elastic.tree"
+test_set = "data/inex05.test.elastic.tree"
 #test_set = "data/test_666.tree"
-test_set = "data/3_test.tree"
+#test_set = "data/3_test.tree"
 #test_set = "data/test_1.tree"
 
 #VALIDATION
@@ -39,7 +39,7 @@ random.shuffle(test_set)
 
 
 #train con 3-validation
-traning_set = dataset_parser_class_tree(traning_set)
+traning_set = dataset_parser_class(traning_set)
 traning_set = divide_tre_validation_htm(traning_set)
 
 

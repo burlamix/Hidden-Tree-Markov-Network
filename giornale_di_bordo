@@ -96,5 +96,10 @@ con fold e test su tutto
 3_17_b32_inv
 
 nohup time python main.py > 3_17_b32_inv.txt &-----------------__>95422
-nohup time python main.py > 3_17_b32_no.txt
+nohup time python main.py > 3_17_b32_no.txt----------------------------96088
 
+
+test tutto serio con validation
+
+ttv_17_b32_inv
+nohup time python main.py > ttv_17_b32_inv.txt &

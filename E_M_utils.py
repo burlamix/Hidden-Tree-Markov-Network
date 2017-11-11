@@ -10,7 +10,7 @@ import random
 #hidden_state = 10
 N_SYMBOLS = 367
 MAX_CHILD = 32
-CLASSI = 3
+CLASSI = 11
 
 
 def modello_3(data_set,epoche,hidden_state):
@@ -1137,7 +1137,7 @@ def divide_tre_validation_htm (dataset):
 
     d_dataset = [[[],[]],[[],[]],[[],[]]]
 
-    for i in range(0,3):
+    for i in range(0,CLASSI):
         split_size = len(dataset[i])//3
 
     #A

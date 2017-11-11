@@ -19,10 +19,10 @@ from keras import initializers
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "3_17_b32_inv"
+nome_file = "ttv_17_b32_inv"
 
 #classi
-K=3
+K=11
 MAX_CHILD = 32
 N_SYMBOLS = 367
 
@@ -56,7 +56,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 	plot_list_loss=[]
 	plot_list_acc=[]
 
-	stop_var=99999999999999
+	stop_var=-1
 	count_stop=0
 	#calcolo la dimensione del primo livello di nodi interno
 
@@ -81,7 +81,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 		#traning 
 		for j in range(0,len(data_set)):
 			
-			#print("     tree: ",j)
+			print("     tree: ",j)
 
 			like_list=[]
 
