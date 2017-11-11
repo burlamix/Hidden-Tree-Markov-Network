@@ -64,7 +64,7 @@ hope_30
 hope_30_rms
 ----10 sera
 	NO NERSTEROV!
-hidden_state = 11 lerning_rate=0.01 decay=1e-6 epoche = 15 batch_size = 32  stop_n = 5    33
+hidden_state = 11 lerning_rate=0.01 decay=1e-6 epoche = 12 batch_size = 32  stop_n = 5    33
 
 last_10_sdg_b1_001
 last_10_rms_b1_001
@@ -73,4 +73,4 @@ last_10_rms_b1_01
 
 
 
-nohup time python main.py > last_10_rms_b1_001.txt &
+nohup time python main.py > last_10_rms_b1_01.txt &

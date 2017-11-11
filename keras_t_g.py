@@ -22,7 +22,7 @@ from keras import initializers
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "last_12_sdg_b1_001"
+nome_file = "last_12_sdg_b1_01"
 
 #classi
 K=11
@@ -40,8 +40,8 @@ def HTM (m,lerning_rate,dec):
 	model.add(Dense(K, activation= 'softmax' ))
 
 	
-	sgd = optimizers.SGD(lr=lerning_rate, decay=dec, momentum=0.5)
-	#sgd = keras.optimizers.RMSprop(lr=lerning_rate, rho=0.9, epsilon=1e-08, decay=0.0)
+	#sgd = optimizers.SGD(lr=lerning_rate, decay=dec, momentum=0.5)
+	sgd = keras.optimizers.RMSprop(lr=lerning_rate, rho=0.9, epsilon=1e-08, decay=0.0)
 	#sgd = keras.optimizers.Adadelta(lr=lerning_rate, rho=0.95, epsilon=1e-08, decay=0.0)
 	model.compile(optimizer=sgd ,
 	              loss= 'categorical_crossentropy' ,
