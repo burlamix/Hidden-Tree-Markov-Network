@@ -13,19 +13,16 @@ import h5py
 from keras import initializers
 
 
-
-
-
 #import pylab as pl
 
 
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "tt_cv_b1_01"
+nome_file = "3_17_b32_inv"
 
 #classi
-K=11
+K=3
 MAX_CHILD = 32
 N_SYMBOLS = 367
 
@@ -112,7 +109,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 					like = log_likelihood_test(sf_pi,sf_sp_p,sf_a,sf_bi,var_EE,var_E,data_set[j],hidden_state)
 
 					#AGGIORNO I PARAMETRI 
-					new_sp_p, new_a, new_bi, new_pi = param_update(delta_sp_p, delta_a, delta_bi, delta_pi, ph_sp_p, ph_a, ph_bi, ph_pi, sf_sp_p, sf_a, sf_bi, sf_pi, lerning_rate,var_EE,var_E,hidden_state,data_set[j],batch_size,j,len(data_set)-1)
+					new_sp_p, new_a, new_bi, new_pi = param_update(delta_sp_p, delta_a, delta_bi, delta_pi, sf_sp_p, sf_a, sf_bi, sf_pi, lerning_rate,var_EE,var_E,hidden_state,data_set[j],batch_size,j,len(data_set)-1)
 					
 
 					#CALCOLO IL TUTTO
@@ -122,7 +119,6 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 					sess.close()
 
-
 			#metto la lista dei vaori di likelihood nella lista che verra appasata come batch
 			like_list_aux[j%batch_size]=like_list
 			#crea la lista come vuole keras per l obbiettivo
@@ -130,9 +126,17 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 			if( j%batch_size == batch_size-1 or j ==len(data_set)-1):
 
-				#aggiorno il gradente dei parametri dei HTMM
-				free_th_l = delta_th
+				for z in range(m):
+					free_th_l[z][0]   = free_th_l[z][0] +  ((lerning_rate)*(delta_th[z][0]/batch_size))
+					free_th_l[z][1]   = free_th_l[z][1] +  ((lerning_rate)*(delta_th[z][1]/batch_size))
+					free_th_l[z][2]   = free_th_l[z][2] +  ((lerning_rate)*(delta_th[z][2]/batch_size))
+					free_th_l[z][3]   = free_th_l[z][3] +  ((lerning_rate)*(delta_th[z][3]/batch_size))
 
+				#aggiorno il gradente dei parametri dei HTMM
+				#free_th_l = delta_th
+				#print("\n")
+				#print(free_th_l[0][1])
+				#print(free_th_l[1][1])
 				lerning_rate = lerning_rate * (1. / (1. + (decay * i)))
 				
 				p = htm.train_on_batch(like_list_aux,one_hot_lab)
@@ -150,7 +154,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 		like_list_epoca= np.zeros((len(vali_set),m), dtype=np.float64)
 		one_hot_lab_epoca = np.zeros((len(vali_set),K), dtype=np.float64)
 		
-		print("validation")
+		#print("validation")
 		#CALCOLO LOSS SUL VALIDATION
 		for j in range(0,len(vali_set)):
 			
@@ -201,8 +205,10 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 		plot_list_acc.append(accuracy)
 
 		#EARLY STOPPING
-		if(loss_function < stop_var):
-			stop_var=loss_function
+		if(accuracy > stop_var):
+			stop_var=accuracy
+		#if(loss_function < stop_var):
+		#	stop_var=loss_function
 			count_stop=0
 			htm.save_weights("weights_"+nome_file)
 

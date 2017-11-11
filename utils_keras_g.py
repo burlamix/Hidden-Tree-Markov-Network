@@ -45,6 +45,7 @@ def init_contrastive_matrix(shape, dtype=None):
 			p=p+1
 			s=p
 		s=s+1
+
 	return m_init
 
 def softmax_for_all(ph_sp_p, ph_a, ph_bi, ph_pi,hidden_state):
@@ -63,7 +64,7 @@ def softmax_for_all(ph_sp_p, ph_a, ph_bi, ph_pi,hidden_state):
 
 	return sf_sp_p, sf_a, sf_bi, sf_pi
 
-def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p, ph_a, ph_bi, ph_pi,sf_sp_p, sf_a, sf_bi, sf_pi,lerning_rate,var_EE_list,var_E_list,hidden_state,t,batch_size,j,last):
+def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p, sf_a, sf_bi, sf_pi,lerning_rate,var_EE_list,var_E_list,hidden_state,t,batch_size,j,last):
 
 
 
@@ -126,10 +127,10 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 	a_aux = tf.expand_dims(sf_a, 3)
 	a_aux = tf.tile(a_aux, [1, 1, 1, int(max_l)])			
 		
-	slice_ee = tf.transpose(slice_ee, [2,3,0,1])#--------------------------------------------DDDD???? ij
+	#slice_ee = tf.transpose(slice_ee, [2,3,0,1])#--------------------------------------------DDDD???? ij
 	slice_e = tf.transpose(slice_e, [2,3,0,1])
 
-	#slice_ee = tf.transpose(slice_ee, [3,2,0,1])#--------------------------------------------DDDD???? ij
+	slice_ee = tf.transpose(slice_ee, [3,2,0,1])#--------------------------------------------DDDD???? ij
 
 	#print("slice_ee",slice_ee)
 	#print("slice_e",slice_e)
@@ -165,11 +166,14 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 
 	#-----------------------bi------------------
 
-	#tm_yu = np.zeros([int(t.size), N_SYMBOLS])
+	np_tm_yu = np.zeros([int(t.size), N_SYMBOLS])
 
-	#for level in t.struct:
-	#	for node in level:
-	#		tm_yu[node.name, node.label] = 1
+	for level in t.struct:
+		for node in level:
+			np_tm_yu[node.name, node.label] = 1
+
+
+
 	indici = []
 	valori = []
 	# complessa operazione per eseguire il docice commentato sopra in tf
@@ -191,7 +195,7 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 	bi_aux = tf.expand_dims(sf_bi, 1)
 	bi_aux = tf.tile(bi_aux, [1, t.size, 1])
 
-	tm_yu = tf.expand_dims(tm_yu, 0)
+	tm_yu = tf.expand_dims(np_tm_yu, 0)#-----------------------qui cambi
 	tm_yu = tf.tile(tm_yu, [hidden_state,1, 1])
 
 	to_mul = tf.subtract(tm_yu,bi_aux)
@@ -259,23 +263,29 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,ph_sp_p
 
 
 
+	#aggiorno il delta del gradiente
+	tot_delta_bi   = tot_delta_bi   +  delta_bi 	
+	tot_delta_pi   = tot_delta_pi   +  delta_pi 	
+	tot_delta_a    = tot_delta_a    +  delta_a 	
+	tot_delta_sp_p = tot_delta_sp_p +  delta_sp_p 
+
 
 
 	#aggiorno il delta del gradiente
-	return_delta_bi   = tot_delta_bi +  (delta_bi 	/batch_size)
-	return_delta_pi   = tot_delta_pi +  (delta_pi 	/batch_size)
-	return_delta_a    = tot_delta_a +   (delta_a 	/batch_size)
-	return_delta_sp_p = tot_delta_sp_p+ (delta_sp_p /batch_size)
+#	return_delta_bi   = tot_delta_bi +  (delta_bi 	/batch_size)
+#	return_delta_pi   = tot_delta_pi +  (delta_pi 	/batch_size)#
+#	return_delta_a    = tot_delta_a +   (delta_a 	/batch_size)
+#	return_delta_sp_p = tot_delta_sp_p+ (delta_sp_p /batch_size)
 
 	# se e il momento di calcolare di aggiornare il gradiente lo aggiorno
-	if( j%batch_size == batch_size-1 or j == last):
-		return_delta_bi   = ph_bi +  ((lerning_rate)*return_delta_bi)
-		return_delta_pi   = ph_pi +  ((lerning_rate)*return_delta_pi)
-		return_delta_a    = ph_a +   ((lerning_rate)*return_delta_a)
-		return_delta_sp_p = ph_sp_p+ ((lerning_rate)*return_delta_sp_p)
+#	if( j%batch_size == batch_size-1 or j == last):
+	#	return_delta_bi   = ph_bi +  ((lerning_rate)*return_delta_bi)#
+#		return_delta_pi   = ph_pi +  ((lerning_rate)*return_delta_pi)
+#		return_delta_a    = ph_a +   ((lerning_rate)*return_delta_a)
+	#	return_delta_sp_p = ph_sp_p+ ((lerning_rate)*return_delta_sp_p)
 
 
-	return return_delta_sp_p, return_delta_a, return_delta_bi, return_delta_pi
+	return tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi
 
 def nCr(n,r):
     f = math.factorial

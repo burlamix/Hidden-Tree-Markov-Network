@@ -77,7 +77,22 @@ nohup time python main.py > last_10_rms_b1_01.txt &
 
 -------------------11--------------------------
 
+questi li ho fatto con la lista nodi interni di E e non di EE !!!!
 
 test classi invertite e non su 3 classi serie
-
 nohup time python main.py > 3_15_b32_01.txt &
+
+_______test prof
+
+tutto con validation batch = 1
+tt_cv_b1_01
+
+nohup time python main.py > tt_cv_b1_01.txt &
+_______
+tutto traning tutto test
+inv ed non inv
+
+con fold e test su tutto
+3_17_b32_inv
+
+nohup time python main.py > 3_17_b32_inv.txt &
