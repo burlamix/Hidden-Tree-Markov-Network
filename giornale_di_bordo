@@ -104,3 +104,8 @@ test tutto serio con validation
 ttv_17_b32_inv
 nohup time python main.py > ttv_17_b32_inv.txt &------------------96385
 nohup time python main.py > ttv_17_b32_no.txt &
+
+test tutto senza validation!
+ttn_17_b32_no
+nohup time python main.py > ttn_17_b32_no.txt &------------------
+
