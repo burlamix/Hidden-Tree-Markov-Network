@@ -20,7 +20,7 @@ from keras.callbacks import LearningRateScheduler
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "hope_tt_b32_ep30_lr_001"
+nome_file = "hope_tt_b1_ep15_lr_01"
 
 #classi
 
