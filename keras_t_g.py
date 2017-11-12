@@ -20,7 +20,7 @@ from keras.callbacks import LearningRateScheduler
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "3_b1_inv"
+nome_file = "3_b1_inv_b"
 
 #classi
 K=3
@@ -153,8 +153,8 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 				#aggiorno il gradente dei parametri dei HTMM
 
-				#p = htm.train_on_batch(like_list_aux,one_hot_lab)
-				p =	htm.fit( like_list_aux, one_hot_lab, batch_size=32, epochs=1, verbose=0, callbacks=[lrate])
+				p = htm.train_on_batch(like_list_aux,one_hot_lab)
+				#p =	htm.fit( like_list_aux, one_hot_lab, batch_size=32, epochs=1, verbose=0, callbacks=[lrate])
 
 				like_list_aux = []
 				one_hot_lab = []
