@@ -16,15 +16,17 @@ stop_n = 5
 
 
 #TRANIG SET
-traning_set = "data/inex05.train.elastic.tree"
+#traning_set = "data/inex05.train.elastic.tree"
 #traning_set = "data/test_66.tree"
-#traning_set = "data/3_train.tree"
+traning_set = "data/3_train.tree"
+#traning_set = "data/128_train.tree"
 #traning_set = "data/test_40.tree"
 
 #TEST SET
-test_set = "data/inex05.test.elastic.tree"
+#test_set = "data/inex05.test.elastic.tree"
 #test_set = "data/test_66.tree"
-#test_set = "data/3_test.tree"
+test_set = "data/3_test.tree"
+#test_set = "data/128_test.tree"
 #test_set = "data/test_1.tree"
 
 #VALIDATION
@@ -49,7 +51,7 @@ modello = HTM(m,lerning_rate,decay)
 #result = train_and_test(modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set[0])
 
 #htm , lamda = training (modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set,decay,stop_n)
-htm , lamda = training_val (modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set[0][0],decay,stop_n,traning_set[0][1])
+htm , lamda = training_val (modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set[0][0],decay,stop_n,traning_set[0][1],batch_size)
 
 print("test...")
 

@@ -105,7 +105,6 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 			lista_n_in_ee[k].append(0)
 			lista_n_in_e[k].append(t.size)
 	
-
 	#-----------------------A------------------
 
 	#prelevo i valori di interesse dalle variabili
@@ -120,14 +119,14 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 	a_aux = tf.expand_dims(sf_a, 3)
 	a_aux = tf.tile(a_aux, [1, 1, 1, int(max_l)])			
 		
-	#slice_ee = tf.transpose(slice_ee, [2,3,0,1])#--------------------------------------------DDDD???? ij
+	slice_ee = tf.transpose(slice_ee, [2,3,0,1])#--------------------------------------------DDDD???? ij
 	slice_e = tf.transpose(slice_e, [2,3,0,1])
 
-	slice_ee = tf.transpose(slice_ee, [3,2,0,1])#--------------------------------------------DDDD???? ij
+	#slice_ee = tf.transpose(slice_ee, [3,2,0,1])#--------------------------------------------DDDD???? ij
 
 
 	to_sub = tf.multiply(slice_e, a_aux)
-	to_sum = tf.multiply(slice_ee, -(to_sub))
+	to_sum = tf.subtract(slice_ee, to_sub)
 	delta_a = tf.reduce_sum(to_sum,[3])
 
 	#-----------------------pi------------------
@@ -226,14 +225,12 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 			lista_n_in_e_sp[k].append(t.size)
 	'''	
 
-	slice_e = tf.gather(var_E_prov, lista_n_in_e)
+	#slice_e = tf.gather(var_E_prov, lista_n_in_e)
+	#slice_e = tf.reduce_sum(slice_e,[2])	
 
-	#slice_ee = tf.gather(var_EE_list, lista_n_in_ee)
+	slice_ee = tf.gather(var_EE_list, lista_n_in_ee)
+	slice_e = tf.reduce_sum(slice_ee,[2,3])	#EEEE qui si puo usante un constant di tutti uno....
 
-
-	#slice_e = tf.reduce_sum(slice_ee,[2,3])	#EEEE qui si puo usante un constant di tutti uno....
-	slice_e = tf.reduce_sum(slice_e,[2])	
-	
 
 	sp_p_aux = tf.expand_dims(sf_sp_p, 1)
 	sp_p_aux = tf.tile(sp_p_aux, [1, max_l ])				
@@ -253,8 +250,9 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 	tot_delta_sp_p = tot_delta_sp_p +  delta_sp_p 
 
 
-
 	return tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi
+
+	
 
 def nCr(n,r):
     f = math.factorial

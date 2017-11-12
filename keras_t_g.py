@@ -20,10 +20,10 @@ from keras.callbacks import LearningRateScheduler
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "ts_b32_inv"
+nome_file = "3_vl_b32_01"
 
 #classi
-K=11
+K=3
 MAX_CHILD = 32
 N_SYMBOLS = 367
 
@@ -42,7 +42,7 @@ def HTM (m,lerning_rate,dec):
 	model.add(Dense(K, activation= 'softmax' ))
 
 	
-	sgd = optimizers.SGD(lr=lerning_rate, decay=0, momentum=0.5)
+	sgd = optimizers.SGD(lr=lerning_rate, decay=dec, momentum=0.5)
 	#sgd = keras.optimizers.RMSprop(lr=lerning_rate, rho=0.9, epsilon=1e-08, decay=0.0)
 	#sgd = keras.optimizers.Adadelta(lr=lerning_rate, rho=0.95, epsilon=1e-08, decay=0.0)
 	#sgd = keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0)
@@ -57,7 +57,7 @@ def HTM (m,lerning_rate,dec):
 
 
 
-def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,stop_n,vali_set):
+def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,stop_n,vali_set,bs):
 
 
 
@@ -154,7 +154,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 				#aggiorno il gradente dei parametri dei HTMM
 
 				#p = htm.train_on_batch(like_list_aux,one_hot_lab)
-				p =	htm.fit( like_list_aux, one_hot_lab, batch_size=32, epochs=1, verbose=0, callbacks=[lrate])
+				p =	htm.fit( like_list_aux, one_hot_lab, batch_size=bs, epochs=1, verbose=0, callbacks=[lrate])
 
 				like_list_aux = []
 				one_hot_lab = []
@@ -253,6 +253,8 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,stop_n):
 
+	lrate = LearningRateScheduler(step_decay)
+
 	plot_list_loss=[]
 	plot_list_acc=[]
 
@@ -279,6 +281,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 
 		like_list_epoca= np.zeros((len(data_set),m), dtype=np.float64)
 		one_hot_lab_epoca = np.zeros((len(data_set),K), dtype=np.float64)
+
 		for j in range(0,len(data_set)):
 			
 			#print("     tree: ",j)
@@ -346,7 +349,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 
 				
 				#p = htm.train_on_batch(like_list_aux,one_hot_lab)
-				p =	htm.fit( like_list_aux, one_hot_lab, batch_size=32, epochs=1, verbose=0, callbacks=[lrate])
+				p =	htm.fit( like_list_aux, one_hot_lab, batch_size=1, epochs=1, verbose=0, callbacks=[lrate])
 
 				like_list_aux=[]
 				one_hot_lab=[]
