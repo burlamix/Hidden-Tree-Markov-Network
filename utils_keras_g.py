@@ -120,10 +120,10 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 	a_aux = tf.expand_dims(sf_a, 3)
 	a_aux = tf.tile(a_aux, [1, 1, 1, int(max_l)])			
 		
-	#slice_ee = tf.transpose(slice_ee, [2,3,0,1])#--------------------------------------------DDDD???? ij
+	slice_ee = tf.transpose(slice_ee, [2,3,0,1])#--------------------------------------------DDDD???? ij
 	slice_e = tf.transpose(slice_e, [2,3,0,1])
 
-	slice_ee = tf.transpose(slice_ee, [3,2,0,1])#--------------------------------------------DDDD???? ij
+	#slice_ee = tf.transpose(slice_ee, [3,2,0,1])#--------------------------------------------DDDD???? ij
 
 
 	to_sub = tf.multiply(slice_e, a_aux)

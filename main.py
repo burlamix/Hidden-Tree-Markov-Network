@@ -11,20 +11,20 @@ decay=1e-6
 
 epoche = 17
 
-batch_size = 32
+batch_size = 1
 stop_n = 5
 
 
 #TRANIG SET
 #traning_set = "data/inex05.train.elastic.tree"
-traning_set = "data/test_66.tree"
-#traning_set = "data/3_train.tree"
+#traning_set = "data/test_66.tree"
+traning_set = "data/3_train.tree"
 #traning_set = "data/test_40.tree"
 
 #TEST SET
 #test_set = "data/inex05.test.elastic.tree"
-test_set = "data/test_66.tree"
-#test_set = "data/3_test.tree"
+#test_set = "data/test_66.tree"
+test_set = "data/3_test.tree"
 #test_set = "data/test_1.tree"
 
 #VALIDATION

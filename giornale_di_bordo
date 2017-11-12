@@ -4,7 +4,7 @@ leva import e py
 setta dove stampare i file
 decidi accuracy o loss
 
-
+SETTA IL DATABASE
 
 
 
@@ -97,6 +97,17 @@ con fold e test su tutto
 ___________________________________sabato notte alle 2
 
 3 validation fit
+
 nohup time python main.py > 3_b1_no.txt &
+
+con batch da 32
+nohup time python main.py > 3_b32_inv.txt &
+
+nohup time python main.py > 3_b1_inv.txt &
+
+con test on batch come fun 
+nohup time python main.py > 3_b1_inv_b.txt &
+
+
 
 
