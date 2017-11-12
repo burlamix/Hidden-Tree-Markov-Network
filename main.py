@@ -7,11 +7,11 @@ m=40
 
 hidden_state = 10
 
-lerning_rate=0.001
+lerning_rate=0.01
 
 decay=1e-6
 
-epoche = 15
+epoche = 30
 
 batch_size = 32
 
