@@ -5,7 +5,7 @@ from E_M_utils import *
 #from GPU_E_M_utils import *
 
 
-MAX_CHILD=32
+MAX_CHILD = 32
 
 N_SYMBOLS = 367
 
@@ -65,10 +65,6 @@ def softmax_for_all(ph_sp_p, ph_a, ph_bi, ph_pi,hidden_state):
 	return sf_sp_p, sf_a, sf_bi, sf_pi
 
 def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p, sf_a, sf_bi, sf_pi,lerning_rate,var_EE_list,var_E_list,hidden_state,t,batch_size,j,last):
-
-
-
-	#print("	  up_m: ",j)
 
 	lista_n_in_ee = [[] for i in range (MAX_CHILD)]
 	lista_n_in_e = [[] for i in range (MAX_CHILD)]
@@ -161,18 +157,18 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 
 
 
-#	indici = []
-#	valori = []
-	# complessa operazione per eseguire il docice commentato sopra in tf
-#	tm_yu = tf.zeros([int(t.size), N_SYMBOLS],dtype=tf.float32)
-#	for level in t.struct:
-#		for node in level:
-#			indici.append([node.name,node.label])
-#			valori.append(1.0)
-	#delta = tf.SparseTensor(indici, valori, [int(t.size), N_SYMBOLS])
+	#	indici = []
+	#	valori = []
+		# complessa operazione per eseguire il docice commentato sopra in tf
+	#	tm_yu = tf.zeros([int(t.size), N_SYMBOLS],dtype=tf.float32)
+	#	for level in t.struct:
+	#		for node in level:
+	#			indici.append([node.name,node.label])
+	#			valori.append(1.0)
+		#delta = tf.SparseTensor(indici, valori, [int(t.size), N_SYMBOLS])
 
-	#tm_yu = tm_yu + tf.sparse_tensor_to_dense(delta)
-	#tm_yu=tf.cast(tm_yu, tf.float64)
+		#tm_yu = tm_yu + tf.sparse_tensor_to_dense(delta)
+		#tm_yu=tf.cast(tm_yu, tf.float64)
 
 	#var_E_list lo espando per 367
 	e_aux = tf.expand_dims(var_E_list, 2)
@@ -191,45 +187,12 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 	delta_bi = tf.reduce_sum(to_sum,[1])
 
 	#-----------------------sp_p------------------
-	'''	
-	for level in t.struct[1:-1]:
-		for nodo in level:
-			lista_n_in_e_sp[nodo.pos-1].append(nodo.name)
 
-	for internal_list in lista_n_in_e_sp:
-		if max_s < len(internal_list):
-			max_s=len(internal_list)
-	max_s=max_s+1
-	# uniformo la lunghezza cosi da non rendere il tensore sparso per la futura gather
-	for k  in range(0, len(lista_n_in_e_sp)):
-		start = len(lista_n_in_e_sp[k])
-		for kk in range(start, int(max_s)):
-			lista_n_in_e_sp[k].append(t.size)
+	#slice_e = tf.gather(var_E_prov, lista_n_in_e)
+	#slice_e = tf.reduce_sum(slice_e,[2])	
 
-	slice_e = tf.gather(var_E_prov, lista_n_in_e_sp)
-
-	#print(lista_n_in_e_sp)
-
-	for level in t.struct[1:-1]:
-		for nodo in level:
-			lista_n_in_e_sp[nodo.pos-1].append(nodo.name)
-
-	for internal_list_sp in lista_n_in_e_sp:
-		if max_s < len(internal_list_sp):
-			max_s=len(internal_list_sp)
-
-	# uniformo la lunghezza cosi da non rendere il tensore sparso per la futura gather
-	for k  in range(0, len(lista_n_in_e_sp)):
-		start = len(lista_n_in_e_sp[k])
-		for kk in range(start, int(max_s)):
-			lista_n_in_e_sp[k].append(t.size)
-	'''	
-
-	slice_e = tf.gather(var_E_prov, lista_n_in_e)
-	slice_e = tf.reduce_sum(slice_e,[2])	
-
-	#slice_ee = tf.gather(var_EE_list, lista_n_in_ee)
-	#slice_e = tf.reduce_sum(slice_ee,[2,3])	#EEEE qui si puo usante un constant di tutti uno....
+	slice_ee = tf.gather(var_EE_list, lista_n_in_ee)
+	slice_e = tf.reduce_sum(slice_ee,[2,3])	#EEEE qui si puo usante un constant di tutti uno....
 
 
 	sp_p_aux = tf.expand_dims(sf_sp_p, 1)
@@ -252,8 +215,6 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 
 	return tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi
 
-
-
 def nCr(n,r):
     f = math.factorial
     return int(f(n) / f(r) / f(n-r))
@@ -270,17 +231,3 @@ def init_theta_old(hidden_state,empty=False):
 
 	return th
 
-'''
-class theta:
-	def __init__(self,hidden_state,empty=False):
-		if(empty == False):
-			self[0] =    np.random.random((hidden_state,hidden_state, MAX_CHILD))
-			self[1] = np.random.random((MAX_CHILD))
-			self[2] =   np.random.random((hidden_state, MAX_CHILD))
-			self[3] =   np.random.random((hidden_state, N_SYMBOLS))
-		else:
-			self[0] =    None
-			self[1] = None
-			self[2] =    None
-			self[3] =   None
-'''

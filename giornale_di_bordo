@@ -128,3 +128,27 @@ nohup time python main.py > 3f_vl_b32_01.txt &
 con la 24 cambiate e senza uniform
 nohup time python main.py > 3_24c_b32_01.txt &
 nohup time python main.py > 3f_24c_b32_01.txt &
+
+come prima am batch da uno e sulla quindici sommo sugli E
+
+nohup time python main.py > 3_24c_b1_01.txt &
+nohup time python main.py > 3f_24c_b1_01.txt &
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||>>>>>>>>>>>>>LA SVOLTA<<<<<<<<<<<<<
+nohup time python main.py > .txt &
+
+M=40
+bt = 32
+hs = 10
+deca = 10^-6
+stop = 5
+lr = 0.01
+
+hope_tt_b32_ep15_lr_01
+hope_tt_b32_ep15_lr_001
+
+hope_tt_b32_ep30_lr_01
+hope_tt_b32_ep30_lr_001
+
+hope_tv_b32_ep20_lr_01
+hope_tv_b32_ep25_lr_001

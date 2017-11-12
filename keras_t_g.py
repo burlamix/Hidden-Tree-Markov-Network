@@ -20,14 +20,15 @@ from keras.callbacks import LearningRateScheduler
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "3_24c_b1_01"
+nome_file = "hope_tt_b32_ep15_lr_01"
 
 #classi
-K=3
+
+K=11
 MAX_CHILD = 32
 N_SYMBOLS = 367
 
-lr_global=0
+lr_global=0.01
 
 def step_decay(epoch):
 
@@ -58,8 +59,6 @@ def HTM (m,lerning_rate,dec):
 
 
 def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,stop_n,vali_set,bs):
-
-
 
 
 	lrate = LearningRateScheduler(step_decay)
@@ -154,7 +153,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 				#p = htm.train_on_batch(like_list_aux,one_hot_lab)
 				p =	htm.fit( like_list_aux, one_hot_lab, batch_size=bs, epochs=1, verbose=0, callbacks=[lrate])
-
+				#print(p)
 				like_list_aux = []
 				one_hot_lab = []
 				delta_th = [init_theta_zero(hidden_state) for zz in range(m)] 
@@ -203,7 +202,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 			#valori per il test sull'epoca
 			like_list_epoca[j]=like_list_v
-			one_hot_lab_epoca[j][int(data_set[j].classe)-1]=1
+			one_hot_lab_epoca[j][int(vali_set[j].classe)-1]=1
 
 		loss_function,accuracy = htm.test_on_batch(like_list_epoca,one_hot_lab_epoca)
 
@@ -250,9 +249,12 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 
 
-def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,stop_n):
+def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,stop_n,bs):
 
 	lrate = LearningRateScheduler(step_decay)
+
+	global lr_global
+	lr_global=lerning_rate
 
 	plot_list_loss=[]
 	plot_list_acc=[]
@@ -348,7 +350,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 
 				
 				#p = htm.train_on_batch(like_list_aux,one_hot_lab)
-				p =	htm.fit( like_list_aux, one_hot_lab, batch_size=1, epochs=1, verbose=0, callbacks=[lrate])
+				p =	htm.fit( like_list_aux, one_hot_lab, batch_size=bs, epochs=1, verbose=0, callbacks=[lrate])
 
 				like_list_aux=[]
 				one_hot_lab=[]
