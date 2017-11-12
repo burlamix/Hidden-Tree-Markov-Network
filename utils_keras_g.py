@@ -111,32 +111,20 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 	#prelevo i valori di interesse dalle variabili
 	slice_ee = tf.gather(var_EE_list, lista_n_in_ee)
 	slice_e = tf.gather(var_E_prov, lista_n_in_e)
-	#print("slice_ee",slice_ee)
-	#print("slice_e",slice_e)
-	#print("sf_a",sf_a)
 
 	#uniformo la dimensione di slice_e
 	slice_e = tf.expand_dims(slice_e, 2)
 	slice_e = tf.tile(slice_e, [1, 1, hidden_state, 1])
-	#print("\n")
-	#print("slice_ee",slice_ee)
-	#print("slice_e",slice_e)
-	#print("sf_a",sf_a)
 
 	#duplico a per il numero di nodi lesimi massimo
 	a_aux = tf.expand_dims(sf_a, 3)
 	a_aux = tf.tile(a_aux, [1, 1, 1, int(max_l)])			
 		
-	#slice_ee = tf.transpose(slice_ee, [2,3,0,1])#--------------------------------------------DDDD???? ij
+	slice_ee = tf.transpose(slice_ee, [2,3,0,1])#--------------------------------------------DDDD???? ij
 	slice_e = tf.transpose(slice_e, [2,3,0,1])
 
-	slice_ee = tf.transpose(slice_ee, [3,2,0,1])#--------------------------------------------DDDD???? ij
+	#slice_ee = tf.transpose(slice_ee, [3,2,0,1])#--------------------------------------------DDDD???? ij
 
-	#print("slice_ee",slice_ee)
-	#print("slice_e",slice_e)
-
-	#print(slice_ee)
-	#print(slice_e)
 
 	to_sub = tf.multiply(slice_e, a_aux)
 	to_sum = tf.multiply(slice_ee, -(to_sub))
@@ -174,18 +162,18 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 
 
 
-	indici = []
-	valori = []
+#	indici = []
+#	valori = []
 	# complessa operazione per eseguire il docice commentato sopra in tf
-	tm_yu = tf.zeros([int(t.size), N_SYMBOLS],dtype=tf.float32)
-	for level in t.struct:
-		for node in level:
-			indici.append([node.name,node.label])
-			valori.append(1.0)
-	delta = tf.SparseTensor(indici, valori, [int(t.size), N_SYMBOLS])
+#	tm_yu = tf.zeros([int(t.size), N_SYMBOLS],dtype=tf.float32)
+#	for level in t.struct:
+#		for node in level:
+#			indici.append([node.name,node.label])
+#			valori.append(1.0)
+	#delta = tf.SparseTensor(indici, valori, [int(t.size), N_SYMBOLS])
 
-	tm_yu = tm_yu + tf.sparse_tensor_to_dense(delta)
-	tm_yu=tf.cast(tm_yu, tf.float64)
+	#tm_yu = tm_yu + tf.sparse_tensor_to_dense(delta)
+	#tm_yu=tf.cast(tm_yu, tf.float64)
 
 	#var_E_list lo espando per 367
 	e_aux = tf.expand_dims(var_E_list, 2)
@@ -238,29 +226,24 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 			lista_n_in_e_sp[k].append(t.size)
 	'''	
 
-	#slice_e = tf.gather(var_E_prov, lista_n_in_e)
-	slice_ee = tf.gather(var_EE_list, lista_n_in_ee)
+	slice_e = tf.gather(var_E_prov, lista_n_in_e)
 
-	#print(t)
-	#print(lista_n_in_e_sp)
+	#slice_ee = tf.gather(var_EE_list, lista_n_in_ee)
 
-	slice_e = tf.reduce_sum(slice_ee,[2,3])	#EEEE qui si puo usante un constant di tutti uno....
+
+	#slice_e = tf.reduce_sum(slice_ee,[2,3])	#EEEE qui si puo usante un constant di tutti uno....
+	slice_e = tf.reduce_sum(slice_e,[2])	
 	
-	#print(slice_e)
 
 	sp_p_aux = tf.expand_dims(sf_sp_p, 1)
 	sp_p_aux = tf.tile(sp_p_aux, [1, max_l ])				
 
 	da_sottrarre = tf.multiply(tf.cast(t.N_I,tf.float64),sp_p_aux)
-	#print(slice_e)
-	#print(da_sottrarre)
+
 
 	to_sum = tf.subtract(slice_e,da_sottrarre)
 
 	delta_sp_p = tf.reduce_sum(to_sum,[1])
-
-	#print("da to_sum",to_sum)
-
 
 
 	#aggiorno il delta del gradiente
@@ -269,20 +252,6 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 	tot_delta_a    = tot_delta_a    +  delta_a 	
 	tot_delta_sp_p = tot_delta_sp_p +  delta_sp_p 
 
-
-
-	#aggiorno il delta del gradiente
-#	return_delta_bi   = tot_delta_bi +  (delta_bi 	/batch_size)
-#	return_delta_pi   = tot_delta_pi +  (delta_pi 	/batch_size)#
-#	return_delta_a    = tot_delta_a +   (delta_a 	/batch_size)
-#	return_delta_sp_p = tot_delta_sp_p+ (delta_sp_p /batch_size)
-
-	# se e il momento di calcolare di aggiornare il gradiente lo aggiorno
-#	if( j%batch_size == batch_size-1 or j == last):
-	#	return_delta_bi   = ph_bi +  ((lerning_rate)*return_delta_bi)#
-#		return_delta_pi   = ph_pi +  ((lerning_rate)*return_delta_pi)
-#		return_delta_a    = ph_a +   ((lerning_rate)*return_delta_a)
-	#	return_delta_sp_p = ph_sp_p+ ((lerning_rate)*return_delta_sp_p)
 
 
 	return tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi

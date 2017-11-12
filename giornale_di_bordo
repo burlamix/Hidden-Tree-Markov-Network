@@ -94,19 +94,9 @@ inv ed non inv
 
 con fold e test su tutto
 3_17_b32_inv
+___________________________________sabato notte alle 2
 
-nohup time python main.py > 3_17_b32_inv.txt &-----------------__>95422
-nohup time python main.py > 3_17_b32_no.txt----------------------------96088
+3 validation fit
+nohup time python main.py > 3_b1_no.txt &
 
 
-test tutto serio con validation
-
-ttv_17_b32_inv
-nohup time python main.py > ttv_17_b32_inv.txt &------------------96385
-nohup time python main.py > ttv_17_b32_no.txt &
-
-test tutto senza validation!
-ttn_17_b32_no
-nohup time python main.py > ttn_17_b32_no.txt &------------------96829
-
-nohup time python main.py > ttn_17_b32_inv.txt &

@@ -10,7 +10,7 @@ import random
 #hidden_state = 10
 N_SYMBOLS = 367
 MAX_CHILD = 32
-CLASSI = 11
+CLASSI = 3
 
 
 def modello_3(data_set,epoche,hidden_state):
