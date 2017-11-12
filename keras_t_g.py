@@ -20,10 +20,10 @@ from keras.callbacks import LearningRateScheduler
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "3_b32_inv_b"
+nome_file = "ts_b1_inv"
 
 #classi
-K=3
+K=11
 MAX_CHILD = 32
 N_SYMBOLS = 367
 
@@ -153,8 +153,8 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 				#aggiorno il gradente dei parametri dei HTMM
 
-				p = htm.train_on_batch(like_list_aux,one_hot_lab)
-				#p =	htm.fit( like_list_aux, one_hot_lab, batch_size=1, epochs=1, verbose=0, callbacks=[lrate])
+				#p = htm.train_on_batch(like_list_aux,one_hot_lab)
+				p =	htm.fit( like_list_aux, one_hot_lab, batch_size=1, epochs=1, verbose=0, callbacks=[lrate])
 
 				like_list_aux = []
 				one_hot_lab = []
