@@ -146,12 +146,16 @@ lr = 0.01
 
 
 nohup time python main.py > hope_tt_b32_ep15_lr_01.txt &
-nohup time python main.py > hope_tt_b32_ep17_lr_001.txt &
+nohup time python main.py > hope_tt_b32_ep15_lr_001.txt &
 
 
 
 nohup time python main.py > hope_tt_b32_ep30_lr_01.txt &
 nohup time python main.py > hope_tt_b32_ep30_lr_001.txt &
+
+nohup time python main.py > hope_tt_b1_ep15_lr_01.txt &
+
+
 
 
 nohup time python main.py > hope_tv_b32_ep20_lr_01.txt &
