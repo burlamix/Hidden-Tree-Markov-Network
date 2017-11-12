@@ -20,7 +20,7 @@ from keras.callbacks import LearningRateScheduler
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "3f_24c_b32_01"
+nome_file = "3_24c_b1_01"
 
 #classi
 K=3
@@ -83,7 +83,6 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 	for i in range (0,epoche):
 	
-
 		print("EPOCA: ",i)
 
 		#ordino in modo casuale il dataset

@@ -225,11 +225,11 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 			lista_n_in_e_sp[k].append(t.size)
 	'''	
 
-	#slice_e = tf.gather(var_E_prov, lista_n_in_e)
-	#slice_e = tf.reduce_sum(slice_e,[2])	
+	slice_e = tf.gather(var_E_prov, lista_n_in_e)
+	slice_e = tf.reduce_sum(slice_e,[2])	
 
-	slice_ee = tf.gather(var_EE_list, lista_n_in_ee)
-	slice_e = tf.reduce_sum(slice_ee,[2,3])	#EEEE qui si puo usante un constant di tutti uno....
+	#slice_ee = tf.gather(var_EE_list, lista_n_in_ee)
+	#slice_e = tf.reduce_sum(slice_ee,[2,3])	#EEEE qui si puo usante un constant di tutti uno....
 
 
 	sp_p_aux = tf.expand_dims(sf_sp_p, 1)
