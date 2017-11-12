@@ -111,5 +111,7 @@ nohup time python main.py > 3_b1_inv_b.txt &
 
 nohup time python main.py > 3_b32_inv_b.txt &
 
-
-
+tutto il sataset con una val con fit 15 epoche
+tutto il set 
+nohup time python main.py > ts_b1_inv_.txt &
+nohup time python main.py > ts_b32_inv.txt &

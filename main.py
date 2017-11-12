@@ -11,7 +11,7 @@ decay=1e-6
 
 epoche = 15
 
-batch_size = 1
+batch_size = 32
 stop_n = 5
 
 
