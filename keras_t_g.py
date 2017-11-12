@@ -20,7 +20,7 @@ from keras.callbacks import LearningRateScheduler
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "3_24c_b32_01"
+nome_file = "3f_24c_b32_01"
 
 #classi
 K=3
