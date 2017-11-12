@@ -4,7 +4,7 @@ from E_M_utils import *
 
 #	PARAMETRI DEL MODELLO
 
-
+''' 
 
 hidden_state = 10
 
@@ -53,19 +53,20 @@ rate = testing_3(test_set,pi_l,sp_p_l,A_l,bi_l,hidden_state)
 #random.shuffle(data_test)
 
 '''
+
 m=30
 hidden_state = 3
 
 
-epoche = 40
+epoche = 25
 
 
 batch_size = 1
 
 #TRANIG SET
 #traning_set = "data/inex05.train.elastic.tree"
-#traning_set = "data/train_1000.tree"
-traning_set = "data/test_1.tree"
+#traning_set = "data/train_10.tree"
+traning_set = "data/test_10.tree"
 
 #TEST SET
 #test_set = "data/inex05.test.elastic.tree"
@@ -81,4 +82,3 @@ random.shuffle(data_train)
 #random.shuffle(data_test)
 
 likelihood_test(data_train,epoche,hidden_state)
-''' 

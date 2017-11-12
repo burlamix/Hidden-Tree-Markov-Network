@@ -252,7 +252,7 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 
 	return tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi
 
-	
+
 
 def nCr(n,r):
     f = math.factorial

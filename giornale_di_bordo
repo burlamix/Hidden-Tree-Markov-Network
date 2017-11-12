@@ -115,3 +115,16 @@ tutto il sataset con una val con fit 15 epoche
 tutto il set 
 nohup time python main.py > ts_b1_inv_.txt &
 nohup time python main.py > ts_b32_inv.txt &
+
+----------------------------------- risolto problema nel calcolo del parametro A
+
+
+nohup time python main.py > 3_vl_b32_01.txt &
+
+
+nohup time python main.py > 3f_vl_b32_01.txt &
+
+
+con la 24 cambiate e senza uniform
+nohup time python main.py > 3_24c_b32_01.txt &
+nohup time python main.py > 3f_24c_b32_01.txt &
