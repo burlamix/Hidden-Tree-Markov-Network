@@ -160,3 +160,16 @@ nohup time python main.py > hope_tt_b1_ep15_lr_01.txt &
 
 nohup time python main.py > hope_tv_b32_ep20_lr_01.txt &
 nohup time python main.py > hope_tv_b32_ep25_lr_001.txt &
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||---13 sera
+
+13s tredici sera
+
+nohup time python main.py > 13s_tt_b64_ep20_lr_001.txt &
+nohup time python main.py > 13s_tt_b128_ep20_lr_001.txt &
+nohup time python main.py > 13s_tt_b536_ep20_lr_001.txt &
+
+
+nohup time python main.py > 13s_tt_b1_ep25_lr_0001.txt &
+nohup time python main.py > 13s_tt_b32_ep15_lr_0001.txt &
+nohup time python main.py > 13s_tt_b128_ep25_lr_0001.txt &
+
