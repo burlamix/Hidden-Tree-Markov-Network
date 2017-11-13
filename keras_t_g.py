@@ -20,7 +20,7 @@ from keras.callbacks import LearningRateScheduler
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "13s_tt_b536_ep25_lr_0001"
+nome_file = "13s_bb_tt_b128_ep20_lr_001"
 
 #classi
 
@@ -349,8 +349,8 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 					free_th_l[z][3]   = free_th_l[z][3] +  ((lerning_rate)*(delta_th[z][3]/dime))
 
 				
-				#p = htm.train_on_batch(like_list_aux,one_hot_lab)
-				p =	htm.fit( like_list_aux, one_hot_lab, batch_size=bs, epochs=1, verbose=0, callbacks=[lrate])
+				p = htm.train_on_batch(like_list_aux,one_hot_lab)
+				#p =	htm.fit( like_list_aux, one_hot_lab, batch_size=bs, epochs=1, verbose=0, callbacks=[lrate])
 
 				like_list_aux=[]
 				one_hot_lab=[]
