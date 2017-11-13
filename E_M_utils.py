@@ -375,19 +375,36 @@ def Reversed_Upward_Downward(sp_p, A, bi, pi, t,hidden_state):
     var_E = tf.zeros([t.size-1,hidden_state],dtype=tf.float64)
     var_EE = tf.zeros([t.size, hidden_state, hidden_state],dtype=tf.float64)
 
+    padri = []
+    label = []
+    posizione = []
+    for node in t.struct[-1]:
+        label.append(node.label)
+        posizione.append(node.pos -1)
+        padri.append(node.father.name)
 
-    var_in_prior = tf.fill([hidden_state, t.size], tf.cast(1/hidden_state, dtype=tf.float64) )
+    pos_nodi = [0]
+    var_in_prior = tf.zeros([hidden_state, t.size],dtype=tf.float64)
+    for level in t.struct[1:]:
+        for node in level:
+            pos_nodi.append(node.pos-1)
+
+    var_in_prior = tf.gather(pi,pos_nodi, axis=1)
+    #print(var_in_prior)
+    #ar_in_prior = tf.fill([hidden_state, t.size], tf.cast(1/hidden_state, dtype=tf.float64) )
+    #print(var_in_prior)
+    #var_in_prior = tf.fill([hidden_state, t.size], pi[0,0]) 
     #print(var_in_prior)
     #var_in_prior = tf.random_uniform([hidden_state, t.size], minval=0, maxval=1, dtype=tf.float64) 
 
 
     #############################casi base ##############################################################################################
 
-    var_up_ward,ris_17_t = compute_17(bi,pi,var_up_ward,t,hidden_state)
+    var_up_ward,ris_17_t = compute_17(bi,pi,var_up_ward,t,hidden_state,label,posizione)
 
     var_in_prior = compute_internal_node_prior(var_in_prior, sp_p, A, t,hidden_state)
 
-    var_a_up_ward = a_up_ward_foglie(var_a_up_ward,ris_17_t,A,var_in_prior,t,hidden_state)
+    var_a_up_ward = a_up_ward_foglie(var_a_up_ward,ris_17_t,A,var_in_prior,t,hidden_state,padri,posizione)
 
     #up step
     for i in range(len(t.struct) - 2, -1, -1):
@@ -411,13 +428,9 @@ def Reversed_Upward_Downward(sp_p, A, bi, pi, t,hidden_state):
 
     return (var_EE,var_E)
 
-def compute_17(bi,pi,var_up_ward,t,hidden_state):
+def compute_17(bi,pi,var_up_ward,t,hidden_state,label,posizione):
 
-    label = []
-    posizione = []
-    for node in t.struct[-1]:
-        label.append(node.label)
-        posizione.append(node.pos -1)
+
     #prelevo da bi e pi i dati relativi alle foglie
     aux1 = tf.gather(bi, label, axis=1)
     aux2 = tf.gather(pi, posizione, axis=1)
@@ -479,13 +492,8 @@ def compute_internal_node_prior(var_in_prior,sp_p,A,t,hidden_state):
         var_in_prior = tf.concat([head, s, tail], 1)  # aggiorno i nuovi valore trovati
     return var_in_prior
 
-def a_up_ward_foglie(var_a_up_ward,ris_17_t,A,var_in_prior,t,hidden_state):
+def a_up_ward_foglie(var_a_up_ward,ris_17_t,A,var_in_prior,t,hidden_state,padri,posizione):
 
-    padri = []
-    posizione = []
-    for node in t.struct[-1]:
-        padri.append(node.father.name)
-        posizione.append(node.pos-1) 
 
     slice_A = tf.gather(A, posizione, axis=2)
 
@@ -692,14 +700,14 @@ def compute_24(sp_p, A, var_E, var_EE, var_up_ward, var_in_prior, var_a_up_ward,
 
     #uniformarel la somma in moso che faccio uno su j+i (tutto)
 
-    #ris_24 = tf.transpose(ris_24, perm=[0, 2, 1])   #XXX   --------------------ij
+    ris_24 = tf.transpose(ris_24, perm=[0, 2, 1])   #XXX   --------------------ij
 
     #uniformare o non uniformare ? questa e la domanda
-    uniform = tf.reduce_sum(ris_24, [1,2])
-    uniform = tf.expand_dims(uniform, 1)
-    uniform = tf.expand_dims(uniform, 1)
-    uniform = tf.tile(uniform, [1, hidden_state,hidden_state])
-    ris_24 = tf.divide(ris_24, uniform)
+    #uniform = tf.reduce_sum(ris_24, [1,2])
+    #uniform = tf.expand_dims(uniform, 1)
+    #uniform = tf.expand_dims(uniform, 1)
+    #uniform = tf.tile(uniform, [1, hidden_state,hidden_state])
+    #ris_24 = tf.divide(ris_24, uniform)
 
     
     return ris_24
