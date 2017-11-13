@@ -11,9 +11,9 @@ lerning_rate=0.0001
 
 decay=1e-6
 
-epoche = 25
+epoche = 20
 
-batch_size = 1
+batch_size = 64
 
 stop_n = 5
 
