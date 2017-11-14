@@ -20,7 +20,7 @@ from keras.callbacks import LearningRateScheduler
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "14s_o_tt_b1_ep25_lr_00001"
+nome_file = "14s_o_tt_b1_ep25_lr_00005"
 
 #classi
 
