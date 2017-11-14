@@ -211,10 +211,11 @@ nohup time python main.py > 14m_tt_b1_ep25_lr_001.txt &
 nohup time python main.py > 14m_tt_b1_ep25_lr_0001.txt &
 
 
-nohup time python main.py > 14m_tv_b1_ep25_lr_01.txt &
+---------------------------------------------------------saltato per ora   nohup time python main.py > 14m_tv_b1_ep25_lr_01.txt &
 nohup time python main.py > 14m_tv_b1_ep25_lr_001.txt &
 
 
 
-#vecchio
-nohup time python main.py > 14m_tt_b1_ep25_lr_001.txt &
+#vecchio U uniformata F filled
+nohup time python main.py > 14m_uf_tt_b1_ep25_lr_001.txt &
+nohup time python main.py > 14m_u_tt_b1_ep25_lr_001.txt &

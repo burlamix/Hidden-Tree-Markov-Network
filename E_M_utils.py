@@ -343,7 +343,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
 
     #tf.reset_default_graph()
 
-    #pl.plot(s_4,color='red')
+    pl.plot(s_4,color='red')
     #pl.plot(s_3,color='blue')
     #pl.plot(s_2,color='orange')
     #pl.plot(s_1,color='green')
@@ -389,12 +389,7 @@ def Reversed_Upward_Downward(sp_p, A, bi, pi, t,hidden_state):
         for node in level:
             pos_nodi.append(node.pos-1)
 
-    #var_in_prior = tf.gather(pi,pos_nodi, axis=1)
-    var_in_prior = tf.fill([hidden_state, t.size], tf.cast(1/hidden_state, dtype=tf.float64) )
-
-
-
-
+    var_in_prior = tf.gather(pi,pos_nodi, axis=1)
     #print(var_in_prior)
     #ar_in_prior = tf.fill([hidden_state, t.size], tf.cast(1/hidden_state, dtype=tf.float64) )
     #print(var_in_prior)
