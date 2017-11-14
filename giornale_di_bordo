@@ -206,13 +206,13 @@ nohup time python main.py > 13s60_tt_b1_ep25_lr_001.txt &
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| effettuato un cambio suulla 24 sperando che sia definitivo.
 
 
-nohup time python main.py > 14m_tt_b1_ep25_lr_01.txt &
-nohup time python main.py > 14m_tt_b1_ep25_lr_001.txt &
+nohup time python main.py > 14m_tt_b1_ep25_lr_01.txt &kk
+nohup time python main.py > 14m_tt_b1_ep25_lr_001.txt &kk
 nohup time python main.py > 14m_tt_b1_ep25_lr_0001.txt &
 
 
 ---------------------------------------------------------saltato per ora   nohup time python main.py > 14m_tv_b1_ep25_lr_01.txt &
-nohup time python main.py > 14m_tv_b1_ep25_lr_001.txt &
+nohup time python main.py > 14m_tv_b1_ep25_lr_001.txt &kk
 
 
 
@@ -224,7 +224,7 @@ nohup time python main.py > 14m_u_tt_b1_ep25_lr_001.txt &
 # solo filled
 
 nohup time python main.py > 14m_f_tt_b1_ep25_lr_001.txt &
-
+q
 
 
 ________________________14 sera___________________________ per i test successivi si usa il prior cambiato e la 24 cambiata come dovrebbe essere
