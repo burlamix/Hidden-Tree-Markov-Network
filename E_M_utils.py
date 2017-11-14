@@ -3,7 +3,7 @@ import tensorflow as tf
 from tre_simple import *
 from parser import *
 import random
-#import pylab as pl
+import pylab as pl
 
 #np.set_printoptions(threshold=np.nan)
 
@@ -343,11 +343,11 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
 
     #tf.reset_default_graph()
 
-    #pl.plot(s_4,color='red')
-    #pl.plot(s_3,color='blue')
-    #pl.plot(s_2,color='orange')
-    #pl.plot(s_1,color='green')
-    #pl.plot(like_list)
+    pl.plot(s_4,color='red')
+    pl.plot(s_3,color='blue')
+    pl.plot(s_2,color='orange')
+    pl.plot(s_1,color='green')
+    pl.plot(like_list)
 
 
     #np.savetxt('55like_list.out', like_list) 
@@ -355,7 +355,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
     #np.savetxt('55s2.out', s_2) 
     #np.savetxt('55s3.out', s_3) 
     #np.savetxt('55s4.out', s_4) 
-    #pl.show()
+    pl.show()
     #pl.savefig('10.png')
 
 
@@ -652,8 +652,8 @@ def compute_24(sp_p, A, var_E, var_EE, var_up_ward, var_in_prior, var_a_up_ward,
     sli_up_ward = tf.gather(var_up_ward, nomi_nodi)
     sli_sp_p_aux = tf.gather(sp_p, posizione)
     sli_A = tf.gather(A, posizione, axis=2)
-    sli_A = tf.transpose(sli_A, perm=[2, 0, 1])   #DDD   --------------------ij
-    #sli_A = tf.transpose(sli_A, perm=[2, 1, 0])   #XXX   --------------------ij
+    #sli_A = tf.transpose(sli_A, perm=[2, 0, 1])   #DDD   --------------------ij
+    sli_A = tf.transpose(sli_A, perm=[2, 1, 0])   #XXX   --------------------ij
 
     #per il den
     sli_in_prior = tf.gather(var_in_prior, padri, axis=1)
@@ -664,8 +664,8 @@ def compute_24(sp_p, A, var_E, var_EE, var_up_ward, var_in_prior, var_a_up_ward,
     sli_E = tf.tile(sli_E, [ 1,hidden_state, 1])
 
 
-    sli_up_ward = tf.expand_dims(sli_up_ward, 1)
-    sli_up_ward = tf.tile(sli_up_ward, [1, hidden_state, 1])
+    sli_up_ward = tf.expand_dims(sli_up_ward, 2)
+    sli_up_ward = tf.tile(sli_up_ward, [1,1,hidden_state])
 
     sli_sp_p = tf.expand_dims(sli_sp_p_aux, 1)
     sli_sp_p = tf.expand_dims(sli_sp_p, 1)
@@ -700,14 +700,14 @@ def compute_24(sp_p, A, var_E, var_EE, var_up_ward, var_in_prior, var_a_up_ward,
 
     #uniformarel la somma in moso che faccio uno su j+i (tutto)
 
-    ris_24 = tf.transpose(ris_24, perm=[0, 2, 1])   #XXX   --------------------ij
+    #ris_24 = tf.transpose(ris_24, perm=[0, 2, 1])   #XXX   --------------------ij
 
     #uniformare o non uniformare ? questa e la domanda
-    uniform = tf.reduce_sum(ris_24, [1,2])
-    uniform = tf.expand_dims(uniform, 1)
-    uniform = tf.expand_dims(uniform, 1)
-    uniform = tf.tile(uniform, [1, hidden_state,hidden_state])
-    ris_24 = tf.divide(ris_24, uniform)
+    #uniform = tf.reduce_sum(ris_24, [1,2])
+    #uniform = tf.expand_dims(uniform, 1)
+    #uniform = tf.expand_dims(uniform, 1)
+    #uniform = tf.tile(uniform, [1, hidden_state,hidden_state])
+    #ris_24 = tf.divide(ris_24, uniform)
 
     
     return ris_24

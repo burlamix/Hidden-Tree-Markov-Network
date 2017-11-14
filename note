@@ -1,6 +1,6 @@
 
 prelevare da terminale ssh
-scp spagnoli@c4130-gpu.itc.unipi.it:/home/spagnoli/virtualenv/tesi//Hidden-Tree-Markov-Network/3f_vl_b32_01 /home/simone/Documents/università/TESI/ambiente_virtuale/tesis
+scp spagnoli@c4130-gpu.itc.unipi.it:/home/spagnoli/virtualenv/tesi//Hidden-Tree-Markov-Network/plot_acc_hope_tt_b32_ep15_lr_001 /home/simone/Documents/università/TESI/ambiente_virtuale/tesis/good
 
 
 
