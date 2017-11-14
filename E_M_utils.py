@@ -700,14 +700,14 @@ def compute_24(sp_p, A, var_E, var_EE, var_up_ward, var_in_prior, var_a_up_ward,
 
     #uniformarel la somma in moso che faccio uno su j+i (tutto)
 
-    ris_24 = tf.transpose(ris_24, perm=[0, 2, 1])   #XXX   --------------------ij
+    #ris_24 = tf.transpose(ris_24, perm=[0, 2, 1])   #XXX   --------------------ij
 
     #uniformare o non uniformare ? questa e la domanda
-    #uniform = tf.reduce_sum(ris_24, [1,2])
-    #uniform = tf.expand_dims(uniform, 1)
-    #uniform = tf.expand_dims(uniform, 1)
-    #uniform = tf.tile(uniform, [1, hidden_state,hidden_state])
-    #ris_24 = tf.divide(ris_24, uniform)
+    uniform = tf.reduce_sum(ris_24, [1,2])
+    uniform = tf.expand_dims(uniform, 1)
+    uniform = tf.expand_dims(uniform, 1)
+    uniform = tf.tile(uniform, [1, hidden_state,hidden_state])
+    ris_24 = tf.divide(ris_24, uniform)
 
     
     return ris_24
