@@ -383,15 +383,15 @@ def Reversed_Upward_Downward(sp_p, A, bi, pi, t,hidden_state):
         posizione.append(node.pos -1)
         padri.append(node.father.name)
 
-    pos_nodi = [0]
-    var_in_prior = tf.zeros([hidden_state, t.size],dtype=tf.float64)
-    for level in t.struct[1:]:
-        for node in level:
-            pos_nodi.append(node.pos-1)
+    #pos_nodi = [0]
+   # var_in_prior = tf.zeros([hidden_state, t.size],dtype=tf.float64)
+  #  for level in t.struct[1:]:
+ #       for node in level:
+#            pos_nodi.append(node.pos-1)
 
-    var_in_prior = tf.gather(pi,pos_nodi, axis=1)
+    #var_in_prior = tf.gather(pi,pos_nodi, axis=1)
     #print(var_in_prior)
-    #ar_in_prior = tf.fill([hidden_state, t.size], tf.cast(1/hidden_state, dtype=tf.float64) )
+    var_in_prior = tf.fill([hidden_state, t.size], tf.cast(1/hidden_state, dtype=tf.float64) )
     #print(var_in_prior)
     #var_in_prior = tf.fill([hidden_state, t.size], pi[0,0]) 
     #print(var_in_prior)

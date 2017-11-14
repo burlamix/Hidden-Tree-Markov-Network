@@ -26,7 +26,7 @@ traning_set = "data/inex05.train.elastic.tree"
 
 #traning_set = "data/3_train.tree"
 #traning_set = "data/128_train.tree"
-#traning_set = "data/train_66.tree"
+#traning_set = "data/train_666.tree"
 #traning_set = "data/train_100.tree"
 
 
@@ -35,7 +35,7 @@ test_set = "data/inex05.test.elastic.tree"
 
 #test_set = "data/3_test.tree"
 #test_set = "data/128_train.tree"
-#test_set = "data/test_66.tree"
+#test_set = "data/test_666.tree"
 #test_set = "data/test_100.tree"
 
 
@@ -48,6 +48,7 @@ test_set = "data/inex05.test.elastic.tree"
 test_set = dataset_parser(test_set)
 random.shuffle(test_set)
 
+'''
 # TRAIN CON VALIDATION
 traning_set = dataset_parser_class(traning_set)
 traning_set = divide_tre_validation_htm(traning_set)
@@ -62,7 +63,7 @@ random.shuffle(traning_set)
 
 htm , lamda = training (modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set,decay,stop_n,batch_size)
 
-'''
+
 
 
 
