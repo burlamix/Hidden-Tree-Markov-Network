@@ -164,19 +164,39 @@ nohup time python main.py > hope_tv_b32_ep25_lr_001.txt &
 
 13s tredici sera
 
-nohup time python main.py > 13s_tt_b64_ep20_lr_001.txt &
-nohup time python main.py > 13s_tt_b128_ep20_lr_001.txt &
-nohup time python main.py > 13s_tt_b536_ep20_lr_001.txt &
+nohup time python main.py > 13s_tt_b64_ep20_lr_001.txt &   kk
+nohup time python main.py > 13s_tt_b128_ep20_lr_001.txt &   kk
+nohup time python main.py > 13s_tt_b536_ep20_lr_001.txt &   kk
 
 
-nohup time python main.py > 13s_tt_b1_ep25_lr_0001.txt &
-nohup time python main.py > 13s_tt_b64_ep20_lr_0001.txt &
-nohup time python main.py > 13s_tt_b536_ep25_lr_0001.txt & in realtà 20
+nohup time python main.py > 13s_tt_b1_ep25_lr_0001.txt &--------------------------
+nohup time python main.py > 13s_tt_b64_ep20_lr_0001.txt &    kk
+nohup time python main.py > 13s_tt_b536_ep25_lr_0001.txt & in realtà 20   kk
 
 
 
 con batch invece che fit
-nohup time python main.py > 13s_bb_tt_b128_ep20_lr_001.txt &
+nohup time python main.py > 13s_bb_tt_b128_ep20_lr_001.txt & KK
 con la 24 come era prima
-nohup time python main.py > 13s_24_tt_b128_ep20_lr_001.txt &
+nohup time python main.py > 13s_24_tt_b128_ep20_lr_001.txt &KK
+
+migliorando prior e si spera un po di velocità!!
+nohup time python main.py > 13sp_tt_b128_ep20_lr_001.txt &KK
+
+
+
+
+e questo come il vecchio ma avendo cambiato i node prior
+
+nohup time python main.py > 13s60_tt_b1_ep25_lr_01.txt &
+nohup time python main.py > 13s_tt_b1_ep25_lr_001.txt &
+nohup time python main.py > 13s_tt_b1_ep25_lr_0005.txt &
+nohup time python main.py > 13s_tt_b1_ep25_lr_0001.txt &
+
+
+nohup time python main.py > 13s24_tt_b1_ep25_lr_001.txt &
+
+nohup time python main.py > 13s60_tt_b1_ep25_lr_001.txt &
+
+
 

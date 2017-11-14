@@ -3,19 +3,19 @@ import random
 
 #	PARAMETRI DEL MODELLO
 
-m=40
+m=60
 
 hidden_state = 10
 
-lerning_rate=0.001
+lerning_rate=0.01
 
 decay=1e-6
 
-epoche = 20
+epoche = 25
 
-batch_size = 128
+batch_size = 1
 
-stop_n = 5
+stop_n = 7
 
 
 #TRANIG SET
