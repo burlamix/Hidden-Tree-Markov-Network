@@ -224,3 +224,14 @@ nohup time python main.py > 14m_u_tt_b1_ep25_lr_001.txt &
 # solo filled
 
 nohup time python main.py > 14m_f_tt_b1_ep25_lr_001.txt &
+
+
+
+________________________14 sera___________________________ per i test successivi si usa il prior cambiato e la 24 cambiata come dovrebbe essere
+
+sempre batch da 1  con leraning rate 0.00001 4 zeri
+
+nohup time python main.py > 14s_tt_b1_ep25_lr_00001.txt &
+nohup time python main.py > 14s_tt_b1_ep25_lr_00005.txt &
+
+per questi si ritorna uguale ! a quello che era quando ho fatto i grafici mandati a bacciu! 
