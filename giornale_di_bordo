@@ -188,9 +188,9 @@ nohup time python main.py > 13sp_tt_b128_ep20_lr_001.txt &KK
 
 e questo come il vecchio ma avendo cambiato i node prior
 27 in rwaltà e stop ad 8
-nohup time python main.py > 13s60_tt_b1_ep25_lr_01.txt &
-nohup time python main.py > 13s_tt_b1_ep25_lr_001.txt &
-nohup time python main.py > 13s_tt_b1_ep25_lr_0005.txt &
+nohup time python main.py > 13s60_tt_b1_ep25_lr_01.txt &kk
+nohup time python main.py > 13s_tt_b1_ep25_lr_001.txt &kk
+nohup time python main.py > 13s_tt_b1_ep25_lr_0005.txt &kk
 nohup time python main.py > 13s_tt_b1_ep25_lr_0001.txt &
 
 
@@ -209,8 +209,12 @@ nohup time python main.py > 13s60_tt_b1_ep25_lr_001.txt &
 nohup time python main.py > 14m_tt_b1_ep25_lr_01.txt &
 nohup time python main.py > 14m_tt_b1_ep25_lr_001.txt &
 nohup time python main.py > 14m_tt_b1_ep25_lr_0001.txt &
-nohup time python main.py > 14m_tt_b1_ep25_lr_00001.txt &
 
 
 nohup time python main.py > 14m_tv_b1_ep25_lr_01.txt &
 nohup time python main.py > 14m_tv_b1_ep25_lr_001.txt &
+
+
+
+#vecchio
+nohup time python main.py > 14m_tt_b1_ep25_lr_001.txt &

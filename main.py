@@ -7,7 +7,7 @@ m=40
 
 hidden_state = 10
 
-lerning_rate=0.0001
+lerning_rate=0.001
 
 decay=1e-6
 
@@ -48,7 +48,6 @@ test_set = "data/inex05.test.elastic.tree"
 test_set = dataset_parser(test_set)
 random.shuffle(test_set)
 
-'''
 # TRAIN CON VALIDATION
 traning_set = dataset_parser_class(traning_set)
 traning_set = divide_tre_validation_htm(traning_set)
@@ -63,6 +62,7 @@ random.shuffle(traning_set)
 
 htm , lamda = training (modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set,decay,stop_n,batch_size)
 
+'''
 
 
 
