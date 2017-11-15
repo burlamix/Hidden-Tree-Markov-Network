@@ -9,20 +9,20 @@ from E_M_utils import *
 hidden_state = 10
 
 
-epoche = 14
+epoche = 25
 
 
 batch_size = 1
 
 #TRANIG SET
-traning_set = "data/inex05.train.elastic.tree"
+#traning_set = "data/inex05.train.elastic.tree"
 #traning_set = "data/3_train.tree"
-#traning_set = "data/test_10.tree"
+traning_set = "data/train_666.tree"
 
 #TEST SET
-test_set = "data/inex05.test.elastic.tree"
+#test_set = "data/inex05.test.elastic.tree"
 #test_set = "data/3_test.tree"
-#test_set = "data/test_10.tree"
+test_set = "data/test_666.tree"
 
 
 traning_set = dataset_parser_class(traning_set)
@@ -36,13 +36,13 @@ test_set = dataset_parser(test_set)
 print("-----------------traning")
 #pi,sp_p,A,bi= training(test_set,epoche,hidden_state)
 
-pi_l,sp_p_l,A_l,bi_l=modello(traning_set,epoche,hidden_state)
+pi_l,sp_p_l,A_l,bi_l=modello_3(traning_set,epoche,hidden_state)
 
 print("---------------testin2")
 
-np.save("save_param_15.npy",[pi_l,sp_p_l,A_l,bi_l])
+np.save("save_3.npy",[pi_l,sp_p_l,A_l,bi_l])
 
-rate = testing(test_set,pi_l,sp_p_l,A_l,bi_l,hidden_state)
+rate = testing_3(test_set,pi_l,sp_p_l,A_l,bi_l,hidden_state)
 
 
 

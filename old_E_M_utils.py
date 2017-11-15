@@ -6,11 +6,13 @@ import random
 #import pylab as pl
 
 #np.set_printoptions(threshold=np.nan)
+#
+# sono quello vecchio
 
 #hidden_state = 10
 N_SYMBOLS = 367
 MAX_CHILD = 32
-CLASSI = 11
+CLASSI = 3
 
 
 def modello_3(data_set,epoche,hidden_state):
@@ -20,11 +22,9 @@ def modello_3(data_set,epoche,hidden_state):
     bi_l=  [[],[],[]]
     A_l=   [[],[],[]]
 
-    ii=0
     for i in range(0,3):
         print("-----------------",i)
-        pi_l[ii],sp_p_l[ii],A_l[ii],bi_l[ii] = training(data_set[i],epoche,hidden_state)
-        ii=ii+1
+        pi_l[i],sp_p_l[i],A_l[i],bi_l[i] = training(data_set[i],epoche,hidden_state)
     return pi_l,sp_p_l,A_l,bi_l
 
 

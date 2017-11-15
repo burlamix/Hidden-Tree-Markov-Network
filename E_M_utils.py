@@ -142,7 +142,7 @@ def testing(data_test,pi_l,sp_p_l,A_l,bi_l,hidden_state):
     errati=0
     for j in range(0,len(data_test)):
         like_max = -9999999999999999999
-        #print(j)
+        print(j)
 
         for i in range(0,CLASSI):
 
