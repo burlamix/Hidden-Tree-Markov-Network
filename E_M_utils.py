@@ -124,7 +124,7 @@ def modello(data_set,epoche,hidden_state):
     bi_l=  [[],[],[],[],[],[],[],[],[],[],[]]
     A_l=   [[],[],[],[],[],[],[],[],[],[],[]]
     for i in range(0,CLASSI):
-        #print("-------------------------------------------i =",i)
+        print("-------------------------------------------i =",i)
         pi_l[i],sp_p_l[i],A_l[i],bi_l[i] = training(data_set[i],epoche,hidden_state)
 
     return pi_l,sp_p_l,A_l,bi_l
@@ -132,17 +132,17 @@ def modello(data_set,epoche,hidden_state):
 def testing(data_test,pi_l,sp_p_l,A_l,bi_l,hidden_state):
 
 
-    #class_result = np.zeros(len(data_test))
-    class_result = tf.zeros([len(data_test)],dtype=tf.float64)
+    class_result = np.zeros(len(data_test))
+    #class_result = tf.zeros([len(data_test)],dtype=tf.float64)
 
-    #confusion_matrix = np.zeros((CLASSI,CLASSI))
-    confusion_matrix = tf.zeros([CLASSI,CLASSI],dtype=tf.float64)
+    confusion_matrix = np.zeros((CLASSI,CLASSI))
+    #confusion_matrix = tf.zeros([CLASSI,CLASSI],dtype=tf.float64)
 
     giusti=0
     errati=0
     for j in range(0,len(data_test)):
-        #print(j)
         like_max = -9999999999999999999
+        #print(j)
 
         for i in range(0,CLASSI):
 
@@ -346,7 +346,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
 
     #tf.reset_default_graph()
 
-    pl.plot(s_4,color='red')
+    #pl.plot(s_4,color='red')
     #pl.plot(s_3,color='blue')
     #pl.plot(s_2,color='orange')
     #pl.plot(s_1,color='green')
