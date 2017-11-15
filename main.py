@@ -7,7 +7,7 @@ m=40
 
 hidden_state = 10
 
-lerning_rate=0.00005
+lerning_rate=0.0001
 
 decay=1e-6
 
