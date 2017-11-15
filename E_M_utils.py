@@ -710,7 +710,7 @@ def compute_24(sp_p, A, var_E, var_EE, var_up_ward, var_in_prior, var_a_up_ward,
     #uniform = tf.expand_dims(uniform, 1)
     #uniform = tf.expand_dims(uniform, 1)
     #uniform = tf.tile(uniform, [1, hidden_state,hidden_state])
-    ris_24 = tf.divide(ris_24, uniform)
+    #ris_24 = tf.divide(ris_24, uniform)
 
     
     return ris_24
