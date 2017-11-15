@@ -239,3 +239,16 @@ CON I SOLITI VALORI DI SOPRA!
 old o
 nohup time python main.py > 14s_o_tt_b1_ep25_lr_00001.txt &
 nohup time python main.py > 14s_o_tt_b1_ep25_lr_00005.txt &
+
+
+__________________________________________________________ ritornanto come quand oho fatto i test con bacicu
+
+
+
+
+nohup time python main.py > 15m_tt_b1_ep25_lr_0001.txt &
+nohup time python main.py > 15m_tt_b1_ep25_lr_001.txt &
+
+
+15m_nw_tt_b1_ep25_lr_01 quello motificato come si deve ma con il lr più alto
+nohup time python main.py > 15m_nw_tt_b1_ep25_lr_01.txt &
