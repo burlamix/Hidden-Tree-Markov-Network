@@ -24,7 +24,7 @@ nome_file = "soft_10_01"
 
 #classi
 
-K=11
+K=3
 MAX_CHILD = 32
 N_SYMBOLS = 367
 

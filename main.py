@@ -7,7 +7,7 @@ m=40
 
 hidden_state = 10
 
-lerning_rate=0.01
+lerning_rate=0.0001
 
 decay=1e-6
 
@@ -22,18 +22,18 @@ modello = HTM(m,lerning_rate,decay)
 
 
 #TRANIG SET
-traning_set = "data/inex05.train.elastic.tree"
+#traning_set = "data/inex05.train.elastic.tree"
 
-#traning_set = "data/3_train.tree"
+traning_set = "data/3_train.tree"
 #traning_set = "data/128_train.tree"
 #traning_set = "data/train_666.tree"
 #traning_set = "data/train_100.tree"
 
 
 #TEST SET
-test_set = "data/inex05.test.elastic.tree"
+#test_set = "data/inex05.test.elastic.tree"
 
-#test_set = "data/3_test.tree"
+test_set = "data/3_test.tree"
 #test_set = "data/128_train.tree"
 #test_set = "data/test_666.tree"
 #test_set = "data/test_100.tree"
