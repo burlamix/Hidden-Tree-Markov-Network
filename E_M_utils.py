@@ -10,7 +10,7 @@ import random
 #hidden_state = 10
 N_SYMBOLS = 367
 MAX_CHILD = 32
-CLASSI = 3
+CLASSI = 11
 
 # sono quello nuovo
 

@@ -20,11 +20,11 @@ from keras.callbacks import LearningRateScheduler
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "soft_001"
+nome_file = "soft_10_001"
 
 #classi
 
-K=3
+K=11
 MAX_CHILD = 32
 N_SYMBOLS = 367
 
