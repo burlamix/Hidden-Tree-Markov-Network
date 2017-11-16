@@ -20,7 +20,7 @@ from keras.callbacks import LearningRateScheduler
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "3_soft_10_0001"
+nome_file = "3_v_soft_10_0001"
 
 #classi
 
@@ -37,7 +37,7 @@ def step_decay(epoch):
 def HTM (m,lerning_rate,dec):
 
 	cl_size = nCr(m,2)
-
+	print(cl_size)
 	model = Sequential()
 	model.add(Dense(cl_size, activation= 'tanh' ,trainable=False,kernel_initializer=init_contrastive_matrix, input_dim=m))
 	model.add(Dense(K, activation= 'softmax' ))
