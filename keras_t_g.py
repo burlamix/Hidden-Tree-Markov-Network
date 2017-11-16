@@ -20,7 +20,7 @@ from keras.callbacks import LearningRateScheduler
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "soft_10_01"
+nome_file = "3_soft_10_0001"
 
 #classi
 
@@ -28,7 +28,7 @@ K=3
 MAX_CHILD = 32
 N_SYMBOLS = 367
 
-lr_global=0.01
+lr_global=0.0001
 
 def step_decay(epoch):
 
