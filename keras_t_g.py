@@ -20,7 +20,7 @@ from keras.callbacks import LearningRateScheduler
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "soft_10_001"
+nome_file = "soft_10_01"
 
 #classi
 

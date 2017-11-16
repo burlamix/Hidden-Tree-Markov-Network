@@ -274,6 +274,12 @@ epoche = 23
 batch_size = 1
 
 stop_n = 7
+solo sulle 3 più difficili
+nohup time python main.py > new_soft_001.txt &
+
+su tutto il dataser
+nohup time python main.py > soft_10_001.txt &
+nohup time python main.py > soft_10_01.txt &
 
 
 new_soft_001
