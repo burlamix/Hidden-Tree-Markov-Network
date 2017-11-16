@@ -49,17 +49,16 @@ def init_contrastive_matrix(shape, dtype=None):
 	return m_init
 
 def softmax_for_all(ph_sp_p, ph_a, ph_bi, ph_pi,hidden_state):
-	
+
 	sf_a = tf.exp(ph_a) / tf.reduce_sum(tf.exp(ph_a), 0)
 
 	sf_sp_p = tf.exp(ph_sp_p) / tf.reduce_sum(tf.exp(ph_sp_p), 0)	
 
-	sf_bi = tf.exp(ph_bi) / tf.reduce_sum(tf.exp(ph_bi), 0) 
-
+	sf_bi = tf.exp(ph_bi) / tf.tile(tf.expand_dims(tf.reduce_sum(tf.exp(ph_bi), 1),1) ,[1,367])
 	num_pi = tf.exp(ph_pi)
-	den_pi = tf.reduce_sum(num_pi, 1)
-	den_pi = tf.expand_dims(den_pi,1)
-	den_pi = tf.tile(den_pi,[1,MAX_CHILD])
+	den_pi = tf.reduce_sum(num_pi, 0)
+	den_pi = tf.expand_dims(den_pi,0)
+	den_pi = tf.tile(den_pi,[hidden_state,1])
 	sf_pi = num_pi / den_pi
 
 	return sf_sp_p, sf_a, sf_bi, sf_pi
@@ -109,14 +108,16 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 
 	#uniformo la dimensione di slice_e
 	slice_e = tf.expand_dims(slice_e, 2)
+	#print(slice_e)
 	slice_e = tf.tile(slice_e, [1, 1, hidden_state, 1])
-
+	#print(slice_e)
 	#duplico a per il numero di nodi lesimi massimo
 	a_aux = tf.expand_dims(sf_a, 3)
 	a_aux = tf.tile(a_aux, [1, 1, 1, int(max_l)])			
-		
+	#print(a_aux)
 	slice_ee = tf.transpose(slice_ee, [2,3,0,1])#--------------------------------------------DDDD???? ij
 	slice_e = tf.transpose(slice_e, [2,3,0,1])
+	#slice_e = tf.transpose(slice_e, [3,2,0,1])
 
 	#slice_ee = tf.transpose(slice_ee, [3,2,0,1])#--------------------------------------------DDDD???? ij
 

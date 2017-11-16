@@ -231,8 +231,8 @@ ________________________14 sera___________________________ per i test successivi
 
 sempre batch da 1  con leraning rate 0.00001 4 zeri
 
-nohup time python main.py > 14s_tt_b1_ep25_lr_00001.txt &
-nohup time python main.py > 14s_tt_b1_ep25_lr_00005.txt &
+nohup time python main.py > 14s_tt_b1_ep25_lr_00001.txt kkkkk
+nohup time python main.py > 14s_tt_b1_ep25_lr_00005.txt kkkkkkk
 
 per questi si ritorna uguale ! a quello che era quando ho fatto i grafici mandati a bacciu! 
 CON I SOLITI VALORI DI SOPRA!
@@ -253,4 +253,27 @@ nohup time python main.py > 15m_tt_b1_ep25_lr_001.txt &
 15m_nw_tt_b1_ep25_lr_01 quello motificato come si deve ma con il lr più alto
 nohup time python main.py > 15m_nw_tt_b1_ep25_lr_01.txt &
 
-Salvataggio qualcosa per salvare i parametri allenati sul modello iniziale
+Salvataggio qualcosa per salvare i parametri allenati sul modello iniziale  &&&&
+
+
+
+nohup time python main.py > 15p_tt_b1_ep25_lr_001.txt &
+
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| RISOLTO SOFTMAX CHE ERA SBAGLIAT
+m=40
+
+hidden_state = 10
+
+lerning_rate=0.001
+
+decay=1e-6
+
+epoche = 23
+
+batch_size = 1
+
+stop_n = 7
+
+
+new_soft_001

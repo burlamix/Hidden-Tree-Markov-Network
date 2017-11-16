@@ -20,15 +20,15 @@ from keras.callbacks import LearningRateScheduler
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "15p_tt_b1_ep25_lr_001"
+nome_file = "soft_001"
 
 #classi
 
-K=11
+K=3
 MAX_CHILD = 32
 N_SYMBOLS = 367
 
-lr_global=0.0001
+lr_global=0.01
 
 def step_decay(epoch):
 
@@ -44,6 +44,7 @@ def HTM (m,lerning_rate,dec):
 
 	
 	sgd = optimizers.SGD(lr=lerning_rate, decay=dec, momentum=0.5)
+	#sgd = optimizers.SGD(lr=lerning_rate, decay=dec, momentum=0.5)
 	#sgd = keras.optimizers.RMSprop(lr=lerning_rate, rho=0.9, epsilon=1e-08, decay=0.0)
 	#sgd = keras.optimizers.Adadelta(lr=lerning_rate, rho=0.95, epsilon=1e-08, decay=0.0)
 	#sgd = keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0)
@@ -518,6 +519,9 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 		lr_global =lerning_rate
 		
 		loss_function,accuracy = htm.test_on_batch(like_list_epoca,one_hot_lab_epoca)
+
+		#pred = htm.predict(like_list_epoca)
+		#print(pred)
 
 		print("        loss = ",loss_function,"   ac =",accuracy)
 
