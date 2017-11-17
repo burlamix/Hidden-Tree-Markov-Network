@@ -275,11 +275,33 @@ batch_size = 1
 
 stop_n = 7
 solo sulle 3 più difficili
-nohup time python main.py > new_soft_001.txt &
+nohup time python main.py > new_soft_001.txt &k
 
 su tutto il dataser
 nohup time python main.py > soft_10_001.txt &
 nohup time python main.py > soft_10_01.txt &
 
+diminuendo illearning rate
+nohup time python main.py > 3_soft_10_0001.txt &
 
-new_soft_001
+
+
+
+new_soft_001????????
+
+
+
+E PRONTO UN TEST CON VALIDAZIONE MA ASPETTA FINASCA QUELLO CHE C'È ORA
+su validazione
+nohup time python main.py > 3_v_soft_10_0001.txt &
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| si prova con lr più basssi
+
+m=40hidden_state = 10lerning_rate=0.01decay=1e-6epoche = 20atch_size = 1stop_n = 5
+
+
+
+nohup time python main.py > 16s_01_b1.txt &
+nohup time python main.py > 16s_001_b1.txt &
+
+nohup time python main.py > 16s_01_b32.txt &

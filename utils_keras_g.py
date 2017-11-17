@@ -125,6 +125,7 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 	to_sub = tf.multiply(slice_e, a_aux)
 	to_sum = tf.subtract(slice_ee, to_sub)
 	delta_a = tf.reduce_sum(to_sum,[3])
+	#delta_a = tf.where(tf.equal(delta_a,tf.zeros(delta_a.shape,dtype=tf.float64)), tf.constant(-1, dtype=tf.float64,shape=delta_a.shape))
 
 	#-----------------------pi------------------
 	for node in t.struct[-1]:

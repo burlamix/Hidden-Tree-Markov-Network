@@ -20,15 +20,15 @@ from keras.callbacks import LearningRateScheduler
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "3_v_soft_10_0001"
+nome_file = "16s_01_b1"
 
 #classi
 
-K=3
+K=11
 MAX_CHILD = 32
 N_SYMBOLS = 367
 
-lr_global=0.0001
+lr_global=0.01
 
 def step_decay(epoch):
 
@@ -379,6 +379,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 		#	stop_var=loss_function
 			count_stop=0
 			htm.save_weights("weights_"+nome_file)
+			np.save("bhtmm_param_"+nome_file+".npy", free_th_l)
 
 		else:
 			count_stop = count_stop +1
@@ -398,7 +399,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 	#pl.show()
 
 	htm.load_weights("weights_"+nome_file)
-
+	free_th_l = np.load("bhtmm_param_"+nome_file+".npy")
 	return htm , free_th_l
 
 
@@ -472,15 +473,13 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 
 					#AGGIORNO I PARAMETRI 
 					new_sp_p, new_a, new_bi, new_pi = param_update(delta_sp_p, delta_a, delta_bi, delta_pi, sf_sp_p, sf_a, sf_bi, sf_pi, lerning_rate,var_EE,var_E,hidden_state,data_set[j],batch_size,j,len(data_set)-1)
-					
 
 					#CALCOLO IL TUTTO
 					for k in range(m):
-						delta_th[k][1], delta_th[k][3], delta_th[k][2], delta_th[k][0], xlike = sess.run([new_sp_p, new_bi, new_pi, new_a,like],{ ph_a: free_th_l[k][0] , ph_sp_p: free_th_l[k][1] ,ph_bi: free_th_l[k][3], ph_pi: free_th_l[k][2], delta_a: delta_th[k][0] , delta_sp_p: delta_th[k][1] , delta_bi: delta_th[k][3], delta_pi: delta_th[k][2]}) 
+						delta_th[k][1], delta_th[k][3], delta_th[k][2], delta_th[k][0], xlike =\
+						 sess.run([new_sp_p, new_bi, new_pi, new_a,like],{ ph_a: free_th_l[k][0] , ph_sp_p: free_th_l[k][1] ,ph_bi: free_th_l[k][3], ph_pi: free_th_l[k][2], delta_a: delta_th[k][0] , delta_sp_p: delta_th[k][1] , delta_bi: delta_th[k][3], delta_pi: delta_th[k][2]}) 
 						like_list.append(xlike)
-
 					sess.close()
-
 
 			#metto la lista dei vaori di likelihood nella lista che verra appasata come batch
 			like_list_aux.append(like_list)
@@ -506,7 +505,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 					free_th_l[z][2]   = free_th_l[z][2] +  ((lerning_rate)*(delta_th[z][2]/dime))
 					free_th_l[z][3]   = free_th_l[z][3] +  ((lerning_rate)*(delta_th[z][3]/dime))
 
-				
+
 				#p = htm.train_on_batch(like_list_aux,one_hot_lab)
 				p =	htm.fit( like_list_aux, one_hot_lab, batch_size=bs, epochs=1, verbose=0, callbacks=[lrate])
 
@@ -536,6 +535,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 			stop_var=loss_function
 			count_stop=0
 			htm.save_weights("weights_"+nome_file)
+			np.save("bhtmm_param_"+nome_file+".npy", free_th_l)
 
 		else:
 			count_stop = count_stop +1
@@ -555,7 +555,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 	#pl.show()
 
 	htm.load_weights("weights_"+nome_file)
-
+	free_th_l = np.load("bhtmm_param_"+nome_file+".npy")
 	return htm , free_th_l
 
 
