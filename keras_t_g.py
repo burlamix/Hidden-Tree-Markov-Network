@@ -20,7 +20,7 @@ from keras.callbacks import LearningRateScheduler
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "16s_v_01_b32"
+nome_file = "333"
 
 #classi
 
@@ -37,7 +37,6 @@ def step_decay(epoch):
 def HTM (m,lerning_rate,dec):
 
 	cl_size = nCr(m,2)
-	print(cl_size)
 	model = Sequential()
 	model.add(Dense(cl_size, activation= 'tanh' ,trainable=False,kernel_initializer=init_contrastive_matrix, input_dim=m))
 	model.add(Dense(K, activation= 'softmax' ))
@@ -474,13 +473,15 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 					#AGGIORNO I PARAMETRI 
 					new_sp_p, new_a, new_bi, new_pi = param_update(delta_sp_p, delta_a, delta_bi, delta_pi, sf_sp_p, sf_a, sf_bi, sf_pi, lerning_rate,var_EE,var_E,hidden_state,data_set[j],batch_size,j,len(data_set)-1)
 
+					test=delta_sp_p
 					#CALCOLO IL TUTTO
 					for k in range(m):
-						delta_th[k][1], delta_th[k][3], delta_th[k][2], delta_th[k][0], xlike =\
-						 sess.run([new_sp_p, new_bi, new_pi, new_a,like],{ ph_a: free_th_l[k][0] , ph_sp_p: free_th_l[k][1] ,ph_bi: free_th_l[k][3], ph_pi: free_th_l[k][2], delta_a: delta_th[k][0] , delta_sp_p: delta_th[k][1] , delta_bi: delta_th[k][3], delta_pi: delta_th[k][2]}) 
+						delta_th[k][1], delta_th[k][3], delta_th[k][2], delta_th[k][0], xlike ,testx=\
+						 sess.run([new_sp_p, new_bi, new_pi, new_a,like,test],{ ph_a: free_th_l[k][0] , ph_sp_p: free_th_l[k][1] ,ph_bi: free_th_l[k][3], ph_pi: free_th_l[k][2], delta_a: delta_th[k][0] , delta_sp_p: delta_th[k][1] , delta_bi: delta_th[k][3], delta_pi: delta_th[k][2]}) 
 						like_list.append(xlike)
 					sess.close()
 
+			#print(testx)
 			#metto la lista dei vaori di likelihood nella lista che verra appasata come batch
 			like_list_aux.append(like_list)
 			zeri_k=np.zeros(K, dtype=np.float64)
@@ -505,7 +506,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 					free_th_l[z][2]   = free_th_l[z][2] +  ((lerning_rate)*(delta_th[z][2]/dime))
 					free_th_l[z][3]   = free_th_l[z][3] +  ((lerning_rate)*(delta_th[z][3]/dime))
 
-
+				#print(free_th_l[0][0])
 				#p = htm.train_on_batch(like_list_aux,one_hot_lab)
 				p =	htm.fit( like_list_aux, one_hot_lab, batch_size=bs, epochs=1, verbose=0, callbacks=[lrate])
 

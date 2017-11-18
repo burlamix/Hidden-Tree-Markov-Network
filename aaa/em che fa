@@ -10,7 +10,7 @@ import random
 #hidden_state = 10
 N_SYMBOLS = 367
 MAX_CHILD = 32
-CLASSI = 11
+CLASSI = 3
 
 # sono quello nuovo
 
@@ -406,7 +406,7 @@ def Reversed_Upward_Downward(sp_p, A, bi, pi, t,hidden_state):
 
     var_in_prior = compute_internal_node_prior(var_in_prior, sp_p, A, t,hidden_state)
 
-    var_a_up_ward = a_up_ward_foglie(var_a_up_ward,ris_17_t,A,var_in_prior,t,hidden_state,padri,posizione)
+    var_a_up_ward,ris_17_t = a_up_ward_foglie(var_a_up_ward,ris_17_t,A,var_in_prior,t,hidden_state,padri,posizione)
 
     #up step
     for i in range(len(t.struct) - 2, -1, -1):
@@ -428,7 +428,7 @@ def Reversed_Upward_Downward(sp_p, A, bi, pi, t,hidden_state):
 
 
 
-    return (var_EE,var_E)
+    return (var_EE,var_E,ris_17_t,var_a_up_ward,var_up_ward)
 
 def compute_17(bi,pi,var_up_ward,t,hidden_state,label,posizione):
 
@@ -441,13 +441,14 @@ def compute_17(bi,pi,var_up_ward,t,hidden_state,label,posizione):
     den = tf.reduce_sum(nume,[0])
     # righe e colonne con lo stesso indice
     nume = tf.add(nume, tf.constant(1/10000000, dtype=tf.float64,shape=nume.shape))
+    #den = tf.add(den, tf.constant(1/10000000, dtype=tf.float64,shape=den.shape))
+
 
     ris_17_t = tf.divide(nume, den)
 
     ris_17_t = tf.transpose(ris_17_t, perm=[1, 0])
 
     head = tf.slice(var_up_ward, [0, 0], [t.struct[-1][0].name, hidden_state])
-
     var_up_ward = tf.concat([head, ris_17_t], 0)
 
     return var_up_ward, ris_17_t
@@ -511,13 +512,15 @@ def a_up_ward_foglie(var_a_up_ward,ris_17_t,A,var_in_prior,t,hidden_state,padri,
 
     numerator = tf.multiply(slice_A, up_war_foglie)
     numerator = tf.reduce_sum(numerator,[1])
-
     a_up_war_foglie = tf.divide(numerator,slice_in_prior)
+
+
     a_up_war_foglie = tf.transpose(a_up_war_foglie,[1,0])
 
     head = tf.slice(var_a_up_ward, [0, 0], [t.struct[-1][0].name, hidden_state])
     var_a_up_ward = tf.concat([head, a_up_war_foglie], 0)
-    return var_a_up_ward
+
+    return var_a_up_ward,a_up_war_foglie
 
 def compute_19(A, bi, sp_p, a_up_ward, var_in_prior, var_up_ward, t, i,hidden_state):
 
@@ -576,7 +579,10 @@ def compute_19(A, bi, sp_p, a_up_ward, var_in_prior, var_up_ward, t, i,hidden_st
     den_to_sum = tf.multiply(sli_ph_bi,second_term_numerator_19_inter)
     full_denominator19 = tf.reduce_sum(den_to_sum,[2,0])
 
+    full_denominator19 = tf.add(full_denominator19, tf.constant(1/10000000, dtype=tf.float64,shape=full_denominator19.shape))
+
     ris_19 = tf.divide(full_numerator_19,full_denominator19)
+
     ris_19 = tf.transpose(ris_19,[1,0])
     head = tf.slice(var_up_ward, [0, 0], [t.struct[i][-1].name + 1 - int((ris_19.shape[0])), hidden_state])
     tail = tf.slice(var_up_ward, [t.struct[i][-1].name +1 , 0], [t.size - t.struct[i][-1].name - 1, hidden_state])

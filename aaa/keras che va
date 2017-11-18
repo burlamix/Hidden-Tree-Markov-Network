@@ -99,6 +99,7 @@ def softmax_for_all(ph_sp_p, ph_a, ph_bi, ph_pi,hidden_state):
 	sf_a = tf.add(sf_a, tf.constant(1/10000000, dtype=tf.float64,shape=sf_a.shape))
 	sf_sp_p = tf.add(sf_sp_p, tf.constant(1/10000000, dtype=tf.float64,shape=sf_sp_p.shape))
 	sf_pi = tf.add(sf_pi, tf.constant(1/10000000, dtype=tf.float64,shape=sf_pi.shape))
+
 	return sf_sp_p, sf_a, sf_bi, sf_pi
 
 def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p, sf_a, sf_bi, sf_pi,lerning_rate,var_EE_list,var_E_list,hidden_state,t,batch_size,j,last):
@@ -183,8 +184,10 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 	slice_e = tf.reduce_sum(slice_e,1)
 	slice_e = tf.transpose(slice_e,[1,0])
 	to_sub = tf.multiply(sf_pi, len(t.struct[-1]))
-
 	delta_pi = tf.subtract(slice_e,to_sub)
+
+	test_e=slice_e
+	test_sub=sf_pi
 	#print(slice_e)
 
 	#-----------------------bi------------------
@@ -253,7 +256,7 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 	tot_delta_sp_p = tot_delta_sp_p +  delta_sp_p 
 
 
-	return tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi
+	return tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,test_sub,test_e
 
 def nCr(n,r):
     f = math.factorial

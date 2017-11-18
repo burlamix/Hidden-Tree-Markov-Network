@@ -305,3 +305,44 @@ nohup time python main.py > 16s_01_b1.txt &
 nohup time python main.py > 16s_001_b1.txt &
 
 nohup time python main.py > 16s_01_b32.txt &
+
+nohup time python main.py > 16s_v_01_b1.txt &
+nohup time python main.py > 16s_v_01_b32.txt &
+
+
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||FINAL
+nohup time python main.py > final_v1_m40_c6.txt &
+nohup time python main.py > final_v1_m40_c8.txt &
+nohup time python main.py > final_v1_m40_c10.txt &
+
+nohup time python main.py > final_v1_m60_c6.txt &
+nohup time python main.py > final_v1_m60_c8.txt &
+nohup time python main.py > final_v1_m60_c10.txt &
+
+
+
+
+
+nohup time python main.py > final_v2_m40_c6.txt &
+nohup time python main.py > final_v2_m40_c8.txt &
+nohup time python main.py > final_v2_m40_c10.txt &
+
+nohup time python main.py > final_v2_m60_c6.txt &
+nohup time python main.py > final_v2_m60_c8.txt &
+nohup time python main.py > final_v2_m60_c10.txt &
+
+
+
+
+nohup time python main.py > final_v3_m40_c6.txt &
+nohup time python main.py > final_v3_m40_c8.txt &
+nohup time python main.py > final_v3_m40_c10.txt &
+
+nohup time python main.py > final_v3_m60_c6.txt &
+nohup time python main.py > final_v3_m60_c8.txt &
+nohup time python main.py > final_v3_m60_c10.txt &
+
+
+
+
