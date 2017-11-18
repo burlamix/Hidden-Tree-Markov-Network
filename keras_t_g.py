@@ -20,7 +20,7 @@ from keras.callbacks import LearningRateScheduler
 
 np.set_printoptions(threshold=np.nan)
 
-nome_file = "333"
+#nome_file = "333"
 
 #classi
 
@@ -215,7 +215,7 @@ def training_use(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 
 
-def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,stop_n,vali_set,bs):
+def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,stop_n,vali_set,bs,nome_file):
 
 
 	lrate = LearningRateScheduler(step_decay)
