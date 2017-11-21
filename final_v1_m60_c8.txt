@@ -3,3 +3,6 @@
 2017-11-18 17:52:35.623113: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
 2017-11-18 17:52:35.623121: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
 2017-11-18 17:52:35.623129: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+Command terminated by signal 9
+224793.43user 49106.09system 76:20:56elapsed 99%CPU (0avgtext+0avgdata 484912maxresident)k
+35472inputs+68144outputs (1508major+1820428941minor)pagefaults 0swaps
