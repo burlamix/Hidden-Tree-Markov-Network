@@ -345,4 +345,21 @@ nohup time python main.py > final_v3_m60_c10.txt &
 
 
 
+||||||||||||||||||||||||||||||||||||||||||||||| TEST FINALI
 
+
+30 epoche traning solo
+end_fast_1
+35 epocge traning solo
+end_fast_2
+
+50 epoche accuracy man mano 
+end_slow_1
+end_slow_2
+
+
+nohup time python main.py > end_fast_1.txt &
+nohup time python main.py > end_fast_2.txt &
+
+nohup time python main.py > end_slow_1.txt &
+nohup time python main.py > end_slow_2.txt &

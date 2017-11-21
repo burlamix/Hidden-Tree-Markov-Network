@@ -7,9 +7,9 @@ m=60
 hidden_state = 10
 lerning_rate = 0.01
 decay=1e-6
-epoche = 50
+epoche = 30
 batch_size = 32
-stop_n = 6
+stop_n = 5
 
 nome_file = "final_v3_m60_c10"
 
@@ -25,13 +25,22 @@ test_set = dataset_parser(test_set)
 random.shuffle(test_set)
 
 
+
+'''
 # TRAIN CON VALIDATION
-traning_set = dataset_parser_class(traning_set)
-traning_set = divide_tre_validation_htm(traning_set)
-
-
+#traning_set = dataset_parser_class(traning_set)
+#traning_set = divide_tre_validation_htm(traning_set)
 
 htm , lamda = training_val (modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set[2][0],decay,stop_n,traning_set[2][1],batch_size,nome_file)
+
+'''
+
+#SENZA VALIDAITON
+traning_set = dataset_parser(traning_set)
+random.shuffle(traning_set)
+
+htm , lamda = training (modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set,decay,stop_n,batch_size)
+
 
 
 print("test...")
@@ -44,12 +53,4 @@ print("\n\n")
 
 
 #result = train_and_test(modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set[0])
-'''
 
-#SENZA VALIDAITON
-traning_set = dataset_parser(traning_set)
-random.shuffle(traning_set)
-
-htm , lamda = training (modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set,decay,stop_n,batch_size)
-
-'''
