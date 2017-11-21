@@ -7,11 +7,11 @@ m=60
 hidden_state = 6
 lerning_rate = 0.01
 decay=1e-6
-epoche = 30
+epoche = 50
 batch_size = 32
 stop_n = 5
 
-nome_file = "end_fast_2"
+nome_file = "end_slow_1"
 
 modello = HTM(m,lerning_rate,decay)
 
@@ -25,23 +25,23 @@ test_set = dataset_parser(test_set)
 random.shuffle(test_set)
 
 
+traning_set = dataset_parser(traning_set)
+random.shuffle(traning_set)
 
-'''
 # TRAIN CON VALIDATION
 #traning_set = dataset_parser_class(traning_set)
 #traning_set = divide_tre_validation_htm(traning_set)
 
-htm , lamda = training_val (modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set[2][0],decay,stop_n,traning_set[2][1],batch_size,nome_file)
+htm , lamda = training_val (modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set,decay,stop_n,test_set,batch_size,nome_file)
 
 '''
 
 #SENZA VALIDAITON
-traning_set = dataset_parser(traning_set)
-random.shuffle(traning_set)
+
 
 htm , lamda = training (modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set,decay,stop_n,batch_size)
 
-
+'''
 
 print("test...")
 
