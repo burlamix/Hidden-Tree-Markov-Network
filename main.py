@@ -11,7 +11,7 @@ epoche = 30
 batch_size = 32
 stop_n = 5
 
-nome_file = "final_v3_m60_c10"
+nome_file = "end_fast_1"
 
 modello = HTM(m,lerning_rate,decay)
 
