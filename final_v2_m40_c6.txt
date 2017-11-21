@@ -1,0 +1,66 @@
+2017-11-18 19:11:44.755632: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-18 19:11:46.347595: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-18 19:11:46.347629: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-18 19:11:46.347640: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-18 19:11:46.347648: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+Using TensorFlow backend.
+EPOCA:  0
+                     loss =  0.608219    ac = 0.739402
+EPOCA:  1
+                     loss =  0.530363    ac = 0.792394
+EPOCA:  2
+                     loss =  0.531668    ac = 0.787407
+EPOCA:  3
+                     loss =  0.467843    ac = 0.812344
+EPOCA:  4
+                     loss =  0.474778    ac = 0.7899
+EPOCA:  5
+                     loss =  0.464112    ac = 0.816708
+EPOCA:  6
+                     loss =  0.458694    ac = 0.825436
+EPOCA:  7
+                     loss =  0.443267    ac = 0.836035
+EPOCA:  8
+                     loss =  0.418549    ac = 0.866584
+EPOCA:  9
+                     loss =  0.38952    ac = 0.875935
+EPOCA:  10
+                     loss =  0.32335    ac = 0.902743
+EPOCA:  11
+                     loss =  0.295356    ac = 0.910224
+EPOCA:  12
+                     loss =  0.258317    ac = 0.928928
+EPOCA:  13
+                     loss =  0.23475    ac = 0.934539
+EPOCA:  14
+                     loss =  0.22662    ac = 0.928928
+EPOCA:  15
+                     loss =  0.216078    ac = 0.937032
+EPOCA:  16
+                     loss =  0.215151    ac = 0.92581
+EPOCA:  17
+                     loss =  0.212695    ac = 0.926434
+EPOCA:  18
+                     loss =  0.199559    ac = 0.940773
+EPOCA:  19
+                     loss =  0.194593    ac = 0.938279
+EPOCA:  20
+                     loss =  0.208312    ac = 0.932045
+EPOCA:  21
+                     loss =  0.197626    ac = 0.931421
+EPOCA:  22
+                     loss =  0.194737    ac = 0.933915
+EPOCA:  23
+                     loss =  0.188434    ac = 0.939526
+EPOCA:  24
+                     loss =  0.205594    ac = 0.930798
+STOP
+test...
+
+
+          FINAL  LOSS AND ACCURACY ON TEST            [0.2193038, 0.92288506]
+
+
+
+153393.96user 22202.26system 65:40:03elapsed 74%CPU (0avgtext+0avgdata 491584maxresident)k
+89336inputs+52600outputs (790major+733550301minor)pagefaults 0swaps

@@ -3,15 +3,15 @@ import random
 
 #	PARAMETRI DEL MODELLO
 
-m=40
-hidden_state = 6
+m=60
+hidden_state = 10
 lerning_rate = 0.01
 decay=1e-6
 epoche = 50
 batch_size = 32
 stop_n = 6
 
-nome_file = "final_v1_m40_c6"
+nome_file = "final_v3_m60_c10"
 
 modello = HTM(m,lerning_rate,decay)
 
@@ -31,7 +31,7 @@ traning_set = divide_tre_validation_htm(traning_set)
 
 
 
-htm , lamda = training_val (modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set[0][0],decay,stop_n,traning_set[0][1],batch_size,nome_file)
+htm , lamda = training_val (modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set[2][0],decay,stop_n,traning_set[2][1],batch_size,nome_file)
 
 
 print("test...")

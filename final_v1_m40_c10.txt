@@ -1,0 +1,38 @@
+2017-11-18 17:50:47.988998: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-18 17:50:47.989028: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-18 17:50:47.989034: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-18 17:50:47.989038: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-18 17:50:47.989042: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+Using TensorFlow backend.
+EPOCA:  0
+                     loss =  0.654015    ac = 0.795285
+EPOCA:  1
+                     loss =  0.550301    ac = 0.782878
+EPOCA:  2
+                     loss =  0.504425    ac = 0.801489
+EPOCA:  3
+                     loss =  0.494925    ac = 0.782878
+EPOCA:  4
+                     loss =  0.465095    ac = 0.804591
+EPOCA:  5
+                     loss =  0.458622    ac = 0.800869
+EPOCA:  6
+                     loss =  0.458144    ac = 0.799628
+EPOCA:  7
+                     loss =  0.45216    ac = 0.800248
+EPOCA:  8
+                     loss =  0.457733    ac = 0.80397
+EPOCA:  9
+                     loss =  0.469296    ac = 0.798387
+EPOCA:  10
+                     loss =  0.459592    ac = 0.800869
+STOP
+test...
+
+
+          FINAL  LOSS AND ACCURACY ON TEST            [0.45910805, 0.8104344]
+
+
+
+99160.57user 19713.56system 33:28:42elapsed 98%CPU (0avgtext+0avgdata 472768maxresident)k
+85480inputs+21568outputs (6142major+843373244minor)pagefaults 0swaps

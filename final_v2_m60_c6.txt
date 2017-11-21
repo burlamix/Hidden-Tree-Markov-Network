@@ -1,0 +1,40 @@
+2017-11-18 19:19:28.269508: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-18 19:19:28.269562: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-18 19:19:28.269571: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-18 19:19:28.269577: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-18 19:19:28.269584: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+Using TensorFlow backend.
+EPOCA:  0
+                     loss =  0.545337    ac = 0.763716
+EPOCA:  1
+                     loss =  0.473492    ac = 0.794264
+EPOCA:  2
+                     loss =  0.453408    ac = 0.805486
+EPOCA:  3
+                     loss =  0.438906    ac = 0.811097
+EPOCA:  4
+                     loss =  0.437605    ac = 0.806733
+EPOCA:  5
+                     loss =  0.425114    ac = 0.827307
+EPOCA:  6
+                     loss =  0.441076    ac = 0.793641
+EPOCA:  7
+                     loss =  0.461255    ac = 0.750623
+EPOCA:  8
+                     loss =  0.443679    ac = 0.82606
+EPOCA:  9
+                     loss =  0.418922    ac = 0.80611
+EPOCA:  10
+                     loss =  0.657537    ac = 0.782419
+EPOCA:  11
+                     loss =  0.453238    ac = 0.808603
+STOP
+test...
+
+
+          FINAL  LOSS AND ACCURACY ON TEST            [0.40085053, 0.84306794]
+
+
+
+118004.76user 22143.03system 41:36:05elapsed 93%CPU (0avgtext+0avgdata 495620maxresident)k
+124608inputs+42528outputs (1706major+854252066minor)pagefaults 0swaps
