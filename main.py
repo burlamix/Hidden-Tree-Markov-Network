@@ -5,7 +5,7 @@ import random
 
 m=60
 hidden_state = 6
-lerning_rate = 0.01
+lerning_rate = 0.025
 decay=1e-6
 epoche = 20
 batch_size = 32
