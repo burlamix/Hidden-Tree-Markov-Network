@@ -407,7 +407,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 
 
-def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,stop_n,bs):
+def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,stop_n,bs,nome_file):
 
 	lrate = LearningRateScheduler(step_decay)
 
