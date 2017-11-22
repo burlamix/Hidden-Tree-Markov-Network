@@ -11,7 +11,7 @@ epoche = 50
 batch_size = 32
 stop_n = 5
 
-nome_file = "end_slow_1"
+nome_file = "end_slow_2"
 
 modello = HTM(m,lerning_rate,decay)
 

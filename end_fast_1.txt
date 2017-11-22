@@ -3,3 +3,14 @@
 2017-11-21 22:28:23.939791: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
 2017-11-21 22:28:23.939797: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
 2017-11-21 22:28:23.939804: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+Using TensorFlow backend.
+        loss =  0.536005    ac = 0.787967
+Traceback (most recent call last):
+  File "main.py", line 42, in <module>
+    htm , lamda = training (modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set,decay,stop_n,batch_size)
+  File "/home/spagnoli/virtualenv/tesi/Hidden-Tree-Markov-Network/keras_t_g.py", line 528, in training
+    with open(nome_file, "a") as myfile:
+NameError: name 'nome_file' is not defined
+Command exited with non-zero status 1
+8918.88user 5303.13system 1:43:52elapsed 228%CPU (0avgtext+0avgdata 479664maxresident)k
+8inputs+24outputs (0major+70067226minor)pagefaults 0swaps
