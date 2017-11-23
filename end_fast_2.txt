@@ -1,5 +1,30 @@
-2017-11-22 08:07:31.904606: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
-2017-11-22 08:07:31.904645: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
-2017-11-22 08:07:31.904654: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
-2017-11-22 08:07:31.904662: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
-2017-11-22 08:07:31.904669: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-22 16:21:27.668406: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-22 16:21:27.668447: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-22 16:21:27.668456: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-22 16:21:27.668464: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-11-22 16:21:27.668471: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+Using TensorFlow backend.
+        loss =  0.535127    ac = 0.790664
+        loss =  0.577035    ac = 0.79751
+        loss =  1.11637    ac = 0.769087
+        loss =  0.374608    ac = 0.879046
+        loss =  0.220331    ac = 0.931535
+        loss =  0.205781    ac = 0.938382
+        loss =  0.239162    ac = 0.937137
+        loss =  0.166484    ac = 0.93195
+        loss =  0.139463    ac = 0.94917
+        loss =  0.205911    ac = 0.93361
+        loss =  0.170569    ac = 0.949378
+        loss =  0.162505    ac = 0.95166
+        loss =  0.160304    ac = 0.935477
+        loss =  0.161321    ac = 0.939004
+STOP
+test...
+
+
+          FINAL  LOSS AND ACCURACY ON TEST            [0.20112053, 0.9284972]
+
+
+
+127386.04user 89922.54system 20:41:33elapsed 291%CPU (0avgtext+0avgdata 531736maxresident)k
+8inputs+36968outputs (0major+914432493minor)pagefaults 0swaps

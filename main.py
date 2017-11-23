@@ -5,13 +5,13 @@ import random
 
 m=60
 hidden_state = 6
-lerning_rate = 0.01
+lerning_rate = 0.025
 decay=1e-6
 epoche = 20
 batch_size = 32
 stop_n = 5
 
-nome_file = "end_fast_1"
+nome_file = "end_fast_2"
 
 modello = HTM(m,lerning_rate,decay)
 
