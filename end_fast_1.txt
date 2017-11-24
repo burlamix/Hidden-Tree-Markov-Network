@@ -3,3 +3,37 @@
 2017-11-22 16:21:03.062649: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
 2017-11-22 16:21:03.062656: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
 2017-11-22 16:21:03.062664: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+Using TensorFlow backend.
+        loss =  0.46519    ac = 0.8139
+        loss =  0.440775    ac = 0.803112
+        loss =  0.409392    ac = 0.81971
+        loss =  0.417945    ac = 0.818672
+        loss =  0.561297    ac = 0.775519
+        loss =  0.416749    ac = 0.836929
+        loss =  0.372263    ac = 0.856846
+        loss =  0.298454    ac = 0.888174
+        loss =  0.208605    ac = 0.928216
+        loss =  0.200565    ac = 0.920124
+        loss =  0.186796    ac = 0.922614
+        loss =  0.151681    ac = 0.943568
+        loss =  0.175457    ac = 0.926971
+        loss =  0.166667    ac = 0.938797
+        loss =  0.139897    ac = 0.946888
+        loss =  0.132168    ac = 0.951245
+        loss =  0.1456    ac = 0.946473
+        loss =  0.142412    ac = 0.950415
+        loss =  0.135477    ac = 0.953319
+        loss =  0.148118    ac = 0.945021
+test...
+
+
+          FINAL  LOSS AND ACCURACY ON TEST            [0.14915156, 0.94720435]
+
+
+
+Exception ignored in: <bound method Session.__del__ of <tensorflow.python.client.session.Session object at 0x7fdd044959b0>>
+Traceback (most recent call last):
+  File "/home/spagnoli/virtualenv/tesi/lib/python3.4/site-packages/tensorflow/python/client/session.py", line 701, in __del__
+TypeError: 'NoneType' object is not callable
+178488.83user 116117.84system 27:16:53elapsed 299%CPU (0avgtext+0avgdata 522648maxresident)k
+56inputs+67552outputs (0major+1138276939minor)pagefaults 0swaps
