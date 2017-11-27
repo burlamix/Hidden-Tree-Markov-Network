@@ -24,9 +24,9 @@ np.set_printoptions(threshold=np.nan)
 
 #classi
 
-K=11
-MAX_CHILD = 32
-N_SYMBOLS = 367
+K=18
+MAX_CHILD = 66
+N_SYMBOLS = 66
 
 lr_global=0.01
 
@@ -86,7 +86,7 @@ def training_use(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 	for i in range (0,epoche):
 
-		print("EPOCA: ",i)
+		#print("EPOCA: ",i)
 
 		#ordino in modo casuale il dataset
 		random.shuffle(data_set)
@@ -239,7 +239,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 	for i in range (0,epoche):
 	
-		print("EPOCA: ",i)
+		#print("EPOCA: ",i)
 
 		#ordino in modo casuale il dataset
 		random.shuffle(data_set)
@@ -409,6 +409,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,stop_n,bs,nome_file):
 
+	session_conf = tf.ConfigProto(	      intra_op_parallelism_threads=1,	      inter_op_parallelism_threads=1)
 	lrate = LearningRateScheduler(step_decay)
 
 	global lr_global
@@ -430,7 +431,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 
 	for i in range (0,epoche):
 
-		#print("EPOCA: ",i)
+		print("EPOCA: ",i)
 
 		#ordino in modo casuale il dataset
 		random.shuffle(data_set)
@@ -443,13 +444,14 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 
 		for j in range(0,len(data_set)):
 			
-			#print("     tree: ",j)
+			print("     tree: ",j)
 
 			like_list=[]
 
 			with tf.Graph().as_default():
 
-				with tf.Session() as sess:
+				with tf.Session(config=session_conf) as sess:
+				#with tf.Session() as sess:
 
 					ph_a = tf.placeholder(shape=[hidden_state, hidden_state, MAX_CHILD], dtype=tf.float64)
 					ph_sp_p = tf.placeholder(shape=[MAX_CHILD], dtype=tf.float64)

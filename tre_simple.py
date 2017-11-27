@@ -128,7 +128,7 @@ class Tree(object):
         self.struct[0].append(self.t)
         self.size=None
         self.classe=classe
-        self.max_child=32
+        self.max_child=66
         self.leaves_n=None
         self.no_leaves_n=None
         self.N_L=np.zeros(self.max_child)

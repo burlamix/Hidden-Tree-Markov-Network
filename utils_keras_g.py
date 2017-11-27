@@ -5,9 +5,9 @@ from E_M_utils import *
 #from GPU_E_M_utils import *
 
 
-MAX_CHILD = 32
+MAX_CHILD = 66
 
-N_SYMBOLS = 367
+N_SYMBOLS = 66
 
 
 def init_theta(hidden_state,empty=False):
@@ -67,7 +67,7 @@ def softmax_for_all(ph_sp_p, ph_a, ph_bi, ph_pi,hidden_state):
 									tf.expand_dims(\
 										tf.reduce_sum(tf.exp(ph_bi), 1),\
 													1) \
-										,[1,367]), \
+										,[1,N_SYMBOLS]), \
 								tf.constant(1/10000000, dtype=tf.float64,shape=ph_bi.shape))
 
 	sf_pi = tf.exp(ph_pi) / tf.add(\

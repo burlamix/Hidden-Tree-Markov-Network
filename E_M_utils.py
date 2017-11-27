@@ -3,14 +3,14 @@ import tensorflow as tf
 from tre_simple import *
 from parser import *
 import random
-#import pylab as pl
+import pylab as pl
 
 #np.set_printoptions(threshold=np.nan)
 
 #hidden_state = 10
-N_SYMBOLS = 367
-MAX_CHILD = 32
-CLASSI = 11
+N_SYMBOLS = 66
+MAX_CHILD = 66
+CLASSI = 18
 
 # sono quello nuovo
 
@@ -215,7 +215,7 @@ def training(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
     #per il numero delle epoco eseguo l'E-M
 
     for i in range(0, epoche):
-        #print("EPOCA: ",i)
+        print("EPOCA: ",i)
 
         var_EE_list = []
         var_E_list = []
@@ -349,7 +349,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
     #pl.plot(s_3,color='blue')
     #pl.plot(s_2,color='orange')
     #pl.plot(s_1,color='green')
-    #pl.plot(like_list)
+    pl.plot(like_list)
 
 
     #np.savetxt('55like_list.out', like_list) 
@@ -357,7 +357,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
     #np.savetxt('55s2.out', s_2) 
     #np.savetxt('55s3.out', s_3) 
     #np.savetxt('55s4.out', s_4) 
-    #pl.show()
+    pl.show()
     #pl.savefig('10.png')
 
 
