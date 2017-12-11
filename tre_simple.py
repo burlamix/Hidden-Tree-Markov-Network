@@ -1,15 +1,4 @@
 import numpy as np
-#dato il nodo u, restituisce la sua posizione di figlio rispetto al padre
-def pos(u):
-    return [0]
-#dato il nodo u, restituisce il padre
-def pa(u):
-    return [0]
-#dato il nodo u e l, restituisce l-esimo figlio di u
-def ch_l(u,l):
-    return [0]
-
-
 
 class Node(object):
     def __init__(self,label,root,level_n=0):
@@ -23,8 +12,6 @@ class Node(object):
 
 
 
-#    def __str__(self):
- #       return str(self.label)+"_"+str(self.name)
     def __str__(self, level=0):
         image = "\t" * level + repr(self.name) +"-" +repr(self.label) + "\n"
         for child in self.children:
@@ -34,10 +21,7 @@ class Node(object):
     def __repr__(self):
         return str(self.name)+"-"+str(self.label)
 
-   # def __str__(self):
-  #      return str(self.name)
- #   def __repr__(self):
-#        return str(self.name)
+
 
 
     def add_node(self,label):
@@ -50,7 +34,7 @@ class Node(object):
         node.root=self.root
         self.children.append(node)
         node.father=self
-        return node                                         #a---------------------------------------------test
+        return node                                      
 
     def put_name(self):
         stack = [self]
@@ -141,11 +125,6 @@ class Tree(object):
     def __repr__(self):
         return self.t.__repr__()
 
-#    def __str__(self):
- #       return str(self.name)
-  #  def __repr__(self):
-   #     return str(self.name)
-
 
     def set_name(l_t):
         i=0
@@ -179,7 +158,6 @@ class Tree(object):
 
     def set_N_L(self):
         for node in self.struct[-1]:
-            #self.N_L[node.father.children.index(node)]=self.N_L[node.father.children.index(node)] + 1
             self.N_L[node.pos-1]=self.N_L[node.pos-1] + 1
         for level in self.struct[:-1]:
             for node in level:

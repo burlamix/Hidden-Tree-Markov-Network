@@ -5,115 +5,11 @@ from parser import *
 import random
 #import pylab as pl
 
-#np.set_printoptions(threshold=np.nan)
 
 #hidden_state = 10
 N_SYMBOLS = 66
 MAX_CHILD = 66
 CLASSI = 18
-
-# sono quello nuovo
-
-
-def modello_3(data_set,epoche,hidden_state):
-
-    pi_l=  [[],[],[]]
-    sp_p_l=[[],[],[]]
-    bi_l=  [[],[],[]]
-    A_l=   [[],[],[]]
-
-    ii=0
-    for i in range(0,3):
-        print("-----------------",i)
-        pi_l[ii],sp_p_l[ii],A_l[ii],bi_l[ii] = training(data_set[i],epoche,hidden_state)
-        ii=ii+1
-    return pi_l,sp_p_l,A_l,bi_l
-
-
-
-def testing_3(data_test,pi_l,sp_p_l,A_l,bi_l,hidden_state):
-
-
-    class_result = np.zeros(len(data_test))
-    #class_result = tf.zeros([len(data_test)],dtype=tf.float64)
-
-    confusion_matrix = np.zeros((CLASSI,CLASSI))
-    #confusion_matrix = tf.zeros([CLASSI,CLASSI],dtype=tf.float64)
-
-    giusti=0
-    errati=0
-    for j in range(0,len(data_test)):
-        print(j)
-        like_max = -9999999999999999999
-
-        for i in range(0,CLASSI):
-
-            with tf.Session() as sess:
-
-                var_EE, var_E = Reversed_Upward_Downward(sp_p_l[i], A_l[i], bi_l[i], pi_l[i], data_test[j],hidden_state)
-                var_EE,var_E = sess.run([var_EE,var_E])
-
-                sess.close
-            tf.reset_default_graph() 
-
-            with tf.Session() as sess:
-                    
-                like = log_likelihood_test(pi_l[i],sp_p_l[i],A_l[i],bi_l[i],var_EE,var_E,data_test[j],hidden_state)
-                like = sess.run(like)
-
-                sess.close
-            tf.reset_default_graph() 
-
-
-            if(like>like_max):
-                class_result[j]=i+1
-                like_max=like
-
-        #print("reale ",data_test[j].classe,"    predetto",class_result[j])
-
-        confusion_matrix[int(data_test[j].classe)-1][int(class_result[j])-1]= confusion_matrix[int(data_test[j].classe)-1][int(class_result[j])-1] +1
-        
-        #if(  (int(data_test[j].classe) == 6 and class_result[j]==1 ) or (int(data_test[j].classe) == 10 and class_result[j]==2 ) or (int(data_test[j].classe) == 11 and class_result[j]==3 )  ):
-        if(  int(data_test[j].classe)    ==   int(class_result[j])   ):
-
-            giusti=giusti+1
-
-        else: 
-
-            errati = errati +1
-
-
-    rate =( (giusti) / (giusti+errati) ) * 100 
-    print("giusti ",giusti)
-    print("errati ",errati)
-    print("|||||||----------rate   ",    rate )
-    #print("confusion_matrix\n",confusion_matrix)
-    #np.savetxt('classi_risultato.out', class_result) 
-    #np.savetxt('rate.out', rate) 
-
-    return rate 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def modello(data_set,epoche,hidden_state):
@@ -123,7 +19,6 @@ def modello(data_set,epoche,hidden_state):
     bi_l=  [[],[],[],[],[],[],[],[],[],[],[]]
     A_l=   [[],[],[],[],[],[],[],[],[],[],[]]
     for i in range(0,CLASSI):
-        print("-------------------------------------------i =",i)
         pi_l[i],sp_p_l[i],A_l[i],bi_l[i] = training(data_set[i],epoche,hidden_state)
 
     return pi_l,sp_p_l,A_l,bi_l
@@ -132,10 +27,8 @@ def testing(data_test,pi_l,sp_p_l,A_l,bi_l,hidden_state):
 
 
     class_result = np.zeros(len(data_test))
-    #class_result = tf.zeros([len(data_test)],dtype=tf.float64)
 
     confusion_matrix = np.zeros((CLASSI,CLASSI))
-    #confusion_matrix = tf.zeros([CLASSI,CLASSI],dtype=tf.float64)
 
     giusti=0
     errati=0
@@ -198,9 +91,6 @@ def training(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
     s_4=[]
     like_list =[]
 
-    #hidden_state da 2 a 20 non di piu, va calcolato l'algoritmo per i vari valori, che fanno cambiare il tutto di molto IMPORTANTE
-
-
 
     #nel caso non vengano passati dei valori iniziali ai parametri essi venono inizializati random
     if pi is None:
@@ -212,8 +102,7 @@ def training(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
     if bi is None:
         bi = random_sum_one2(1, hidden_state, N_SYMBOLS)
 
-    #per il numero delle epoco eseguo l'E-M
-
+    #per il numero delle epoce eseguo l'E-M
     for i in range(0, epoche):
         print("EPOCA: ",i)
 
@@ -221,8 +110,6 @@ def training(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
         var_E_list = []
 
         #eseguo E-STEP per ogni albero nel dataset
-
-
         for j in range(0,len(data_set)):
             #print("tree",j)
             #with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
@@ -1143,8 +1030,6 @@ def divide_tre_validation (dataset):
         d_dataset[2][1] += dataset[i][:split_size]
 
     return d_dataset
-
-
     
 def divide_tre_validation_htm (dataset):
 

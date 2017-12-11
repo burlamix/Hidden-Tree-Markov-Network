@@ -363,3 +363,30 @@ nohup time python main.py > end_fast_2.txt &
 
 nohup time python main.py > end_slow_1.txt &
 nohup time python main.py > end_slow_2.txt &
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||inex 2006
+
+
+nohup time python main.py > inex6_v1_m40_c6.txt &
+nohup time python main.py > inex6_v1_m40_c10.txt &
+
+nohup time python main.py > inex6_v1_m60_c6.txt &
+nohup time python main.py > inex6_v1_m60_c10.txt &
+
+
+
+
+nohup time python main.py > inex6_v2_m40_c6.txt &
+nohup time python main.py > inex6_v2_m40_c10.txt &
+
+nohup time python main.py > inex6_v2_m60_c6.txt &
+nohup time python main.py > inex6_v2_m60_c10.txt &
+
+
+
+
+nohup time python main.py > inex6_v3_m40_c6.txt &
+nohup time python main.py > inex6_v3_m40_c10.txt &
+
+nohup time python main.py > inex6_v3_m60_c6.txt &
+nohup time python main.py > inex6_v3_m60_c10.txt &

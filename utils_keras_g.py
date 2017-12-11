@@ -78,27 +78,11 @@ def softmax_for_all(ph_sp_p, ph_a, ph_bi, ph_pi,hidden_state):
 										,[hidden_state,1]),\
 								tf.constant(1/10000000, dtype=tf.float64,shape=ph_pi.shape))
 
-	#num =tf.exp(ph_pi)
-	#num =tf.add(num, tf.constant(1/10000000, dtype=tf.float64,shape=num.shape))
 
-	#den =  tf.tile(tf.expand_dims(tf.reduce_sum(tf.exp(ph_pi), 0),0) ,[hidden_state,1])
-
-	#den =tf.add(den, tf.constant(1/10000000, dtype=tf.float64,shape=den.shape))
-
-	#sf_pi = num/den
-
-	#num_pi = tf.exp(ph_pi)
-	##den_pi = tf.reduce_sum(num_pi, 0)
-	#den_pi = tf.expand_dims(den_pi,0)
-	#den_pi = tf.tile(den_pi,[hidden_state,1])
-	#sf_pi = num_pi / den_pi
-
-
-
-	sf_bi = tf.add(sf_bi, tf.constant(1/10000000, dtype=tf.float64,shape=sf_bi.shape))
-	sf_a = tf.add(sf_a, tf.constant(1/10000000, dtype=tf.float64,shape=sf_a.shape))
-	sf_sp_p = tf.add(sf_sp_p, tf.constant(1/10000000, dtype=tf.float64,shape=sf_sp_p.shape))
-	sf_pi = tf.add(sf_pi, tf.constant(1/10000000, dtype=tf.float64,shape=sf_pi.shape))
+	#sf_bi = tf.add(sf_bi, tf.constant(1/10000000, dtype=tf.float64,shape=sf_bi.shape))
+	#sf_a = tf.add(sf_a, tf.constant(1/10000000, dtype=tf.float64,shape=sf_a.shape))
+	#sf_sp_p = tf.add(sf_sp_p, tf.constant(1/10000000, dtype=tf.float64,shape=sf_sp_p.shape))
+	#sf_pi = tf.add(sf_pi, tf.constant(1/10000000, dtype=tf.float64,shape=sf_pi.shape))
 	return sf_sp_p, sf_a, sf_bi, sf_pi
 
 def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p, sf_a, sf_bi, sf_pi,lerning_rate,var_EE_list,var_E_list,hidden_state,t,batch_size,j,last):
@@ -255,19 +239,8 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 
 	return tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi
 
-def nCr(n,r):
+
+#funzione che calcola le combinazioni di n elementi di classe r
+def n_comb_r(n,r):
     f = math.factorial
     return int(f(n) / f(r) / f(n-r))
-
-def init_theta_old(hidden_state,empty=False):
-
-	th =[[],[],[],[]]
-	if(empty == False):
-
-		th[0] =   random_sum_one3(0, hidden_state, hidden_state, MAX_CHILD) 	#a
-		th[1] =   random_sum_one1(MAX_CHILD)									# sp_p
-		th[2] =   random_sum_one2(0, hidden_state, MAX_CHILD)					# pi
-		th[3] =   random_sum_one2(1, hidden_state, N_SYMBOLS)					# bi
-
-	return th
-
