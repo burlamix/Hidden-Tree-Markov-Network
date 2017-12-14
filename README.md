@@ -1,6 +1,3 @@
-# tesis
-
-
 progetto di tesi triennale:
 
 		ANALISI DI STRUTTURE AD ALBERO: UN APPROCCIO NEURO-PROBABILISTICO		
@@ -11,4 +8,3 @@ progetto di tesi triennale:
 
 
 
-		work in progress......

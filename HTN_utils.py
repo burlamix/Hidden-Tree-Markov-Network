@@ -1,14 +1,10 @@
 import numpy as np
 import tensorflow as tf
 import math
-from E_M_utils import *
-#from GPU_E_M_utils import *
-
+from BHTMM import *
 
 MAX_CHILD = 66
-
 N_SYMBOLS = 66
-
 
 def init_theta(hidden_state,empty=False):
 
@@ -19,20 +15,14 @@ def init_theta(hidden_state,empty=False):
 		th[1] =   np.random.random((MAX_CHILD))									# sp_p
 		th[2] =   np.random.random((hidden_state, MAX_CHILD))					# pi
 		th[3] =   np.random.random((hidden_state, N_SYMBOLS))					# bi
+	else:
+		th[0] =   np.zeros((hidden_state,hidden_state, MAX_CHILD)) 		
+		th[1] =   np.zeros((MAX_CHILD))									
+		th[2] =   np.zeros((hidden_state, MAX_CHILD))					
+		th[3] =   np.zeros((hidden_state, N_SYMBOLS))					
 
 	return th
 
-def init_theta_zero(hidden_state,empty=False):
-
-	th =[[],[],[],[]]
-	if(empty == False):
-
-		th[0] =   np.zeros((hidden_state,hidden_state, MAX_CHILD)) 		#a
-		th[1] =   np.zeros((MAX_CHILD))									# sp_p
-		th[2] =   np.zeros((hidden_state, MAX_CHILD))					# pi
-		th[3] =   np.zeros((hidden_state, N_SYMBOLS))					# bi
-
-	return th
 
 def init_contrastive_matrix(shape, dtype=None):
 	m_init = np.zeros(shape, dtype=dtype)
@@ -100,7 +90,6 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 
 	#aggiungo una riga di zeri in fondo per prelevare con la gather un termine inerte
 	var_E_prov= tf.concat([var_E_list,for_pad],0)
-
 	#in modo da rendere piu veloce l  esecuzione mi salvo in una lista ordinatamente i nodi e le lero posizioni
 
 
@@ -130,24 +119,18 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 
 	#uniformo la dimensione di slice_e
 	slice_e = tf.expand_dims(slice_e, 2)
-	#print(slice_e)
 	slice_e = tf.tile(slice_e, [1, 1, hidden_state, 1])
-	#print(slice_e)
 	#duplico a per il numero di nodi lesimi massimo
 	a_aux = tf.expand_dims(sf_a, 3)
 	a_aux = tf.tile(a_aux, [1, 1, 1, int(max_l)])			
-	#print(a_aux)
-	slice_ee = tf.transpose(slice_ee, [2,3,0,1])#--------------------------------------------DDDD???? ij
+	slice_ee = tf.transpose(slice_ee, [2,3,0,1])
 	slice_e = tf.transpose(slice_e, [2,3,0,1])
-	#slice_e = tf.transpose(slice_e, [3,2,0,1])
 
-	#slice_ee = tf.transpose(slice_ee, [3,2,0,1])#--------------------------------------------DDDD???? ij
 
 
 	to_sub = tf.multiply(slice_e, a_aux)
 	to_sum = tf.subtract(slice_ee, to_sub)
 	delta_a = tf.reduce_sum(to_sum,[3])
-	#delta_a = tf.where(tf.equal(delta_a,tf.zeros(delta_a.shape,dtype=tf.float64)), tf.constant(-1, dtype=tf.float64,shape=delta_a.shape))
 
 	#-----------------------pi------------------
 	for node in t.struct[-1]:
@@ -169,7 +152,6 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 	to_sub = tf.multiply(sf_pi, len(t.struct[-1]))
 
 	delta_pi = tf.subtract(slice_e,to_sub)
-	#print(slice_e)
 
 	#-----------------------bi------------------
 
@@ -181,18 +163,7 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 
 
 
-	#	indici = []
-	#	valori = []
-		# complessa operazione per eseguire il docice commentato sopra in tf
-	#	tm_yu = tf.zeros([int(t.size), N_SYMBOLS],dtype=tf.float32)
-	#	for level in t.struct:
-	#		for node in level:
-	#			indici.append([node.name,node.label])
-	#			valori.append(1.0)
-		#delta = tf.SparseTensor(indici, valori, [int(t.size), N_SYMBOLS])
 
-		#tm_yu = tm_yu + tf.sparse_tensor_to_dense(delta)
-		#tm_yu=tf.cast(tm_yu, tf.float64)
 
 	#var_E_list lo espando per 367
 	e_aux = tf.expand_dims(var_E_list, 2)
@@ -202,7 +173,7 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 	bi_aux = tf.expand_dims(sf_bi, 1)
 	bi_aux = tf.tile(bi_aux, [1, t.size, 1])
 
-	tm_yu = tf.expand_dims(np_tm_yu, 0)#-----------------------qui cambi
+	tm_yu = tf.expand_dims(np_tm_yu, 0)
 	tm_yu = tf.tile(tm_yu, [hidden_state,1, 1])
 
 	to_mul = tf.subtract(tm_yu,bi_aux)
@@ -212,11 +183,8 @@ def param_update(tot_delta_sp_p, tot_delta_a, tot_delta_bi, tot_delta_pi,sf_sp_p
 
 	#-----------------------sp_p------------------
 
-	#slice_e = tf.gather(var_E_prov, lista_n_in_e)
-	#slice_e = tf.reduce_sum(slice_e,[2])	
-
 	slice_ee = tf.gather(var_EE_list, lista_n_in_ee)
-	slice_e = tf.reduce_sum(slice_ee,[2,3])	#EEEE qui si puo usante un constant di tutti uno....
+	slice_e = tf.reduce_sum(slice_ee,[2,3])	
 
 
 	sp_p_aux = tf.expand_dims(sf_sp_p, 1)

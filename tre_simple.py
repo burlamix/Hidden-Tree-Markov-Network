@@ -10,8 +10,6 @@ class Node(object):
         self.level_n = level_n
         self.pos = -1
 
-
-
     def __str__(self, level=0):
         image = "\t" * level + repr(self.name) +"-" +repr(self.label) + "\n"
         for child in self.children:
@@ -20,8 +18,6 @@ class Node(object):
 
     def __repr__(self):
         return str(self.name)+"-"+str(self.label)
-
-
 
 
     def add_node(self,label):
@@ -73,7 +69,7 @@ class Node(object):
         else:
             return None
 
-    def ch_l(self,name,l):  #occhio le posizioni iniziano da 0
+    def ch_l(self,name,l):  
         aux = self.get_node(name)
         if  aux != None and len(aux.children) > l:
             return aux.children[l].name
@@ -83,7 +79,7 @@ class Node(object):
     def posizione(self):
         if  self != None:
             if self.father != None:
-                return self.father.children.index(self) #inefficente va migliorata e partono da zero!
+                return self.father.children.index(self)
             else:
                 return 0
         else:
@@ -98,10 +94,7 @@ class Node(object):
 
         if(max_level>0):
             for i in range(0,max_child):
-                #self.add_node(randint(0,max_label-1))
-
                 self.add_node(((i*7)+3)%max_label)
-
                 self.children[i].make_linear_tree(max_child,max_level-1,max_label)
 
 class Tree(object):
@@ -130,9 +123,6 @@ class Tree(object):
         i=0
         for level in l_t.struct:
             for node in level:
-                #inoltre mi salvo il numero massimo di figli che ha l'albero cosi da agevolare i futuri calcoli
-                #if len(node.children)> l_t.max_child:
-                #   l_t.max_child=len(node.children)
                 node.name=i
                 if node.father != None:
                     node.pos = node.father.children.index(node)+1
@@ -163,7 +153,3 @@ class Tree(object):
             for node in level:
                 for child in node.children:
                     self.N_II[child.pos - 1] = self.N_II[child.pos - 1] + 1
-
-
-
-

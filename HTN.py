@@ -5,21 +5,19 @@ import h5py
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.models import Model
-from utils_keras_g import *
-from E_M_utils import *
+from HTN_utils import *
+from BHTMM import *
 from keras import optimizers
 from keras.models import load_model
 from keras import initializers
 from keras.callbacks import LearningRateScheduler
 #import pylab as pl
 
-
 np.set_printoptions(threshold=np.nan)
 
 
 #classi
-
-K=18
+CLASSI=18
 MAX_CHILD = 66
 N_SYMBOLS = 66
 
@@ -34,11 +32,10 @@ def HTM (m,lerning_rate,dec):
 	cl_size = n_comb_r(m,2)
 	model = Sequential()
 	model.add(Dense(cl_size, activation= 'tanh' ,trainable=False,kernel_initializer=init_contrastive_matrix, input_dim=m))
-	model.add(Dense(K, activation= 'softmax' ))
+	model.add(Dense(CLASSI, activation= 'softmax' ))
 
 	
 	sgd = optimizers.SGD(lr=lerning_rate, decay=dec, momentum=0.5)
-	#sgd = optimizers.SGD(lr=lerning_rate, decay=dec, momentum=0.5)
 	#sgd = keras.optimizers.RMSprop(lr=lerning_rate, rho=0.9, epsilon=1e-08, decay=0.0)
 	#sgd = keras.optimizers.Adadelta(lr=lerning_rate, rho=0.95, epsilon=1e-08, decay=0.0)
 	#sgd = keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0)
@@ -54,11 +51,10 @@ def HTM (m,lerning_rate,dec):
 def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,stop_n,vali_set,bs,nome_file):
 
 
-	lrate = LearningRateScheduler(step_decay)
-
-
 	plot_list_loss=[]
 	plot_list_acc=[]
+
+	lrate = LearningRateScheduler(step_decay)
 
 	stop_var=-1
 	count_stop=0
@@ -68,14 +64,14 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 	free_th_l = [init_theta(hidden_state) for i in range(m)] 
 
 	#contiene i valori della batch per l aggioramento del gradiente
-	delta_th = [init_theta_zero(hidden_state) for i in range(m)] 
+	delta_th = [init_theta(hidden_state,empty=True) for i in range(m)] 
 
 	global lr_global
 	lr_global=lerning_rate
 
 	for i in range (0,epoche):
 	
-		#print("EPOCA: ",i)
+		print("EPOCA: ",i)
 
 		#ordino in modo casuale il dataset
 		random.shuffle(data_set)
@@ -86,7 +82,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 		#traning 
 		for j in range(0,len(data_set)):
-			#print("     tree: ",j)
+			print("     tree: ",j)
 
 			like_list=[]
 
@@ -126,7 +122,7 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 			#metto la lista dei vaori di likelihood nella lista che verra appasata come batch
 			like_list_aux.append(like_list)
-			zeri_k=np.zeros(K, dtype=np.float64)
+			zeri_k=np.zeros(CLASSI, dtype=np.float64)
 			zeri_k[int(data_set[j].classe)-1]=1
 			one_hot_lab.append(zeri_k)
 
@@ -146,19 +142,17 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 
 				#p = htm.train_on_batch(like_list_aux,one_hot_lab)
 				p =	htm.fit( like_list_aux, one_hot_lab, batch_size=bs, epochs=1, verbose=0, callbacks=[lrate])
-				#print(p)
 				like_list_aux = []
 				one_hot_lab = []
-				delta_th = [init_theta_zero(hidden_state) for zz in range(m)] 
+				delta_th = [init_theta(hidden_state,empty=True) for zz in range(m)] 
 	
 
 		lerning_rate = lerning_rate * (1. / (1. + (decay * (i+1))))
 		lr_global =lerning_rate
 
 		like_list_epoca= np.zeros((len(vali_set),m), dtype=np.float64)
-		one_hot_lab_epoca = np.zeros((len(vali_set),K), dtype=np.float64)
+		one_hot_lab_epoca = np.zeros((len(vali_set),CLASSI), dtype=np.float64)
 		
-		#print("validation")
 		#CALCOLO LOSS SUL VALIDATION
 		for j in range(0,len(vali_set)):
 			
@@ -210,8 +204,6 @@ def training_val(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,deca
 		#EARLY STOPPING
 		if(accuracy > stop_var):
 			stop_var=accuracy
-		#if(loss_function < stop_var):
-		#	stop_var=loss_function
 			count_stop=0
 			htm.save_weights("weights_"+nome_file)
 			np.save("bhtmm_param_"+nome_file+".npy", free_th_l)
@@ -249,7 +241,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 	plot_list_loss=[]
 	plot_list_acc=[]
 
-	stop_var=99999999999999
+	stop_var=999999999999999999
 	count_stop=0
 	#calcolo la dimensione del primo livello di nodi interno
 
@@ -257,7 +249,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 	free_th_l = [init_theta(hidden_state) for i in range(m)] 
 
 	#contiene i valori della batch per l aggioramento del gradiente
-	delta_th = [init_theta_zero(hidden_state) for i in range(m)] 
+	delta_th = [init_theta(hidden_state,empty=True) for i in range(m)] 
 
 
 	for i in range (0,epoche):
@@ -271,7 +263,7 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 		one_hot_lab = []
 
 		like_list_epoca= np.zeros((len(data_set),m), dtype=np.float64)
-		one_hot_lab_epoca = np.zeros((len(data_set),K), dtype=np.float64)
+		one_hot_lab_epoca = np.zeros((len(data_set),CLASSI), dtype=np.float64)
 
 		for j in range(0,len(data_set)):
 			
@@ -314,10 +306,9 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 						like_list.append(xlike)
 					sess.close()
 
-			#print(testx)
 			#metto la lista dei vaori di likelihood nella lista che verra appasata come batch
 			like_list_aux.append(like_list)
-			zeri_k=np.zeros(K, dtype=np.float64)
+			zeri_k=np.zeros(CLASSI, dtype=np.float64)
 			zeri_k[int(data_set[j].classe)-1]=1
 			one_hot_lab.append(zeri_k)
 
@@ -339,14 +330,13 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 					free_th_l[z][2]   = free_th_l[z][2] +  ((lerning_rate)*(delta_th[z][2]/dime))
 					free_th_l[z][3]   = free_th_l[z][3] +  ((lerning_rate)*(delta_th[z][3]/dime))
 
-				#print(free_th_l[0][0])
 				#p = htm.train_on_batch(like_list_aux,one_hot_lab)
 				p =	htm.fit( like_list_aux, one_hot_lab, batch_size=bs, epochs=1, verbose=0, callbacks=[lrate])
 
 				like_list_aux=[]
 				one_hot_lab=[]
 
-				delta_th = [init_theta_zero(hidden_state) for i in range(m)] 
+				delta_th = [init_theta(hidden_state,empty=True) for i in range(m)] 
 		
 		lerning_rate = lerning_rate * (1. / (1. + (decay * (i+1))))
 		lr_global =lerning_rate
@@ -354,8 +344,6 @@ def training(htm,hidden_state,m,lerning_rate,epoche,batch_size,data_set,decay,st
 		loss_function,accuracy = htm.test_on_batch(like_list_epoca,one_hot_lab_epoca)
 
 		#pred = htm.predict(like_list_epoca)
-		#print(pred)
-
 		print("        loss = ",loss_function,"   ac =",accuracy)
 
 		with open(nome_file, "a") as myfile:
@@ -397,7 +385,7 @@ def test(htm,free_th_l,data_set,m,hidden_state):
 
 
 	like_list_aux = np.zeros((len(data_set),m), dtype=np.float64)
-	one_hot_lab = np.zeros((len(data_set),K), dtype=np.float64)
+	one_hot_lab = np.zeros((len(data_set),CLASSI), dtype=np.float64)
 
 
 	for j in range(0,len(data_set)):

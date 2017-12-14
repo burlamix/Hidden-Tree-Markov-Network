@@ -2,39 +2,38 @@ import numpy as np
 import tensorflow as tf
 from tre_simple import *
 from parser import *
+import random
 #import pylab as pl
 
-np.set_printoptions(threshold=np.nan)
 
-#hidden_state = 10
-N_SYMBOLS = 367
-MAX_CHILD = 32
-CLASSI = 11
+N_SYMBOLS = 66
+MAX_CHILD = 66
+CLASSI = 18
+
 
 def modello(data_set,epoche,hidden_state):
 
-    pi_l=  [[],[],[],[],[],[],[],[],[],[],[]]
-    sp_p_l=[[],[],[],[],[],[],[],[],[],[],[]]
-    bi_l=  [[],[],[],[],[],[],[],[],[],[],[]]
-    A_l=   [[],[],[],[],[],[],[],[],[],[],[]]
+    pi_l=  [[]*CLASSI]
+    sp_p_l=[[]*CLASSI]
+    bi_l=  [[]*CLASSI]
+    A_l=   [[]*CLASSI]
     for i in range(0,CLASSI):
-        #print("-------------------------------------------i =",i)
         pi_l[i],sp_p_l[i],A_l[i],bi_l[i] = training(data_set[i],epoche,hidden_state)
 
     return pi_l,sp_p_l,A_l,bi_l
-
-
 
 def testing(data_test,pi_l,sp_p_l,A_l,bi_l,hidden_state):
 
 
     class_result = np.zeros(len(data_test))
+
     confusion_matrix = np.zeros((CLASSI,CLASSI))
+
     giusti=0
     errati=0
     for j in range(0,len(data_test)):
-        #print(j)
         like_max = -9999999999999999999
+        print(j)
 
         for i in range(0,CLASSI):
 
@@ -77,14 +76,11 @@ def testing(data_test,pi_l,sp_p_l,A_l,bi_l,hidden_state):
     print("errati ",errati)
     print("rate   ",    rate )
     print("confusion_matrix\n",confusion_matrix)
-    #np.savetxt( classi_risultato.out , class_result) 
-    #np.savetxt( rate.out , rate) 
+    #np.savetxt('classi_risultato.out', class_result) 
+    #np.savetxt('rate.out', rate) 
 
     return rate 
 
-
-
-    
 def training(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
 
     n=0
@@ -93,9 +89,6 @@ def training(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
     s_3=[]
     s_4=[]
     like_list =[]
-
-    #hidden_state da 2 a 20 non di piu, va calcolato l algoritmo per i vari valori, che fanno cambiare il tutto di molto IMPORTANTE
-
 
 
     #nel caso non vengano passati dei valori iniziali ai parametri essi venono inizializati random
@@ -108,18 +101,16 @@ def training(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
     if bi is None:
         bi = random_sum_one2(1, hidden_state, N_SYMBOLS)
 
-    #per il numero delle epoco eseguo l E-M
-
+    #per il numero delle epoce eseguo l'E-M
     for i in range(0, epoche):
-        #print("EPOCA: ",i)
+        print("EPOCA: ",i)
 
         var_EE_list = []
         var_E_list = []
 
         #eseguo E-STEP per ogni albero nel dataset
-
-
         for j in range(0,len(data_set)):
+            #print("tree",j)
             #with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
             with tf.Session() as sess:
 
@@ -153,8 +144,6 @@ def training(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
 
     return pi,sp_p,A,bi
 
-
-
 def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=None):
 
     n=0
@@ -163,10 +152,6 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
     s_3=[]
     s_4=[]
     like_list =[]
-
-    #hidden_state da 2 a 20 non di piu, va calcolato l algoritmo per i vari valori, che fanno cambiare il tutto di molto IMPORTANTE
-
-
 
     #nel caso non vengano passati dei valori iniziali ai parametri essi venono inizializati random
     if pi is None:
@@ -178,17 +163,14 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
     if bi is None:
         bi = random_sum_one2(1, hidden_state, N_SYMBOLS)
 
-    #per il numero delle epoco eseguo l E-M
+    #per il numero delle epoco eseguo l'E-M
 
     for i in range(0, epoche):
-        print("EPOCA: ",i)
 
         var_EE_list = []
         var_E_list = []
 
         #eseguo E-STEP per ogni albero nel dataset
-
-
         for j in range(0,len(data_set)):
             #with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
             with tf.Session() as sess:
@@ -212,6 +194,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
             new_pi,new_sp_p,new_A,new_bi = sess.run([new_pi,new_sp_p,new_A,new_bi])
 
             sess.close
+
         tf.reset_default_graph()
 
         pi = new_pi
@@ -219,7 +202,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
         A = new_A
         bi = new_bi
 
-       # with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+        #with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
         with tf.Session() as sess:
 
             s1, s2, s3, s4, tot = log_likelihood(pi,sp_p,A,bi,var_EE_list,var_E_list,data_set,hidden_state)
@@ -231,7 +214,7 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
             s_3.append(s3)
             s_4.append(s4)
             like_list.append(tot)
-
+            print("epoca ",i,"   ",tot)
             sess.close
         tf.reset_default_graph()
     tf.reset_default_graph()
@@ -239,22 +222,18 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
 
     #tf.reset_default_graph()
 
-    #pl.plot(s_4,color= red )
-    #pl.plot(s_3,color= blue )
-    #pl.plot(s_2,color= orange )
-    #pl.plot(s_1,color= green )
+    #pl.plot(s_4,color='red')
+    #pl.plot(s_3,color='blue')
+    #pl.plot(s_2,color='orange')
+    #pl.plot(s_1,color='green')
     #pl.plot(like_list)
 
 
-    #np.savetxt( 55like_list.out , like_list) 
-    #np.savetxt( 55s1.out , s_1) 
-    #np.savetxt( 55s2.out , s_2) 
-    #np.savetxt( 55s3.out , s_3) 
-    #np.savetxt( 55s4.out , s_4) 
+    #np.savetxt('s1.out', s_1) 
+    #np.savetxt('s2.out', s_2) 
+    #np.savetxt('s3.out', s_3) 
+    #np.savetxt('s4.out', s_4) 
     #pl.show()
-    #pl.savefig( 10.png )
-
-
     return pi,sp_p,A,bi
 
 
@@ -263,41 +242,44 @@ def likelihood_test(data_set,epoche,hidden_state,pi=None,sp_p=None,A=None,bi=Non
 
 def Reversed_Upward_Downward(sp_p, A, bi, pi, t,hidden_state):
 
-
     # upward parameters beta
-    up_ward = np.zeros((t.size, hidden_state))
-    a_up_ward = np.zeros((t.size, hidden_state))
-
-    # internal node prior
-    in_prior = np.ones((hidden_state, t.size))
+    var_a_up_ward = tf.zeros([t.size, hidden_state],dtype=tf.float64)
+    var_up_ward = tf.zeros([t.size, hidden_state],dtype=tf.float64)
 
     # pairwise smoothed posterior
-    E = np.zeros((t.size-1,hidden_state))
-    EE = np.zeros((t.size, hidden_state, hidden_state))
+    var_E = tf.zeros([t.size-1,hidden_state],dtype=tf.float64)
+    var_EE = tf.zeros([t.size, hidden_state, hidden_state],dtype=tf.float64)
 
+    padri = []
+    label = []
+    posizione = []
+    for node in t.struct[-1]:
+        label.append(node.label)
+        posizione.append(node.pos -1)
+        padri.append(node.father.name)
 
-    for ii in range(0, hidden_state):
-        #for jj in range(t.size - len(t.struct[-1]), t.size):
-        for jj in range(0,t.size):
-            in_prior[ii, jj] = 1/hidden_state
+    pos_nodi = [0]
+    var_in_prior = tf.zeros([hidden_state, t.size],dtype=tf.float64)
+    for level in t.struct[1:]:
+        for node in level:
+            pos_nodi.append(node.pos-1)
 
-    var_in_prior = tf.constant(in_prior, dtype=tf.float64)
-
-    var_a_up_ward = tf.constant(a_up_ward, dtype=tf.float64)
-    var_up_ward = tf.constant(up_ward, dtype=tf.float64)
-
-    var_E = tf.constant(E, dtype=tf.float64)
-    var_EE = tf.constant(EE, dtype=tf.float64)
-
+    var_in_prior = tf.gather(pi,pos_nodi, axis=1)
+    #print(var_in_prior)
+    #var_in_prior = tf.fill([hidden_state, t.size], tf.cast(1/hidden_state, dtype=tf.float64) )
+    #print(var_in_prior)
+    #var_in_prior = tf.fill([hidden_state, t.size], pi[0,0]) 
+    #print(var_in_prior)
+    #var_in_prior = tf.random_uniform([hidden_state, t.size], minval=0, maxval=1, dtype=tf.float64) 
 
 
     #############################casi base ##############################################################################################
 
-    var_up_ward,ris_17_t = compute_17(bi,pi,var_up_ward,t,hidden_state)
+    var_up_ward,ris_17_t = compute_17(bi,pi,var_up_ward,t,hidden_state,label,posizione)
 
     var_in_prior = compute_internal_node_prior(var_in_prior, sp_p, A, t,hidden_state)
 
-    var_a_up_ward = a_up_ward_foglie(var_a_up_ward,ris_17_t,A,var_in_prior,t,hidden_state)
+    var_a_up_ward = a_up_ward_foglie(var_a_up_ward,ris_17_t,A,var_in_prior,t,hidden_state,padri,posizione)
 
     #up step
     for i in range(len(t.struct) - 2, -1, -1):
@@ -321,25 +303,24 @@ def Reversed_Upward_Downward(sp_p, A, bi, pi, t,hidden_state):
 
     return (var_EE,var_E)
 
-def compute_17(bi,pi,var_up_ward,t,hidden_state):
+def compute_17(bi,pi,var_up_ward,t,hidden_state,label,posizione):
 
-    label = []
-    posizione = []
-    for node in t.struct[-1]:
-        label.append(node.label)
-        posizione.append(node.pos -1)
+
     #prelevo da bi e pi i dati relativi alle foglie
-    aux1 = tf.transpose(tf.gather(tf.transpose(bi, perm=[1, 0]), label), perm=[1, 0])
-    aux2 = tf.transpose(tf.gather(tf.transpose(pi, perm=[1, 0]), posizione), perm=[1, 0])
+    aux1 = tf.gather(bi, label, axis=1)
+    aux2 = tf.gather(pi, posizione, axis=1)
 
     nume = tf.multiply(aux1, aux2)  # Element-wise multiplication
     den = tf.reduce_sum(nume,[0])
     # righe e colonne con lo stesso indice
+    nume = tf.add(nume, tf.constant(1/10000000, dtype=tf.float64,shape=nume.shape))
+
     ris_17_t = tf.divide(nume, den)
 
     ris_17_t = tf.transpose(ris_17_t, perm=[1, 0])
 
     head = tf.slice(var_up_ward, [0, 0], [t.struct[-1][0].name, hidden_state])
+
     var_up_ward = tf.concat([head, ris_17_t], 0)
 
     return var_up_ward, ris_17_t
@@ -349,7 +330,7 @@ def compute_internal_node_prior(var_in_prior,sp_p,A,t,hidden_state):
     aux1 = tf.multiply(sp_p, A)  # broadcast implicito
 
 
-    # per ogni livello dell albero
+    # per ogni livello dell'albero
     for i in range(len(t.struct) - 2, -1, -1):
         nomi_figli = []
         for node in t.struct[i]:
@@ -362,7 +343,7 @@ def compute_internal_node_prior(var_in_prior,sp_p,A,t,hidden_state):
             for j in range(k, MAX_CHILD):
                 nomi_figli[-1].append(0)
 
-        aux2 = tf.transpose(tf.gather(tf.transpose(var_in_prior, perm=[1, 0]), nomi_figli), perm=[2, 0, 1])
+        aux2 = tf.gather(var_in_prior, nomi_figli, axis=1)
 
         aux2 = tf.transpose(aux2, perm=[1, 0, 2])
 
@@ -389,24 +370,20 @@ def compute_internal_node_prior(var_in_prior,sp_p,A,t,hidden_state):
         var_in_prior = tf.concat([head, s, tail], 1)  # aggiorno i nuovi valore trovati
     return var_in_prior
 
-def a_up_ward_foglie(var_a_up_ward,ris_17_t,A,var_in_prior,t,hidden_state):
+def a_up_ward_foglie(var_a_up_ward,ris_17_t,A,var_in_prior,t,hidden_state,padri,posizione):
 
-    padri = []
-    posizione = []
-    for node in t.struct[-1]:
-        padri.append(node.father.name)
-        posizione.append(node.pos-1) 
 
-    slice_A = tf.transpose(tf.gather(tf.transpose(A, perm=[2, 1, 0]), posizione), perm=[2, 1, 0])
-    slice_in_prior = tf.transpose(tf.gather(tf.transpose(var_in_prior, perm=[1,0]), padri), perm=[1,0])
+    slice_A = tf.gather(A, posizione, axis=2)
+
+    slice_in_prior = tf.gather(var_in_prior, padri, axis=1)
 
     up_war_foglie = tf.expand_dims(ris_17_t,2)
     up_war_foglie = tf.tile(up_war_foglie, [1, 1, hidden_state])
-    up_war_foglie = tf.transpose(up_war_foglie,[2,1,0])         #DDDD------------------------------------------------------ ji
-    #up_war_foglie = tf.transpose(up_war_foglie,[1,2,0])         #DDDD------------------------------------------------------ ji
+    up_war_foglie = tf.transpose(up_war_foglie,[2,1,0])         
 
     numerator = tf.multiply(slice_A, up_war_foglie)
     numerator = tf.reduce_sum(numerator,[1])
+
     a_up_war_foglie = tf.divide(numerator,slice_in_prior)
     a_up_war_foglie = tf.transpose(a_up_war_foglie,[1,0])
 
@@ -421,9 +398,12 @@ def compute_19(A, bi, sp_p, a_up_ward, var_in_prior, var_up_ward, t, i,hidden_st
     # mi calcolo il numeratore della
     posizione = []
     nomi = []
+    labels = []
+
     for node in t.struct[i]:
         posizione.append([])
         nomi.append([])
+        labels.append(node.label)
         for child in node.children:
             posizione[-1].append(child.pos-1)
             nomi[-1].append(child.name)
@@ -431,16 +411,14 @@ def compute_19(A, bi, sp_p, a_up_ward, var_in_prior, var_up_ward, t, i,hidden_st
             posizione[-1].append(0)
             nomi[-1].append(0) 
 
-    slice_A = tf.transpose(tf.gather(tf.transpose(A, perm=[2, 1, 0]), posizione), perm=[0, 3, 2, 1])
+    slice_A = tf.gather(A, posizione, axis=2)
 
-    #slice_A = tf.transpose(slice_A,[2,0,1,3])         #DDDD------------------------------------------------------ ji
-    #slice_A = tf.transpose(slice_A,[2,1,0,3])         #DDDD------------------------------------------------------ ji
+    slice_A = tf.transpose(slice_A,[2,0,1,3])         
 
-    slice_var_up_war_provvisoria = tf.gather(var_up_ward, nomi)
+    slice_var_up_war_provvisoria = tf.gather(var_up_ward, nomi, axis=0)
     slice_var_up_war_provvisoria = tf.expand_dims(slice_var_up_war_provvisoria,2)
     slice_var_up_war_provvisoria = tf.tile(slice_var_up_war_provvisoria, [1, 1, hidden_state, 1])
-    slice_var_up_war_provvisoria = tf.transpose(slice_var_up_war_provvisoria,[0,3,2,1])         #DDDD------------------------------------------------------ ji
-    #slice_var_up_war_provvisoria = tf.transpose(slice_var_up_war_provvisoria,[0,2,3,1])         #DDDD------------------------------------------------------ ji
+    slice_var_up_war_provvisoria = tf.transpose(slice_var_up_war_provvisoria,[0,3,2,1])         
 
 
     numerator = tf.multiply(slice_A, slice_var_up_war_provvisoria)
@@ -450,18 +428,7 @@ def compute_19(A, bi, sp_p, a_up_ward, var_in_prior, var_up_ward, t, i,hidden_st
 
     sli_var_in_prior = tf.ones([hidden_state, 0], tf.float64)
 
-    labels = []
-    nomi = []
-    figli = []
-    for node in t.struct[i]:
-        labels.append(node.label)
-        nomi.append(node.name)
-        figli.append([])
-        for child in node.children:
-           figli[-1].append(child.name)
-        for j in range(len(figli[-1]), MAX_CHILD):#MMM qui puoi farlo fino a max lunghezza invehe che
-            figli[-1].append(0)
-    sli_ph_bi = tf.transpose(tf.gather(tf.transpose(bi, perm=[1,0]), labels), perm=[1,0])
+    sli_ph_bi = tf.gather(bi, labels, axis=1)
 
     aux_sp = tf.expand_dims(sp_p,0)
     aux_sp = tf.expand_dims(aux_sp,0)
@@ -500,12 +467,12 @@ def compute_21(A,var_in_prior,var_a_up_ward,ris_19,i,t,hidden_state):
             padri.append(node.father.name)
             posizione.append(node.pos-1) 
 
-        slice_A = tf.transpose(tf.gather(tf.transpose(A, perm=[2, 1, 0]), posizione), perm=[2, 1, 0])
-        slice_in_prior = tf.transpose(tf.gather(tf.transpose(var_in_prior, perm=[1,0]), padri), perm=[1, 0])
+        slice_A = tf.gather(A, posizione, axis=2)
+        slice_in_prior = tf.gather(var_in_prior, padri, axis=1)
 
         up_war_foglie = tf.expand_dims(ris_19,2)
         up_war_foglie = tf.tile(up_war_foglie, [1, 1, hidden_state])
-        up_war_foglie = tf.transpose(up_war_foglie,[2,1,0])         #DDDD------------------------------------------------------ ji
+        up_war_foglie = tf.transpose(up_war_foglie,[2,1,0])         
 
         numerator = tf.multiply(slice_A, up_war_foglie)
         numerator = tf.reduce_sum(numerator,[1])
@@ -560,19 +527,20 @@ def compute_24(sp_p, A, var_E, var_EE, var_up_ward, var_in_prior, var_a_up_ward,
     sli_E = tf.gather(var_E, padri)
     sli_up_ward = tf.gather(var_up_ward, nomi_nodi)
     sli_sp_p_aux = tf.gather(sp_p, posizione)
-    sli_A = tf.transpose(tf.gather(tf.transpose(A, perm=[2,1,0]), posizione), perm=[2, 1, 0])
-    sli_A = tf.transpose(sli_A, perm=[2, 0, 1])   #DDD   --------------------ij
+    sli_A = tf.gather(A, posizione, axis=2)
+    sli_A = tf.transpose(sli_A, perm=[2, 1, 0])   
+
     #per il den
-    sli_in_prior = tf.transpose(tf.gather(tf.transpose(var_in_prior, perm=[1,0]), padri), perm=[1, 0])
-    sli_var_a_up_ward = tf.gather(var_a_up_ward, fratelli)             # qui non e padri ma e FRATELLI del nodo in questione
+    sli_in_prior = tf.gather(var_in_prior, padri, axis=1)
+    sli_var_a_up_ward = tf.gather(var_a_up_ward, fratelli)     
     sli_sp_pos = tf.gather(sp_p,fratelli_pos)
     # per il numeratore
     sli_E = tf.expand_dims(sli_E, 1)
     sli_E = tf.tile(sli_E, [ 1,hidden_state, 1])
 
 
-    sli_up_ward = tf.expand_dims(sli_up_ward, 1)
-    sli_up_ward = tf.tile(sli_up_ward, [1, hidden_state, 1])
+    sli_up_ward = tf.expand_dims(sli_up_ward, 2)
+    sli_up_ward = tf.tile(sli_up_ward, [1,1,hidden_state])
 
     sli_sp_p = tf.expand_dims(sli_sp_p_aux, 1)
     sli_sp_p = tf.expand_dims(sli_sp_p, 1)
@@ -604,15 +572,7 @@ def compute_24(sp_p, A, var_E, var_EE, var_up_ward, var_in_prior, var_a_up_ward,
     numerator = tf.add(numerator, tf.constant(1/10000000, dtype=tf.float64,shape=numerator.shape))
 
     ris_24 = tf.divide(numerator, denominator)
-
-    #uniformarel la somma in moso che faccio uno su j+i (tutto)
-
-    uniform = tf.reduce_sum(ris_24, [1,2])
-    uniform = tf.expand_dims(uniform, 1)
-    uniform = tf.expand_dims(uniform, 1)
-    uniform = tf.tile(uniform, [1, hidden_state,hidden_state])
-    ris_24 = tf.divide(ris_24, uniform)
-
+  
     return ris_24
 #funzione che
 def inglobe_ris_liv(ris_24, var_EE, t, i,hidden_state):
@@ -641,7 +601,7 @@ def compute_25(ris_24, var_E, i, t,hidden_state):
 
 
     head = tf.slice(var_E, [0, 0], [t.struct[i][-1].name + 1 - int((ris_24.shape[0])),
-                                    hidden_state])  # _________________-da controllare la dim giusta in shape
+                                    hidden_state])  
     tail = tf.slice(var_E, [t.struct[i][-1].name + 1, 0],
                     [t.size - t.struct[i][-1].name - 1, hidden_state])
 
@@ -660,13 +620,14 @@ def random_sum_one1(shape1):
     rand_sum_one = np.divide(rand, sum)
 
     return rand_sum_one
-#funzione ausiliaria per inizializzare in modo casuale tensori di 2 dimenzioni dati l asse di
+
+#funzione ausiliaria per inizializzare in modo casuale tensori di 2 dimenzioni dati l'asse di
 def random_sum_one2(axe,shape1,shape2):
 
     rand = np.random.uniform( 0, 1, [shape1, shape2])
     sum = np.sum(rand, axe)
 
-    #nel caso l asse non e lo zero lo espando duplico cosi da poter dividere la matrice random per esso
+    #nel caso l'asse non e lo zero lo espando duplico cosi da poter dividere la matrice random per esso
     if axe == 1:
         sum = np.expand_dims(sum, 1)
         sum = np.tile(sum, [1, shape2])
@@ -674,6 +635,7 @@ def random_sum_one2(axe,shape1,shape2):
     rand_sum_one = np.divide(rand, sum)
 
     return rand_sum_one
+
 #funzione ausiliaria per inizializzare in modo casuale tensori di 3 dimenzioni
 def random_sum_one3(axe,shape1,shape2,shape3=None):
 
@@ -702,7 +664,6 @@ def M_step(var_EE_list,var_E_list,data_set,hidden_state):
 
         # MULTINOMIAL
         # calcolo resized_tm_yu##
-        #                                        DDDD   uesto puo essere fatta in maniera migliore e piu semplice andando a lavorare sugli indici
         for i in range(0, len(var_EE_list)):
             tm_yu = np.zeros([int(data_set[i].size), N_SYMBOLS])
             for level in data_set[i].struct:
@@ -712,7 +673,7 @@ def M_step(var_EE_list,var_E_list,data_set,hidden_state):
             e_resized = tf.expand_dims(var_E_list[i], 2)
             e_resized = tf.tile(e_resized, [1, 1, N_SYMBOLS])
 
-            resized_tm_yu = tf.expand_dims(tm_yu, 2)  # qui posso portare fuori dal for per ottimizzare...
+            resized_tm_yu = tf.expand_dims(tm_yu, 2)  
             resized_tm_yu = tf.tile(resized_tm_yu, [1, 1, hidden_state])
             resized_tm_yu = tf.transpose(resized_tm_yu, perm=[0, 2, 1])
             numerator_tm_yu = tf.multiply(resized_tm_yu, e_resized)
@@ -722,7 +683,7 @@ def M_step(var_EE_list,var_E_list,data_set,hidden_state):
 
             denominator_tm_yu = tf.reduce_sum(var_E_list[i], [0])
             denominator_tm_yu = tf.expand_dims(denominator_tm_yu, 1)
-            denominator_tm_yu = tf.tile(denominator_tm_yu, [1, N_SYMBOLS]) # queste posso tirarle fuori...
+            denominator_tm_yu = tf.tile(denominator_tm_yu, [1, N_SYMBOLS]) 
 
             num_tm_yu_list.append(numerator_tm_yu)
             den_tm_yu_list.append(denominator_tm_yu)
@@ -820,10 +781,10 @@ def M_step(var_EE_list,var_E_list,data_set,hidden_state):
         result_prior = tf.where(tf.is_nan(result_prior), tf.constant(1/hidden_state, dtype=tf.float64,shape=result_prior.shape), result_prior)
         result_prior = tf.transpose(result_prior, [1, 0])
 
-        #DDD devo far si che la somma suglii ia uno?
         pi,sp_p,bi,A = sess.run([result_prior,result_sp,result_multinomial,result_state_trans])
 
         sess.close
+
 
     return result_prior,result_sp,result_state_trans,result_multinomial
 
@@ -842,15 +803,14 @@ def log_likelihood(pi,sp_p,A,bi,var_EE_list,var_E_list,data_set,hidden_state):
                              [data_set[i].size - data_set[i].struct[-1][0].name, hidden_state])
 
         # prima sommatoria
-        # salvo e prelevo la lista dell indicatore posizionale di ogni nodo foglia
+        # salvo e prelevo la lista dell'indicatore posizionale di ogni nodo foglia
         posizione_foglie = []
         for node in data_set[i].struct[-1]:
             posizione_foglie.append(node.pos-1)
-        log_pi = tf.transpose(tf.gather(tf.transpose(pi, perm=[1,0]), posizione_foglie), perm=[1, 0])
+        log_pi = tf.gather(pi, posizione_foglie, axis=1)
         log_pi = tf.log(log_pi)
         log_pi = tf.transpose(log_pi, [1, 0])
         log_pi = tf.where(tf.is_inf(log_pi), tf.zeros_like(log_pi), log_pi)
-        #log_pi = tf.where(tf.less(log_pi,tf.constant(1/TO_ZERO, dtype=tf.float64,shape=log_pi.shape)), tf.zeros(dtype=tf.float64,shape=log_pi.shape), log_pi)
 
         log_pi = tf.cast(log_pi, tf.float64)
 
@@ -862,7 +822,7 @@ def log_likelihood(pi,sp_p,A,bi,var_EE_list,var_E_list,data_set,hidden_state):
         for level in data_set[i].struct:
             for node in level:
                 label_nodi.append(node.label)
-        log_bi = tf.transpose(tf.gather(tf.transpose(bi, perm=[1,0]), label_nodi), perm=[1, 0])
+        log_bi = tf.gather(bi, label_nodi, axis=1)
         log_bi = tf.log(log_bi)
         log_bi = tf.transpose(log_bi, [1, 0])
         log_bi = tf.where(tf.is_inf(log_bi), tf.zeros_like(log_bi), log_bi)
@@ -911,7 +871,7 @@ def log_likelihood(pi,sp_p,A,bi,var_EE_list,var_E_list,data_set,hidden_state):
         log_A = tf.where(tf.is_inf(log_A), tf.zeros_like(log_A), log_A)
         log_A = tf.cast(log_A, tf.float64)
         quarta_somm = tf.multiply(pqqsy,
-                                  log_A)  # ________________________________________________________indicie ij da controllare
+                                  log_A)  
         quarta_somm = tf.reduce_sum(quarta_somm, [1, 2, 3, 0])
 
         tot = tot + prima_somm + seconda_somm + terza_somm + quarta_somm
@@ -926,23 +886,19 @@ def log_likelihood(pi,sp_p,A,bi,var_EE_list,var_E_list,data_set,hidden_state):
 
 def log_likelihood_test(pi,sp_p,A,bi,var_EE_list,var_E_list,t,hidden_state):
 
-
-
-
     # prelevo i nodi interni e foglia
     leaf_node = tf.slice(var_E_list, [t.struct[-1][0].name, 0],
                          [t.size - t.struct[-1][0].name, hidden_state])
 
     # prima sommatoria
-    # salvo e prelevo la lista dell indicatore posizionale di ogni nodo foglia
+    # salvo e prelevo la lista dell'indicatore posizionale di ogni nodo foglia
     posizione_foglie = []
     for node in t.struct[-1]:
         posizione_foglie.append(node.pos-1)
-    log_pi = tf.transpose(tf.gather(tf.transpose(pi, perm=[1,0]), posizione_foglie), perm=[1, 0])
+    log_pi = tf.gather(pi, posizione_foglie, axis=1)
     log_pi = tf.log(log_pi)
     log_pi = tf.transpose(log_pi, [1, 0])
     log_pi = tf.where(tf.is_inf(log_pi), tf.zeros_like(log_pi), log_pi)
-    #log_pi = tf.where(tf.less(log_pi,tf.constant(1/TO_ZERO, dtype=tf.float64,shape=log_pi.shape)), tf.zeros(dtype=tf.float64,shape=log_pi.shape), log_pi)
 
     log_pi = tf.cast(log_pi, tf.float64)
 
@@ -954,7 +910,7 @@ def log_likelihood_test(pi,sp_p,A,bi,var_EE_list,var_E_list,t,hidden_state):
     for level in t.struct:
         for node in level:
             label_nodi.append(node.label)
-    log_bi = tf.transpose(tf.gather(tf.transpose(bi, perm=[1,0]), label_nodi), perm=[1, 0])
+    log_bi = tf.gather(bi, label_nodi, axis=1)
     log_bi = tf.log(log_bi)
     log_bi = tf.transpose(log_bi, [1, 0])
     log_bi = tf.where(tf.is_inf(log_bi), tf.zeros_like(log_bi), log_bi)
@@ -1003,7 +959,7 @@ def log_likelihood_test(pi,sp_p,A,bi,var_EE_list,var_E_list,t,hidden_state):
     log_A = tf.where(tf.is_inf(log_A), tf.zeros_like(log_A), log_A)
     log_A = tf.cast(log_A, tf.float64)
     quarta_somm = tf.multiply(pqqsy,
-                              log_A)  # ________________________________________________________indicie ij da controllare
+                              log_A)  
     quarta_somm = tf.reduce_sum(quarta_somm, [1, 2, 3, 0])
 
     tot =  prima_somm + seconda_somm + terza_somm + quarta_somm
@@ -1016,7 +972,7 @@ def divide_tre_validation (dataset):
 
     d_dataset = [[[],[]],[[],[]],[[],[]]]
 
-    for i in range(0,11):
+    for i in range(0,CLASSI):
         split_size = len(dataset[i])//3
 
     #A
@@ -1039,27 +995,37 @@ def divide_tre_validation (dataset):
         d_dataset[2][1] += dataset[i][:split_size]
 
     return d_dataset
+    
+def divide_tre_validation_htm (dataset):
+
+    d_dataset = [[[],[]],[[],[]],[[],[]]]
+
+    for i in range(0,CLASSI):
+        split_size = len(dataset[i])//3
+
+    #A
+        #traning set
+        d_dataset[0][0] += dataset[i][:split_size*2]
+        #validation set
+        d_dataset[0][1] += dataset[i][split_size*2:]
+
+    #B
+        #traning set
+        d_dataset[1][0] +=dataset[i][:split_size] + dataset[i][split_size*2:]
+        #validation set
+        d_dataset[1][1] += dataset[i][split_size:split_size*2]
+
+    #C
+        #traning set
+        d_dataset[2][0] +=dataset[i][split_size:]
+        #validation set
+        d_dataset[2][1] += dataset[i][:split_size]
 
 
+    # randomizo l'ordine
+    random.shuffle(d_dataset[0][0])
+    random.shuffle(d_dataset[1][0])
+    random.shuffle(d_dataset[2][0])
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return d_dataset

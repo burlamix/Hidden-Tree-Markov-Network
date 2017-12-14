@@ -1,4 +1,4 @@
-from keras_t_g import *
+from HTN import *
 import random
 
 #	PARAMETRI DEL MODELLO
@@ -40,7 +40,7 @@ htm , lamda = training_val (modello,hidden_state,m,lerning_rate,epoche,batch_siz
 htm , lamda = training (modello,hidden_state,m,lerning_rate,epoche,batch_size,traning_set[:50],decay,stop_n,batch_size,nome_file)
 '''
 
-print("test...")
+print("testing...")
 
 result 	= test(htm,lamda,test_set,m,hidden_state)
 
